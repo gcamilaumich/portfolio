@@ -115,7 +115,7 @@ body.nav-on-dark .nav-links a {
   position: absolute;
   left: 0; right: 0; top: -3%;
   height: 106%;
-  background-image: url('images/hero.png'), url('hero.jpeg');
+  background-image: url('index/hero.png'), url('index/hero.jpeg');
   background-size: cover;
   background-position: center bottom;
   background-color: #8fa88a;
