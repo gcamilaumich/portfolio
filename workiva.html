@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Workiva — Camila Garcia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Lato:wght@300;400;700&family=Liu+Jian+Mao+Cao&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="pages.css" />
+  <style>
+    :root {
+      --wv:        #1C4B82; /* medium navy — hero, nav, footer, dark sections */
+      --wv-dark:   #142338; /* darkest shade */
+      --wv-accent: #3579C4; /* workiva blue — bullets, arrows, links */
+      --wv-green:  #4CAF72; /* fresh green — success/after states */
+      --wv-yellow: #F5A623; /* warm orange — callout pops */
+      --wv-purple: #1C4B82; /* matches primary — principle headings */
+      --wv-light:  #FFFFFF; /* white — page background */
+    }
+    body { background: var(--wv-light); }
+
+    /* ── HERO ────────────────────────────────────────────────── */
+    .cs-hero {
+      background: var(--wv);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 8rem 6vw 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .cs-hero-eyebrow {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(253,246,237,0.55);
+      margin-bottom: 1.5rem;
+    }
+    .cs-hero-title {
+      font-family: 'Liu Jian Mao Cao', cursive;
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      font-weight: 400;
+      line-height: 1.08;
+      color: var(--cream);
+      max-width: 18ch;
+      margin-bottom: 2rem;
+    }
+    .cs-hero-desc {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(253,246,237,0.75);
+      max-width: 52ch;
+      margin-bottom: 3rem;
+    }
+    .cs-meta-row {
+      display: flex;
+      gap: 3rem;
+      border-top: 1px solid rgba(253,246,237,0.15);
+      padding-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .cs-meta-item { display: flex; flex-direction: column; gap: 0.3rem; }
+    .cs-meta-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(253,246,237,0.45);
+    }
+    .cs-meta-value {
+      font-family: 'Liu Jian Mao Cao', cursive;
+      font-size: 1rem;
+      color: var(--cream);
+    }
+    .cs-hero-circle {
+      position: absolute; right: -8vw; bottom: -8vw;
+      width: 42vw; height: 42vw;
+      border-radius: 50%;
+      border: 1px solid rgba(253,246,237,0.07);
+      pointer-events: none;
+    }
+    .cs-hero-circle-2 {
+      position: absolute; right: -4vw; bottom: -4vw;
+      width: 30vw; height: 30vw;
+      border-radius: 50%;
+      border: 1px solid rgba(253,246,237,0.05);
+      pointer-events: none;
+    }
+
+    /* ── LAYOUT ──────────────────────────────────────────────── */
+    .cs-section {
+      padding: 6rem 6vw;
+      max-width: 1100px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .cs-section.visible { opacity: 1; transform: translateY(0); }
+
+    .cs-section-wide {
+      padding: 6rem 0;
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .cs-section-wide.visible { opacity: 1; transform: translateY(0); }
+
+    .cs-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .cs-section-heading {
+      font-family: 'Liu Jian Mao Cao', cursive;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--dark);
+      margin-bottom: 1.5rem;
+    }
+    .cs-body {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: rgba(42,32,24,0.7);
+    }
+    .cs-body + .cs-body { margin-top: 1rem; }
+    .cs-body strong { color: var(--dark); font-weight: 700; }
+
+    /* ── DIVIDER ─────────────────────────────────────────────── */
+    .cs-divider {
+      height: 1px;
+      background: rgba(42,32,24,0.1);
+      margin: 0 6vw;
+    }
+
+    /* ── CHAPTER LABEL ───────────────────────────────────────── */
+    .chapter-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(20,35,56,0.5);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .chapter-label::before {
+      content: '';
+      display: block;
+      width: 2rem;
+      height: 1px;
+      background: rgba(20,35,56,0.3);
+    }
+
+    /* ── PULL QUOTE ──────────────────────────────────────────── */
+    .cs-quote {
+      background: var(--wv);
+      padding: 5rem 10vw;
+      text-align: center;
+    }
+    .cs-quote-mark {
+      font-family: 'Liu Jian Mao Cao', cursive;
+      font-size: 5rem;
+      line-height: 0.5;
+      color: rgba(253,246,237,0.15);
+      display: block;
+      margin-bottom: 1.5rem;
+    }
+    .cs-quote-text {
+      font-family: 'Liu Jian Mao Cao', cursive;
+      font-style: italic;
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      line-height: 1.65;
+      color: var(--cream);
+      max-width: 70ch;
+      margin: 0 auto 1.5rem;
+    }
+    .cs-quote-attr {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(253,246,237,0.45);
+    }
+
+    /* ── META CARDS ──────────────────────────────────────────── */
+    .wv-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin: 5rem 6vw 0;
+    }
+    .wv-meta-card {
+      background: #fff;
+      border: 1px solid rgba(20,35,56,0.1);
+      border-radius: 0.75rem;
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+    .wv-meta-card h3 {
+      font-family: 'Liu Jian Mao Cao', cursive;
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--wv-accent);
+      margin-bottom: 1rem;
+    }
+    .wv-meta-card p {
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: rgba(42,32,24,0.6);
+    }
+
+    /* ── PROBLEM LIST ────────────────────────────────────────── */
+    .wv-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .wv-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: rgba(42,32,24,0.7);
+    }
+    .wv-list li::before {
+      content: '→';
+      color: var(--wv-accent);
+      flex-shrink: 0;
+      margin-top: 0.05em;
+    }
+
+    /* ── PRINCIPLES GRID ─────────────────────────────────────── */
+    .wv-principles {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+    .wv-principle {
+      background: #fff;
+      border: 1px solid rgba(20,35,56,0.1);
+      border-radius: 0.5rem;
+      padding: 1.75rem 1.5rem;
+    }
+    .wv-principle-num {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--wv-accent);
+      margin-bottom: 0.5rem;
+    }
+    .wv-principle h4 {
+      font-family: 'Liu Jian Mao Cao', cursive;
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--wv-purple);
+      margin-bottom: 0.5rem;
+    }
+    .wv-principle p {
+      font-size: 0.875rem;
+      line-height: 1.7;
+      color: rgba(42,32,24,0.6);
+    }
+
+    /* ── BEFORE / AFTER ──────────────────────────────────────── */
+    .wv-before-after {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .wv-ba-card {
+      border-radius: 0.5rem;
+      padding: 1.75rem;
+      font-size: 0.9rem;
+      line-height: 1.75;
+    }
+    .wv-ba-card.before {
+      background: #fff;
+      border: 1px solid rgba(42,32,24,0.1);
+    }
+    .wv-ba-card.after {
+      background: rgba(102,204,101,0.08);
+      border: 1px solid rgba(102,204,101,0.35);
+    }
+    .wv-ba-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .wv-ba-card.before .wv-ba-label { color: rgba(42,32,24,0.4); }
+    .wv-ba-card.after .wv-ba-label { color: var(--wv-green); }
+    .wv-ba-card p { color: rgba(42,32,24,0.7); }
+    .wv-ba-card strong { color: var(--dark); }
+
+    /* ── IMAGE PLACEHOLDER ───────────────────────────────────── */
+    .cs-image {
+      background: rgba(20,35,56,0.07);
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.25rem;
+      min-height: 260px;
+    }
+    .cs-image-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(20,35,56,0.4);
+    }
+
+    /* ── DARK BAND ───────────────────────────────────────────── */
+    .cs-band {
+      background: #F0F4F8;
+    }
+
+    /* ── NEXT PROJECT ────────────────────────────────────────── */
+    .cs-next {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 3rem 6vw;
+      background: var(--wv);
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .cs-next:hover { background: #152260; }
+    .cs-next-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(253,246,237,0.5);
+      margin-bottom: 0.4rem;
+    }
+    .cs-next-title {
+      font-family: 'Liu Jian Mao Cao', cursive;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--cream);
+    }
+    .cs-next-arrow {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.85rem;
+      color: rgba(253,246,237,0.6);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── LIGHTBOX ────────────────────────────────────────────── */
+    .lightbox {
+      position: fixed; inset: 0;
+      background: rgba(20,8,60,0.92);
+      z-index: 8000;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .lightbox.open { opacity: 1; pointer-events: all; }
+    .lightbox img {
+      max-width: 90vw; max-height: 88vh;
+      border-radius: 0.5rem;
+      object-fit: contain;
+      transform: scale(0.95);
+      transition: transform 0.3s ease;
+    }
+    .lightbox.open img { transform: scale(1); }
+    .lightbox-close {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      background: rgba(255,255,255,0.12); border: none;
+      color: #fff; font-family: 'Lato', sans-serif;
+      font-size: 0.78rem; letter-spacing: 0.1em;
+      padding: 0.5rem 1rem; border-radius: 999px;
+      cursor: pointer;
+    }
+
+    /* ── EXPAND CURSOR ───────────────────────────────────────── */
+    .wv-cursor {
+      position: fixed; pointer-events: none; z-index: 9999;
+      background: var(--wv); color: #fff;
+      font-family: 'Lato', sans-serif; font-size: 0.65rem;
+      font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 0.4rem 0.85rem; border-radius: 999px;
+      opacity: 0; transform: translate(-50%, -50%);
+      transition: opacity 0.2s ease; white-space: nowrap;
+    }
+    .wv-cursor.visible { opacity: 1; }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ───────────────────────────────────────────────────── -->
+  <nav id="site-nav">
+    <a href="index.html" class="nav-name-pill" style="background: var(--wv);"><img src="images/logomaybe.png" alt="" class="nav-name-logo" /><span class="nav-pill-text">Camila Garcia</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="mailto:cmlagarcia9@gmail.com">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── HERO ──────────────────────────────────────────────────── -->
+  <header class="cs-hero" data-nav-theme="dark">
+    <p class="cs-hero-eyebrow">Workiva · Content Design · 2023</p>
+    <h1 class="cs-hero-title">The product was strong. The words weren't.</h1>
+    <p class="cs-hero-desc">Building a scalable content system for a <strong style="color:var(--cream);">beta mobile app</strong> in a regulated environment.</p>
+    <div class="cs-meta-row">
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Role</span>
+        <span class="cs-meta-value">Lead Content Designer</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Tools</span>
+        <span class="cs-meta-value">Figma, Zendesk</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Team</span>
+        <span class="cs-meta-value">Director of PM, 2 Engineers</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Timeline</span>
+        <span class="cs-meta-value">January – May 2023</span>
+      </div>
+    </div>
+    <div class="cs-hero-circle"></div>
+    <div class="cs-hero-circle-2"></div>
+  </header>
+
+  <!-- ── CONTEXT ───────────────────────────────────────────────── -->
+  <div class="cs-section">
+    <p class="chapter-label">Chapter One</p>
+    <div style="display:grid; grid-template-columns: 1fr auto; gap: 4rem; align-items: center;">
+      <div>
+        <h2 class="cs-section-heading">When the app launched, the functionality was solid — but the voice wasn't.</h2>
+        <p class="cs-body">As a Content Design Intern at Workiva, I took ownership of building a scalable content system that would unify the app's voice across mobile and documentation — before inconsistencies compounded at scale.</p>
+        <p class="cs-body">The product needed to feel trustworthy in a regulated financial environment. That meant every word had to earn its place.</p>
+      </div>
+      <div style="margin-right: calc(-6vw);">
+        <img src="images/workiva-mobile-app-1.png" alt="Workiva mobile app" style="width:280px; height:auto; display:block;" />
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-divider"></div>
+
+  <!-- ── PROBLEM ───────────────────────────────────────────────── -->
+  <div class="cs-section">
+    <p class="chapter-label">The Problem</p>
+    <h2 class="cs-section-heading">The app lacked a unified voice.</h2>
+    <div class="cs-two-col">
+      <div>
+        <p class="cs-body">Across similar flows, users encountered inconsistent writing that eroded confidence in the product:</p>
+        <ul class="wv-list" style="margin-top: 1.25rem;">
+          <li>Multiple casing styles across the same screen types</li>
+          <li>Alarmist error language that created unnecessary anxiety</li>
+          <li>Redundant confirmation prompts that slowed users down</li>
+          <li>Tone inconsistencies between web and mobile</li>
+        </ul>
+        <p class="cs-body" style="margin-top: 1.5rem;">Individually, these were small inconsistencies. Collectively, they slowed comprehension, reduced perceived polish, complicated localization, and undermined trust in a regulated product.</p>
+        <p class="cs-body" style="margin-top:1rem;"><strong>The product was strong. The content wasn't reinforcing that strength.</strong></p>
+      </div>
+      <div>
+        <div style="background:#fff; border:1px solid rgba(20,35,56,0.1); border-radius:0.75rem; padding:2rem;">
+          <p style="font-family:'Lato',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:rgba(20,35,56,0.4); margin-bottom:1.25rem;">Impact of inconsistency</p>
+          <div style="display:flex; flex-direction:column; gap:1rem;">
+            <div style="display:flex; align-items:flex-start; gap:0.75rem;">
+              <span style="color:var(--wv-accent); font-size:1rem; flex-shrink:0;">↓</span>
+              <p style="font-size:0.9rem; color:rgba(42,32,24,0.7); line-height:1.6;">Slowed comprehension across flows</p>
+            </div>
+            <div style="display:flex; align-items:flex-start; gap:0.75rem;">
+              <span style="color:var(--wv-accent); font-size:1rem; flex-shrink:0;">↓</span>
+              <p style="font-size:0.9rem; color:rgba(42,32,24,0.7); line-height:1.6;">Reduced perceived polish of the product</p>
+            </div>
+            <div style="display:flex; align-items:flex-start; gap:0.75rem;">
+              <span style="color:var(--wv-accent); font-size:1rem; flex-shrink:0;">↓</span>
+              <p style="font-size:0.9rem; color:rgba(42,32,24,0.7); line-height:1.6;">Complicated future localization efforts</p>
+            </div>
+            <div style="display:flex; align-items:flex-start; gap:0.75rem;">
+              <span style="color:var(--wv-accent); font-size:1rem; flex-shrink:0;">↓</span>
+              <p style="font-size:0.9rem; color:rgba(42,32,24,0.7); line-height:1.6;">Undermined trust in a regulated environment</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── WHAT WAS NEEDED ───────────────────────────────────────── -->
+  <div data-nav-theme="dark" style="background: var(--wv); padding: 4rem 6vw; text-align:center;">
+    <div style="width:2.5rem; height:3px; background:var(--wv-yellow); margin:0 auto 1.5rem; border-radius:2px;"></div>
+    <p style="font-family:'Liu Jian Mao Cao',cursive; font-style:italic; font-size:clamp(1.2rem,2.2vw,1.6rem); color:var(--cream); max-width:60ch; margin:0 auto; line-height:1.6;">So, I took charge of building a system that would bring the experience into alignment.</p>
+  </div>
+
+  <div class="cs-divider"></div>
+
+  <!-- ── PROCESS ───────────────────────────────────────────────── -->
+  <div class="cs-section">
+    <p class="chapter-label">The Process</p>
+    <h2 class="cs-section-heading">The product needed a system — not just edits.</h2>
+    <p class="cs-body" style="max-width:60ch;">The issue wasn't sentence quality. It was structural inconsistency. To scale effectively, the app needed a content system that felt:</p>
+    <div class="wv-principles">
+      <div class="wv-principle">
+        <p class="wv-principle-num">01</p>
+        <h4>Clear</h4>
+        <p>No ambiguity. Every message should tell the user exactly what happened and what to do next.</p>
+      </div>
+      <div class="wv-principle">
+        <p class="wv-principle-num">02</p>
+        <h4>Consistent</h4>
+        <p>Predictable patterns across flows, so users never have to re-learn the product's language.</p>
+      </div>
+      <div class="wv-principle">
+        <p class="wv-principle-num">03</p>
+        <h4>Human</h4>
+        <p>Informative, not alarming. Errors should feel like guidance, not system failures.</p>
+      </div>
+      <div class="wv-principle">
+        <p class="wv-principle-num">04</p>
+        <h4>Scalable</h4>
+        <p>Ready for localization, growth, and a team that changes over time.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── AUDIT ─────────────────────────────────────────────────── -->
+  <div class="cs-section-wide cs-band">
+    <div style="max-width:1100px; margin:0 auto; padding: 0 6vw;">
+      <p class="chapter-label">The Audit</p>
+      <h2 class="cs-section-heading">To understand the scope, I mapped the entire mobile content ecosystem.</h2>
+      <div class="cs-two-col">
+        <div>
+          <p class="cs-body">I began by auditing every piece of user-facing content across the mobile app — including buttons, toasts, error states, confirmation dialogs, and empty states.</p>
+          <p class="cs-body">I catalogued inconsistencies in casing, tone, length, and intent — noting where content felt unclear, redundant, or unnecessarily alarming.</p>
+          <p class="cs-body" style="margin-top:1rem;"><strong>The audit made one thing clear: this wasn't a copy problem. It was a systems problem.</strong></p>
+          <p class="cs-body">I defined a small set of content principles to guide decisions across the app. These principles became a lightweight content system that made future decisions faster and more consistent.</p>
+        </div>
+        <div>
+          <div class="cs-image" style="padding:0; overflow:hidden; min-height:320px; background:none;">
+            <img src="images/workiva-mobile-audit.png" alt="Workiva mobile content audit" style="width:100%; height:auto; display:block; border-radius:0.5rem;" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-divider"></div>
+
+  <!-- ── THE COPY ───────────────────────────────────────────────── -->
+  <div class="cs-section">
+    <p class="chapter-label">The Copy</p>
+    <h2 class="cs-section-heading">UI copy that actually makes sense together.</h2>
+    <p class="cs-body" style="max-width:60ch; margin-bottom:3rem;">Goodbye Title Case Everywhere. Hello sentence case and readable, consistent patterns. This boosted readability, improved accessibility, and made future localization less painful.</p>
+
+    <!-- Toast messages -->
+    <div style="margin-bottom:4rem;">
+      <p style="font-family:'Lato',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(20,35,56,0.5); margin-bottom:1rem;">Toast messages that don't panic the user</p>
+      <p class="cs-body" style="margin-bottom:1.5rem; max-width:60ch;">One of my favorite fixes: replacing the word <em>"Failed"</em> with <em>"Couldn't"</em>, because no one deserves to be yelled at by a toast. I also shortened each message so it could be understood in the tiny window of time it appears.</p>
+      <div class="wv-before-after">
+        <div class="wv-ba-card before">
+          <p class="wv-ba-label">Before</p>
+          <p><strong>"Failed to upload file"</strong></p>
+          <p style="margin-top:0.5rem; font-size:0.875rem; color:rgba(42,32,24,0.5);">Harsh, alarming, no recovery path</p>
+        </div>
+        <div class="wv-ba-card after">
+          <p class="wv-ba-label">After</p>
+          <p><strong>"Couldn't upload file. Try again."</strong></p>
+          <p style="margin-top:0.5rem; font-size:0.875rem; color:rgba(20,35,56,0.6);">Calm, informative, action-oriented</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Confirmation dialogs -->
+    <div>
+      <p style="font-family:'Lato',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(20,35,56,0.5); margin-bottom:1rem;">Confirmation dialogs with less "Are You Sure??" energy</p>
+      <p class="cs-body" style="margin-bottom:1.5rem; max-width:60ch;">I trimmed them down, removed polite-but-unnecessary fear-mongering, and made the actions the star of the show.</p>
+      <div class="cs-two-col" style="gap:1.5rem;">
+        <div style="display:flex; justify-content:center;">
+          <img src="images/workiva-areyousure1.png" alt="Before — confirmation dialog" style="width:55%; height:auto; border-radius:0.5rem; display:block;" />
+        </div>
+        <div style="display:flex; justify-content:center;">
+          <img src="images/workiva-areyousure2.png" alt="After — confirmation dialog" style="width:55%; height:auto; border-radius:0.5rem; display:block;" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-divider"></div>
+
+  <!-- ── TEMPLATE ──────────────────────────────────────────────── -->
+  <div class="cs-section">
+    <div class="cs-two-col">
+      <div>
+        <p class="chapter-label">Templates</p>
+        <h2 class="cs-section-heading">I even made a template.</h2>
+        <p class="cs-body">Once the content system was defined, I wanted to make sure it could actually outlive me. So I built a set of reusable copy templates to make onboarding new content designers as frictionless as possible.</p>
+        <p class="cs-body">The templates covered common patterns — error messages, confirmation dialogs, empty states, and toast notifications — giving anyone joining the team a ready-made starting point that already aligned with our voice and guidelines.</p>
+        <p class="cs-body">The goal was simple: <strong>a consistent voice shouldn't depend on institutional memory.</strong> It should be baked into the tools.</p>
+      </div>
+      <div style="display:flex; align-items:flex-start; justify-content:center; padding-top:8.5rem;">
+        <img src="images/workiva-mobile-template.png" alt="Workiva content design template" style="width:100%; height:auto; border-radius:0.5rem; display:block;" />
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-divider"></div>
+
+  <!-- ── COLLABORATION ──────────────────────────────────────────── -->
+  <div class="cs-section">
+    <p class="chapter-label">Collaboration</p>
+    <div class="cs-two-col">
+      <div>
+        <h2 class="cs-section-heading">A system is only useful if it survives reality.</h2>
+        <p class="cs-body">I partnered closely with the Product Manager and engineers to review proposed changes in context, ensuring the copy matched real system behavior and technical constraints.</p>
+        <p class="cs-body">Feedback often surfaced edge cases — timing, truncation, platform-specific behavior — which helped refine messages so they worked in production, not just in mockups.</p>
+      </div>
+      <div>
+        <img src="images/workiva-survives-reality.png" alt="Workiva collaboration and Zendesk process" style="width:100%; height:auto; display:block; border-radius:0.5rem;" />
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CHAPTER TRANSITION ────────────────────────────────────── -->
+  <div data-nav-theme="dark" style="background: var(--wv); padding: 6rem 6vw; position:relative; overflow:hidden;">
+
+    <!-- decorative circles -->
+    <div style="position:absolute; right:-6vw; top:-6vw; width:32vw; height:32vw; border-radius:50%; border:1px solid rgba(255,255,255,0.06); pointer-events:none;"></div>
+    <div style="position:absolute; right:-2vw; top:-2vw; width:22vw; height:22vw; border-radius:50%; border:1px solid rgba(255,255,255,0.04); pointer-events:none;"></div>
+
+    <!-- eyebrow -->
+    <p style="font-family:'Lato',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:var(--wv-yellow); margin-bottom:1.25rem;">Chapter Two</p>
+
+    <!-- two-col: headline left, image right -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center;">
+      <div>
+        <h2 style="font-family:'Liu Jian Mao Cao',cursive; font-size:clamp(2rem,4vw,3.5rem); font-weight:400; color:var(--cream); line-height:1.1; margin-bottom:1.5rem;">I scaled beyond the UI.</h2>
+        <div style="width:2.5rem; height:2px; background:var(--wv-yellow); margin-bottom:1.5rem; border-radius:2px;"></div>
+        <p style="font-size:1rem; line-height:1.85; color:rgba(253,246,237,0.7); max-width:48ch;">Once core UI patterns were established, I extended the same principles to mobile help documentation — ensuring users received the same voice whether tapping through the app or searching for help.</p>
+        <p style="font-family:'Lato',sans-serif; font-size:0.75rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.85); margin-top:2rem;">↓ The documentation</p>
+      </div>
+      <div>
+        <!-- image placeholder for chapter transition -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ── DOCUMENTATION ─────────────────────────────────────────── -->
+  <div class="cs-section-wide cs-band">
+    <div style="max-width:1100px; margin:0 auto; padding:0 6vw;">
+      <p class="chapter-label">The Documentation</p>
+      <h2 class="cs-section-heading">With the UI aligned, the next question was: would the voice hold outside the app?</h2>
+      <div class="cs-two-col">
+        <div>
+          <p class="cs-body">I built a complete library of mobile-specific help articles grounded in the same principles:</p>
+          <ul class="wv-list" style="margin-top:1rem;">
+            <li>Clear introductions</li>
+            <li>Action-driven headings</li>
+            <li>Short, scannable steps</li>
+            <li>Bolded button labels</li>
+            <li>Consistent structural templates</li>
+          </ul>
+          <p class="cs-body" style="margin-top:1.25rem;">This ensured users encountered the same voice whether tapping through the app or searching for help.</p>
+        </div>
+        <div>
+          <div class="cs-image" style="padding:0; overflow:hidden; background:none;">
+            <img src="images/workiva-document-outline.png" alt="Workiva document outline" style="width:100%; height:auto; display:block; border-radius:0.5rem;" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MOBILE CAROUSEL ──────────────────────────────────────────── -->
+  <div style="padding: 5rem 6vw; background: var(--wv-light);">
+    <p class="chapter-label">Document Drafts</p>
+    <div style="position:relative; overflow:hidden;">
+      <div id="wv-carousel-track" style="display:flex; gap:2rem; transition: transform 0.45s cubic-bezier(.16,1,.3,1);">
+        <div style="flex:0 0 calc(33.333% - 1.33rem);">
+          <img src="images/workiva-intro-mobile.png" alt="Workiva intro mobile screen" style="width:100%; height:auto; border-radius:0.75rem; display:block;" />
+        </div>
+        <div style="flex:0 0 calc(33.333% - 1.33rem);">
+          <img src="images/workiva-signin-mobile.png" alt="Workiva sign-in mobile screen" style="width:100%; height:auto; border-radius:0.75rem; display:block;" />
+        </div>
+        <div style="flex:0 0 calc(33.333% - 1.33rem);">
+          <img src="images/workiva-comments-mobile.png" alt="Workiva comments mobile screen" style="width:100%; height:auto; border-radius:0.75rem; display:block;" />
+        </div>
+      </div>
+    </div>
+    <!-- controls -->
+    <div style="display:flex; align-items:center; justify-content:center; gap:1.5rem; margin-top:2rem;">
+      <button id="wv-prev" style="background:none; border:1px solid rgba(20,35,56,0.2); border-radius:50%; width:2.5rem; height:2.5rem; cursor:pointer; font-size:1rem; color:var(--wv); display:flex; align-items:center; justify-content:center; transition:background 0.2s;">←</button>
+      <div id="wv-dots" style="display:flex; gap:0.5rem;">
+        <span class="wv-dot" style="width:0.45rem; height:0.45rem; border-radius:50%; background:var(--wv); display:block;"></span>
+        <span class="wv-dot" style="width:0.45rem; height:0.45rem; border-radius:50%; background:rgba(20,35,56,0.2); display:block;"></span>
+        <span class="wv-dot" style="width:0.45rem; height:0.45rem; border-radius:50%; background:rgba(20,35,56,0.2); display:block;"></span>
+      </div>
+      <button id="wv-next" style="background:none; border:1px solid rgba(20,35,56,0.2); border-radius:50%; width:2.5rem; height:2.5rem; cursor:pointer; font-size:1rem; color:var(--wv); display:flex; align-items:center; justify-content:center; transition:background 0.2s;">→</button>
+    </div>
+  </div>
+
+  <!-- ── TAKEAWAY ───────────────────────────────────────────────── -->
+  <div style="background: var(--wv-light); padding: 5rem 6vw; text-align:center; border-top:1px solid rgba(20,35,56,0.08);">
+    <p style="font-family:'Liu Jian Mao Cao',cursive; font-size:clamp(1rem,1.8vw,1.25rem); color:rgba(20,35,56,0.6); max-width:70ch; margin:0 auto 1.5rem; line-height:1.7;">With the system in place, individual messages became sharper.</p>
+    <p style="font-family:'Liu Jian Mao Cao',cursive; font-size:clamp(1.3rem,2.5vw,2rem); font-weight:400; color:var(--wv-purple); max-width:60ch; margin:0 auto; line-height:1.4;">Content design isn't just about refining words. It's about building structures that support confident user decisions.</p>
+  </div>
+
+  <!-- ── TESTIMONIAL ────────────────────────────────────────────── -->
+  <div class="cs-quote">
+    <span class="cs-quote-mark">"</span>
+    <p class="cs-quote-text">She readily took on the mobile app project and actively seeks out feedback on in-app copy from the team. When she had to create a series of new help articles on her own, she learned organizational strategies from others and applied those learnings to her own work, which shows that she is open to trying different processes to figure out what works best for her.</p>
+    <span class="cs-quote-attr">Sarah Kang · Workiva</span>
+  </div>
+
+  <!-- ── REFLECTION ─────────────────────────────────────────────── -->
+  <div class="cs-section">
+    <p class="chapter-label">Reflection</p>
+    <h2 class="cs-section-heading">What I'd carry forward.</h2>
+    <div class="cs-two-col">
+      <div>
+        <p class="cs-body"><strong>Working on a beta product reinforced the importance of establishing systems early</strong> — before scale amplifies inconsistency. What began as scattered tone differences revealed a structural gap.</p>
+        <p class="cs-body"><strong>By addressing it holistically, I helped create alignment across UI and documentation.</strong> In regulated environments especially, clarity builds trust.</p>
+        <p class="cs-body"><strong>Content design is systems design.</strong> Every word decision is a design decision — and the best ones hold up at scale.</p>
+      </div>
+      <div>
+        <p class="chapter-label" style="margin-bottom:1rem;">What's next</p>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:1rem; padding:0;">
+          <li style="display:flex; gap:0.75rem; align-items:flex-start;">
+            <span style="color:var(--wv-accent); font-size:1.1rem; line-height:1.4;">→</span>
+            <p class="cs-body" style="margin:0;">Extend the content system into onboarding and empty states.</p>
+          </li>
+          <li style="display:flex; gap:0.75rem; align-items:flex-start;">
+            <span style="color:var(--wv-accent); font-size:1.1rem; line-height:1.4;">→</span>
+            <p class="cs-body" style="margin:0;">Build a living style guide to maintain consistency as the team grows.</p>
+          </li>
+          <li style="display:flex; gap:0.75rem; align-items:flex-start;">
+            <span style="color:var(--wv-accent); font-size:1.1rem; line-height:1.4;">→</span>
+            <p class="cs-body" style="margin:0;">Test localization readiness across the revised copy patterns.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── NEXT PROJECT ───────────────────────────────────────────── -->
+  <a href="spotter.html" class="cs-next">
+    <div>
+      <p class="cs-next-label">Next case study</p>
+      <p class="cs-next-title">Spotter — UX Design</p>
+    </div>
+    <span class="cs-next-arrow">Read next →</span>
+  </a>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────────── -->
+  <footer class="page-footer" data-nav-theme="dark" style="background: var(--wv);">
+    <div class="footer-left">
+      <p class="footer-label">Get in touch</p>
+      <a href="mailto:cmlagarcia9@gmail.com" class="footer-email">cmlagarcia9@gmail.com</a>
+    </div>
+    <div class="footer-right">
+      <span class="footer-dots">• • •</span>
+      <div class="footer-icons">
+        <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="#" aria-label="Resume">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── LIGHTBOX ───────────────────────────────────────────────── -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+    <button class="lightbox-close" id="lightbox-close">✕ Close</button>
+    <img id="lightbox-img" src="" alt="" />
+  </div>
+
+  <div class="wv-cursor" id="wv-cursor">Expand</div>
+
+  <script>
+    // ── NAV THEME ON SCROLL ────────────────────────────────────
+    (function initNavTheme() {
+      const darkSections = document.querySelectorAll('[data-nav-theme="dark"]');
+      if (!darkSections.length) return;
+      function updateNavTheme() {
+        const checkY = 50;
+        let isDark = false;
+        darkSections.forEach(sec => {
+          const rect = sec.getBoundingClientRect();
+          if (rect.top <= checkY && rect.bottom >= checkY) isDark = true;
+        });
+        document.body.classList.toggle('nav-on-dark', isDark);
+      }
+      window.addEventListener('scroll', updateNavTheme, { passive: true });
+      window.addEventListener('resize', updateNavTheme);
+      updateNavTheme();
+    })();
+
+    // ── SCROLL ANIMATIONS ──────────────────────────────────────
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.cs-section, .cs-section-wide').forEach(el => observer.observe(el));
+
+
+    // ── LIGHTBOX ───────────────────────────────────────────────
+    const lightbox      = document.getElementById('lightbox');
+    const lightboxImg   = document.getElementById('lightbox-img');
+    const lightboxClose = document.getElementById('lightbox-close');
+    const cursor        = document.getElementById('wv-cursor');
+
+    function openLightbox(src, alt) {
+      lightboxImg.src = src; lightboxImg.alt = alt;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      cursor.classList.remove('visible');
+    }
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    document.querySelectorAll('img:not(#lightbox-img):not(.nav-name-logo)').forEach(img => {
+      img.parentElement.style.cursor = 'pointer';
+      img.addEventListener('mousemove', e => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
+      img.addEventListener('mouseenter', () => cursor.classList.add('visible'));
+      img.addEventListener('mouseleave', () => cursor.classList.remove('visible'));
+      img.addEventListener('click', () => openLightbox(img.src, img.alt));
+    });
+
+    // ── MOBILE CAROUSEL ───────────────────────────────────────────
+    const track  = document.getElementById('wv-carousel-track');
+    const dots   = document.querySelectorAll('.wv-dot');
+    const slides = track ? Array.from(track.children) : [];
+    let current  = 0;
+
+    function goTo(idx) {
+      current = (idx + slides.length) % slides.length;
+      dots.forEach((d, i) => d.style.background = i === current ? 'var(--wv)' : 'rgba(20,35,56,0.2)');
+      slides.forEach((s, i) => {
+        s.style.transform  = i === current ? 'scale(1.18)' : 'scale(0.92)';
+        s.style.transition = 'transform 0.45s cubic-bezier(.16,1,.3,1), opacity 0.45s ease';
+        s.style.opacity    = i === current ? '1' : '0.5';
+      });
+    }
+
+    goTo(0);
+    document.getElementById('wv-prev')?.addEventListener('click', () => goTo(current - 1));
+    document.getElementById('wv-next')?.addEventListener('click', () => goTo(current + 1));
+  </script>
+
+  <script src="animations.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Archive-It — Camila Garcia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Lato:wght@300;400;700&family=Liu+Jian+Mao+Cao&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="pages.css" />
+  <style>
+    :root { --ai: #1B3A4B; --ai-light: #eef3f4; --ai-accent: #C0392B; }
+    body { background: var(--ai-light); }
+
+    /* ── HERO ────────────────────────────────────────────────── */
+    .cs-hero {
+      background: var(--ai);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 8rem 6vw 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .cs-hero-eyebrow {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(253,246,237,0.55);
+      margin-bottom: 1.5rem;
+    }
+    .cs-hero-title {
+      font-family: 'Liu Jian Mao Cao', cursive;
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      font-weight: 400;
+      line-height: 1.08;
+      color: var(--cream);
+      max-width: 20ch;
+      margin-bottom: 2rem;
+    }
+    .cs-hero-desc {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(253,246,237,0.75);
+      max-width: 52ch;
+      margin-bottom: 3rem;
+    }
+    .cs-meta-row {
+      display: flex;
+      gap: 3rem;
+      border-top: 1px solid rgba(253,246,237,0.15);
+      padding-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .cs-meta-item { display: flex; flex-direction: column; gap: 0.3rem; }
+    .cs-meta-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(253,246,237,0.45);
+    }
+    .cs-meta-value {
+      font-family: 'Liu Jian Mao Cao', cursive;
+      font-size: 1rem;
+      color: var(--cream);
+    }
+    .cs-hero-circle {
+      position: absolute; right: -8vw; bottom: -8vw;
+      width: 42vw; height: 42vw;
+      border-radius: 50%;
+      border: 1px solid rgba(253,246,237,0.07);
+      pointer-events: none;
+    }
+    .cs-hero-circle-2 {
+      position: absolute; right: -4vw; bottom: -4vw;
+      width: 30vw; height: 30vw;
+      border-radius: 50%;
+      border: 1px solid rgba(253,246,237,0.05);
+      pointer-events: none;
+    }
+
+    /* ── LAYOUT ──────────────────────────────────────────────── */
+    .cs-section {
+      padding: 6rem 6vw;
+      max-width: 1100px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .cs-section.visible { opacity: 1; transform: translateY(0); }
+
+    .cs-section-wide {
+      padding: 6rem 0;
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .cs-section-wide.visible { opacity: 1; transform: translateY(0); }
+
+    .cs-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .cs-section-heading {
+      font-family: 'Liu Jian Mao Cao', cursive;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--dark);
+      margin-bottom: 1.5rem;
+    }
+    .cs-body {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: rgba(42,32,24,0.7);
+    }
+    .cs-body + .cs-body { margin-top: 1rem; }
+    .cs-body strong { color: var(--dark); font-weight: 700; }
+
+    /* ── DIVIDER ─────────────────────────────────────────────── */
+    .cs-divider {
+      height: 1px;
+      background: rgba(42,32,24,0.1);
+      margin: 0 6vw;
+    }
+
+    /* ── CHAPTER LABEL ───────────────────────────────────────── */
+    .chapter-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(27,58,75,0.5);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .chapter-label::before {
+      content: '';
+      display: block;
+      width: 2rem;
+      height: 1px;
+      background: rgba(27,58,75,0.3);
+    }
+
+    /* ── META CARDS ──────────────────────────────────────────── */
+    .ai-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin: 5rem 6vw 0;
+    }
+    .ai-meta-card {
+      background: #fff;
+      border: 1px solid rgba(27,58,75,0.1);
+      border-radius: 0.75rem;
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+    .ai-meta-card h3 {
+      font-family: 'Liu Jian Mao Cao', cursive;
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--ai);
+      margin-bottom: 1rem;
+    }
+    .ai-meta-card p {
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: rgba(42,32,24,0.6);
+    }
+
+    /* ── PROCESS STEPPER ─────────────────────────────────────── */
+    .ai-stepper {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-top: 3rem;
+      gap: 0.5rem;
+    }
+    .ai-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      flex: 1;
+      position: relative;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .ai-step:hover .ai-step-num {
+      background: var(--ai);
+      color: #fff;
+      transition: background 0.2s, color 0.2s;
+    }
+    .ai-step.active .ai-step-num {
+      background: var(--ai);
+      color: #fff;
+    }
+    .ai-step.active .ai-step-name {
+      color: var(--ai);
+      font-weight: 700;
+    }
+
+    /* ── STICKY SIDE PROGRESS BAR ────────────────────────────── */
+    .ai-side-nav {
+      position: fixed;
+      right: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 500;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+    .ai-side-dot {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .ai-side-dot-circle {
+      width: 0.55rem;
+      height: 0.55rem;
+      border-radius: 50%;
+      border: 1.5px solid rgba(27,58,75,0.35);
+      background: transparent;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    }
+    .ai-side-dot.active .ai-side-dot-circle {
+      background: var(--ai);
+      border-color: var(--ai);
+      transform: scale(1.3);
+    }
+    .ai-side-dot:hover .ai-side-dot-circle {
+      border-color: var(--ai);
+      background: rgba(27,58,75,0.15);
+    }
+    .ai-side-dot-line {
+      width: 1px;
+      height: 1.8rem;
+      background: rgba(27,58,75,0.2);
+    }
+    .ai-side-dot:last-child .ai-side-dot-line { display: none; }
+    .ai-side-label {
+      position: absolute;
+      right: 1.2rem;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--ai);
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+    .ai-side-dot:hover .ai-side-label,
+    .ai-side-dot.active .ai-side-label { opacity: 1; }
+    .ai-step-num {
+      width: 2.5rem; height: 2.5rem;
+      border-radius: 50%;
+      border: 1.5px solid var(--ai);
+      color: var(--ai);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Liu Jian Mao Cao', cursive;
+      font-size: 1.1rem;
+      background: #fff;
+      z-index: 2;
+    }
+    .ai-step-name {
+      font-size: 0.8rem;
+      color: rgba(42,32,24,0.65);
+      text-align: center;
+      max-width: 9ch;
+    }
+    .ai-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 1.25rem;
+      left: 60%;
+      width: 100%;
+      height: 1px;
+      background: rgba(27,58,75,0.25);
+      z-index: 1;
+    }
+
+    /* ── FINDING CARDS ───────────────────────────────────────── */
+    .ai-findings {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+    .ai-finding-label {
+      font-size: 0.85rem;
+      color: rgba(42,32,24,0.45);
+      margin-bottom: 0.5rem;
+    }
+    .ai-finding-title {
+      font-family: 'Liu Jian Mao Cao', cursive;
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--ai);
+      margin-bottom: 0.75rem;
+      line-height: 1.35;
+    }
+    .ai-finding-body {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: rgba(42,32,24,0.65);
+    }
+
+    /* ── LIST ────────────────────────────────────────────────── */
+    .ai-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    .ai-list li {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: rgba(42,32,24,0.7);
+    }
+    .ai-list li strong { color: var(--dark); }
+
+    /* ── RECOMMENDATIONS ─────────────────────────────────────── */
+    .ai-rec-group {
+      margin-top: 2.5rem;
+    }
+    .ai-rec-heading {
+      font-family: 'Liu Jian Mao Cao', cursive;
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--ai);
+      margin-bottom: 1rem;
+    }
+    .ai-rec-list {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    .ai-rec-list li {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: rgba(42,32,24,0.7);
+    }
+    .ai-rec-list li::before {
+      content: '✓';
+      color: var(--ai);
+      flex-shrink: 0;
+      font-weight: 700;
+      margin-top: 0.1em;
+    }
+    .ai-rec-list li strong { color: var(--dark); }
+
+    /* ── IMAGE PLACEHOLDER ───────────────────────────────────── */
+    .cs-image {
+      background: rgba(27,58,75,0.06);
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.25rem;
+      min-height: 260px;
+    }
+    .cs-image-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(27,58,75,0.4);
+    }
+
+    /* ── DARK BAND ───────────────────────────────────────────── */
+    .cs-band { background: #e6edee; }
+
+    /* ── VIOLATION CARDS ─────────────────────────────────────── */
+    .ai-violation {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid rgba(27,58,75,0.1);
+    }
+    .ai-violation:last-child { border-bottom: none; }
+    .ai-severity {
+      flex-shrink: 0;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ai-accent);
+      background: rgba(192,57,43,0.08);
+      padding: 0.3rem 0.6rem;
+      border-radius: 0.3rem;
+      white-space: nowrap;
+      margin-top: 0.1rem;
+    }
+    .ai-violation p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: rgba(42,32,24,0.7);
+    }
+    .ai-violation strong { color: var(--dark); }
+
+    /* ── NEXT PROJECT ────────────────────────────────────────── */
+    .cs-next {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 3rem 6vw;
+      background: var(--ai);
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .cs-next:hover { background: #122a36; }
+    .cs-next-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(253,246,237,0.5);
+      margin-bottom: 0.4rem;
+    }
+    .cs-next-title {
+      font-family: 'Liu Jian Mao Cao', cursive;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--cream);
+    }
+    .cs-next-arrow {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.85rem;
+      color: rgba(253,246,237,0.6);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── LIGHTBOX ────────────────────────────────────────────── */
+    .lightbox {
+      position: fixed; inset: 0;
+      background: rgba(10,20,26,0.92);
+      z-index: 8000;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .lightbox.open { opacity: 1; pointer-events: all; }
+    .lightbox img {
+      max-width: 90vw; max-height: 88vh;
+      border-radius: 0.5rem;
+      object-fit: contain;
+      transform: scale(0.95);
+      transition: transform 0.3s ease;
+    }
+    .lightbox.open img { transform: scale(1); }
+    .lightbox-close {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      background: rgba(255,255,255,0.12); border: none;
+      color: #fff; font-family: 'Lato', sans-serif;
+      font-size: 0.78rem; letter-spacing: 0.1em;
+      padding: 0.5rem 1rem; border-radius: 999px;
+      cursor: pointer;
+    }
+
+    /* ── EMBED LIGHTBOX (iframe) ─────────────────────────────── */
+    .embed-lightbox {
+      position: fixed; inset: 0;
+      background: rgba(10,20,26,0.92);
+      z-index: 8000;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .embed-lightbox.open { opacity: 1; pointer-events: all; }
+    .embed-lightbox-frame {
+      width: 90vw; height: 88vh;
+      background: #fff;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      transform: scale(0.95);
+      transition: transform 0.3s ease;
+    }
+    .embed-lightbox.open .embed-lightbox-frame { transform: scale(1); }
+    .embed-lightbox-frame iframe {
+      width: 100%; height: 100%; border: none; display: block;
+    }
+    .embed-expand-target { cursor: pointer; }
+    .sheet-expand-btn {
+      position: absolute;
+      bottom: 0.75rem;
+      right: 0.75rem;
+      background: rgba(27,58,75,0.85);
+      color: #fff;
+      border: none;
+      border-radius: 0.35rem;
+      padding: 0.35rem 0.75rem;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      z-index: 10;
+      backdrop-filter: blur(4px);
+      transition: background 0.2s;
+    }
+    .sheet-expand-btn:hover { background: rgba(27,58,75,1); }
+
+    /* ── EXPAND CURSOR ───────────────────────────────────────── */
+    .ai-cursor {
+      position: fixed; pointer-events: none; z-index: 9999;
+      background: var(--ai); color: #fff;
+      font-family: 'Lato', sans-serif; font-size: 0.65rem;
+      font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 0.4rem 0.85rem; border-radius: 999px;
+      opacity: 0; transform: translate(-50%, -50%);
+      transition: opacity 0.2s ease; white-space: nowrap;
+    }
+    .ai-cursor.visible { opacity: 1; }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ───────────────────────────────────────────────────── -->
+  <nav id="site-nav">
+    <a href="index.html" class="nav-name-pill" style="background: var(--ai);"><img src="images/logomaybe.png" alt="" class="nav-name-logo" /><span class="nav-pill-text">Camila Garcia</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="mailto:cmlagarcia9@gmail.com">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── HERO ──────────────────────────────────────────────────── -->
+  <header class="cs-hero" data-nav-theme="dark">
+    <p class="cs-hero-eyebrow">Internet Archive · Archive-It · UX Research · 2025</p>
+    <h1 class="cs-hero-title">Modernizing web archive discovery for Archive-It</h1>
+    <p class="cs-hero-desc">Evaluating search usability in a complex archival system.</p>
+    <div class="cs-meta-row">
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Role</span>
+        <span class="cs-meta-value">UX Designer</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Tools</span>
+        <span class="cs-meta-value">Figma, FigJam, Google Suite</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Team</span>
+        <span class="cs-meta-value">5 UX Researchers</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Timeline</span>
+        <span class="cs-meta-value">January – May 2025 (15 weeks)</span>
+      </div>
+    </div>
+    <div class="cs-hero-circle"></div>
+    <div class="cs-hero-circle-2"></div>
+  </header>
+
+  <!-- ── CONTEXT ───────────────────────────────────────────────── -->
+  <div class="cs-section">
+    <p class="chapter-label">Context</p>
+    <h2 class="cs-section-heading">A powerful tool, hidden behind a confusing interface.</h2>
+    <p class="cs-body" style="max-width: 70ch;">Archive-It, a service by the Internet Archive, is a platform where institutions capture and manage web content. Our goal was to improve the search, discovery, and filtering experience for end-users to enhance usability and expand the platform's reach.</p>
+
+    <!-- Before / After images -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:2.5rem;">
+      <div>
+        <img src="images/archiveit-original.png" alt="Archive-It original interface" style="width:100%; height:auto; display:block; border-radius:0.5rem; border:1px solid rgba(27,58,75,0.1);" />
+        <p style="font-family:'Lato',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:rgba(27,58,75,0.45); margin-top:0.75rem;">Before</p>
+      </div>
+      <div>
+        <img src="images/archiveit-redesign.png" alt="Archive-It redesigned interface" style="width:100%; height:auto; display:block; border-radius:0.5rem; border:1px solid rgba(27,58,75,0.1);" />
+        <p style="font-family:'Lato',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:rgba(27,58,75,0.45); margin-top:0.75rem;">After</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-divider"></div>
+
+  <!-- ── PROBLEM ───────────────────────────────────────────────── -->
+  <div class="cs-section">
+    <p class="chapter-label">But first, let me explain the problem</p>
+    <h2 class="cs-section-heading">Power comes with complexity.</h2>
+    <div class="cs-two-col">
+      <div>
+        <p class="cs-body">Archive-It is a powerful web archiving platform used by researchers, archivists, and institutions — but its power comes with complexity. Stakeholders and users reported that the existing interface was unintuitive, with overwhelming search results and confusing information pathways that hindered the research process.</p>
+        <p class="cs-body">Our challenge was to identify where users got stuck, why those breakdowns occurred, and how the interface could better support users' mental models during search.</p>
+      </div>
+      <div>
+        <ul class="ai-list">
+          <li><strong>Who's affected:</strong> Researchers, archivists, and institutional staff managing web collections</li>
+          <li><strong>Core tension:</strong> A system built for power users, but used daily by people with varying levels of archival expertise</li>
+          <li><strong>What we needed to learn:</strong> Where breakdowns happen, why they happen, and what mental model users actually bring to search</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-divider"></div>
+
+  <!-- ── PROCESS ───────────────────────────────────────────────── -->
+  <div class="cs-section">
+    <p class="chapter-label">The Process</p>
+    <h2 class="cs-section-heading">Six methods, one research sprint.</h2>
+    <div class="ai-stepper">
+      <a class="ai-step" href="#section-nav"><span class="ai-step-num">1</span><span class="ai-step-name">Navigation</span></a>
+      <a class="ai-step" href="#section-interviews"><span class="ai-step-num">2</span><span class="ai-step-name">Interviews</span></a>
+      <a class="ai-step" href="#section-survey"><span class="ai-step-num">3</span><span class="ai-step-name">Survey research</span></a>
+      <a class="ai-step" href="#section-comparative"><span class="ai-step-num">4</span><span class="ai-step-name">Comparative analysis</span></a>
+      <a class="ai-step" href="#section-heuristic"><span class="ai-step-num">5</span><span class="ai-step-name">Evaluation</span></a>
+      <a class="ai-step" href="#section-testing"><span class="ai-step-num">6</span><span class="ai-step-name">Testing</span></a>
+    </div>
+  </div>
+
+  <!-- ── NAVIGATION ANALYSIS ───────────────────────────────────── -->
+  <div class="cs-section" id="section-nav">
+    <div class="cs-two-col" style="grid-template-columns: 1.4fr 1fr;">
+      <div>
+        <div class="cs-image" style="aspect-ratio: auto; padding: 0; overflow: hidden; align-items: stretch;">
+          <img src="images/IAinteractionmap.png" alt="Archive-It interaction map and navigation analysis" style="width: 100%; height: auto; object-fit: contain; border-radius: 0.5rem; display: block;" />
+        </div>
+      </div>
+      <div>
+        <h2 class="cs-section-heading">Interaction map and navigation analysis</h2>
+        <p class="cs-body">We began by mapping the existing site architecture to understand the user's journey.</p>
+        <p class="cs-body"><strong>Method:</strong> Conducted a navigation analysis to trace how students and researchers access archived collections.</p>
+        <p class="cs-body"><strong>Key insight:</strong> The landing page offered too many competing search pathways — multiple bars, carousels, and "explore" tabs — leading to "trial and error" navigation for new users.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── INTERVIEWS ────────────────────────────────────────────── -->
+  <div class="cs-section" id="section-interviews">
+    <h2 class="cs-section-heading">Stakeholder and user interviews</h2>
+    <p class="cs-body" style="max-width:70ch;">We conducted <strong>semi-structured, 30–45 minute interviews</strong> over Zoom with <strong>six key stakeholders</strong>. This method allowed us to probe into user motivations while following a standardized protocol for consistency.</p>
+
+    <p style="font-family:'Lato',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(27,58,75,0.5); margin-top:2rem; margin-bottom:0.75rem;">Who we interviewed</p>
+    <ul class="ai-list">
+      <li><strong>The Client Team:</strong> To understand the platform's vision and identified pain points like metadata display.</li>
+      <li><strong>Three Archivists:</strong> From collecting organizations to learn how they curate and tag content.</li>
+      <li><strong>Two Scholars:</strong> One frequent user and one novice, to capture a range of search behaviors and academic needs.</li>
+    </ul>
+
+    <p class="cs-body" style="margin-top:1.5rem;"><strong>Findings:</strong> Archivists and scholars used different mental models. Scholars relied on specific metadata (e.g., ISSNs, citation totals) that archivists were not consistently providing.</p>
+    <p class="cs-body"><strong>Recommendation:</strong> Standardize metadata practices to ensure essential fields like "subject categories" or "keywords" are present across all collections.</p>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:2.5rem;">
+      <div>
+        <p style="font-family:'Lato',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:rgba(27,58,75,0.45); margin-bottom:0.75rem;">Archivist Interview Script</p>
+        <div style="position:relative; border-radius:0.5rem; overflow:hidden; height:380px; background:rgba(27,58,75,0.06);">
+          <iframe src="https://docs.google.com/document/d/e/2PACX-1vTOCgyamqo31XiJt3ox_FA5Y6p7mm_Y3zdlH7hbYBc_78dR6oUOg-Nx15kivWWExp2DQm-3Ua0i2Bsk/pub?embedded=true" style="width:167%; height:167%; border:none; display:block; transform:scale(0.6); transform-origin:top left; pointer-events:auto;" loading="lazy"></iframe>
+          <button class="sheet-expand-btn" data-embed-src="https://docs.google.com/document/d/e/2PACX-1vTOCgyamqo31XiJt3ox_FA5Y6p7mm_Y3zdlH7hbYBc_78dR6oUOg-Nx15kivWWExp2DQm-3Ua0i2Bsk/pub?embedded=true">⤢ Expand</button>
+        </div>
+      </div>
+      <div>
+        <p style="font-family:'Lato',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:rgba(27,58,75,0.45); margin-bottom:0.75rem;">Scholar Interview Script</p>
+        <div style="position:relative; border-radius:0.5rem; overflow:hidden; height:380px; background:rgba(27,58,75,0.06);">
+          <iframe src="https://docs.google.com/document/d/e/2PACX-1vQtQhQfMwLRRLw5aeKyuzFMsVarQgWcqTJNjDTyrJx6fjFiKc9-GtAUoYHhz3Z3LCTO910R_fZ-6_j2/pub?embedded=true" style="width:167%; height:167%; border:none; display:block; transform:scale(0.6); transform-origin:top left; pointer-events:auto;" loading="lazy"></iframe>
+          <button class="sheet-expand-btn" data-embed-src="https://docs.google.com/document/d/e/2PACX-1vQtQhQfMwLRRLw5aeKyuzFMsVarQgWcqTJNjDTyrJx6fjFiKc9-GtAUoYHhz3Z3LCTO910R_fZ-6_j2/pub?embedded=true">⤢ Expand</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-divider"></div>
+
+  <!-- ── SURVEY RESEARCH ───────────────────────────────────────── -->
+  <div class="cs-section" id="section-survey">
+    <p class="chapter-label">Survey Research</p>
+    <h2 class="cs-section-heading">Quantifying the qualitative patterns.</h2>
+    <p class="cs-body">We deployed surveys to gather quantitative data on user search approaches and feature preferences.</p>
+    <p class="cs-body"><strong>Participants:</strong> 2 students, 1 professional researcher, 1 general user.</p>
+    <p class="cs-body"><strong>Method:</strong> Conducted a pilot survey followed by a final version to bridge information gaps about the user base.</p>
+
+    <div class="ai-findings">
+      <div>
+        <p class="ai-finding-label">Finding 1</p>
+        <h3 class="ai-finding-title">High demand for search guidance</h3>
+        <p class="ai-finding-body">A majority of users noted they did not know where to start their search or what specific filters did.</p>
+      </div>
+      <div>
+        <p class="ai-finding-label">Finding 2</p>
+        <h3 class="ai-finding-title">Preference for metadata</h3>
+        <p class="ai-finding-body">Users identified "Collection Title" and "Description" as the most critical factors when deciding to explore a collection.</p>
+      </div>
+      <div>
+        <p class="ai-finding-label">Finding 3</p>
+        <h3 class="ai-finding-title">Search over navigation</h3>
+        <p class="ai-finding-body">Quantitative trends showed users preferred using a search bar over manually clicking through organization categories.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── COMPETITIVE ANALYSIS ──────────────────────────────────── -->
+  <div class="cs-section-wide cs-band" id="section-comparative">
+    <div style="max-width:1100px; margin:0 auto; padding:0 6vw;">
+      <div class="cs-two-col" style="grid-template-columns: 1.6fr 1fr;">
+        <div>
+          <div style="position:relative; border-radius:0.5rem; overflow:hidden; height:420px; background:rgba(27,58,75,0.06);">
+            <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS965ay0YeQ9lCdUXwvoIl_mdRZCCTRY6zYL0OB-Qun9UYljOiXO1Tyd2zCr5kbXbvqfXdhQChDKD6m/pubhtml?widget=true&amp;headers=false" title="Comparative analysis spreadsheet" style="width: 238%; height: 238%; border: none; display: block; transform: scale(0.42); transform-origin: top left; pointer-events: auto;" loading="lazy"></iframe>
+            <!-- expand button overlay -->
+            <button class="sheet-expand-btn" data-embed-src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS965ay0YeQ9lCdUXwvoIl_mdRZCCTRY6zYL0OB-Qun9UYljOiXO1Tyd2zCr5kbXbvqfXdhQChDKD6m/pubhtml?widget=true&amp;headers=false" title="Expand">⤢ Expand</button>
+          </div>
+        </div>
+        <div>
+          <h2 class="cs-section-heading">Comparative analysis</h2>
+          <p class="cs-body">We benchmarked Archive-It against direct and indirect competitors (e.g., JSTOR, Library of Congress, UK National Archive).</p>
+          <p class="cs-body"><strong>Best practices found:</strong> Competitors used collapsible list views instead of large calendar views and placed advanced/regular search options together for better intuition.</p>
+          <p class="cs-body"><strong>Recommendation:</strong> Incorporate a single, unified search bar with "Advanced Search" as a dropdown option rather than a separate section.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-divider"></div>
+
+  <!-- ── HEURISTIC EVALUATION ──────────────────────────────────── -->
+  <div class="cs-section" id="section-heuristic">
+    <p class="chapter-label">Heuristic Evaluation</p>
+    <h2 class="cs-section-heading">Using Nielsen's 10 Usability Heuristics, we identified critical interface violations.</h2>
+
+    <div style="margin-top:2rem;">
+      <div class="ai-violation">
+        <span class="ai-severity">Severity 3</span>
+        <p><strong>Consistency &amp; Standards.</strong> Help and Documentation was hidden. Help features were not placed near the search bar where users actually needed them.</p>
+      </div>
+      <div class="ai-violation">
+        <span class="ai-severity">Severity 3</span>
+        <p><strong>Error Recovery.</strong> When searches failed, the site provided no feedback on <em>why</em> it failed or how to fix it (e.g., "Did you mean?"), leaving users stuck.</p>
+      </div>
+      <div class="ai-violation">
+        <span class="ai-severity">Moderate</span>
+        <p><strong>User Control &amp; Freedom.</strong> The site lacked a way to "undo" or easily exit a specific search pathway without using the browser's back button.</p>
+      </div>
+    </div>
+
+    <p class="cs-body" style="margin-top:1.5rem;"><strong>Recommendation:</strong> Consistently place help resources near the search functionality so users can consult them mid-task.</p>
+  </div>
+
+  <div class="cs-divider"></div>
+
+  <!-- ── USABILITY TESTING ─────────────────────────────────────── -->
+  <div class="cs-section" id="section-testing">
+    <p class="chapter-label">Usability Testing</p>
+    <h2 class="cs-section-heading">Usability testing</h2>
+    <p class="cs-body" style="max-width:70ch;">Finally, we conducted moderated usability tests with <strong>undergraduate and graduate students</strong> between the ages of <strong>18–30</strong>. Sessions were conducted over Zoom and in person, and participants were asked to complete a series of search and discovery tasks on the Archive-It platform while thinking aloud.</p>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:2rem;">
+      <div>
+        <p style="font-family:'Lato',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:rgba(27,58,75,0.45); margin-bottom:0.75rem;">Usability Test Script</p>
+        <div style="position:relative; border-radius:0.5rem; overflow:hidden; height:380px; background:rgba(27,58,75,0.06);">
+          <iframe src="https://docs.google.com/document/d/e/2PACX-1vQ2m4gakvAYApEkiXaPRS9TUkTeSIH8f0ag3NPMqGLwS7g-xk_wTWPDRgwFMPyIzyVSQSczxd8nn7XG/pub?embedded=true" style="width:167%; height:167%; border:none; display:block; transform:scale(0.6); transform-origin:top left; pointer-events:auto;" loading="lazy"></iframe>
+          <button class="sheet-expand-btn" data-embed-src="https://docs.google.com/document/d/e/2PACX-1vQ2m4gakvAYApEkiXaPRS9TUkTeSIH8f0ag3NPMqGLwS7g-xk_wTWPDRgwFMPyIzyVSQSczxd8nn7XG/pub?embedded=true">⤢ Expand</button>
+        </div>
+      </div>
+      <div>
+        <p style="font-family:'Lato',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:rgba(27,58,75,0.45); margin-bottom:0.75rem;">Usability Test Notes</p>
+        <div style="position:relative; border-radius:0.5rem; overflow:hidden; height:380px; background:rgba(27,58,75,0.06);">
+          <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSTpNC594Wi6Q6XOKmr5eT5qRP1VsmKlbwvfBFYoQvH_H4fFIQtZsaUw32NLTEtGYzSIH4ew7CFF57r/pubhtml?widget=true&amp;headers=false" style="width:238%; height:238%; border:none; display:block; transform:scale(0.42); transform-origin:top left; pointer-events:auto;" loading="lazy"></iframe>
+          <button class="sheet-expand-btn" data-embed-src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSTpNC594Wi6Q6XOKmr5eT5qRP1VsmKlbwvfBFYoQvH_H4fFIQtZsaUw32NLTEtGYzSIH4ew7CFF57r/pubhtml?widget=true&amp;headers=false">⤢ Expand</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="ai-findings">
+      <div>
+        <p class="ai-finding-label">Finding 1</p>
+        <h3 class="ai-finding-title">Reliance on search</h3>
+        <p class="ai-finding-body">Participants ignored predefined filters almost entirely, relying strictly on the search bar even when it led to poor results.</p>
+      </div>
+      <div>
+        <p class="ai-finding-label">Finding 2</p>
+        <h3 class="ai-finding-title">Error fragility</h3>
+        <p class="ai-finding-body">Small spelling errors completely broke the search experience because the system lacked "fuzzy search" or autocorrect capabilities.</p>
+      </div>
+      <div>
+        <p class="ai-finding-label">Finding 3</p>
+        <h3 class="ai-finding-title">Navigation disorientation</h3>
+        <p class="ai-finding-body">Even experienced archival users "lost track" of the search bar when changing tabs, indicating a need for a more persistent and intuitive header.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── RECOMMENDATIONS ───────────────────────────────────────── -->
+  <div class="cs-section-wide cs-band">
+    <div style="max-width:1100px; margin:0 auto; padding:0 6vw;">
+      <p class="chapter-label">Synthesis</p>
+      <h2 class="cs-section-heading">The recommendations</h2>
+
+      <div class="cs-two-col" style="gap:3rem;">
+        <div>
+          <div class="ai-rec-group">
+            <h3 class="ai-rec-heading">Search interface &amp; navigation</h3>
+            <ul class="ai-rec-list">
+              <li><strong>Consolidate search bars:</strong> Replace the existing multiple search bars with a single, unified search bar labeled "Search the Archive" to reduce user confusion between standard and advanced searches.</li>
+              <li><strong>Integrated advanced search:</strong> Transition "Advanced Search" from a standalone section to a drop-down menu within the primary search bar, allowing advanced users to refine queries without cluttering the interface for novices.</li>
+            </ul>
+          </div>
+
+          <div class="ai-rec-group">
+            <h3 class="ai-rec-heading">Metadata &amp; filtering</h3>
+            <ul class="ai-rec-list">
+              <li><strong>Standardize metadata practices:</strong> Define a mandatory set of system-required metadata fields (such as subject categories or keywords) for archivists to ensure consistency and improve cross-collection searchability.</li>
+              <li><strong>Prioritize key identifiers:</strong> Increase the visual prominence of high-value metadata, such as "capture dates," which users reported as critical for sifting through high-volume results.</li>
+              <li><strong>Collapsible filters:</strong> Redesign filters into collapsible list views to reduce cognitive load and the time users spend reading through long lists.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <div class="ai-rec-group">
+            <h3 class="ai-rec-heading">User support &amp; error management</h3>
+            <ul class="ai-rec-list">
+              <li><strong>Dedicated "how-to" page:</strong> Create a separate, easily accessible page providing guidance on how to navigate the specific complexities of web archives.</li>
+              <li><strong>Contextual help visibility:</strong> Relocate the "Help with Search" resources to be consistently visible and near the search functionality so users can consult them mid-task.</li>
+              <li><strong>Enhanced error feedback:</strong> Improve system feedback when a search fails by clarifying <em>why</em> the error occurred and providing actionable steps for the user to recover.</li>
+            </ul>
+          </div>
+
+          <div class="ai-rec-group">
+            <h3 class="ai-rec-heading">Technical design improvements</h3>
+            <ul class="ai-rec-list">
+              <li><strong>Navigation landmarks:</strong> Ensure the search bar and navigation elements remain persistent or easily locatable even when users are changing tabs or drilling deep into collections to prevent disorientation.</li>
+              <li><strong>Undo functionality:</strong> Provide clear options for users to "undo" actions or exit specific search pathways without relying solely on the browser's back button.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:3rem;">
+      <p style="font-family:'Lato',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:rgba(27,58,75,0.45); margin-bottom:0.75rem; text-align:center;">Happy to say they were implemented!</p>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; max-width:70%; margin:0 auto;">
+        <div>
+          <img src="images/archiveit-collapsable.png" alt="Collapsible filters" style="width:100%; height:auto; display:block; border-radius:0.5rem; border:1px solid rgba(27,58,75,0.1);" />
+          <p style="font-family:'Lato',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.08em; color:rgba(27,58,75,0.45); margin-top:0.75rem;">More collapsible filters</p>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:0;">
+          <div style="margin-bottom:0.5rem;">
+            <img src="images/archiveit-search.png" alt="Search redesign" style="width:100%; height:auto; display:block; border-radius:0.5rem; border:1px solid rgba(27,58,75,0.1);" />
+            <p style="font-family:'Lato',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.08em; color:rgba(27,58,75,0.45); margin-top:0.5rem; margin-bottom:1.5rem;">One singular search bar, navigation landmarks, undo functionalities on filters</p>
+          </div>
+          <div>
+            <img src="images/archiveit-dedicated-helpcenter.png" alt="Dedicated help center" style="width:100%; height:auto; display:block; border-radius:0.5rem; border:1px solid rgba(27,58,75,0.1);" />
+            <p style="font-family:'Lato',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.08em; color:rgba(27,58,75,0.45); margin-top:0.5rem;">Dedicated how-to page</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── LEARNINGS / NEXT STEPS ────────────────────────────────── -->
+  <div class="cs-section">
+    <p class="chapter-label">Reflection</p>
+    <div class="cs-two-col">
+      <div>
+        <h2 class="cs-section-heading">Learnings</h2>
+        <p class="cs-body">Through the triangulation of heuristic evaluation and usability testing, I learned that even expert users (archivists) become novices when a system's search logic is opaque. We found that users weren't failing because of a lack of skill, but because the system provided no feedback on "why" a search failed or how to recover from error.</p>
+        <p class="cs-body">This project taught me that for specialized tools, my role as a designer is to act as a translator, bridging the gap between a dense back-end database and a user's mental model by providing consistent, visible guidance at the moment of need.</p>
+      </div>
+      <div>
+        <h2 class="cs-section-heading">Next steps</h2>
+        <p class="cs-body">I would then conduct A/B testing between the original interface and the new prototype. My success metrics would be a reduction in "Task Completion Time" and a decrease in "Error Recovery Time."</p>
+        <p class="cs-body">Simultaneously, I would recommend a Metadata Workshop with the client to create a standardized data-entry template for archivists, ensuring that the new "filters" we proposed actually have high-quality data to display.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── NEXT PROJECT ───────────────────────────────────────────── -->
+  <a href="spotter.html" class="cs-next">
+    <div>
+      <p class="cs-next-label">Next case study</p>
+      <p class="cs-next-title">Spotter — UX Design</p>
+    </div>
+    <span class="cs-next-arrow">Read next →</span>
+  </a>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────────── -->
+  <footer class="page-footer" data-nav-theme="dark" style="background: var(--ai);">
+    <div class="footer-left">
+      <p class="footer-label">Get in touch</p>
+      <a href="mailto:cmlagarcia9@gmail.com" class="footer-email">cmlagarcia9@gmail.com</a>
+    </div>
+    <div class="footer-right">
+      <span class="footer-dots">• • •</span>
+      <div class="footer-icons">
+        <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="#" aria-label="Resume">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── LIGHTBOX ───────────────────────────────────────────────── -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+    <button class="lightbox-close" id="lightbox-close">✕ Close</button>
+    <img id="lightbox-img" src="" alt="" />
+  </div>
+
+  <!-- ── EMBED LIGHTBOX (iframe) ───────────────────────────────── -->
+  <div class="embed-lightbox" id="embed-lightbox" role="dialog" aria-modal="true">
+    <button class="lightbox-close" id="embed-lightbox-close">✕ Close</button>
+    <div class="embed-lightbox-frame">
+      <iframe id="embed-lightbox-iframe" src="" title="Expanded embed"></iframe>
+    </div>
+  </div>
+
+  <div class="ai-cursor" id="ai-cursor">Expand</div>
+
+  <script>
+    // ── NAV THEME ON SCROLL ────────────────────────────────────
+    (function initNavTheme() {
+      const darkSections = document.querySelectorAll('[data-nav-theme="dark"]');
+      if (!darkSections.length) return;
+      function updateNavTheme() {
+        const checkY = 50;
+        let isDark = false;
+        darkSections.forEach(sec => {
+          const rect = sec.getBoundingClientRect();
+          if (rect.top <= checkY && rect.bottom >= checkY) isDark = true;
+        });
+        document.body.classList.toggle('nav-on-dark', isDark);
+      }
+      window.addEventListener('scroll', updateNavTheme, { passive: true });
+      window.addEventListener('resize', updateNavTheme);
+      updateNavTheme();
+    })();
+
+    // ── SCROLL ANIMATIONS ──────────────────────────────────────
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.cs-section, .cs-section-wide').forEach(el => observer.observe(el));
+
+    // ── LIGHTBOX ───────────────────────────────────────────────
+    const lightbox      = document.getElementById('lightbox');
+    const lightboxImg   = document.getElementById('lightbox-img');
+    const lightboxClose = document.getElementById('lightbox-close');
+    const cursor        = document.getElementById('ai-cursor');
+
+    function openLightbox(src, alt) {
+      lightboxImg.src = src; lightboxImg.alt = alt;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      cursor.classList.remove('visible');
+    }
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    document.querySelectorAll('img:not(#lightbox-img):not(.nav-name-logo)').forEach(img => {
+      img.parentElement.style.cursor = 'pointer';
+      img.addEventListener('mousemove', e => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
+      img.addEventListener('mouseenter', () => cursor.classList.add('visible'));
+      img.addEventListener('mouseleave', () => cursor.classList.remove('visible'));
+      img.addEventListener('click', () => openLightbox(img.src, img.alt));
+    });
+
+    // ── EMBED LIGHTBOX (iframe) ──────────────────────────────────
+    const embedLightbox      = document.getElementById('embed-lightbox');
+    const embedLightboxFrame = document.getElementById('embed-lightbox-iframe');
+    const embedLightboxClose = document.getElementById('embed-lightbox-close');
+
+    function openEmbedLightbox(src) {
+      embedLightboxFrame.src = src;
+      embedLightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      cursor.classList.remove('visible');
+    }
+    function closeEmbedLightbox() {
+      embedLightbox.classList.remove('open');
+      embedLightboxFrame.src = '';
+      document.body.style.overflow = '';
+    }
+    embedLightboxClose.addEventListener('click', closeEmbedLightbox);
+    embedLightbox.addEventListener('click', e => { if (e.target === embedLightbox) closeEmbedLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeEmbedLightbox(); });
+
+    document.querySelectorAll('.embed-expand-target').forEach(target => {
+      target.addEventListener('mousemove', e => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
+      target.addEventListener('mouseenter', () => cursor.classList.add('visible'));
+      target.addEventListener('mouseleave', () => cursor.classList.remove('visible'));
+      target.addEventListener('click', () => openEmbedLightbox(target.dataset.embedSrc));
+    });
+    document.querySelectorAll('.sheet-expand-btn').forEach(btn => {
+      btn.addEventListener('click', () => openEmbedLightbox(btn.dataset.embedSrc));
+    });
+  </script>
+
+  <!-- ── SIDE PROGRESS NAV ─────────────────────────────────────── -->
+  <nav class="ai-side-nav" aria-label="Section progress">
+    <a class="ai-side-dot" href="#section-nav" data-section="section-nav">
+      <span class="ai-side-label">Navigation</span>
+      <span class="ai-side-dot-circle"></span>
+      <span class="ai-side-dot-line"></span>
+    </a>
+    <a class="ai-side-dot" href="#section-interviews" data-section="section-interviews">
+      <span class="ai-side-label">Interviews</span>
+      <span class="ai-side-dot-circle"></span>
+      <span class="ai-side-dot-line"></span>
+    </a>
+    <a class="ai-side-dot" href="#section-survey" data-section="section-survey">
+      <span class="ai-side-label">Survey research</span>
+      <span class="ai-side-dot-circle"></span>
+      <span class="ai-side-dot-line"></span>
+    </a>
+    <a class="ai-side-dot" href="#section-comparative" data-section="section-comparative">
+      <span class="ai-side-label">Comparative analysis</span>
+      <span class="ai-side-dot-circle"></span>
+      <span class="ai-side-dot-line"></span>
+    </a>
+    <a class="ai-side-dot" href="#section-heuristic" data-section="section-heuristic">
+      <span class="ai-side-label">Evaluation</span>
+      <span class="ai-side-dot-circle"></span>
+      <span class="ai-side-dot-line"></span>
+    </a>
+    <a class="ai-side-dot" href="#section-testing" data-section="section-testing">
+      <span class="ai-side-label">Testing</span>
+      <span class="ai-side-dot-circle"></span>
+      <span class="ai-side-dot-line"></span>
+    </a>
+  </nav>
+
+  <script>
+    // ── SIDE NAV + STEPPER ACTIVE STATE ───────────────────────────
+    const sectionIds = ['section-nav','section-interviews','section-survey','section-comparative','section-heuristic','section-testing'];
+    function updateActive() {
+      let current = '';
+      sectionIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && window.scrollY >= el.offsetTop - window.innerHeight * 0.4) current = id;
+      });
+      document.querySelectorAll('.ai-side-dot').forEach(dot => {
+        dot.classList.toggle('active', dot.dataset.section === current);
+      });
+      document.querySelectorAll('.ai-step').forEach((step, i) => {
+        step.classList.toggle('active', step.getAttribute('href') === '#' + current);
+      });
+    }
+    window.addEventListener('scroll', updateActive);
+    updateActive();
+  </script>
+
+  <script src="animations.js"></script>
+
+</body>
+</html>
