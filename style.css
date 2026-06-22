@@ -1,0 +1,749 @@
+/* ── RESET ───────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream:   #fdf6ed;
+  --sand:    #f0e8d8;
+  --olive:   #6b7c5e;
+  --olive-dark: #566349;
+  --dark:    #2a2018;
+  --muted:   rgba(42,32,24,0.5);
+}
+
+html { scroll-behavior: smooth; }
+
+/* Override browser default Times New Roman */
+:where(h1,h2,h3,h4,h5,h6):not([class]) {
+  font-family: 'Liu Jian Mao Cao', cursive;
+}
+
+body {
+  background: var(--olive);
+  color: var(--dark);
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── NAV ─────────────────────────────────────────────────────── */
+#site-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.75rem 4rem 1.5rem;
+}
+
+.nav-name-pill {
+  font-family: 'Liu Jian Mao Cao', cursive;
+  font-style: normal;
+  font-size: 1.3rem;
+  color: var(--cream);
+  background: var(--olive);
+  padding: 0.5rem 1.4rem;
+  border-radius: 999px;
+  letter-spacing: 0.01em;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.6rem;
+  transition: padding 0.35s ease, gap 0.35s ease;
+}
+
+.nav-name-logo {
+  height: 1.8rem;
+  width: auto;
+  display: block;
+}
+
+.nav-pill-text {
+  display: inline-block;
+  max-width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  opacity: 1;
+  transition: max-width 0.35s ease, opacity 0.25s ease;
+}
+
+body.nav-collapsed .nav-name-pill {
+  padding: 0.5rem 0.7rem;
+  gap: 0;
+}
+
+body.nav-collapsed .nav-pill-text {
+  max-width: 0;
+  opacity: 0;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dark);
+  text-decoration: none;
+  transition: color 0.3s ease, opacity 0.2s;
+}
+
+.nav-links a:hover { opacity: 0.55; }
+.nav-links a.active { font-weight: 700; }
+
+/* Toggled by JS when the section behind the nav has a dark/colored background */
+body.nav-on-dark .nav-links a {
+  color: var(--cream);
+}
+
+/* ── HERO ─────────────────────────────────────────────────────── */
+#hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  left: 0; right: 0; top: -3%;
+  height: 106%;
+  background-image: url('images/hero.png'), url('hero.jpeg');
+  background-size: cover;
+  background-position: center bottom;
+  background-color: #8fa88a;
+  will-change: transform;
+}
+
+#hero::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 18vh;
+  background: linear-gradient(to bottom, transparent 0%, #E6ECE4 100%);
+  pointer-events: none;
+  z-index: 3;
+  -webkit-mask-image: radial-gradient(ellipse 15% 45% at 53% 28%, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.3) 55%, black 100%);
+  mask-image: radial-gradient(ellipse 15% 45% at 53% 28%, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.3) 55%, black 100%);
+}
+
+/* ── BIRDS ────────────────────────────────────────────────────── */
+.birds-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.bird { animation-timing-function: ease-in-out; animation-iteration-count: infinite; }
+.bird-1 { animation: drift1 28s infinite; }
+.bird-2 { animation: drift2 34s -5s infinite; }
+.bird-3 { animation: drift1 22s -9s infinite; }
+.bird-4 { animation: drift2 38s -14s infinite; }
+.bird-5 { animation: drift1 26s -2s infinite; }
+.bird-6 { animation: drift2 30s -18s infinite; }
+.bird-7 { animation: drift1 24s -7s infinite; }
+.bird-8 { animation: drift2 32s -11s infinite; }
+
+@keyframes drift1 {
+  0%,100% { transform: translate(0,0); }
+  25%  { transform: translate(18px,-10px); }
+  50%  { transform: translate(6px,-20px); }
+  75%  { transform: translate(-12px,-8px); }
+}
+@keyframes drift2 {
+  0%,100% { transform: translate(0,0); }
+  33% { transform: translate(-14px,-16px); }
+  66% { transform: translate(10px,-6px); }
+}
+
+/* ── HERO TEXT ────────────────────────────────────────────────── */
+.hero-text {
+  position: absolute;
+  top: 15%;
+  left: 0; right: 0;
+  z-index: 3;
+  text-align: center;
+  opacity: 0;
+}
+
+.hero-tagline {
+  font-family: 'Liu Jian Mao Cao', cursive;
+  font-style: normal;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 400;
+  color: #898078;
+  letter-spacing: 0.01em;
+  line-height: 1.15;
+}
+
+.hero-tagline strong {
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* cycling word (typewriter) */
+#cycling-word {
+  display: inline-block;
+  font-weight: 400;
+  min-width: 5ch;
+}
+
+#cycling-word::after {
+  content: '';
+  display: inline-block;
+  width: 2px;
+  height: 0.85em;
+  margin-left: 0.08em;
+  background: currentColor;
+  vertical-align: -0.1em;
+  animation: cycling-cursor-blink 0.8s steps(1) infinite;
+}
+
+@keyframes cycling-cursor-blink {
+  50% { opacity: 0; }
+}
+
+/* ── SCALLOP ──────────────────────────────────────────────────── */
+.scallop-divider {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  z-index: 4;
+  display: flex;
+}
+
+.scallop-bump {
+  flex: 1;
+  height: 52px;
+  background: var(--olive);
+  border-radius: 50% 50% 0 0;
+}
+
+/* ── INTRO ────────────────────────────────────────────────────── */
+#intro {
+  background: #E6ECE4;
+  padding: 5rem 6vw calc(min(7vw, 86px) + 4rem); /* extra whitespace above circles */
+  position: relative;
+  z-index: 2;
+}
+
+.intro-top {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 4rem;
+  align-items: start;
+  padding-bottom: 1rem;
+}
+
+h1 {
+  font-family: 'Liu Jian Mao Cao', cursive;
+}
+
+.intro-heading {
+  font-family: 'Liu Jian Mao Cao', cursive;
+  font-size: clamp(3.5rem, 6vw, 5.5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: #898078;
+  padding-left: 4rem;
+}
+
+.intro-bio-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.intro-bio {
+  font-size: 1rem;
+  line-height: 1.85;
+  color: rgba(20,20,20,0.78);
+}
+
+/* icon circles — anchored to bottom of #intro, bottom half pushed into sage */
+.icon-circles-row {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  transform: translateY(50%); /* push bottom half down into sage */
+  z-index: 5;
+}
+
+.icon-circle {
+  width: min(13vw, 160px);
+  height: min(13vw, 160px);
+  border-radius: 50%;
+  background: #E6ECE4;
+  flex-shrink: 0;
+  /* no shadow — bottom blends into sage bg */
+}
+
+.icon-circle img {
+  width: 65%;
+  height: 65%;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.3s cubic-bezier(.16,1,.3,1);
+}
+
+a.icon-circle {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(.16,1,.3,1), box-shadow 0.3s ease;
+}
+
+a.icon-circle:hover {
+  box-shadow: 0 8px 28px rgba(42,32,24,0.15);
+}
+
+a.icon-circle:hover img {
+  transform: scale(1.1);
+}
+
+/* disciplines panel */
+#disciplines {
+  background: #E6ECE4;
+  padding: min(7vw, 86px) 0 4rem; /* top = half circle height so labels clear them */
+  position: relative;
+  z-index: 1;
+}
+
+#disciplines::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 20vh;
+  background: linear-gradient(to bottom,
+    rgba(251,250,248,0) 0%,
+    rgba(251,250,248,0.06) 25%,
+    rgba(251,250,248,0.18) 45%,
+    rgba(251,250,248,0.38) 62%,
+    rgba(251,250,248,0.62) 76%,
+    rgba(251,250,248,0.85) 89%,
+    #fbfaf8 100%);
+  pointer-events: none;
+}
+
+#disciplines .discipline-grid {
+  margin-top: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+}
+
+.discipline-col {
+  padding: 1.5rem 1.5rem 1.5rem;
+  text-align: center;
+  border-right: 1px solid rgba(42,32,24,0.1);
+}
+.discipline-col:last-child { border-right: none; }
+
+.discipline-label {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--dark);
+  margin-bottom: 0.75rem;
+}
+
+.discipline-rule {
+  width: 28px;
+  height: 1px;
+  background: rgba(42,32,24,0.3);
+  margin: 0 auto 0.9rem;
+}
+
+.discipline-desc {
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: rgba(42,32,24,0.65);
+  text-align: center;
+}
+
+/* ── SELECTED PROJECTS ────────────────────────────────────────── */
+#work {
+  background-color: #fbfaf8;
+  position: relative;
+  padding: 5rem 6vw;
+}
+
+
+.work-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+}
+
+.work-label {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.work-view-all {
+  font-family: 'Liu Jian Mao Cao', cursive;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--dark);
+  text-decoration: none;
+  opacity: 0.65;
+  transition: opacity 0.2s;
+}
+.work-view-all:hover { opacity: 1; }
+
+.work-rule {
+  height: 1px;
+  background: rgba(42,32,24,0.12);
+}
+
+/* ── CURRENTLY WORKING ON — open book spread ─────────────────────── */
+#currently-working {
+  background: #fbfaf8;
+  padding: 6rem 6vw 7rem;
+  display: flex;
+  justify-content: center;
+}
+
+.cw-wrap {
+  width: 100%;
+  max-width: 980px;
+  text-align: center;
+}
+
+.cw-label {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(42,32,24,0.45);
+  margin-bottom: 2.5rem;
+}
+
+.cw-book {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: #fdfbf6;
+  border-radius: 0.4rem;
+  box-shadow:
+    0 30px 60px rgba(42,32,24,0.22),
+    0 8px 18px rgba(42,32,24,0.12);
+  min-height: 420px;
+  overflow: hidden;
+}
+
+.cw-page {
+  position: relative;
+  padding: 3rem 3.2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.cw-page--left {
+  align-items: center;
+  justify-content: center;
+  background:
+    linear-gradient(to right, rgba(42,32,24,0.05), transparent 18%);
+}
+
+.cw-page--right {
+  justify-content: center;
+  text-align: left;
+  background: linear-gradient(to left, rgba(42,32,24,0.05), transparent 18%);
+}
+
+.cw-spine {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 26px;
+  margin-left: -13px;
+  background: linear-gradient(
+    to right,
+    rgba(42,32,24,0.16),
+    rgba(42,32,24,0.04) 35%,
+    rgba(42,32,24,0.04) 65%,
+    rgba(42,32,24,0.16)
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+.cw-photo {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  background: #fff;
+  padding: 0.6rem 0.6rem 1.4rem;
+  box-shadow: 0 10px 24px rgba(42,32,24,0.2);
+  transform: rotate(-2deg);
+}
+
+.cw-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.cw-photo--placeholder {
+  aspect-ratio: 4/3;
+  background: #ece6d6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.cw-photo--placeholder span {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(42,32,24,0.35);
+}
+
+.cw-tape {
+  position: absolute;
+  top: -0.6rem;
+  left: 50%;
+  width: 70px;
+  height: 26px;
+  margin-left: -35px;
+  background: rgba(180, 160, 130, 0.45);
+  transform: rotate(-3deg);
+  box-shadow: 0 2px 4px rgba(42,32,24,0.1);
+}
+
+.cw-type {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.6rem;
+}
+
+.cw-title {
+  font-family: 'Liu Jian Mao Cao', cursive;
+  font-size: clamp(2.2rem, 3.5vw, 3rem);
+  font-weight: 400;
+  color: var(--dark);
+  margin-bottom: 0.9rem;
+}
+
+.cw-desc {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: rgba(42,32,24,0.7);
+  margin-bottom: 1.4rem;
+  max-width: 36ch;
+}
+
+.cw-tags {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1.6rem;
+}
+
+.cw-link {
+  font-family: 'Liu Jian Mao Cao', cursive;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--olive);
+  text-decoration: none;
+}
+
+@media (max-width: 700px) {
+  .cw-book { grid-template-columns: 1fr; }
+  .cw-spine { display: none; }
+  .cw-page--right { text-align: center; align-items: center; }
+  .cw-desc { max-width: none; }
+}
+
+/* project rows */
+.project-row {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 4rem;
+  align-items: center;
+  padding: 3.5rem 0;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: background 0.2s;
+}
+
+.project-row:hover .project-thumb { filter: brightness(0.97); }
+
+.project-thumb {
+  aspect-ratio: 4/3;
+  border-radius: 0.5rem;
+  background-color: #d4c4ae;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.project-discipline-icon {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  z-index: 4;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.15));
+}
+
+.project-thumb--spotter {
+  background-color: #F8EFE6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  overflow: hidden;
+  padding: 1.5rem 2rem;
+}
+
+.project-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.project-type {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.project-title {
+  font-family: 'Liu Jian Mao Cao', cursive;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--dark);
+}
+
+.project-desc {
+  font-size: 0.9rem;
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tag {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.7rem;
+  border: 1px solid rgba(42,32,24,0.18);
+  border-radius: 999px;
+  color: var(--muted);
+}
+
+.project-link {
+  font-family: 'Liu Jian Mao Cao', cursive;
+  font-size: 0.92rem;
+  color: var(--olive-dark);
+  text-decoration: none;
+  display: inline-block;
+  transition: letter-spacing 0.2s;
+}
+.project-link:hover { letter-spacing: 0.02em; }
+
+/* ── FOOTER ───────────────────────────────────────────────────── */
+footer {
+  background: var(--olive);
+  padding: 2.5rem 6vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-label {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(253,246,237,0.55);
+  margin-bottom: 0.4rem;
+}
+
+.footer-email {
+  font-family: 'Liu Jian Mao Cao', cursive;
+  font-size: 1rem;
+  color: var(--cream);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(253,246,237,0.3);
+  padding-bottom: 1px;
+  transition: border-color 0.2s;
+}
+.footer-email:hover { border-color: var(--cream); }
+
+.footer-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.footer-dots {
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  color: rgba(253,246,237,0.4);
+}
+
+.footer-icons {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-icons a {
+  color: rgba(253,246,237,0.7);
+  transition: color 0.2s;
+}
+.footer-icons a:hover { color: var(--cream); }
+
+/* ── RESPONSIVE ──────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .intro-top { grid-template-columns: 1fr; gap: 1.5rem; }
+  .discipline-tabs { grid-template-columns: repeat(3,1fr); }
+  .discipline-col:nth-child(3) { border-right: none; }
+  .project-row { grid-template-columns: 1fr; gap: 1.5rem; }
+  .nav-links { display: none; }
+  #site-nav { padding: 0 1.5rem; }
+}
+
+@media (max-width: 600px) {
+  .discipline-tabs { grid-template-columns: 1fr 1fr; }
+  .discipline-col:nth-child(2) { border-right: none; }
+}

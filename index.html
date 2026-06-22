@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Camila Garcia — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Lato:wght@300;400;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Kristi&family=Liu+Jian+Mao+Cao&family=Loved+by+the+King&family=Neonderthaw&family=Rubik+Puddles&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://use.typekit.net/fbb8pmw.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── NAV ────────────────────────────────────────────────────── -->
+  <nav id="site-nav">
+    <span class="nav-name-pill"><img src="images/logomaybe.png" alt="" class="nav-name-logo" /><span class="nav-pill-text">Camila Garcia</span></span>
+    <ul class="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="mailto:cmlagarcia9@gmail.com">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── HERO ───────────────────────────────────────────────────── -->
+  <section id="hero">
+    <div id="hero-bg" class="hero-bg"></div>
+
+    <!-- birds (commented out)
+    <svg class="birds-layer" viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g class="bird bird-1"><path d="M100 200 Q110 194 120 200 Q130 194 140 200" stroke="#2a2018" stroke-width="2" fill="none" stroke-linecap="round"/></g>
+      <g class="bird bird-2"><path d="M300 140 Q312 133 324 140 Q336 133 348 140" stroke="#2a2018" stroke-width="2.2" fill="none" stroke-linecap="round"/></g>
+      <g class="bird bird-3"><path d="M520 180 Q530 174 540 180 Q550 174 560 180" stroke="#2a2018" stroke-width="1.8" fill="none" stroke-linecap="round"/></g>
+      <g class="bird bird-4"><path d="M720 110 Q733 103 746 110 Q759 103 772 110" stroke="#2a2018" stroke-width="2" fill="none" stroke-linecap="round"/></g>
+      <g class="bird bird-5"><path d="M900 160 Q909 154 918 160 Q927 154 936 160" stroke="#2a2018" stroke-width="1.6" fill="none" stroke-linecap="round"/></g>
+      <g class="bird bird-6"><path d="M1100 130 Q1112 123 1124 130 Q1136 123 1148 130" stroke="#2a2018" stroke-width="2" fill="none" stroke-linecap="round"/></g>
+      <g class="bird bird-7"><path d="M1280 190 Q1290 184 1300 190 Q1310 184 1320 190" stroke="#2a2018" stroke-width="1.7" fill="none" stroke-linecap="round"/></g>
+      <g class="bird bird-8"><path d="M420 240 Q429 234 438 240 Q447 234 456 240" stroke="#2a2018" stroke-width="1.5" fill="none" stroke-linecap="round"/></g>
+    </svg>
+    -->
+
+    <!-- hero text — bottom centre -->
+    <div class="hero-text" id="hero-text">
+      <p class="hero-tagline" id="hero-tagline">
+        Every <strong><span id="cycling-word">person</span></strong><br />has a story.
+      </p>
+    </div>
+
+  </section>
+
+  <!-- ── INTRO ──────────────────────────────────────────────────── -->
+  <section id="intro">
+    <div class="intro-top">
+      <h2 class="intro-heading">Hi, hello!</h2>
+      <div class="intro-bio-col">
+        <p class="intro-bio">
+          I'm Camila. A designer whose greatest strength is storytelling. At the end of the day, I'm a writer. I just happen to design too. I've always learned by throwing myself in headfirst — chasing whatever curious corner calls to me, picking up new tools the way some people collect records or pressed flowers.
+        </p>
+      </div>
+    </div>
+
+    <!-- circles anchored to bottom of intro, half pushed into sage below -->
+    <div class="icon-circles-row">
+      <a href="#discipline-product" class="icon-circle" aria-label="Product Design">
+        <img src="images/home-icon-2.png" alt="Product Design" />
+      </a>
+      <a href="#discipline-content" class="icon-circle" aria-label="Content Design">
+        <img src="images/home-icon-5.png" alt="Content Design" />
+      </a>
+      <a href="#discipline-research" class="icon-circle" aria-label="UX Research">
+        <img src="images/home-icon-3.png" alt="UX Research" />
+      </a>
+      <a href="#discipline-graphic" class="icon-circle" aria-label="Graphic Design">
+        <img src="images/home-icon-4.png" alt="Graphic Design" />
+      </a>
+      <a href="#discipline-web" class="icon-circle" aria-label="Web Design">
+        <img src="images/home-icon-1.png" alt="Web Design" />
+      </a>
+    </div>
+
+  </section>
+
+  <!-- discipline labels live in their own lighter panel -->
+  <section id="disciplines">
+    <div class="discipline-grid">
+      <div class="discipline-col" id="discipline-product">
+        <p class="discipline-label">Product Design</p>
+        <!-- <div class="discipline-rule"></div>
+        <p class="discipline-desc">2 years</p> -->
+      </div>
+      <div class="discipline-col" id="discipline-content">
+        <p class="discipline-label">Content Design</p>
+        <!-- <div class="discipline-rule"></div>
+        <p class="discipline-desc">3 years</p> -->
+      </div>
+      <div class="discipline-col" id="discipline-research">
+        <p class="discipline-label">UX Research</p>
+        <!-- <div class="discipline-rule"></div>
+        <p class="discipline-desc">2 years</p> -->
+      </div>
+      <div class="discipline-col" id="discipline-graphic">
+        <p class="discipline-label">Graphic Design</p>
+        <!-- <div class="discipline-rule"></div>
+        <p class="discipline-desc">1 year</p> -->
+      </div>
+      <div class="discipline-col" id="discipline-web">
+        <p class="discipline-label">Web Design</p>
+        <!-- <div class="discipline-rule"></div>
+        <p class="discipline-desc">2 years</p> -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SELECTED PROJECTS ──────────────────────────────────────── -->
+  <section id="work">
+    <div class="work-header">
+      <span class="work-label">Some of my favorite stories I've worked on!</span>
+      <!-- <a href="projects.html" class="work-view-all">Or you can view all projects</a> -->
+    </div>
+
+    <div class="project-row" id="proj-1">
+      <a href="spotter.html" class="project-thumb project-thumb--spotter">
+        <img class="project-discipline-icon" src="images/home-icon-2.png" alt="Product Design" />
+        <img src="images/spotter-mobile-screen1.png" alt="Spotter mobile app dashboard" style="height:88%; width:auto; object-fit:contain; drop-shadow(0 8px 24px rgba(0,0,0,0.2));" />
+        <img src="images/spotter-wearable-1.png" alt="Spotter Apple Watch app" style="height:65%; width:auto; object-fit:contain; margin-left:-1.5rem; align-self:flex-end; margin-bottom:3.5rem;" />
+      </a>
+      <div class="project-info" style="position:relative; overflow:hidden; min-height:420px;">
+        <div style="position:absolute; inset:0; background-image:url('images/spotter-storytelling.png'); background-size:cover; background-repeat:no-repeat; background-position:center; opacity:0.12; -webkit-mask-image:radial-gradient(ellipse at center, black 35%, transparent 75%); mask-image:radial-gradient(ellipse at center, black 35%, transparent 75%);"></div>
+        <div style="position:relative; z-index:1; display:flex; flex-direction:column; gap:0.85rem;">
+          <p class="project-type">Product Design</p>
+          <h3 class="project-title">Spotter</h3>
+          <p class="project-desc">Designing a dual-platform mobile and wearable experience that helps personal trainers capture session data in real time — without losing the human connection that keeps clients coming back.</p>
+          <div class="project-tags">
+            <span class="tag">Product Design</span><span class="tag">Figma</span><span class="tag">2026</span>
+          </div>
+          <a href="spotter.html" class="project-link">View project→</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-row" id="proj-2">
+      <a href="workiva.html" class="project-thumb" style="background-color:#E8EEE5; display:flex; align-items:center; justify-content:center; gap:0; padding:1rem 1.5rem; overflow:hidden;">
+        <img class="project-discipline-icon" src="images/home-icon-5.png" alt="Content Design" />
+        <img src="images/workiva-mobile-app-1.png" alt="Workiva mobile app" style="height:80%; width:auto; object-fit:contain; flex-shrink:0; margin-right:-1.5rem;" />
+        <img src="images/workiva-intro-mobile.png" alt="Workiva intro to mobile doc" style="height:65%; width:auto; object-fit:contain; flex-shrink:0;" />
+      </a>
+      <div class="project-info" style="position:relative; overflow:hidden; min-height:420px;">
+        <div style="position:absolute; inset:0; background-image:url('images/workiva-storytelling.png'); background-size:cover; background-repeat:no-repeat; background-position:center; opacity:0.22; -webkit-mask-image:radial-gradient(ellipse at center, black 50%, transparent 80%); mask-image:radial-gradient(ellipse at center, black 50%, transparent 80%);"></div>
+        <div style="position:relative; z-index:1; display:flex; flex-direction:column; gap:0.85rem;">
+          <p class="project-type">Content Design</p>
+          <h3 class="project-title">Workiva</h3>
+          <p class="project-desc">Building a scalable content system for a beta mobile app in a regulated financial environment — unifying voice across UI and documentation before inconsistencies compounded at scale.</p>
+          <div class="project-tags">
+            <span class="tag">Content Strategy</span><span class="tag">UX Writing</span><span class="tag">2023</span>
+          </div>
+          <a href="workiva.html" class="project-link">View project →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-row" id="proj-3">
+      <a href="archive-it.html" class="project-thumb" style="background-color:#e8eef5; display:flex; align-items:center; justify-content:center; padding:1.5rem; overflow:hidden;">
+        <img class="project-discipline-icon" src="images/home-icon-3.png" alt="UX Research" />
+        <img src="images/archiveit-redesign.png" alt="Archive-It redesign" style="width:100%; height:100%; object-fit:contain; border-radius:0.3rem;" />
+      </a>
+      <div class="project-info">
+        <p class="project-type">UX Research</p>
+        <h3 class="project-title">Internet Archive</h3>
+        <p class="project-desc">Improving the search, discovery, and filtering experience on Archive-It through six research methods — from stakeholder interviews to usability testing with students.</p>
+        <div class="project-tags">
+          <span class="tag">UX Research</span><span class="tag">Usability Testing</span><span class="tag">2025</span>
+        </div>
+        <a href="archive-it.html" class="project-link">View project →</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ── CURRENTLY WORKING ON — open book spread ──────────────────── -->
+  <section id="currently-working" data-nav-theme="light">
+    <div class="cw-wrap">
+      <p class="cw-label">What I'm currently working on</p>
+      <div class="cw-book">
+        <div class="cw-page cw-page--left">
+          <div class="cw-photo cw-photo--placeholder">
+            <span>Sketches coming soon</span>
+          </div>
+          <span class="cw-tape"></span>
+        </div>
+        <div class="cw-spine"></div>
+        <div class="cw-page cw-page--right">
+          <p class="cw-type">Graphic Design</p>
+          <h3 class="cw-title">PWHL</h3>
+          <p class="cw-desc">The PWHL announced a new team in Detroit! I'm drafting up ideas on what I think the name, logo, and team brand should look like.</p>
+          <div class="cw-tags">
+            <span class="tag">Photoshop</span><span class="tag">Illustrator</span><span class="tag">2026</span>
+          </div>
+          <a href="#" class="cw-link">Read more soon →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 3D BOOK SHELF ─────────────────────────────────────────── -->
+  <!-- ── SHELFIE ──────────────────────────────────────────────────── -->
+  <section id="book-shelf" style="display:none;">
+
+    <div class="shelf-header">
+      <span class="work-label">Case studies, as books.</span>
+    </div>
+
+    <!-- Top shelf: Spotter left, PWHL right -->
+    <div class="shelf-row">
+      <div class="shelf-items">
+
+        <!-- Book: Spotter -->
+        <a class="shelf-book" href="spotter.html" style="margin-left:8rem;">
+          <div class="sb-spine" style="background:linear-gradient(to right,#332A22,#4A3D32);"></div>
+          <div class="sb-cover-wrap">
+            <div class="sb-inside">
+              <p class="sb-inside-type">Product Design</p>
+              <h3 class="sb-inside-title" style="color:#C4A07A;">Spotter</h3>
+              <p class="sb-inside-desc">Designing a dual-platform experience for personal trainers — without losing the human connection.</p>
+              <span class="sb-inside-link">Read the case study →</span>
+            </div>
+            <div class="sb-cover" style="background:#4A3D32;">
+              <svg class="sb-art" viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="60" cy="30" r="13" stroke="#C4A07A" stroke-width="1.5" fill="none" opacity="0.7"/>
+                <path d="M60 43 L51 65 L60 60 L69 65 L60 43Z" stroke="#C4A07A" stroke-width="1.5" fill="none" opacity="0.6" stroke-linejoin="round"/>
+                <path d="M51 53 L38 47" stroke="#C4A07A" stroke-width="1.5" opacity="0.5" stroke-linecap="round"/>
+                <path d="M69 53 L82 47" stroke="#C4A07A" stroke-width="1.5" opacity="0.5" stroke-linecap="round"/>
+                <line x1="26" y1="47" x2="94" y2="47" stroke="#EDD9BC" stroke-width="0.8" opacity="0.2"/>
+                <circle cx="26" cy="47" r="5" stroke="#EDD9BC" stroke-width="1" fill="none" opacity="0.18"/>
+                <circle cx="94" cy="47" r="5" stroke="#EDD9BC" stroke-width="1" fill="none" opacity="0.18"/>
+                <circle cx="18" cy="18" r="2" fill="#C4A07A" opacity="0.3"/>
+                <circle cx="105" cy="80" r="3" fill="#C4A07A" opacity="0.18"/>
+              </svg>
+              <div class="sb-top">
+                <p class="sb-type">Product Design</p>
+                <h3 class="sb-title">Spotter</h3>
+              </div>
+              <div class="sb-bottom">
+                <span class="sb-author">Camila Garcia</span>
+                <span class="sb-year">2026</span>
+              </div>
+            </div>
+          </div>
+          <div class="sb-pages"></div>
+        </a>
+
+        <!-- Empty space + placeholder -->
+        <div class="shelf-spacer"></div>
+        <div class="shelf-placeholder" style="width:70px;height:70px;"></div>
+        <div class="shelf-placeholder" style="width:85px;height:85px;"></div>
+
+        <!-- Book: PWHL -->
+        <a class="shelf-book" href="#">
+          <div class="sb-spine" style="background:linear-gradient(to right,#5C2020,#7A3030);"></div>
+          <div class="sb-cover-wrap">
+            <div class="sb-inside">
+              <p class="sb-inside-type">Graphic Design</p>
+              <h3 class="sb-inside-title" style="color:#E8A080;">PWHL</h3>
+              <p class="sb-inside-desc">Coming soon.</p>
+              <span class="sb-inside-link">Stay tuned →</span>
+            </div>
+            <div class="sb-cover" style="background:#7A3030;">
+              <svg class="sb-art" viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="60" cy="50" r="30" stroke="#E8A080" stroke-width="1" fill="none" opacity="0.25"/>
+                <circle cx="60" cy="50" r="18" stroke="#E8A080" stroke-width="1.2" fill="none" opacity="0.4"/>
+                <path d="M35 50 Q60 28 85 50 Q60 72 35 50Z" stroke="#E8A080" stroke-width="1.5" fill="none" opacity="0.5"/>
+                <circle cx="60" cy="50" r="4" fill="#E8A080" opacity="0.5"/>
+                <line x1="60" y1="20" x2="60" y2="80" stroke="#E8C0A0" stroke-width="0.7" opacity="0.2"/>
+                <line x1="30" y1="50" x2="90" y2="50" stroke="#E8C0A0" stroke-width="0.7" opacity="0.2"/>
+                <circle cx="22" cy="22" r="2" fill="#E8A080" opacity="0.28"/>
+                <circle cx="100" cy="80" r="2.5" fill="#E8A080" opacity="0.2"/>
+              </svg>
+              <div class="sb-top">
+                <p class="sb-type">Graphic Design</p>
+                <h3 class="sb-title">PWHL</h3>
+              </div>
+              <div class="sb-bottom">
+                <span class="sb-author">Camila Garcia</span>
+                <span class="sb-year">2023</span>
+              </div>
+            </div>
+          </div>
+          <div class="sb-pages"></div>
+        </a>
+
+      </div>
+      <div class="wood-shelf"></div>
+    </div>
+
+    <!-- Bottom shelf: Workiva + Archive-It center-right -->
+    <div class="shelf-row">
+      <div class="shelf-items">
+
+        <!-- Book: Workiva -->
+        <a class="shelf-book" href="workiva.html">
+          <div class="sb-spine" style="background:linear-gradient(to right,#102848,#1A3F72);"></div>
+          <div class="sb-cover-wrap">
+            <div class="sb-inside">
+              <p class="sb-inside-type">Content Design</p>
+              <h3 class="sb-inside-title" style="color:#6A9FD4;">Workiva</h3>
+              <p class="sb-inside-desc">Building a scalable content system for a beta mobile app in a regulated financial environment.</p>
+              <span class="sb-inside-link">View project →</span>
+            </div>
+            <div class="sb-cover" style="background:#1A3F72;">
+              <svg class="sb-art" viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="36" y="20" width="48" height="62" rx="2" stroke="#6A9FD4" stroke-width="1.2" fill="none" opacity="0.2"/>
+                <rect x="30" y="14" width="48" height="62" rx="2" stroke="#6A9FD4" stroke-width="1.2" fill="none" opacity="0.38"/>
+                <rect x="24" y="8"  width="48" height="62" rx="2" stroke="#6A9FD4" stroke-width="1.5" fill="none" opacity="0.58"/>
+                <line x1="32" y1="26" x2="64" y2="26" stroke="#A8CAEB" stroke-width="1" opacity="0.4" stroke-linecap="round"/>
+                <line x1="32" y1="33" x2="58" y2="33" stroke="#A8CAEB" stroke-width="1" opacity="0.3" stroke-linecap="round"/>
+                <line x1="32" y1="40" x2="62" y2="40" stroke="#A8CAEB" stroke-width="1" opacity="0.28" stroke-linecap="round"/>
+                <line x1="32" y1="47" x2="54" y2="47" stroke="#A8CAEB" stroke-width="1" opacity="0.22" stroke-linecap="round"/>
+                <circle cx="96" cy="78" r="9" stroke="#6A9FD4" stroke-width="1" fill="none" opacity="0.18"/>
+                <circle cx="20" cy="82" r="2" fill="#6A9FD4" opacity="0.25"/>
+              </svg>
+              <div class="sb-top">
+                <p class="sb-type">Content Design</p>
+                <h3 class="sb-title">Workiva</h3>
+              </div>
+              <div class="sb-bottom">
+                <span class="sb-author">Camila Garcia</span>
+                <span class="sb-year">2023</span>
+              </div>
+            </div>
+          </div>
+          <div class="sb-pages"></div>
+        </a>
+
+        <div class="shelf-spacer"></div>
+
+        <!-- Book: Internet Archive -->
+        <a class="shelf-book" href="archive-it.html">
+          <div class="sb-spine" style="background:linear-gradient(to right,#0D2028,#163340);"></div>
+          <div class="sb-cover-wrap">
+            <div class="sb-inside">
+              <p class="sb-inside-type">UX Research</p>
+              <h3 class="sb-inside-title" style="color:#5FA8BF;">Internet Archive</h3>
+              <p class="sb-inside-desc">Improving search and discovery on Archive-It through six research methods.</p>
+              <span class="sb-inside-link">View project →</span>
+            </div>
+            <div class="sb-cover" style="background:#163340;">
+              <svg class="sb-art" viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="60" cy="90" r="22" stroke="#5FA8BF" stroke-width="1.2" fill="none" opacity="0.45"/>
+                <circle cx="60" cy="90" r="38" stroke="#5FA8BF" stroke-width="1"   fill="none" opacity="0.3"/>
+                <circle cx="60" cy="90" r="56" stroke="#5FA8BF" stroke-width="0.8" fill="none" opacity="0.18"/>
+                <circle cx="72" cy="34" r="15" stroke="#5FA8BF" stroke-width="1.8" fill="none" opacity="0.6"/>
+                <line  x1="61" y1="44" x2="50" y2="55" stroke="#5FA8BF" stroke-width="2" opacity="0.6" stroke-linecap="round"/>
+                <line  x1="60" y1="0"  x2="60" y2="90" stroke="#9DD0E0" stroke-width="0.5" opacity="0.12"/>
+                <line  x1="0"  y1="90" x2="120" y2="90" stroke="#9DD0E0" stroke-width="0.5" opacity="0.12"/>
+                <circle cx="18" cy="14" r="2"   fill="#5FA8BF" opacity="0.3"/>
+                <circle cx="108" cy="22" r="1.5" fill="#9DD0E0" opacity="0.25"/>
+              </svg>
+              <div class="sb-top">
+                <p class="sb-type">UX Research</p>
+                <h3 class="sb-title" style="font-size:0.95rem;">Internet<br>Archive</h3>
+              </div>
+              <div class="sb-bottom">
+                <span class="sb-author">Camila Garcia</span>
+                <span class="sb-year">2025</span>
+              </div>
+            </div>
+          </div>
+          <div class="sb-pages"></div>
+        </a>
+
+      </div>
+      <div class="wood-shelf"></div>
+    </div>
+
+    <p class="shelf-hint">Click a book to read the case study</p>
+
+  </section>
+
+  <style>
+    /* ── Section wrapper ── */
+    #book-shelf {
+      background: #eaf1f8;
+      padding: 5rem 6vw 6rem;
+      position: relative;
+    }
+    .shelf-header {
+      margin-bottom: 3.5rem;
+    }
+
+    /* ── Shelf row ── */
+    .shelf-row {
+      margin-bottom: 3rem;
+      max-width: 820px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .shelf-items {
+      display: flex;
+      align-items: flex-end;
+      gap: 1.6rem;
+      padding-bottom: 0;
+      min-height: 290px;
+    }
+    .shelf-spacer {
+      flex: 1;
+    }
+
+    /* ── Wood shelf plank ── */
+    .wood-shelf {
+      width: 100%;
+      height: 20px;
+      background: linear-gradient(to bottom,
+        #d49a62 0%,
+        #b87c44 30%,
+        #a06a32 60%,
+        #825228 100%
+      );
+      border-radius: 2px 2px 4px 4px;
+      box-shadow:
+        0 7px 20px rgba(0,0,0,0.32),
+        0 2px 4px rgba(0,0,0,0.18),
+        inset 0 1px 0 rgba(255,215,160,0.38),
+        inset 0 -1px 0 rgba(0,0,0,0.14);
+      position: relative;
+      overflow: hidden;
+    }
+    .wood-shelf::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent 0px, transparent 60px,
+        rgba(0,0,0,0.025) 60px, rgba(0,0,0,0.025) 62px,
+        transparent 62px, transparent 150px,
+        rgba(255,255,255,0.04) 150px, rgba(255,255,255,0.04) 152px
+      );
+    }
+
+    /* ── Decorative placeholder ── */
+    .shelf-placeholder {
+      border: 1.5px dashed rgba(160,140,115,0.3);
+      border-radius: 50%;
+      flex-shrink: 0;
+      align-self: flex-end;
+    }
+
+    /* ── Book ── */
+    .shelf-book {
+      display: flex;
+      align-items: stretch;
+      height: 260px;
+      text-decoration: none;
+      flex-shrink: 0;
+      cursor: pointer;
+      transition: transform 0.45s cubic-bezier(0.34, 1.3, 0.64, 1);
+      transform-origin: bottom center;
+      will-change: transform;
+    }
+    .shelf-book:hover {
+      transform: translateY(-14px);
+      z-index: 5;
+    }
+
+    /* Spine sliver */
+    .sb-spine {
+      width: 12px;
+      flex-shrink: 0;
+      border-radius: 1px 0 0 1px;
+    }
+
+    /* Cover wrap — 3D flip context */
+    .sb-cover-wrap {
+      position: relative;
+      width: 152px;
+      height: 260px;
+      flex-shrink: 0;
+      perspective: 500px;
+      perspective-origin: left center;
+    }
+
+    /* Inside pages — revealed when cover opens */
+    .sb-inside {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: #faf7f2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 1.3rem 1.1rem;
+      gap: 0.6rem;
+      overflow: hidden;
+    }
+    .sb-inside::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 14px;
+      background: linear-gradient(to right, #e4dcd0, #f2ede6);
+    }
+    .sb-inside-type {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(42,32,24,0.38);
+      margin: 0;
+      position: relative; z-index: 1;
+    }
+    .sb-inside-title {
+      font-family: 'Liu Jian Mao Cao', cursive;
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.2;
+      margin: 0;
+      position: relative; z-index: 1;
+    }
+    .sb-inside-desc {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.65rem;
+      line-height: 1.6;
+      color: rgba(42,32,24,0.62);
+      margin: 0;
+      position: relative; z-index: 1;
+    }
+    .sb-inside-link {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: rgba(42,32,24,0.45);
+      letter-spacing: 0.02em;
+      position: relative; z-index: 1;
+    }
+
+    /* Front cover — flips open on hover */
+    .sb-cover {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1.1rem 1rem 0.9rem;
+      overflow: hidden;
+      transform-origin: left center;
+      transform: rotateY(0deg);
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+                  box-shadow 0.4s ease;
+      z-index: 2;
+      backface-visibility: hidden;
+      box-shadow: -4px 6px 20px rgba(0,0,0,0.28);
+    }
+    .shelf-book:hover .sb-cover {
+      transform: rotateY(-162deg);
+      box-shadow: -12px 12px 32px rgba(0,0,0,0.22);
+    }
+    /* Sheen overlay */
+    .sb-cover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(130deg, rgba(255,255,255,0.13) 0%, transparent 48%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* SVG cover art — fills middle area */
+    .sb-art {
+      position: absolute;
+      top: 20%;
+      left: 0; right: 0;
+      height: 52%;
+      width: 100%;
+      opacity: 0.92;
+    }
+
+    .sb-top {
+      position: relative;
+      z-index: 2;
+    }
+    .sb-bottom {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .sb-type {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.53rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin: 0 0 0.4rem;
+    }
+    .sb-title {
+      font-family: 'Liu Jian Mao Cao', cursive;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.95);
+      line-height: 1.18;
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+    .sb-author {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.5rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+    .sb-year {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.52rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* Pages edge */
+    .sb-pages {
+      width: 9px;
+      flex-shrink: 0;
+      border-radius: 0 1px 1px 0;
+      background: repeating-linear-gradient(
+        to bottom,
+        #ddd6c8 0px, #ddd6c8 1px,
+        #c8bfb0 1px, #c8bfb0 2px
+      );
+    }
+
+    /* Footer hint */
+    .shelf-hint {
+      text-align: center;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(80,60,40,0.32);
+      margin: 1.5rem 0 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      .shelf-items { gap: 1rem; min-height: 220px; }
+      .shelf-book { height: 200px; }
+      .sb-cover { width: 118px; }
+      .sb-spine { width: 10px; }
+    }
+  </style>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────────── -->
+  <footer id="chapter-4" data-nav-theme="dark">
+    <div class="footer-left">
+      <p class="footer-label">Get in touch</p>
+      <a href="mailto:cmlagarcia9@gmail.com" class="footer-email">cmlagarcia9@gmail.com</a>
+    </div>
+    <div class="footer-right">
+      <span class="footer-dots">• • •</span>
+      <div class="footer-icons">
+        <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="#" aria-label="Resume">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="script.js"></script>
+  <script src="animations.js"></script>
+</body>
+</html>

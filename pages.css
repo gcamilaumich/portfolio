@@ -1,0 +1,106 @@
+/* ── SHARED PAGE STYLES ──────────────────────────────────────── */
+/* Inherits variables and resets from style.css via separate link  */
+
+/* ── PAGE NAV (always visible) ───────────────────────────────── */
+/* #site-nav layout now lives only in style.css for consistency across pages */
+
+.nav-name-pill {
+  font-family: 'Liu Jian Mao Cao', cursive;
+  font-style: normal;
+  font-size: 1.3rem;
+  color: var(--cream);
+  background: var(--olive);
+  padding: 0.5rem 1.4rem;
+  border-radius: 999px;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: padding 0.35s ease, gap 0.35s ease;
+}
+
+.nav-links { list-style: none; display: flex; gap: 2rem; }
+.nav-links a {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dark);
+  text-decoration: none;
+  transition: color 0.3s ease, opacity 0.2s;
+}
+.nav-links a:hover { opacity: 0.5; }
+.nav-links a.active { font-weight: 700; }
+
+/* Toggled by JS when the section behind the nav has a dark/colored background */
+body.nav-on-dark .nav-links a {
+  color: var(--cream);
+}
+
+/* ── PAGE FOOTER ──────────────────────────────────────────────── */
+.page-footer {
+  background: var(--olive);
+  padding: 2.5rem 6vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer-label {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(253,246,237,0.55);
+  margin-bottom: 0.4rem;
+}
+.footer-email {
+  font-family: 'Liu Jian Mao Cao', cursive;
+  font-size: 1rem;
+  color: var(--cream);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(253,246,237,0.3);
+  padding-bottom: 1px;
+  transition: border-color 0.2s;
+}
+.footer-email:hover { border-color: var(--cream); }
+.footer-right { display: flex; align-items: center; gap: 1.5rem; }
+.footer-dots { font-size: 0.7rem; letter-spacing: 0.3em; color: rgba(253,246,237,0.4); }
+.footer-icons { display: flex; gap: 1rem; }
+.footer-icons a { color: rgba(253,246,237,0.7); transition: color 0.2s; }
+.footer-icons a:hover { color: var(--cream); }
+
+/* ── CHAPTER LABEL ────────────────────────────────────────────── */
+.chapter-label {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.2rem;
+}
+.chapter-label::before {
+  content: '';
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  background: var(--muted);
+}
+
+/* ── BACK LINK ────────────────────────────────────────────────── */
+.back-link {
+  font-family: 'Liu Jian Mao Cao', cursive;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--olive);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: gap 0.2s;
+}
+.back-link:hover { gap: 0.7rem; }

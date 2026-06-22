@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Projects — Camila Garcia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Lato:wght@300;400;700&family=Liu+Jian+Mao+Cao&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="pages.css" />
+  <style>
+    body { background: var(--cream); }
+
+    /* ── HEADER ─────────────────────────────────────────────── */
+    .projects-header {
+      background: var(--olive);
+      padding: 9rem 6vw 5rem;
+    }
+
+    .projects-header h1 {
+      font-family: 'Liu Jian Mao Cao', cursive;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .projects-header h1 em {
+      font-style: italic;
+      color: rgba(253,246,237,0.5);
+    }
+
+    .projects-header p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(253,246,237,0.7);
+      max-width: 48ch;
+    }
+
+    /* ── FILTER TABS ────────────────────────────────────────── */
+    .filter-bar {
+      background: var(--cream);
+      padding: 2rem 6vw 0;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      border-bottom: 1px solid rgba(42,32,24,0.1);
+    }
+
+    .filter-btn {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: none;
+      border: none;
+      padding: 0.6rem 1rem 0.8rem;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .filter-btn:hover { color: var(--dark); }
+    .filter-btn.active {
+      color: var(--dark);
+      border-bottom-color: var(--olive);
+    }
+
+    /* ── PROJECT LIST ───────────────────────────────────────── */
+    .projects-list {
+      padding: 0 6vw 6rem;
+    }
+
+    .project-item {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr auto;
+      gap: 3rem;
+      align-items: center;
+      padding: 3rem 0;
+      border-bottom: 1px solid rgba(42,32,24,0.1);
+      text-decoration: none;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease, background 0.2s;
+    }
+    .project-item.visible { opacity: 1; transform: translateY(0); }
+    .project-item:hover { background: rgba(42,32,24,0.02); margin: 0 -2rem; padding-left: 2rem; padding-right: 2rem; }
+
+    .project-item-thumb {
+      aspect-ratio: 4/3;
+      border-radius: 0.4rem;
+      background: #d4c4ae;
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+    }
+
+    .project-item-info { }
+
+    .project-item-type {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .project-item-title {
+      font-family: 'Liu Jian Mao Cao', cursive;
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      font-weight: 400;
+      color: var(--dark);
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+
+    .project-item-desc {
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: var(--muted);
+      max-width: 52ch;
+      margin-bottom: 1.2rem;
+    }
+
+    .project-item-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .project-item-tags .tag {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.05em;
+      padding: 0.2rem 0.6rem;
+      border: 1px solid rgba(42,32,24,0.15);
+      border-radius: 999px;
+      color: var(--muted);
+    }
+
+    .project-item-arrow {
+      font-family: 'Liu Jian Mao Cao', cursive;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--olive);
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .project-item:hover .project-item-arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* ── HIDDEN PROJECT ─────────────────────────────────────── */
+    .project-item[data-hidden="true"] { display: none; }
+    .project-item[data-hidden="true"].visible { display: grid; }
+
+    /* ── CONTACT STRIP ──────────────────────────────────────── */
+    .projects-contact {
+      background: var(--olive);
+      padding: 4rem 6vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .projects-contact h2 {
+      font-family: 'Liu Jian Mao Cao', cursive;
+      font-style: italic;
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-weight: 400;
+      color: var(--cream);
+    }
+
+    .projects-contact a {
+      font-family: 'Liu Jian Mao Cao', cursive;
+      font-size: 1rem;
+      color: var(--cream);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(253,246,237,0.35);
+      padding-bottom: 2px;
+      transition: border-color 0.2s;
+    }
+    .projects-contact a:hover { border-color: var(--cream); }
+
+    @media (max-width: 900px) {
+      .project-item { grid-template-columns: 1fr; gap: 1.5rem; }
+      .project-item-arrow { display: none; }
+      .projects-contact { flex-direction: column; gap: 1.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ──────────────────────────────────────────────────── -->
+  <nav id="site-nav">
+    <a href="index.html" class="nav-name-pill"><img src="images/logomaybe.png" alt="" class="nav-name-logo" /><span class="nav-pill-text">Camila Garcia</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="mailto:cmlagarcia9@gmail.com">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── HEADER ────────────────────────────────────────────────── -->
+  <header class="projects-header" data-nav-theme="dark">
+    <p class="chapter-label" style="color:rgba(253,246,237,0.45);">Every project</p>
+    <h1 data-reveal="words">The work.<br><em>All of it.</em></h1>
+    <p>Case studies, experiments, and a few things that didn't have a name until they were done.</p>
+  </header>
+
+  <!-- ── FILTERS ───────────────────────────────────────────────── -->
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="product">Product Design</button>
+    <button class="filter-btn" data-filter="content">Content Design</button>
+    <button class="filter-btn" data-filter="research">UX Research</button>
+    <button class="filter-btn" data-filter="web">Web / Code</button>
+  </div>
+
+  <!-- ── PROJECT LIST ──────────────────────────────────────────── -->
+  <div class="projects-list">
+
+    <a href="spotter.html" class="project-item" data-category="product">
+      <div class="project-item-thumb" style="background-image:url('images/project-featured.png')"></div>
+      <div class="project-item-info">
+        <p class="project-item-type">Product Design</p>
+        <h2 class="project-item-title">Spotter</h2>
+        <p class="project-item-desc">A dual-platform mobile and wearable experience helping personal trainers capture session data without losing coaching presence.</p>
+        <div class="project-item-tags">
+          <span class="tag">User Research</span>
+          <span class="tag">Interaction Design</span>
+          <span class="tag">Figma</span>
+          <span class="tag">2024</span>
+        </div>
+      </div>
+      <span class="project-item-arrow">Read case study →</span>
+    </a>
+
+    <a href="workiva.html" class="project-item" data-category="content">
+      <div class="project-item-thumb" style="background-image:url('images/project-1.png')"></div>
+      <div class="project-item-info">
+        <p class="project-item-type">Content Design</p>
+        <h2 class="project-item-title">Workiva</h2>
+        <p class="project-item-desc">Redesigning in-app error messaging to reduce user frustration and improve task completion rates across a complex financial platform.</p>
+        <div class="project-item-tags">
+          <span class="tag">Content Strategy</span>
+          <span class="tag">UX Writing</span>
+          <span class="tag">2024</span>
+        </div>
+      </div>
+      <span class="project-item-arrow">View project →</span>
+    </a>
+
+    <a href="#" class="project-item" data-category="research">
+      <div class="project-item-thumb" style="background-image:url('images/project-2.png')"></div>
+      <div class="project-item-info">
+        <p class="project-item-type">UX Research</p>
+        <h2 class="project-item-title">Internet Archive</h2>
+        <p class="project-item-desc">Mixed-methods research surfacing unmet needs in digital preservation tools — leading to a redesigned discovery experience.</p>
+        <div class="project-item-tags">
+          <span class="tag">Interviews</span>
+          <span class="tag">Usability Testing</span>
+          <span class="tag">Synthesis</span>
+        </div>
+      </div>
+      <span class="project-item-arrow">View project →</span>
+    </a>
+
+    <a href="#" class="project-item" data-category="web">
+      <div class="project-item-thumb" style="background-image:url('images/project-3.png')"></div>
+      <div class="project-item-info">
+        <p class="project-item-type">Web / Coding</p>
+        <h2 class="project-item-title">PHWL</h2>
+        <p class="project-item-desc">An interactive map that collects and displays personal stories tied to place. Built from the ground up with JavaScript and Mapbox.</p>
+        <div class="project-item-tags">
+          <span class="tag">JavaScript</span>
+          <span class="tag">Mapbox</span>
+          <span class="tag">Data Vis</span>
+          <span class="tag">2023</span>
+        </div>
+      </div>
+      <span class="project-item-arrow">View project →</span>
+    </a>
+
+  </div>
+
+  <!-- ── CONTACT STRIP ─────────────────────────────────────────── -->
+  <section class="projects-contact" data-nav-theme="dark">
+    <h2>Want to work together?</h2>
+    <a href="mailto:cmlagarcia9@gmail.com">cmlagarcia9@gmail.com →</a>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────────── -->
+  <footer class="page-footer">
+    <div class="footer-left">
+      <p class="footer-label">Get in touch</p>
+      <a href="mailto:cmlagarcia9@gmail.com" class="footer-email">cmlagarcia9@gmail.com</a>
+    </div>
+    <div class="footer-right">
+      <span class="footer-dots">• • •</span>
+      <div class="footer-icons">
+        <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="#" aria-label="Resume">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="animations.js"></script>
+  <script>
+    // Scroll reveal
+    const items = document.querySelectorAll('.project-item');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 100);
+        }
+      });
+    }, { threshold: 0.1 });
+    items.forEach(el => obs.observe(el));
+
+    // Filter function
+    const btns = document.querySelectorAll('.filter-btn');
+
+    function applyFilter(filter) {
+      btns.forEach(b => b.classList.remove('active'));
+      const activeBtn = document.querySelector(`.filter-btn[data-filter="${filter}"]`);
+      if (activeBtn) activeBtn.classList.add('active');
+      items.forEach(item => {
+        const match = filter === 'all' || item.dataset.category === filter;
+        item.style.display = match ? 'grid' : 'none';
+      });
+    }
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => applyFilter(btn.dataset.filter));
+    });
+
+    // Auto-filter from URL param e.g. ?filter=product
+    const urlFilter = new URLSearchParams(window.location.search).get('filter');
+    applyFilter(urlFilter || 'all');
+  </script>
+</body>
+</html>
