@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spotter — Camila Garcia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Lato:wght@300;400;700&family=Liu+Jian+Mao+Cao&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="pages.css" />
+  <style>
+    :root { --spotter: #3E18A6; --spotter-light: #f0ecff; }
+    body { background: var(--spotter-light); }
+
+    /* ── CASE STUDY HERO ─────────────────────────────────────── */
+    .cs-hero {
+      background: var(--spotter);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 8rem 6vw 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cs-hero-eyebrow {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(253,246,237,0.55);
+      margin-bottom: 1.5rem;
+    }
+
+    .cs-hero-title {
+      font-family: 'Liu Jian Mao Cao', cursive;
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 400;
+      line-height: 1.05;
+      color: var(--cream);
+      max-width: 14ch;
+      margin-bottom: 2rem;
+    }
+
+    .cs-hero-desc {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(253,246,237,0.75);
+      max-width: 52ch;
+      margin-bottom: 3rem;
+    }
+
+    .cs-meta-row {
+      display: flex;
+      gap: 3rem;
+      border-top: 1px solid rgba(253,246,237,0.15);
+      padding-top: 2rem;
+    }
+
+    .cs-meta-item { display: flex; flex-direction: column; gap: 0.3rem; }
+    .cs-meta-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(253,246,237,0.45);
+    }
+    .cs-meta-value {
+      font-family: 'Liu Jian Mao Cao', cursive;
+      font-size: 1rem;
+      color: var(--cream);
+    }
+
+    /* decorative circle */
+    .cs-hero-circle {
+      position: absolute;
+      right: -8vw;
+      bottom: -8vw;
+      width: 42vw;
+      height: 42vw;
+      border-radius: 50%;
+      border: 1px solid rgba(253,246,237,0.08);
+      pointer-events: none;
+    }
+    .cs-hero-circle-2 {
+      position: absolute;
+      right: -4vw;
+      bottom: -4vw;
+      width: 30vw;
+      height: 30vw;
+      border-radius: 50%;
+      border: 1px solid rgba(253,246,237,0.06);
+      pointer-events: none;
+    }
+
+    /* ── PROGRESS SIDEBAR ────────────────────────────────────── */
+    .cs-progress {
+      position: fixed;
+      right: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .cs-progress-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(42,32,24,0.2);
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .cs-progress-dot.active {
+      background: var(--spotter);
+      transform: scale(1.5);
+    }
+
+    /* ── CHAPTER SECTIONS ────────────────────────────────────── */
+    .cs-section {
+      padding: 6rem 6vw;
+      max-width: 1100px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .cs-section.visible { opacity: 1; transform: translateY(0); }
+
+    .cs-section-wide {
+      padding: 6rem 0;
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .cs-section-wide.visible { opacity: 1; transform: translateY(0); }
+
+    /* two-col layout */
+    .cs-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .cs-section-heading {
+      font-family: 'Liu Jian Mao Cao', cursive;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--dark);
+      margin-bottom: 1.5rem;
+    }
+
+    .cs-body {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: rgba(42,32,24,0.7);
+    }
+    .cs-body + .cs-body { margin-top: 1rem; }
+    .cs-body strong { color: var(--dark); font-weight: 700; }
+
+    /* ── DIVIDER ─────────────────────────────────────────────── */
+    .cs-divider {
+      height: 1px;
+      background: rgba(42,32,24,0.1);
+      margin: 0 6vw;
+    }
+
+    /* ── PULL QUOTE ──────────────────────────────────────────── */
+    .cs-quote {
+      background: var(--spotter);
+      padding: 5rem 10vw;
+      text-align: center;
+    }
+    .cs-quote-mark {
+      font-family: 'Liu Jian Mao Cao', cursive;
+      font-size: 5rem;
+      line-height: 0.5;
+      color: rgba(253,246,237,0.2);
+      display: block;
+      margin-bottom: 1.5rem;
+    }
+    .cs-quote-text {
+      font-family: 'Liu Jian Mao Cao', cursive;
+      font-style: italic;
+      font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+      line-height: 1.55;
+      color: var(--cream);
+      max-width: 60ch;
+      margin: 0 auto 1.5rem;
+    }
+    .cs-quote-attr {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(253,246,237,0.45);
+    }
+
+    /* ── FINDING CARDS ───────────────────────────────────────── */
+    .cs-findings {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .cs-finding-card {
+      background: #fff;
+      border: 1px solid rgba(42,32,24,0.08);
+      border-radius: 0.5rem;
+      padding: 2rem 1.75rem;
+    }
+
+    .cs-finding-num {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .cs-finding-title {
+      font-family: 'Liu Jian Mao Cao', cursive;
+      font-size: 1.1rem;
+      font-weight: 500;
+      line-height: 1.35;
+      color: var(--dark);
+      margin-bottom: 0.75rem;
+    }
+
+    .cs-finding-body {
+      font-size: 0.875rem;
+      line-height: 1.75;
+      color: var(--muted);
+    }
+
+    /* ── PROCESS STEPS ───────────────────────────────────────── */
+    .cs-process {
+      display: flex;
+      gap: 0;
+      margin-top: 3rem;
+      border: 1px solid rgba(42,32,24,0.1);
+      border-radius: 0.5rem;
+      overflow: hidden;
+    }
+
+    .cs-process-step {
+      flex: 1;
+      padding: 2rem 1.5rem;
+      border-right: 1px solid rgba(42,32,24,0.1);
+      position: relative;
+    }
+    .cs-process-step:last-child { border-right: none; }
+
+    .cs-step-num {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .cs-step-name {
+      font-family: 'Liu Jian Mao Cao', cursive;
+      font-size: 1rem;
+      color: var(--dark);
+      margin-bottom: 0.75rem;
+    }
+
+    .cs-step-items {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .cs-step-items li {
+      font-size: 0.8rem;
+      color: var(--muted);
+      padding-left: 1rem;
+      position: relative;
+    }
+    .cs-step-items li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: var(--olive);
+    }
+
+    /* ── IMAGE PLACEHOLDER ───────────────────────────────────── */
+    .cs-image {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #e8e0d4;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+    .cs-image-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .cs-image-full {
+      width: 100%;
+      aspect-ratio: 16/7;
+      background: #e8e0d4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── STAT ROW ────────────────────────────────────────────── */
+    .cs-stats {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 0;
+      border: 1px solid rgba(42,32,24,0.1);
+      border-radius: 0.5rem;
+      overflow: hidden;
+      margin-top: 3rem;
+    }
+
+    .cs-stat {
+      padding: 2.5rem 2rem;
+      border-right: 1px solid rgba(42,32,24,0.1);
+      text-align: center;
+    }
+    .cs-stat:last-child { border-right: none; }
+
+    .cs-stat-num {
+      font-family: 'Liu Jian Mao Cao', cursive;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400;
+      color: var(--spotter);
+      display: block;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .cs-stat-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── NEXT PROJECT ────────────────────────────────────────── */
+    .cs-next {
+      background: #e8e2f8;
+      padding: 5rem 6vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .cs-next:hover { background: #ddd6f5; }
+
+    .cs-next-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .cs-next-title {
+      font-family: 'Liu Jian Mao Cao', cursive;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 400;
+      color: var(--dark);
+    }
+
+    .cs-next-arrow {
+      font-family: 'Liu Jian Mao Cao', cursive;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--spotter);
+    }
+
+    /* ── COLORED BAND ────────────────────────────────────────── */
+    .cs-band {
+      background: #e8e2f8;
+      padding: 6rem 6vw;
+    }
+    .cs-band .cs-section-heading { color: var(--dark); }
+
+    /* ── WATCH GRID ──────────────────────────────────────────── */
+    .watch-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      align-items: end;
+    }
+
+    .watch-frame {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .watch-frame img {
+      width: 100%;
+      height: 320px;
+      object-fit: contain;
+      display: block;
+      /* subtle drop shadow to lift watch off background */
+      filter: drop-shadow(0 12px 32px rgba(62,24,166,0.18));
+      transition: transform 0.4s cubic-bezier(.16,1,.3,1);
+    }
+
+    .watch-frame {
+      cursor: none;
+    }
+
+    .watch-frame:hover img {
+      transform: translateY(-8px);
+    }
+
+    /* custom expand cursor label */
+    .watch-cursor {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      background: var(--spotter);
+      color: #fff;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.85rem;
+      border-radius: 999px;
+      opacity: 0;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.2s ease;
+      white-space: nowrap;
+    }
+    .watch-cursor.visible { opacity: 1; }
+
+    /* ── LIGHTBOX ────────────────────────────────────────────── */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 8, 60, 0.92);
+      z-index: 8000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .lightbox.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .lightbox img {
+      max-height: 85vh;
+      max-width: 80vw;
+      object-fit: contain;
+      border-radius: 0.5rem;
+      transform: scale(0.92);
+      transition: transform 0.35s cubic-bezier(.16,1,.3,1);
+      filter: drop-shadow(0 24px 60px rgba(0,0,0,0.5));
+    }
+    .lightbox.open img { transform: scale(1); }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: rgba(255,255,255,0.12);
+      border: none;
+      color: #fff;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.22); }
+
+    .watch-caption {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* responsive */
+    @media (max-width: 900px) {
+      .cs-two-col { grid-template-columns: 1fr; gap: 2.5rem; }
+      .cs-findings { grid-template-columns: 1fr; }
+      .cs-process { flex-direction: column; }
+      .cs-process-step { border-right: none; border-bottom: 1px solid rgba(42,32,24,0.1); }
+      .cs-stats { grid-template-columns: 1fr; }
+      .cs-stat { border-right: none; border-bottom: 1px solid rgba(42,32,24,0.1); }
+      .cs-progress { display: none; }
+      .watch-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ──────────────────────────────────────────────────── -->
+  <nav id="site-nav">
+    <a href="index.html" class="nav-name-pill" style="background: var(--spotter);"><img src="shared/logomaybe.png" alt="" class="nav-name-logo" /><span class="nav-pill-text">Camila Garcia</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="mailto:cmlagarcia9@gmail.com">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── PROGRESS SIDEBAR ──────────────────────────────────────── -->
+  <nav class="cs-progress" aria-label="Case study chapters">
+    <div class="cs-progress-dot active" data-section="0" title="Overview"></div>
+    <div class="cs-progress-dot" data-section="1" title="Problem"></div>
+    <div class="cs-progress-dot" data-section="2" title="Research"></div>
+    <div class="cs-progress-dot" data-section="3" title="Solution"></div>
+    <div class="cs-progress-dot" data-section="4" title="Outcome"></div>
+  </nav>
+
+  <!-- ── HERO ──────────────────────────────────────────────────── -->
+  <section class="cs-hero" id="cs-0" data-chapter="0" data-nav-theme="dark">
+    <div class="cs-hero-circle"></div>
+    <div class="cs-hero-circle-2"></div>
+
+    <p class="cs-hero-eyebrow">Case Study · Product Design</p>
+    <h1 class="cs-hero-title" data-reveal="words">Spotter</h1>
+    <p class="cs-hero-desc">Designing a dual-platform mobile and wearable experience that helps personal trainers capture session data in real time — without losing the human connection that keeps clients coming back.</p>
+
+    <div class="cs-meta-row">
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Role</span>
+        <span class="cs-meta-value">Lead UX Designer</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Team</span>
+        <span class="cs-meta-value">5 Designers</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Timeline</span>
+        <span class="cs-meta-value">12 Weeks</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Tools</span>
+        <span class="cs-meta-value">Figma · Maze · Dovetail</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CHAPTER 1: PROBLEM ────────────────────────────────────── -->
+  <div id="cs-1" data-chapter="1">
+    <div class="cs-section">
+      <p class="chapter-label">Chapter One</p>
+      <div class="cs-two-col">
+        <div>
+          <h2 class="cs-section-heading">The trainers were stuck between two impossible things.</h2>
+        </div>
+        <div>
+          <p class="cs-body">Personal trainers who manage <strong>four or more active clients</strong> constantly face the same impossible choice: look at their phone and log data accurately, or stay present and actually coach.</p>
+          <p class="cs-body">Most existing tools were built for planning and post-session review — not for the floor. So trainers delayed their notes, relied on memory after long days, and watched the accuracy of their data quietly erode.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-quote" id="quote-carousel" data-nav-theme="dark" style="position:relative; overflow:hidden;">
+      <div id="quote-track" style="transition: opacity 0.5s ease; height: 16rem; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+        <span class="cs-quote-mark">"</span>
+        <p class="cs-quote-text" id="quote-text">Sometimes I have to ask a client to remember the weight they lifted while we were together to retroactively input data.</p>
+        <span class="cs-quote-attr">Personal trainer, interview participant</span>
+      </div>
+
+      <!-- nav dots -->
+      <div style="display:flex; justify-content:center; gap:0.5rem; margin-top:2rem;">
+        <button class="q-dot active" data-i="0" aria-label="Quote 1"></button>
+        <button class="q-dot" data-i="1" aria-label="Quote 2"></button>
+        <button class="q-dot" data-i="2" aria-label="Quote 3"></button>
+        <button class="q-dot" data-i="3" aria-label="Quote 4"></button>
+        <button class="q-dot" data-i="4" aria-label="Quote 5"></button>
+        <button class="q-dot" data-i="5" aria-label="Quote 6"></button>
+      </div>
+
+      <!-- arrow buttons -->
+      <button id="q-prev" aria-label="Previous quote" style="position:absolute; left:2rem; top:50%; transform:translateY(-50%); background:rgba(253,246,237,0.12); border:none; color:var(--cream); font-size:1.4rem; width:2.5rem; height:2.5rem; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background 0.2s;">‹</button>
+      <button id="q-next" aria-label="Next quote" style="position:absolute; right:2rem; top:50%; transform:translateY(-50%); background:rgba(253,246,237,0.12); border:none; color:var(--cream); font-size:1.4rem; width:2.5rem; height:2.5rem; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background 0.2s;">›</button>
+    </div>
+
+    <style>
+      .q-dot {
+        width: 7px; height: 7px;
+        border-radius: 50%;
+        border: none;
+        background: rgba(253,246,237,0.3);
+        cursor: pointer;
+        padding: 0;
+        transition: background 0.2s, transform 0.2s;
+      }
+      .q-dot.active { background: var(--cream); transform: scale(1.3); }
+      #q-prev:hover, #q-next:hover { background: rgba(253,246,237,0.25); }
+    </style>
+
+    <script>
+    (function() {
+      const quotes = [
+        "Sometimes I have to ask a client to remember the weight they lifted while we were together to retroactively input data.",
+        "The more you put into an app, the more bogged down it will be.",
+        "Transferring data from my phone to laptop is annoying and during busy weeks I fall behind on this.",
+        "The more data you have, the more paralysis analysis comes in.",
+        "I want to be very engaged with them even during their sets, but when I know they got it down I make notes so I don't forget it then and there and that's when I get distracted.",
+        "You have to be ready to adapt to the client's needs in the moment."
+      ];
+
+      const track = document.getElementById('quote-track');
+      const textEl = document.getElementById('quote-text');
+      const dots   = document.querySelectorAll('.q-dot');
+      let current  = 0;
+      let timer;
+
+      function goTo(i) {
+        track.style.opacity = '0';
+        setTimeout(() => {
+          current = (i + quotes.length) % quotes.length;
+          textEl.textContent = quotes[current];
+          dots.forEach((d, idx) => d.classList.toggle('active', idx === current));
+          track.style.opacity = '1';
+        }, 250);
+        resetTimer();
+      }
+
+      function resetTimer() {
+        clearInterval(timer);
+        timer = setInterval(() => goTo(current + 1), 5000);
+      }
+
+      document.getElementById('q-next').addEventListener('click', () => goTo(current + 1));
+      document.getElementById('q-prev').addEventListener('click', () => goTo(current - 1));
+      dots.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.i)));
+
+      resetTimer();
+    })();
+    </script>
+
+    <div class="cs-section">
+      <p class="chapter-label">The Numbers</p>
+      <h2 class="cs-section-heading">A problem hiding in plain sight.</h2>
+      <div class="cs-stats">
+        <div class="cs-stat">
+          <span class="cs-stat-num" data-count="4" data-suffix="+">4+</span>
+          <span class="cs-stat-label">Avg. clients managed simultaneously</span>
+        </div>
+        <div class="cs-stat">
+          <span class="cs-stat-num" data-count="73" data-suffix="%">73%</span>
+          <span class="cs-stat-label">Trainers reported logging after sessions from memory</span>
+        </div>
+        <div class="cs-stat">
+          <span class="cs-stat-num" data-count="5" data-suffix="+">5+</span>
+          <span class="cs-stat-label">Disconnected tools used to track a single client</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-divider"></div>
+
+  <!-- ── CHAPTER 2: RESEARCH ───────────────────────────────────── -->
+  <div id="cs-2" data-chapter="2">
+    <div class="cs-section">
+      <p class="chapter-label">Chapter Two</p>
+      <h2 class="cs-section-heading">We listened before we designed anything.</h2>
+      <div class="cs-two-col">
+        <div>
+          <p class="cs-body">We ran semi-structured interviews with personal trainers spanning <strong>1 to 13 years of experience</strong> — different coaching styles, different client mixes, different definitions of "the floor."</p>
+          <p class="cs-body">The goal was to understand how documentation happens today, what breaks during live sessions, and how trainers decide what is worth tracking.</p>
+        </div>
+        <div>
+          <div class="cs-process">
+            <div class="cs-process-step">
+              <p class="cs-step-num">01</p>
+              <p class="cs-step-name">Empathize</p>
+              <ul class="cs-step-items">
+                <li>User Interviews</li>
+                <li>Secondary Research</li>
+                <li>Competitive Analysis</li>
+              </ul>
+            </div>
+            <div class="cs-process-step">
+              <p class="cs-step-num">02</p>
+              <p class="cs-step-name">Define</p>
+              <ul class="cs-step-items">
+                <li>Affinity Mapping</li>
+                <li>Key Insights</li>
+                <li>User Persona</li>
+              </ul>
+            </div>
+            <div class="cs-process-step">
+              <p class="cs-step-num">03</p>
+              <p class="cs-step-name">Ideate</p>
+              <ul class="cs-step-items">
+                <li>User Journey Map</li>
+                <li>User Flow</li>
+                <li>Information Architecture</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-section">
+      <p class="chapter-label">What we found</p>
+      <h2 class="cs-section-heading">Three patterns kept surfacing.</h2>
+      <div class="cs-findings">
+        <div class="cs-finding-card">
+          <p class="cs-finding-num">Finding 01</p>
+          <h3 class="cs-finding-title">Live session logging competes directly with coaching presence</h3>
+          <p class="cs-finding-body">Trainers prioritized eye contact and real-time cues, so they avoided any tool that required tapping, typing, or reading mid-set.</p>
+        </div>
+        <div class="cs-finding-card">
+          <p class="cs-finding-num">Finding 02</p>
+          <h3 class="cs-finding-title">Memory-based recall increases cognitive load and reduces accuracy</h3>
+          <p class="cs-finding-body">When logging happened later, details faded quickly across a day, which led to incomplete or incorrect records and weaker programming decisions.</p>
+        </div>
+        <div class="cs-finding-card">
+          <p class="cs-finding-num">Finding 03</p>
+          <h3 class="cs-finding-title">Trainers sit on a spectrum of data needs</h3>
+          <p class="cs-finding-body">Some wanted minimal tracking while others needed depth — reinforcing the need for <strong>progressive disclosure</strong> across the experience.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-section">
+      <p class="chapter-label">Survey insights</p>
+      <h2 class="cs-section-heading">The data confirmed what the interviews hinted at.</h2>
+      <div class="cs-findings">
+        <div class="cs-finding-card">
+          <p class="cs-finding-num">Insight 01</p>
+          <h3 class="cs-finding-title">Progress visibility drives consistency</h3>
+          <p class="cs-finding-body">Trainees had higher consistency when effort felt seen and tracked — even lightweight progress views made a measurable difference in follow-through.</p>
+        </div>
+        <div class="cs-finding-card">
+          <p class="cs-finding-num">Insight 02</p>
+          <h3 class="cs-finding-title">Too much data creates anxiety</h3>
+          <p class="cs-finding-body">Data overload triggered confusion rather than clarity — a direct validation of our progressive disclosure approach. Show the minimum useful view first; let users pull for more.</p>
+        </div>
+        <div class="cs-finding-card">
+          <p class="cs-finding-num">Insight 03</p>
+          <h3 class="cs-finding-title">Tool fragmentation is a daily tax</h3>
+          <p class="cs-finding-body">Trainers bounced between calendars, notes, spreadsheets, and messaging apps every single day — a hidden cost that fragmented both their attention and their data.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-divider"></div>
+
+  <!-- ── CHAPTER 2.5: SKETCHES ─────────────────────────────────── -->
+  <div id="cs-2b">
+    <div class="cs-section">
+      <p class="chapter-label">Chapter Two · Continued</p>
+      <h2 class="cs-section-heading">We sketched before we built anything.</h2>
+      <div class="cs-two-col">
+        <div>
+          <p class="cs-body">With research in hand, we moved into rapid ideation. Sketching let us explore structure and flow at low cost — wrong ideas were easy to throw out when they were still on paper.</p>
+          <p class="cs-body">We focused on two interaction models: a minimal wearable flow for the floor, and a deeper mobile hub for planning and review. Several sketch directions were explored before converging on the approach that best balanced speed with depth.</p>
+        </div>
+        <div>
+          <div style="overflow:hidden; height:340px;">
+            <img id="sketch-main" src="spotter/spotter-sketch-1.png" alt="Spotter sketch" style="width:100%; height:100%; object-fit:contain; display:block; transition: opacity 0.25s ease;" />
+          </div>
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns: repeat(4,1fr); gap: 1.25rem; margin-top: 1.5rem;">
+        <div class="sketch-thumb" data-src="spotter/spotter-sketch-1.png" style="aspect-ratio:4/3; overflow:hidden; cursor:pointer; border-radius:0.5rem; opacity:0.7; transition:opacity 0.2s;">
+          <img src="spotter/spotter-sketch-1.png" alt="Spotter sketch 1" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div class="sketch-thumb" data-src="spotter/spotter-sketch-2.png" style="aspect-ratio:4/3; overflow:hidden; cursor:pointer; border-radius:0.5rem; opacity:0.7; transition:opacity 0.2s;">
+          <img src="spotter/spotter-sketch-2.png" alt="Spotter sketch 2" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div class="sketch-thumb" data-src="spotter/spotter-sketch-3.png" style="aspect-ratio:4/3; overflow:hidden; cursor:pointer; border-radius:0.5rem; opacity:0.7; transition:opacity 0.2s;">
+          <img src="spotter/spotter-sketch-3.png" alt="Spotter sketch 3" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div class="sketch-thumb" data-src="spotter/spotter-sketch-4.png" style="aspect-ratio:4/3; overflow:hidden; cursor:pointer; border-radius:0.5rem; opacity:0.7; transition:opacity 0.2s;">
+          <img src="spotter/spotter-sketch-4.png" alt="Spotter sketch 4" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+      </div>
+      <script>
+        (function() {
+          const main = document.getElementById('sketch-main');
+          const thumbs = Array.from(document.querySelectorAll('.sketch-thumb'));
+          let current = 0;
+          let timer;
+
+          function goTo(index) {
+            current = index;
+            main.style.opacity = '0';
+            setTimeout(() => {
+              main.src = thumbs[index].dataset.src;
+              main.style.opacity = '1';
+            }, 200);
+            thumbs.forEach((t, i) => {
+              t.style.opacity = i === index ? '1' : '0.5';
+              const bar = t.querySelector('.thumb-bar');
+              if (bar) bar.style.transform = i === index ? 'scaleX(1)' : 'scaleX(0)';
+            });
+          }
+
+          function next() {
+            goTo((current + 1) % thumbs.length);
+          }
+
+          // Add progress bar to each thumb
+          thumbs.forEach((thumb, i) => {
+            const bar = document.createElement('div');
+            bar.className = 'thumb-bar';
+            bar.style.cssText = 'position:absolute; bottom:0; left:0; right:0; height:3px; background:var(--spotter); transform:scaleX(0); transform-origin:left; transition:transform 0.3s ease;';
+            thumb.style.position = 'relative';
+            thumb.appendChild(bar);
+
+            thumb.addEventListener('click', () => {
+              clearInterval(timer);
+              goTo(i);
+              timer = setInterval(next, 2500);
+            });
+          });
+
+          // Start
+          goTo(0);
+          timer = setInterval(next, 2500);
+        })();
+      </script>
+    </div>
+
+    <div class="cs-section">
+      <p class="chapter-label">Wireframes</p>
+      <h2 class="cs-section-heading">Structure first, style later.</h2>
+      <div class="cs-two-col">
+        <div>
+          <p class="cs-body">We translated the strongest sketch directions into low fidelity wireframes — a <strong>26 screen mobile prototype</strong> and a <strong>15 screen wearable prototype</strong>. The wireframes helped us validate structure first, without the distraction of color or typography.</p>
+          <p class="cs-body">From there, we ran <strong>moderated think-aloud tests</strong> with five participants using the low fidelity prototypes across both mobile and wearable. Their feedback shaped the navigation structure, the labeling, and the density of information shown at each step.</p>
+        </div>
+        <div>
+          <div style="background:#d8d2f0; border-radius:0.5rem; padding:0; overflow:visible;">
+            <img src="spotter/spotter-all-wireframes.png" alt="All wireframes" style="width:100%; height:auto; display:block; border-radius:0.5rem;" />
+          </div>
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns: repeat(6,1fr); gap: 1.25rem; margin-top: 2rem;">
+        <div style="border-radius:0.5rem; overflow:hidden;">
+          <img src="spotter/spotter-mobile-wireframe-1.png" alt="Mobile wireframe 1" style="width:100%; height:auto; display:block;" />
+        </div>
+        <div style="border-radius:0.5rem; overflow:hidden;">
+          <img src="spotter/spotter-mobile-wireframe-2.png" alt="Mobile wireframe 2" style="width:100%; height:auto; display:block;" />
+        </div>
+        <div style="border-radius:0.5rem; overflow:hidden; margin-top:3rem;">
+          <img src="spotter/spotter-wearable-wireframe-1.png" alt="Wearable wireframe 1" style="width:100%; height:auto; display:block;" />
+        </div>
+        <div style="border-radius:0.5rem; overflow:hidden; margin-top:3rem;">
+          <img src="spotter/spotter-wearable-wireframe-2.png" alt="Wearable wireframe 2" style="width:100%; height:auto; display:block;" />
+        </div>
+        <div style="border-radius:0.5rem; overflow:hidden; margin-top:3rem;">
+          <img src="spotter/spotter-wearable-wireframe-3.png" alt="Wearable wireframe 3" style="width:100%; height:auto; display:block;" />
+        </div>
+        <div style="border-radius:0.5rem; overflow:hidden; margin-top:3rem;">
+          <img src="spotter/spotter-wearable-wireframe-4.png" alt="Wearable wireframe 4" style="width:100%; height:auto; display:block;" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── USABILITY TESTING ────────────────────────────────────── -->
+  <div style="background: var(--spotter-light); padding: 5rem 6vw;">
+    <div style="max-width: 1100px; margin: 0 auto;">
+      <p class="chapter-label">Usability testing</p>
+      <h2 class="cs-section-heading">We tested before we polished anything.</h2>
+      <p class="cs-body" style="max-width: 68ch; margin-bottom: 3.5rem;">We conducted moderated think-aloud tests with <strong>five participants</strong> using low fidelity prototypes across both mobile and wearable. Participants completed tasks like accessing daily sessions, editing client information, customizing programs, and logging actions on the wearable during a simulated training moment. The biggest issues centered on <strong>navigation consistency</strong>, unclear affordances on cards, and confusion between similar actions — which we addressed through clearer labels, stronger visual cues, and more consistent paths.</p>
+
+      <!-- Problem / Solution pairs -->
+      <div style="display: flex; flex-direction: column; gap: 4rem;">
+
+        <!-- 01 -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start;">
+          <div>
+            <p style="font-family:'Lato',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:rgba(62,24,166,0.5); margin-bottom:0.75rem;">Problem 01</p>
+            <h3 style="font-family:'Liu Jian Mao Cao',cursive; font-size:clamp(1.1rem,2vw,1.4rem); font-weight:400; color:var(--spotter); line-height:1.35; margin-bottom:1.25rem;">Card affordances were unclear — users weren't sure what was tappable.</h3>
+            <p class="cs-body">Several participants hovered or hesitated on cards before tapping, unsure whether they were interactive or just informational.</p>
+            <!-- Phone container — wireframe -->
+            <div style="margin-top:1.5rem; display:flex; justify-content:center;">
+              <div id="wireframe-phone" style="position:relative; width:260px;">
+                <div style="background:#1a1a2e; border-radius:36px; padding:12px; box-shadow:0 8px 24px rgba(0,0,0,0.12);">
+                  <!-- speaker -->
+                  <div style="width:60px; height:6px; background:#333; border-radius:3px; margin:0 auto 10px;"></div>
+                  <!-- screen -->
+                  <div style="border-radius:24px; overflow-y:scroll; overflow-x:hidden; height:480px; background:#fff; scrollbar-width:none;">
+                    <img src="spotter/spotter-todays-session-wireframe.png" alt="Today's session wireframe" style="width:100%; display:block;" />
+                  </div>
+                  <!-- home bar -->
+                  <div style="width:80px; height:4px; background:#444; border-radius:2px; margin:10px auto 0;"></div>
+                </div>
+
+                <!-- Annotation — Finish button -->
+                <div id="ann-finish" style="display:none; position:absolute; left:100%; pointer-events:none; opacity:0; transition:opacity 0.2s ease; white-space:nowrap;">
+                  <div style="display:flex; align-items:center;">
+                    <div style="width:8px; height:8px; border-radius:50%; background:var(--spotter); flex-shrink:0; margin-left:-4px; z-index:2;"></div>
+                    <div style="width:48px; height:1.5px; background:var(--spotter);"></div>
+                    <div style="background:var(--spotter); color:#fff; font-family:'Lato',sans-serif; font-size:0.72rem; line-height:1.5; padding:0.6rem 0.85rem; border-radius:0.4rem; max-width:180px; white-space:normal;">
+                      Placing "Finish" at the top forced trainers to scroll back up mid-session — interrupting their flow at the worst moment.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Annotation — Double checkmarks -->
+                <div id="ann-checkmarks" style="display:none; position:absolute; left:100%; pointer-events:none; opacity:0; transition:opacity 0.2s ease; white-space:nowrap;">
+                  <div style="display:flex; align-items:center;">
+                    <div style="width:8px; height:8px; border-radius:50%; background:var(--spotter); flex-shrink:0; margin-left:-4px; z-index:2;"></div>
+                    <div style="width:48px; height:1.5px; background:var(--spotter);"></div>
+                    <div style="background:var(--spotter); color:#fff; font-family:'Lato',sans-serif; font-size:0.72rem; line-height:1.5; padding:0.6rem 0.85rem; border-radius:0.4rem; max-width:180px; white-space:normal;">
+                      Two checkmarks per row created confusion — users weren't sure which one logged the set and which confirmed completion.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p style="font-family:'Lato',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:rgba(62,24,166,0.5); margin-bottom:0.75rem;">Solution 01</p>
+            <h3 style="font-family:'Liu Jian Mao Cao',cursive; font-size:clamp(1.1rem,2vw,1.4rem); font-weight:400; color:var(--spotter); line-height:1.35; margin-bottom:1.25rem;">We added stronger visual cues — chevrons, tap states, and consistent card elevation.</h3>
+            <p class="cs-body">Interactive cards now carry a clear visual signal: a chevron, a subtle shadow, and a pressed state that confirms the tap registered.</p>
+            <!-- Phone container — final edit -->
+            <div style="margin-top:1.5rem; display:flex; justify-content:center;">
+              <div id="edit-phone" style="position:relative; width:260px;">
+                <div style="background:#1a1a2e; border-radius:36px; padding:12px; box-shadow:0 8px 24px rgba(0,0,0,0.12);">
+                  <div style="width:60px; height:6px; background:#333; border-radius:3px; margin:0 auto 10px;"></div>
+                  <div style="border-radius:24px; overflow-y:scroll; overflow-x:hidden; height:480px; background:#fff; scrollbar-width:none;">
+                    <img src="spotter/spotter-todays-session-edit.png" alt="Today's session edit" style="width:100%; display:block;" />
+                  </div>
+                  <div style="width:80px; height:4px; background:#444; border-radius:2px; margin:10px auto 0;"></div>
+                </div>
+
+                <!-- Annotation — Header (right) -->
+                <div id="ann-header" style="display:none; position:absolute; left:100%; pointer-events:none; opacity:0; transition:opacity 0.2s ease; white-space:nowrap;">
+                  <div style="display:flex; align-items:center;">
+                    <div style="width:8px; height:8px; border-radius:50%; background:var(--spotter); flex-shrink:0; margin-left:-4px; z-index:2;"></div>
+                    <div style="width:48px; height:1.5px; background:var(--spotter);"></div>
+                    <div style="background:var(--spotter); color:#fff; font-family:'Lato',sans-serif; font-size:0.72rem; line-height:1.5; padding:0.6rem 0.85rem; border-radius:0.4rem; max-width:180px; white-space:normal;">
+                      A clear screen title and persistent header made it immediately obvious where trainers were — no guessing mid-session.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Annotation — Progress bar (left) -->
+                <div id="ann-progress" style="display:none; position:absolute; right:100%; pointer-events:none; opacity:0; transition:opacity 0.2s ease; white-space:nowrap;">
+                  <div style="display:flex; align-items:center; flex-direction:row-reverse;">
+                    <div style="width:8px; height:8px; border-radius:50%; background:var(--spotter); flex-shrink:0; margin-right:-4px; z-index:2;"></div>
+                    <div style="width:48px; height:1.5px; background:var(--spotter);"></div>
+                    <div style="background:var(--spotter); color:#fff; font-family:'Lato',sans-serif; font-size:0.72rem; line-height:1.5; padding:0.6rem 0.85rem; border-radius:0.4rem; max-width:180px; white-space:normal; text-align:right;">
+                      A visible progress bar gave trainers an at-a-glance sense of where they were in the session — without breaking focus.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Annotation — Notes (right) -->
+                <div id="ann-notes" style="display:none; position:absolute; left:100%; pointer-events:none; opacity:0; transition:opacity 0.2s ease; white-space:nowrap;">
+                  <div style="display:flex; align-items:center;">
+                    <div style="width:8px; height:8px; border-radius:50%; background:var(--spotter); flex-shrink:0; margin-left:-4px; z-index:2;"></div>
+                    <div style="width:48px; height:1.5px; background:var(--spotter);"></div>
+                    <div style="background:var(--spotter); color:#fff; font-family:'Lato',sans-serif; font-size:0.72rem; line-height:1.5; padding:0.6rem 0.85rem; border-radius:0.4rem; max-width:180px; white-space:normal;">
+                      An expandable notes section keeps wearable voice notes and session observations in one place — right where trainers need them.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="height:1px; background:rgba(62,24,166,0.1);"></div>
+
+        <!-- 02 -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start;">
+          <div>
+            <p style="font-family:'Lato',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:rgba(62,24,166,0.5); margin-bottom:0.75rem;">Problem 02</p>
+            <h3 style="font-family:'Liu Jian Mao Cao',cursive; font-size:clamp(1.1rem,2vw,1.4rem); font-weight:400; color:var(--spotter); line-height:1.35; margin-bottom:1.25rem;">Users creating a new program couldn't easily find how to add a workout.</h3>
+            <p class="cs-body">The "Add Workout" action was buried in an empty state with instructional copy rather than surfaced as a clear button, so the path forward wasn't obvious.</p>
+            <div style="margin-top:1.5rem; display:flex; justify-content:center;">
+              <div id="newprogram-wireframe-phone" style="position:relative; width:260px;">
+                <div style="background:#1a1a2e; border-radius:36px; padding:12px; box-shadow:0 8px 24px rgba(0,0,0,0.12);">
+                  <div style="width:60px; height:6px; background:#333; border-radius:3px; margin:0 auto 10px;"></div>
+                  <div style="border-radius:24px; overflow-y:scroll; overflow-x:hidden; height:480px; background:#fff; scrollbar-width:none;">
+                    <img src="spotter/spotter-create-newprogram-wireframe.png" alt="Create new program wireframe" style="width:100%; display:block;" />
+                  </div>
+                  <div style="width:80px; height:4px; background:#444; border-radius:2px; margin:10px auto 0;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p style="font-family:'Lato',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:rgba(62,24,166,0.5); margin-bottom:0.75rem;">Solution 02</p>
+            <h3 style="font-family:'Liu Jian Mao Cao',cursive; font-size:clamp(1.1rem,2vw,1.4rem); font-weight:400; color:var(--spotter); line-height:1.35; margin-bottom:1.25rem;">Surfaced "Add Workout" as a prominent button and pre-populated the section so the path was immediately clear.</h3>
+            <p class="cs-body">The action moved from buried instructional copy to a visible button alongside the Workouts label. A pre-populated workout item showed users exactly what adding one would produce — no guessing required.</p>
+            <div style="margin-top:1.5rem; display:flex; justify-content:center;">
+              <div id="newprogram-final-phone" style="position:relative; width:260px;">
+                <div style="background:#1a1a2e; border-radius:36px; padding:12px; box-shadow:0 8px 24px rgba(0,0,0,0.12);">
+                  <div style="width:60px; height:6px; background:#333; border-radius:3px; margin:0 auto 10px;"></div>
+                  <div style="border-radius:24px; overflow-y:scroll; overflow-x:hidden; height:480px; background:#fff; scrollbar-width:none;">
+                    <img src="spotter/spotter-create-newprogram.png" alt="Create new program final" style="width:100%; display:block;" />
+                  </div>
+                  <div style="width:80px; height:4px; background:#444; border-radius:2px; margin:10px auto 0;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function() {
+    const SCREEN_TOP = 28;
+    const SCREEN_H   = 480;
+
+    function setupPhone(phoneId, annotations) {
+      const phone  = document.getElementById(phoneId);
+      if (!phone) return;
+      const screen = phone.querySelector('div[style*="overflow-y"]');
+      const img    = screen.querySelector('img');
+      let visible  = false;
+
+      function scaledY(frac) {
+        return frac * img.offsetHeight;
+      }
+
+      function update() {
+        const scrollTop = screen.scrollTop;
+        annotations.forEach(({ id, frac }) => {
+          const el = document.getElementById(id);
+          if (!el) return;
+          const imageY   = scaledY(frac);
+          const visibleY = imageY - scrollTop;
+          const inView   = visibleY >= 0 && visibleY <= SCREEN_H - 10;
+          el.style.top     = (SCREEN_TOP + visibleY) + 'px';
+          el.style.opacity = (visible && inView) ? '1' : '0';
+        });
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          visible = entry.isIntersecting;
+          update();
+        });
+      }, { threshold: 0.4 });
+      observer.observe(phone);
+
+      screen.addEventListener('scroll', update, { passive: true });
+      if (img.complete) update(); else img.addEventListener('load', update);
+    }
+
+    // Wireframe phone — fractions within spotter-todays-session-wireframe.png
+    setupPhone('wireframe-phone', [
+      { id: 'ann-finish',     frac: 0.10 },
+      { id: 'ann-checkmarks', frac: 0.52 },
+    ]);
+
+    // Edit phone — fractions within spotter-todays-session-edit.png
+    setupPhone('edit-phone', [
+      { id: 'ann-header',   frac: 0.014 },
+      { id: 'ann-progress', frac: 0.105 },
+      { id: 'ann-notes',    frac: 0.21  },
+    ]);
+  })();
+  </script>
+
+  <div class="cs-divider"></div>
+
+  <!-- ── CHAPTER 3: SOLUTION ───────────────────────────────────── -->
+  <div id="cs-3" data-chapter="3">
+    <div class="cs-section">
+      <p class="chapter-label">Chapter Three</p>
+      <h2 class="cs-section-heading">A connected system, not another app.</h2>
+      <div class="cs-two-col">
+        <div>
+          <p class="cs-body">We designed Spotter as a <strong>mobile hub + low-attention wearable</strong> pairing. On the floor, trainers tap the watch to mark sets, adjust loads, and capture quick voice notes — without breaking eye contact.</p>
+          <p class="cs-body">Off the floor, the mobile app organizes programs, sessions, and client history. A post-session summary reinforces trainee accountability and surfaces patterns over time.</p>
+          <div style="margin-top:4.5rem; border-radius:0.5rem; overflow:hidden;">
+            <img src="spotter/colorpalette.png" alt="Color palette" style="width:100%; height:auto; display:block;" />
+          </div>
+          <p style="font-family:'Lato',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(62,24,166,0.45); margin-top:0.6rem;">Our color palette</p>
+        </div>
+        <div>
+          <div style="border-radius:0.5rem; overflow:hidden;">
+            <img src="spotter/team-color-ideation.jpg" alt="Team color ideation" style="width:100%; height:auto; display:block; margin-top:-60px;" />
+          </div>
+          <p style="font-family:'Lato',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(62,24,166,0.45); margin-top:0.6rem;">Fun team color ideation!</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-section">
+      <p class="chapter-label">The wearable</p>
+      <h2 class="cs-section-heading">Designed for glances, not stares.</h2>
+      <p class="cs-body" style="max-width:60ch; margin-bottom:3rem;">The wearable interface strips the experience down to its essentials — one tap to log, one tap to move on. Large tap targets, minimal text, voice fallback for everything that needs more detail.</p>
+
+      <div class="watch-grid">
+        <div class="watch-frame">
+          <img src="shared/spotter-wearable-1.png" alt="Spotter splash screen on Apple Watch" />
+          <p class="watch-caption">01 — Launch</p>
+        </div>
+        <div class="watch-frame">
+          <img src="spotter/spotter-wearable-2.png" alt="Today's clients list on Apple Watch" />
+          <p class="watch-caption">02 — Today's clients</p>
+        </div>
+        <div class="watch-frame">
+          <img src="spotter/spotter-wearable-3.png" alt="Client pre-session screen on Apple Watch" />
+          <p class="watch-caption">03 — Pre-session</p>
+        </div>
+        <div class="watch-frame">
+          <img src="spotter/spotter-wearable-4.png" alt="Live rep tracking on Apple Watch" />
+          <p class="watch-caption">04 — Live logging</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="cs-section">
+      <p class="chapter-label">The mobile app</p>
+      <h2 class="cs-section-heading">The hub that holds everything together.</h2>
+      <p class="cs-body" style="max-width:60ch; margin-bottom:3rem;">While the wearable handles the moment, the mobile app handles everything around it — client profiles, session programs, historical trends, and post-session summaries that write themselves.</p>
+      <div style="display:grid; grid-template-columns: repeat(4,1fr); gap: 1.25rem;">
+        <div style="border-radius:0.5rem; overflow:hidden;">
+          <img src="shared/spotter-mobile-screen1.png" alt="Mobile — home" style="width:100%; height:auto; display:block;" />
+        </div>
+        <div style="border-radius:0.5rem; overflow:hidden;">
+          <img src="spotter/spotter-mobile-screen2.png" alt="Mobile — session view" style="width:100%; height:auto; display:block;" />
+        </div>
+        <div style="border-radius:0.5rem; overflow:hidden;">
+          <img src="spotter/spotter-mobile-screen3.png" alt="Mobile — client profile" style="width:100%; height:auto; display:block;" />
+        </div>
+        <div style="border-radius:0.5rem; overflow:hidden;">
+          <img src="spotter/spotter-mobile-screen4.png" alt="Mobile — summary" style="width:100%; height:auto; display:block;" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="cs-section-wide cs-band">
+      <div style="max-width:1100px; margin:0 auto; padding: 0 6vw;">
+        <p class="chapter-label">My contribution</p>
+        <h2 class="cs-section-heading">I led the Home and Session flows end to end.</h2>
+        <div class="cs-two-col">
+          <p class="cs-body">As primary designer on the project, I took the Home and Session flows from initial wireframes through final implementation. I was also a key contributor to the final visual design system, helping design all mobile screens and wearable interfaces to create a cohesive cross-device experience.</p>
+          <div style="border-radius:0.5rem; overflow:hidden;">
+            <img src="spotter/home-and-session-screens.png" alt="Home and session screens" style="width:100%; height:auto; display:block;" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <!-- ── MOBILE PROTOTYPE ──────────────────────────────────────── -->
+  <div data-nav-theme="dark" style="background: #2a1a6e; padding: 5rem 6vw;">
+    <div style="max-width: 1100px; margin: 0 auto;">
+      <p class="chapter-label" style="color: rgba(253,246,237,0.45);">Mobile prototype</p>
+      <h2 style="font-family:'Liu Jian Mao Cao',cursive; font-size:clamp(1.6rem,3vw,2.4rem); font-weight:400; color:var(--cream); margin-bottom: 0.75rem;">Try the mobile experience.</h2>
+      <p style="font-size:0.9rem; color:rgba(253,246,237,0.6); margin-bottom: 2.5rem; max-width:52ch;">Navigate the full mobile flow — from home to session to post-session summary.</p>
+      <div style="border-radius: 0.75rem; overflow: hidden; box-shadow: 0 24px 64px rgba(0,0,0,0.35);">
+        <iframe
+          style="border: 1px solid rgba(0, 0, 0, 0.1); display: block; width: 100%; height: 600px;"
+          src="https://embed.figma.com/proto/RWvmbq493Wle2IUzSDeBj0/699-Prototype---Final--Copy-?node-id=2819-22868&p=f&viewport=-95%2C-110%2C0.11&scaling=scale-down&content-scaling=fixed&starting-point-node-id=2819%3A22868&page-id=2734%3A5452&embed-host=share&hide-ui=1"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── WEARABLE PROTOTYPE ────────────────────────────────────── -->
+  <div data-nav-theme="dark" style="background: var(--spotter); padding: 5rem 6vw;">
+    <div style="max-width: 1100px; margin: 0 auto;">
+      <p class="chapter-label" style="color: rgba(253,246,237,0.45);">Wearable prototype</p>
+      <h2 style="font-family:'Liu Jian Mao Cao',cursive; font-size:clamp(1.6rem,3vw,2.4rem); font-weight:400; color:var(--cream); margin-bottom: 0.75rem;">Try the wearable experience.</h2>
+      <p style="font-size:0.9rem; color:rgba(253,246,237,0.6); margin-bottom: 2.5rem; max-width:52ch;">Click through the Apple Watch flow — log sets, move between clients, capture notes.</p>
+      <div style="border-radius: 0.75rem; overflow: hidden; box-shadow: 0 24px 64px rgba(0,0,0,0.35);">
+        <iframe
+          style="border: 1px solid rgba(0, 0, 0, 0.1); display: block; width: 100%; height: 600px;"
+          src="https://embed.figma.com/proto/RWvmbq493Wle2IUzSDeBj0/699-Prototype---Final--Copy-?node-id=2943-2318&p=f&viewport=25%2C162%2C0.27&scaling=scale-down&content-scaling=fixed&starting-point-node-id=2943%3A2318&page-id=2943%3A1910&embed-host=share&hide-ui=1"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-divider"></div>
+
+  <!-- ── CHAPTER 4: REFLECTION ────────────────────────────────────── -->
+  <div id="cs-4" data-chapter="4">
+    <div class="cs-section">
+      <p class="chapter-label">Reflection</p>
+      <h2 class="cs-section-heading">What I'd carry forward.</h2>
+      <div class="cs-two-col">
+        <div>
+          <p class="cs-body"><strong>Designing for trainers means designing for attention.</strong> The product succeeds only if it protects presence during the session — you can't just make something fast, you have to make something that doesn't ask for attention at the wrong moment.</p>
+          <p class="cs-body"><strong>Progressive disclosure works best when it starts from a clear definition of minimum useful data</strong> — not from a list of possible metrics. That framing changed how I think about every feature prioritization decision.</p>
+          <p class="cs-body"><strong>Navigation clarity depends on naming and structure.</strong> Small mismatches in labels can create big confusion when actions look similar — something that only usability testing made visible.</p>
+        </div>
+        <div>
+          <p class="chapter-label" style="margin-bottom:1rem;">What's next</p>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:1rem; padding:0;">
+            <li style="display:flex; gap:0.75rem; align-items:flex-start;">
+              <span style="color:var(--spotter); font-size:1.1rem; line-height:1.4;">→</span>
+              <p class="cs-body" style="margin:0;">Validate Spotter in real gym environments with working trainers and live clients.</p>
+            </li>
+            <li style="display:flex; gap:0.75rem; align-items:flex-start;">
+              <span style="color:var(--spotter); font-size:1.1rem; line-height:1.4;">→</span>
+              <p class="cs-body" style="margin:0;">Refine wearable interactions for faster use — haptic patterns, clearer data entry labels.</p>
+            </li>
+            <li style="display:flex; gap:0.75rem; align-items:flex-start;">
+              <span style="color:var(--spotter); font-size:1.1rem; line-height:1.4;">→</span>
+              <p class="cs-body" style="margin:0;">Explore integrations with calendars, messaging platforms, and fitness data services.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── NEXT PROJECT ───────────────────────────────────────────── -->
+  <a href="workiva.html" class="cs-next">
+    <div>
+      <p class="cs-next-label">Next case study</p>
+      <p class="cs-next-title">Workiva — Content Design</p>
+    </div>
+    <span class="cs-next-arrow">Read next →</span>
+  </a>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────────── -->
+  <footer class="page-footer" data-nav-theme="dark" style="background: var(--spotter);">
+    <div class="footer-left">
+      <p class="footer-label">Get in touch</p>
+      <a href="mailto:cmlagarcia9@gmail.com" class="footer-email">cmlagarcia9@gmail.com</a>
+    </div>
+    <div class="footer-right">
+      <span class="footer-dots">• • •</span>
+      <div class="footer-icons">
+        <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="#" aria-label="Resume">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+    <button class="lightbox-close" id="lightbox-close">✕ Close</button>
+    <img id="lightbox-img" src="" alt="" />
+  </div>
+
+  <!-- expand cursor label -->
+  <div class="watch-cursor" id="watch-cursor">Expand</div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="animations.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Scroll-reveal all sections
+    const sections = document.querySelectorAll('.cs-section, .cs-section-wide');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    sections.forEach(s => observer.observe(s));
+
+    // Progress dot tracking
+    const chapters = document.querySelectorAll('[data-chapter]');
+    const dots = document.querySelectorAll('.cs-progress-dot');
+
+    const chapterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const idx = e.target.dataset.chapter;
+          dots.forEach(d => d.classList.remove('active'));
+          const dot = document.querySelector(`.cs-progress-dot[data-section="${idx}"]`);
+          if (dot) dot.classList.add('active');
+        }
+      });
+    }, { threshold: 0.3 });
+    chapters.forEach(c => chapterObserver.observe(c));
+
+    // Dot click scrolls to chapter
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const idx = dot.dataset.section;
+        const target = document.querySelector(`[data-chapter="${idx}"]`);
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // ── LIGHTBOX ────────────────────────────────────────────────
+    const lightbox      = document.getElementById('lightbox');
+    const lightboxImg   = document.getElementById('lightbox-img');
+    const lightboxClose = document.getElementById('lightbox-close');
+    const watchCursor   = document.getElementById('watch-cursor');
+
+    function openLightbox(src, alt) {
+      lightboxImg.src = src;
+      lightboxImg.alt = alt;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      watchCursor.classList.remove('visible');
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    // ── EXPAND CURSOR ON ALL IMAGES ─────────────────────────────
+    // Exclude sketch thumbnails (.sketch-thumb) which have their own behaviour
+    const expandTargets = document.querySelectorAll('img:not(.sketch-thumb):not(#lightbox-img):not(.nav-name-logo)');
+    expandTargets.forEach(img => {
+      // make the parent wrapper position:relative so cursor label can anchor
+      const wrap = img.closest('.watch-frame') || img.parentElement;
+      wrap.style.cursor = 'pointer';
+
+      img.addEventListener('mousemove', e => {
+        watchCursor.style.left = e.clientX + 'px';
+        watchCursor.style.top  = e.clientY + 'px';
+      });
+      img.addEventListener('mouseenter', () => watchCursor.classList.add('visible'));
+      img.addEventListener('mouseleave', () => watchCursor.classList.remove('visible'));
+      img.addEventListener('click', () => openLightbox(img.src, img.alt));
+    });
+  </script>
+</body>
+</html>
