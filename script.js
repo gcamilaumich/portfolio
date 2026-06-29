@@ -5,21 +5,6 @@ window.addEventListener('load', () => {
   gsap.to('#hero-text', { opacity: 1, duration: 1, delay: 0.6, ease: 'power2.out' });
 });
 
-/* ── HERO INVITE — typewriter, bottom right ──────────────────── */
-(function initHeroInvite() {
-  const line1 = document.getElementById('hero-invite-line-1');
-  const arrow = document.getElementById('hero-invite-arrow');
-  if (!line1 || !arrow) return;
-
-  line1.textContent = 'come on in';
-
-  setTimeout(() => {
-    line1.classList.add('hero-invite-line--fade');
-    arrow.classList.add('hero-invite-arrow--fade');
-    setTimeout(() => arrow.classList.add('hero-invite-arrow--visible'), 1200);
-  }, 1600);
-})();
-
 /* ── CYCLING WORD (typewriter) ─────────────────────────────────── */
 const wordEl = document.getElementById('cycling-word');
 
