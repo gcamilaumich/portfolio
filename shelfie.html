@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Shelfie — Camila Garcia</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; background: #f0ebe0; }
+
+    /* ── Atmospheric background ── */
+    .shelf-bg {
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse 120% 60% at 50% 0%, rgba(255,245,230,0.9) 0%, transparent 70%),
+        linear-gradient(160deg, #e8dfd0 0%, #d6cfc2 40%, #c9bfaf 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .shelf-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(200,185,165,0.25) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(180,165,145,0.2) 0%, transparent 45%);
+      pointer-events: none;
+    }
+
+    /* ── Wood shelf ── */
+    .wood-shelf {
+      width: 100%;
+      height: 22px;
+      background: linear-gradient(
+        to bottom,
+        #c8915a 0%,
+        #b07a45 30%,
+        #9a6835 60%,
+        #7d5428 100%
+      );
+      border-radius: 2px 2px 4px 4px;
+      box-shadow:
+        0 6px 18px rgba(0,0,0,0.35),
+        0 2px 4px rgba(0,0,0,0.2),
+        inset 0 1px 0 rgba(255,220,170,0.4),
+        inset 0 -1px 0 rgba(0,0,0,0.15);
+      position: relative;
+    }
+    .wood-shelf::before {
+      content: '';
+      position: absolute;
+      inset: 3px 0 6px;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent 0px,
+        transparent 40px,
+        rgba(0,0,0,0.03) 40px,
+        rgba(0,0,0,0.03) 42px,
+        transparent 42px,
+        transparent 120px,
+        rgba(255,255,255,0.04) 120px,
+        rgba(255,255,255,0.04) 122px
+      );
+    }
+
+    /* ── Book ── */
+    .book-wrap {
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.32s cubic-bezier(0.34, 1.5, 0.64, 1),
+                  filter 0.32s ease;
+      transform-origin: bottom center;
+      will-change: transform;
+    }
+    .book-wrap:hover {
+      transform: translateY(-16px) scale(1.05);
+      filter: drop-shadow(0 22px 32px rgba(0,0,0,0.38));
+      z-index: 10;
+    }
+    .book-wrap:not(:hover) {
+      filter: drop-shadow(0 8px 16px rgba(0,0,0,0.25));
+    }
+
+    /* Spine sliver */
+    .book-spine {
+      flex-shrink: 0;
+      border-radius: 1px 0 0 1px;
+      position: relative;
+    }
+    /* Pages edge (right) */
+    .book-pages {
+      flex-shrink: 0;
+      background: repeating-linear-gradient(
+        to bottom,
+        #ddd6c8 0px, #ddd6c8 1px,
+        #c9c0b0 1px, #c9c0b0 2px
+      );
+    }
+    /* Front cover */
+    .book-cover {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .book-cover::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* ── Decorative placeholder ── */
+    .decor-placeholder {
+      border: 1.5px dashed rgba(150,130,110,0.35);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(150,130,110,0.45);
+      font-size: 0.7rem;
+      font-family: 'Lato', sans-serif;
+      letter-spacing: 0.08em;
+      cursor: default;
+      user-select: none;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .shelf-scene { padding: 0 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+
+/* ───────────────────────── Data ───────────────────────── */
+
+const PROJECTS = [
+  {
+    id: 'spotter',
+    title: 'Spotter',
+    subtitle: 'Product Design',
+    year: '2026',
+    url: 'spotter.html',
+    coverColor: '#4A3D32',
+    spineColor: '#332A22',
+    accentColor: '#C4A07A',
+    lightColor: '#EDD9BC',
+    coverArt: 'spotter',
+    desc: 'Designing a dual-platform experience for personal trainers.',
+  },
+  {
+    id: 'workiva',
+    title: 'Workiva',
+    subtitle: 'Content Design',
+    year: '2023',
+    url: 'workiva.html',
+    coverColor: '#1A3F72',
+    spineColor: '#102848',
+    accentColor: '#6A9FD4',
+    lightColor: '#A8CAEB',
+    coverArt: 'workiva',
+    desc: 'A scalable content system for a beta mobile app.',
+  },
+  {
+    id: 'archive',
+    title: 'Internet\nArchive',
+    subtitle: 'UX Research',
+    year: '2025',
+    url: 'archive-it.html',
+    coverColor: '#163340',
+    spineColor: '#0D2028',
+    accentColor: '#5FA8BF',
+    lightColor: '#9DD0E0',
+    coverArt: 'archive',
+    desc: 'Improving search and discovery through six research methods.',
+  },
+];
+
+/* ─────────────── Cover artwork (SVG per book) ─────────── */
+
+function SpotterArt({ light, accent }) {
+  return (
+    <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg"
+         style={{ width: '100%', height: '100%' }}>
+      {/* Abstract figure / movement lines */}
+      <circle cx="60" cy="30" r="12" stroke={accent} strokeWidth="1.5" fill="none" opacity="0.7" />
+      <path d="M60 42 L52 62 L60 58 L68 62 L60 42Z" stroke={accent} strokeWidth="1.5" fill="none" opacity="0.6" strokeLinejoin="round" />
+      <path d="M52 52 L40 46" stroke={accent} strokeWidth="1.5" opacity="0.5" strokeLinecap="round" />
+      <path d="M68 52 L80 46" stroke={accent} strokeWidth="1.5" opacity="0.5" strokeLinecap="round" />
+      {/* Weight bar */}
+      <line x1="28" y1="46" x2="92" y2="46" stroke={light} strokeWidth="1" opacity="0.25" />
+      <circle cx="28" cy="46" r="5" stroke={light} strokeWidth="1" fill="none" opacity="0.2" />
+      <circle cx="92" cy="46" r="5" stroke={light} strokeWidth="1" fill="none" opacity="0.2" />
+      {/* Decorative dots */}
+      <circle cx="20" cy="20" r="2" fill={accent} opacity="0.3" />
+      <circle cx="100" cy="70" r="3" fill={accent} opacity="0.2" />
+      <circle cx="15" cy="75" r="1.5" fill={light} opacity="0.25" />
+    </svg>
+  );
+}
+
+function WorkivaArt({ light, accent }) {
+  return (
+    <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg"
+         style={{ width: '100%', height: '100%' }}>
+      {/* Document stack */}
+      <rect x="35" y="18" width="50" height="64" rx="2" stroke={accent} strokeWidth="1.2" fill="none" opacity="0.2" />
+      <rect x="30" y="14" width="50" height="64" rx="2" stroke={accent} strokeWidth="1.2" fill="none" opacity="0.35" />
+      <rect x="25" y="10" width="50" height="64" rx="2" stroke={accent} strokeWidth="1.4" fill="none" opacity="0.55" />
+      {/* Text lines on front doc */}
+      <line x1="33" y1="28" x2="67" y2="28" stroke={light} strokeWidth="1" opacity="0.4" strokeLinecap="round" />
+      <line x1="33" y1="35" x2="60" y2="35" stroke={light} strokeWidth="1" opacity="0.3" strokeLinecap="round" />
+      <line x1="33" y1="42" x2="65" y2="42" stroke={light} strokeWidth="1" opacity="0.3" strokeLinecap="round" />
+      <line x1="33" y1="49" x2="55" y2="49" stroke={light} strokeWidth="1" opacity="0.25" strokeLinecap="round" />
+      {/* Grid dots */}
+      {[0,1,2,3].map(r => [0,1,2,3].map(c => (
+        <circle key={`${r}-${c}`}
+          cx={88 + c * 7} cy={12 + r * 7} r="1"
+          fill={accent} opacity="0.2" />
+      )))}
+      <circle cx="100" cy="80" r="8" stroke={accent} strokeWidth="1" fill="none" opacity="0.15" />
+    </svg>
+  );
+}
+
+function ArchiveArt({ light, accent }) {
+  return (
+    <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg"
+         style={{ width: '100%', height: '100%' }}>
+      {/* Concentric arcs — archive/web feel */}
+      <circle cx="60" cy="80" r="20" stroke={accent} strokeWidth="1.2" fill="none" opacity="0.5" />
+      <circle cx="60" cy="80" r="35" stroke={accent} strokeWidth="1" fill="none" opacity="0.35" />
+      <circle cx="60" cy="80" r="52" stroke={accent} strokeWidth="0.8" fill="none" opacity="0.2" />
+      <circle cx="60" cy="80" r="68" stroke={accent} strokeWidth="0.6" fill="none" opacity="0.12" />
+      {/* Cross grid */}
+      <line x1="60" y1="0" x2="60" y2="80" stroke={light} strokeWidth="0.6" opacity="0.15" />
+      <line x1="0" y1="80" x2="120" y2="80" stroke={light} strokeWidth="0.6" opacity="0.15" />
+      {/* Magnifier */}
+      <circle cx="72" cy="32" r="14" stroke={accent} strokeWidth="1.8" fill="none" opacity="0.6" />
+      <line x1="62" y1="42" x2="52" y2="52" stroke={accent} strokeWidth="2" opacity="0.6" strokeLinecap="round" />
+      {/* Small dots */}
+      <circle cx="20" cy="15" r="2" fill={accent} opacity="0.3" />
+      <circle cx="110" cy="20" r="1.5" fill={light} opacity="0.25" />
+    </svg>
+  );
+}
+
+/* ─────────────── Book component ───────────────────────── */
+
+function Book({ project, size = 'lg' }) {
+  const [hovered, setHovered] = React.useState(false);
+
+  const dims = {
+    lg: { width: 170, height: 258, spine: 14, pages: 10, titleSize: '1.05rem', subtitleSize: '0.58rem', yearSize: '0.55rem' },
+    md: { width: 150, height: 228, spine: 12, pages: 9,  titleSize: '0.95rem', subtitleSize: '0.55rem', yearSize: '0.52rem' },
+  }[size];
+
+  const ArtComponent = {
+    spotter: SpotterArt,
+    workiva: WorkivaArt,
+    archive: ArchiveArt,
+  }[project.coverArt];
+
+  const titleLines = project.title.split('\n');
+
+  return (
+    <a
+      href={project.url}
+      className="book-wrap"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{ height: dims.height }}
+      title={project.desc}
+    >
+      {/* Spine */}
+      <div className="book-spine" style={{
+        width: dims.spine,
+        height: dims.height,
+        background: `linear-gradient(to right, ${project.spineColor}, ${project.coverColor})`,
+      }} />
+
+      {/* Front cover */}
+      <div className="book-cover" style={{
+        width: dims.width - dims.spine - dims.pages,
+        height: dims.height,
+        background: project.coverColor,
+      }}>
+        {/* Cover art fills middle third */}
+        <div style={{
+          position: 'absolute',
+          top: '22%', left: 0, right: 0, bottom: '28%',
+          opacity: 0.9,
+        }}>
+          <ArtComponent light={project.lightColor} accent={project.accentColor} />
+        </div>
+
+        {/* Top: type badge + title */}
+        <div style={{ position: 'relative', zIndex: 1, padding: '1rem 1rem 0' }}>
+          <p style={{
+            fontFamily: "'Lato', sans-serif",
+            fontSize: dims.subtitleSize,
+            fontWeight: 700,
+            letterSpacing: '0.18em',
+            textTransform: 'uppercase',
+            color: project.accentColor,
+            margin: '0 0 0.45rem',
+            opacity: 0.85,
+          }}>
+            {project.subtitle}
+          </p>
+          {titleLines.map((line, i) => (
+            <h3 key={i} style={{
+              fontFamily: "'Playfair Display', serif",
+              fontSize: dims.titleSize,
+              fontWeight: 600,
+              color: 'rgba(255,255,255,0.95)',
+              margin: '0',
+              lineHeight: 1.15,
+              letterSpacing: '-0.01em',
+            }}>
+              {line}
+            </h3>
+          ))}
+        </div>
+
+        {/* Bottom: author + year */}
+        <div style={{
+          position: 'relative', zIndex: 1,
+          padding: '0 1rem 0.9rem',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'flex-end',
+        }}>
+          <p style={{
+            fontFamily: "'Lato', sans-serif",
+            fontSize: dims.yearSize,
+            fontWeight: 300,
+            letterSpacing: '0.12em',
+            color: 'rgba(255,255,255,0.4)',
+            margin: 0,
+            textTransform: 'uppercase',
+          }}>
+            Camila Garcia
+          </p>
+          <p style={{
+            fontFamily: "'Lato', sans-serif",
+            fontSize: dims.yearSize,
+            fontWeight: 700,
+            letterSpacing: '0.1em',
+            color: project.accentColor,
+            opacity: 0.7,
+            margin: 0,
+          }}>
+            {project.year}
+          </p>
+        </div>
+      </div>
+
+      {/* Pages edge */}
+      <div className="book-pages" style={{
+        width: dims.pages,
+        height: dims.height,
+        borderRadius: '0 1px 1px 0',
+      }} />
+    </a>
+  );
+}
+
+/* ─────────────── Decorative placeholder ───────────────── */
+
+function DecoPlaceholder({ size = 80, label = '+' }) {
+  return (
+    <div className="decor-placeholder" style={{ width: size, height: size }}>
+      <span style={{ fontFamily: "'Lato', sans-serif" }}>{label}</span>
+    </div>
+  );
+}
+
+/* ─────────────── Shelf Row ─────────────────────────────── */
+
+function ShelfRow({ children, align = 'left' }) {
+  return (
+    <div style={{ position: 'relative', marginBottom: '2.5rem' }}>
+      {/* Books & objects sitting on the shelf */}
+      <div style={{
+        display: 'flex',
+        alignItems: 'flex-end',
+        gap: '1.5rem',
+        paddingBottom: '0',
+        justifyContent: align === 'left' ? 'flex-start' : align === 'right' ? 'flex-end' : 'center',
+        minHeight: '280px',
+        paddingLeft: '1rem',
+        paddingRight: '1rem',
+      }}>
+        {children}
+      </div>
+      {/* Wood shelf plank */}
+      <div className="wood-shelf" />
+    </div>
+  );
+}
+
+/* ─────────────── Main App ──────────────────────────────── */
+
+function Shelfie() {
+  return (
+    <div className="shelf-bg" style={{ minHeight: '100vh', padding: '4rem 0 6rem' }}>
+
+      {/* Header */}
+      <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+        <h1 style={{
+          fontFamily: "'Dancing Script', cursive",
+          fontSize: 'clamp(2.4rem, 5vw, 3.6rem)',
+          fontWeight: 700,
+          color: '#3A2E22',
+          margin: '0 0 0.4rem',
+          letterSpacing: '-0.01em',
+        }}>
+          My Shelfie
+        </h1>
+        <p style={{
+          fontFamily: "'Lato', sans-serif",
+          fontSize: '0.85rem',
+          fontWeight: 300,
+          letterSpacing: '0.22em',
+          textTransform: 'uppercase',
+          color: 'rgba(80,60,40,0.5)',
+          margin: 0,
+        }}>
+          Portfolio — Camila Garcia
+        </p>
+      </div>
+
+      {/* Shelf scene */}
+      <div className="shelf-scene" style={{
+        maxWidth: '860px',
+        margin: '0 auto',
+        padding: '0 2rem',
+      }}>
+
+        {/* ── Top shelf: Spotter alone on the left, space right ── */}
+        <ShelfRow align="left">
+          {/* Book */}
+          <Book project={PROJECTS[0]} size="lg" />
+
+          {/* Generous empty space for decorative objects */}
+          <div style={{ flex: 1 }} />
+
+          {/* Placeholder spots */}
+          <div style={{ display: 'flex', alignItems: 'flex-end', gap: '2rem' }}>
+            <DecoPlaceholder size={72} label="+" />
+            <DecoPlaceholder size={90} label="+" />
+          </div>
+        </ShelfRow>
+
+        {/* ── Bottom shelf: Workiva + Archive center-right ── */}
+        <ShelfRow align="right">
+          {/* Left placeholder */}
+          <DecoPlaceholder size={80} label="+" />
+
+          {/* Spacer */}
+          <div style={{ flex: 1 }} />
+
+          {/* Two project books */}
+          <Book project={PROJECTS[1]} size="lg" />
+          <Book project={PROJECTS[2]} size="lg" />
+        </ShelfRow>
+
+      </div>
+
+      {/* Footer hint */}
+      <p style={{
+        textAlign: 'center',
+        fontFamily: "'Lato', sans-serif",
+        fontSize: '0.72rem',
+        fontWeight: 400,
+        letterSpacing: '0.14em',
+        textTransform: 'uppercase',
+        color: 'rgba(80,60,40,0.38)',
+        marginTop: '3rem',
+      }}>
+        Click a book to read the case study
+      </p>
+
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<Shelfie />);
+
+</script>
+</body>
+</html>
