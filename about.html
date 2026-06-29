@@ -4,12 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About — Camila Garcia</title>
+  <link rel="icon" type="image/png" href="shared/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:wght@300;400;700&family=Liu+Jian+Mao+Cao&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:wght@300;400;700&family=Liu+Jian+Mao+Cao&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="pages.css" />
   <style>
+    :root { --cycle: #6C8A73; }
     #site-nav .nav-name-pill { background: none; color: var(--dark); border-radius: 0; }
     #site-nav .nav-name-logo { filter: brightness(0) saturate(100%); }
 
@@ -111,7 +113,7 @@
     .about-section.visible { opacity: 1; transform: translateY(0); }
 
     .about-section-heading {
-      font-family: 'Liu Jian Mao Cao', cursive;
+      font-family: 'Bodoni Moda', serif;
       font-size: clamp(1.5rem, 2.8vw, 2.2rem);
       font-weight: 400;
       color: var(--dark);
@@ -205,14 +207,14 @@
 
     .scrap-photo--1 {
       top: -1.5rem;
-      left: 105%;
+      left: 120%;
       transform: rotate(-7deg);
       z-index: 2;
     }
 
     .scrap-photo--2 {
       top: 5.2rem;
-      left: 145%;
+      left: 160%;
       transform: rotate(6deg);
       z-index: 1;
     }
@@ -246,7 +248,7 @@
     /* third photo, sits above the other two */
     .scrap-photo--3 {
       top: -4.2rem;
-      left: 120%;
+      left: 135%;
       transform: rotate(-3deg);
       z-index: 2;
       transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -259,7 +261,7 @@
 
     .scrap-photo--4 {
       top: 2rem;
-      left: 110%;
+      left: 125%;
       transform: rotate(5deg);
       z-index: 2;
       transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -272,13 +274,13 @@
 
     .scrap-photo--5 {
       top: -1.5rem;
-      left: 105%;
+      left: 120%;
       transform: rotate(-6deg);
       z-index: 2;
     }
     .scrap-photo--6 {
       top: 5.2rem;
-      left: 145%;
+      left: 160%;
       transform: rotate(7deg);
       z-index: 1;
     }
@@ -478,12 +480,6 @@
       margin-top: 2.5rem;
     }
 
-    .interests-row--second {
-      grid-template-columns: repeat(2, 1fr);
-      max-width: calc(2 * 225px + 1.5rem);
-      margin: 4.5rem auto 0;
-    }
-
     .about-band-closing {
       margin-top: 2.5rem;
       font-family: 'Liu Jian Mao Cao', cursive;
@@ -504,16 +500,6 @@
     }
     .interest-card.visible { opacity: 1; transform: translateY(0); }
 
-    .interest-card--bare {
-      background: none;
-      border-radius: 0;
-      padding: 0;
-      text-align: center;
-    }
-    .interest-card--bare .interest-icon {
-      margin-left: auto;
-      margin-right: auto;
-    }
 
     .interest-icon {
       width: 6rem;
@@ -521,6 +507,8 @@
       margin-bottom: 0.75rem;
       display: block;
       object-fit: contain;
+      position: relative;
+      z-index: 3;
       transition: transform 0.25s ease;
     }
     .interest-icon:hover {
@@ -636,7 +624,7 @@
     }
 
     .interest-title {
-      font-family: 'Liu Jian Mao Cao', cursive;
+      font-family: 'Bodoni Moda', serif;
       font-size: 1rem;
       color: var(--dark);
       margin-bottom: 0.4rem;
@@ -655,33 +643,6 @@
       color: rgba(42,32,24,0.6);
     }
 
-    /* ── CTA ────────────────────────────────────────────────── */
-    .about-cta {
-      background: #E6ECE4;
-      padding: 5rem 6vw;
-      text-align: center;
-    }
-
-    .about-cta h2 {
-      font-family: 'Liu Jian Mao Cao', cursive;
-      font-style: italic;
-      font-size: clamp(1.8rem, 4vw, 3rem);
-      font-weight: 400;
-      color: var(--dark);
-      margin-bottom: 1.5rem;
-    }
-
-    .about-cta-link {
-      display: inline-block;
-      font-family: 'Liu Jian Mao Cao', cursive;
-      font-size: 1rem;
-      color: var(--dark);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(42,32,24,0.3);
-      padding-bottom: 2px;
-      transition: border-color 0.2s;
-    }
-    .about-cta-link:hover { border-color: var(--dark); }
 
     .divider { height: 1px; background: rgba(42,32,24,0.1); margin: 0 6vw; }
 
@@ -700,7 +661,7 @@
     <a href="index.html" class="nav-name-pill"><img src="shared/logomaybe.png" alt="" class="nav-name-logo" /><span class="nav-pill-text">Camila Garcia</span></a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
-      <li><a href="projects.html">Work</a></li>
+      <li><a href="index.html#work">Work</a></li>
       <li><a href="about.html" class="active">About</a></li>
       <li><a href="mailto:cmlagarcia9@gmail.com" class="nav-pill">Say Hello</a></li>
     </ul>
@@ -720,7 +681,7 @@
       <p class="about-hero-cycle-note" id="about-cycle-caption">I'm Camila.</p>
     </div>
     <div class="about-hero-right">
-      <p class="chapter-label">I didn't start as a designer. I started as a writer. So, why the shift?</p>
+      <p class="chapter-label" style="font-family:'Bodoni Moda', serif;">I didn't start as a designer. I started as a writer. So, why the shift?</p>
       <p class="about-body" style="max-width: 70ch; margin-bottom: 1rem;">My path into design began with a love of words and storytelling, paired with an early interest in graphic design. What makes a book or an app impossible to close? That question carried me into design almost accidentally.</p>
       <p class="about-body" style="max-width: 70ch;">As an English major, I was drawn to the challenge of shaping language within visual systems, too. This led me to pursue a master's in User Experience, with a focus on visual graphics — bridging design and words.</p>
     </div>
@@ -921,24 +882,17 @@
         </div>
       </div>
       <p class="about-band-closing">And of course, designing, writing, and illustrating. My goal is to write and illustrate several children's books!</p>
-      <div class="interests-row interests-row--second">
-        <div class="interest-card interest-card--bare">
-          <img class="interest-icon" src="about/colorcombo.png" alt="" />
-          <p class="interest-title interest-title--handwritten">Favorite color combo</p>
-        </div>
-        <div class="interest-card interest-card--bare">
-          <img class="interest-icon" src="about/keyboardshortcut.png" alt="" />
-          <p class="interest-title interest-title--handwritten">Favorite keyboard shortcut</p>
-        </div>
-      </div>
     </div>
   </section>
 
   <!-- ── CTA ───────────────────────────────────────────────────── -->
-  <section class="about-cta">
-    <h2>Let's work together! </h2>
-    <a href="mailto:cmlagarcia9@gmail.com" class="about-cta-link">cmlagarcia9@gmail.com →</a>
-  </section>
+  <div class="fh-footer">
+    <div class="fh-footer-left">
+      <h2>Let's create something together</h2>
+      <p>I'm currently open to full-time UX, content design, and hybrid design-writing roles.</p>
+    </div>
+    <a href="mailto:cmlagarcia9@gmail.com" class="fh-say-hello">Say Hello</a>
+  </div>
 
   <!-- ── FOOTER ─────────────────────────────────────────────────── -->
   <div class="fh-bottombar">
@@ -1007,6 +961,14 @@
       });
     }, { threshold: 0.1 });
     revealEls.forEach(el => obs.observe(el));
+
+    // Cycle the accent color used on "Let's work together!"
+    const cycleColors = ['#6C8A73', '#F6DAA2', '#E59465', '#9E392F', '#CEB8AD'];
+    let cycleColorIndex = 1;
+    setInterval(() => {
+      document.documentElement.style.setProperty('--cycle', cycleColors[cycleColorIndex]);
+      cycleColorIndex = (cycleColorIndex + 1) % cycleColors.length;
+    }, 4000);
   </script>
 </body>
 </html>
