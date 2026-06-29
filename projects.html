@@ -6,7 +6,7 @@
   <title>All Projects — Camila Garcia</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Liu+Jian+Mao+Cao&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:wght@300;400;700&family=Liu+Jian+Mao+Cao&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="pages.css" />
   <style>
@@ -50,7 +50,7 @@
     }
 
     .filter-btn {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-size: 0.7rem;
       font-weight: 700;
       letter-spacing: 0.15em;
@@ -103,7 +103,7 @@
     .project-item-info { }
 
     .project-item-type {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-size: 0.65rem;
       font-weight: 700;
       letter-spacing: 0.2em;
@@ -136,7 +136,7 @@
     }
 
     .project-item-tags .tag {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-size: 0.65rem;
       letter-spacing: 0.05em;
       padding: 0.2rem 0.6rem;
@@ -206,8 +206,9 @@
     <a href="index.html" class="nav-name-pill"><img src="shared/logomaybe.png" alt="" class="nav-name-logo" /><span class="nav-pill-text">Camila Garcia</span></a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
+      <li><a href="projects.html" class="active">Work</a></li>
       <li><a href="about.html">About</a></li>
-      <li><a href="mailto:cmlagarcia9@gmail.com">Contact</a></li>
+      <li><a href="mailto:cmlagarcia9@gmail.com" class="nav-pill">Say Hello</a></li>
     </ul>
   </nav>
 
@@ -225,6 +226,7 @@
     <button class="filter-btn" data-filter="content">Content Design</button>
     <button class="filter-btn" data-filter="research">UX Research</button>
     <button class="filter-btn" data-filter="web">Web / Code</button>
+    <button class="filter-btn" data-filter="graphic">Graphic Design</button>
   </div>
 
   <!-- ── PROJECT LIST ──────────────────────────────────────────── -->
@@ -292,6 +294,21 @@
       <span class="project-item-arrow">View project →</span>
     </a>
 
+    <a href="frame-house.html" class="project-item" data-category="graphic">
+      <div class="project-item-thumb" style="background-image:url('framehouse/fh-theater.jpg')"></div>
+      <div class="project-item-info">
+        <p class="project-item-type">Graphic Design</p>
+        <h2 class="project-item-title">Frame House</h2>
+        <p class="project-item-desc">A full brand identity for an independent, community-centered movie theater — logo, type, palette, and the merch and signage that carry it into the real world.</p>
+        <div class="project-item-tags">
+          <span class="tag">Branding</span>
+          <span class="tag">Illustrator</span>
+          <span class="tag">2026</span>
+        </div>
+      </div>
+      <span class="project-item-arrow">View project →</span>
+    </a>
+
   </div>
 
   <!-- ── CONTACT STRIP ─────────────────────────────────────────── -->
@@ -301,23 +318,16 @@
   </section>
 
   <!-- ── FOOTER ─────────────────────────────────────────────────── -->
-  <footer class="page-footer">
-    <div class="footer-left">
-      <p class="footer-label">Get in touch</p>
-      <a href="mailto:cmlagarcia9@gmail.com" class="footer-email">cmlagarcia9@gmail.com</a>
+  <div class="fh-bottombar">
+    <div class="fh-bottombar-links">
+      <a href="https://www.linkedin.com/in/camila-garcia-04r17/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="#">Substack</a>
+      <a href="https://drive.google.com/file/d/1g9xEyP9xjEwUIDGVso1VA5jVeM1jJgON/view?usp=sharing" target="_blank" rel="noopener">Resume</a>
     </div>
-    <div class="footer-right">
-      <span class="footer-dots">• • •</span>
-      <div class="footer-icons">
-        <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-        </a>
-        <a href="#" aria-label="Resume">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
-        </a>
-      </div>
-    </div>
-  </footer>
+    <span class="fh-bottombar-email">e: cmlagarcia9@gmail.com</span>
+  </div>
+
+  <p class="fh-copyright">Camila Garcia 2026</p>
 
   <script src="animations.js"></script>
   <script>

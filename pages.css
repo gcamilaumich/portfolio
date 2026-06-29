@@ -22,7 +22,7 @@
 
 .nav-links { list-style: none; display: flex; gap: 2rem; }
 .nav-links a {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 0.72rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -38,41 +38,82 @@ body.nav-on-dark .nav-links a {
   color: var(--cream);
 }
 
-/* ── PAGE FOOTER ──────────────────────────────────────────────── */
-.page-footer {
-  background: var(--olive);
-  padding: 2.5rem 6vw;
+/* ── PAGE FOOTER (matches index.html) ───────────────────────────── */
+.fh-footer {
+  margin: 7rem 0 0;
+  padding: 0 6vw;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.fh-footer-left h2 {
+  font-family: 'Bodoni Moda', serif;
+  font-weight: 700;
+  font-size: 16pt;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--olive-dark);
+  margin: 0 0 0.5rem;
+}
+.fh-footer-left p {
+  font-size: 16pt;
+  line-height: 1.6;
+  color: rgba(42,32,24,0.7);
+  max-width: 36ch;
+  margin: 0;
+}
+.fh-say-hello {
+  border: 1.5px solid var(--dark);
+  border-radius: 999px;
+  padding: 0.7rem 1.8rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--dark);
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+  flex-shrink: 0;
+}
+.fh-say-hello:hover { background: var(--dark); color: #fff; }
+
+.fh-bottombar {
+  margin: 2.5rem 0 0;
+  padding: 1.5rem 6vw 2.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-top: 1px solid rgba(42,32,24,0.12);
+  flex-wrap: wrap;
+  gap: 1rem;
 }
-.footer-label {
-  font-family: 'Lato', sans-serif;
-  font-size: 0.68rem;
-  letter-spacing: 0.18em;
+.fh-bottombar-links { display: flex; gap: 1.5rem; }
+.fh-bottombar-links a {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: rgba(253,246,237,0.55);
-  margin-bottom: 0.4rem;
-}
-.footer-email {
-  font-family: 'Liu Jian Mao Cao', cursive;
-  font-size: 1rem;
-  color: var(--cream);
+  color: rgba(42,32,24,0.6);
   text-decoration: none;
-  border-bottom: 1px solid rgba(253,246,237,0.3);
-  padding-bottom: 1px;
-  transition: border-color 0.2s;
 }
-.footer-email:hover { border-color: var(--cream); }
-.footer-right { display: flex; align-items: center; gap: 1.5rem; }
-.footer-dots { font-size: 0.7rem; letter-spacing: 0.3em; color: rgba(253,246,237,0.4); }
-.footer-icons { display: flex; gap: 1rem; }
-.footer-icons a { color: rgba(253,246,237,0.7); transition: color 0.2s; }
-.footer-icons a:hover { color: var(--cream); }
+.fh-bottombar-links a:hover { color: var(--dark); }
+.fh-bottombar-email {
+  font-size: 0.7rem;
+  color: rgba(42,32,24,0.6);
+}
+.fh-copyright {
+  margin: 0;
+  padding: 0 6vw 2rem;
+  font-size: 0.68rem;
+  color: rgba(42,32,24,0.45);
+}
 
 /* ── CHAPTER LABEL ────────────────────────────────────────────── */
 .chapter-label {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.22em;
@@ -93,14 +134,15 @@ body.nav-on-dark .nav-links a {
 
 /* ── BACK LINK ────────────────────────────────────────────────── */
 .back-link {
-  font-family: 'Liu Jian Mao Cao', cursive;
-  font-style: italic;
-  font-size: 0.9rem;
-  color: var(--olive);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  color: var(--olive-dark);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  transition: gap 0.2s;
+  transition: gap 0.2s, color 0.2s;
 }
-.back-link:hover { gap: 0.7rem; }
+.back-link:hover { gap: 0.7rem; color: var(--dark); }
