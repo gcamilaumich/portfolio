@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frame House — Camila Garcia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:wght@300;400;700&family=Liu+Jian+Mao+Cao&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="pages.css" />
+  <style>
+    :root {
+      --fh:         #1a1a1a; /* near-black — hero, nav, footer, dark sections */
+      --fh-accent:  #529B9C; /* teal — links, arrows, accents */
+      --fh-sand:    #EAC493;
+      --fh-sage:    #9CBA8F;
+      --fh-coral:   #D37576;
+      --fh-taupe:   #675B55;
+      --fh-mauve:   #8D6C89;
+      --fh-light:   #fdfbf7;
+    }
+    body { background: var(--fh-light); }
+
+    /* ── HERO ────────────────────────────────────────────────── */
+    .cs-hero {
+      background:
+        linear-gradient(rgba(15,15,15,0.78), rgba(15,15,15,0.88)),
+        url('framehouse/fh-theater.jpg');
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 8rem 6vw 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .cs-hero-eyebrow {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(253,246,237,0.55);
+      margin-bottom: 1.5rem;
+    }
+    .cs-hero-title {
+      font-family: 'Bodoni Moda', serif;
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      font-weight: 400;
+      line-height: 1.08;
+      color: var(--cream);
+      max-width: 18ch;
+      margin-bottom: 2rem;
+    }
+    .cs-hero-desc {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(253,246,237,0.75);
+      max-width: 56ch;
+      margin-bottom: 3rem;
+    }
+    .cs-meta-row {
+      display: flex;
+      gap: 3rem;
+      border-top: 1px solid rgba(253,246,237,0.15);
+      padding-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .cs-meta-item { display: flex; flex-direction: column; gap: 0.3rem; }
+    .cs-meta-label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(253,246,237,0.45);
+    }
+    .cs-meta-value {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 1rem;
+      color: var(--cream);
+    }
+
+    /* ── LAYOUT ──────────────────────────────────────────────── */
+    .cs-section {
+      padding: 6rem 6vw;
+      max-width: 1100px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .cs-section.visible { opacity: 1; transform: translateY(0); }
+
+    .cs-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .cs-section-heading {
+      font-family: 'Bodoni Moda', serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--dark);
+      margin-bottom: 1.5rem;
+    }
+    .cs-body {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: rgba(42,32,24,0.7);
+    }
+    .cs-body + .cs-body { margin-top: 1rem; }
+    .cs-body strong { color: var(--dark); font-weight: 700; }
+
+    .cs-divider {
+      height: 1px;
+      background: rgba(42,32,24,0.1);
+      margin: 0 6vw;
+    }
+
+    .chapter-label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .chapter-label::before {
+      content: '';
+      display: block;
+      width: 2rem;
+      height: 1px;
+      background: rgba(42,32,24,0.3);
+    }
+
+    /* ── GOALS LIST ──────────────────────────────────────────── */
+    .fh-goals {
+      list-style: none;
+      padding: 0;
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+    .fh-goals li {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: rgba(42,32,24,0.75);
+    }
+    .fh-goals li span {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+      color: var(--fh-accent);
+      border: 1px solid rgba(82,155,156,0.4);
+      border-radius: 999px;
+      width: 1.7rem;
+      height: 1.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.05em;
+    }
+
+    /* ── LOGO BLOCK ──────────────────────────────────────────── */
+    .fh-logo-block {
+      background: var(--fh);
+      border-radius: 1rem;
+      padding: 4rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .fh-logo-block img { width: 100%; max-width: 380px; height: auto; display: block; }
+
+    /* ── TYPOGRAPHY ──────────────────────────────────────────── */
+    .fh-type-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .fh-type-card {
+      background: #fff;
+      border: 1px solid rgba(42,32,24,0.1);
+      border-radius: 0.75rem;
+      padding: 2rem 1.5rem;
+    }
+    .fh-type-sample {
+      font-size: 2.4rem;
+      color: var(--dark);
+      margin-bottom: 0.75rem;
+    }
+    .fh-type-name {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── COLOR PALETTE ───────────────────────────────────────── */
+    .fh-palette {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+    .fh-swatch {
+      border-radius: 0.6rem;
+      aspect-ratio: 1/1;
+      margin-bottom: 0.75rem;
+    }
+    .fh-swatch-label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--dark);
+    }
+
+    /* ── APPLICATIONS GRID ──────────────────────────────────── */
+    .fh-apps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-top: 2.5rem;
+    }
+    .fh-apps-grid img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 0.6rem;
+      display: block;
+    }
+    .fh-apps-grid figcaption {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-top: 0.6rem;
+      text-align: center;
+    }
+
+    /* ── PULL QUOTE ──────────────────────────────────────────── */
+    .cs-quote {
+      background: var(--fh);
+      padding: 5rem 10vw;
+      text-align: center;
+    }
+    .cs-quote-mark {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 5rem;
+      line-height: 0.5;
+      color: rgba(253,246,237,0.15);
+      display: block;
+      margin-bottom: 1.5rem;
+    }
+    .cs-quote-text {
+      font-family: 'Bodoni Moda', serif;
+      font-style: italic;
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      line-height: 1.65;
+      color: var(--cream);
+      max-width: 60ch;
+      margin: 0 auto 1.5rem;
+    }
+    .cs-quote-attr {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(253,246,237,0.45);
+    }
+
+    @media (max-width: 900px) {
+      .cs-two-col { grid-template-columns: 1fr; gap: 2.5rem; }
+      .fh-type-grid { grid-template-columns: 1fr; }
+      .fh-palette { grid-template-columns: repeat(3, 1fr); }
+      .fh-apps-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ───────────────────────────────────────────────────── -->
+  <nav id="site-nav">
+    <a href="index.html" class="nav-name-pill" style="background: var(--fh);"><img src="shared/logomaybe.png" alt="" class="nav-name-logo" /><span class="nav-pill-text">Camila Garcia</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="projects.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="mailto:cmlagarcia9@gmail.com" class="nav-pill">Say Hello</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── HERO ──────────────────────────────────────────────────── -->
+  <header class="cs-hero" data-nav-theme="dark">
+    <p class="cs-hero-eyebrow">Frame House · Brand &amp; Graphic Design · 2026</p>
+    <h1 class="cs-hero-title">A movie theater built like a living archive.</h1>
+    <p class="cs-hero-desc">A full identity guide for an independent, community-centered movie theater — built to feel like a cultural hub, not just a place to watch a film.</p>
+    <div class="cs-meta-row">
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Role</span>
+        <span class="cs-meta-value">Brand &amp; Graphic Designer</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Tools</span>
+        <span class="cs-meta-value">Illustrator, Figma</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Deliverables</span>
+        <span class="cs-meta-value">Identity guide, app concept</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Year</span>
+        <span class="cs-meta-value">2026</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── THE BRIEF ─────────────────────────────────────────────── -->
+  <div class="cs-section">
+    <p class="chapter-label">The Brief</p>
+    <h2 class="cs-section-heading">Position Frame House as a cultural hub, not just a theater.</h2>
+    <div class="cs-two-col">
+      <div>
+        <p class="cs-body">Frame House is an independent, community-centered movie theater focused on preserving film culture and elevating indie, international, and underrepresented voices. Unlike traditional theaters, it operates as a living archive, where programming is shaped by both film history and community input.</p>
+        <p class="cs-body">Currently located in New York, Ann Arbor, and Los Angeles, Frame House aims to grow into a recognized cultural brand expanding to cities nationwide — which meant the identity needed to scale as confidently as the business does.</p>
+      </div>
+      <div>
+        <ul class="fh-goals">
+          <li><span>01</span> Position Frame House as a cultural hub, not just a theater</li>
+          <li><span>02</span> Transform film data into emotional, visual storytelling</li>
+          <li><span>03</span> Encourage community participation through interactive programming</li>
+          <li><span>04</span> Support scalability as the brand expands to new cities</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-divider"></div>
+
+  <!-- ── LOGO ──────────────────────────────────────────────────── -->
+  <div class="cs-section">
+    <p class="chapter-label">The Mark</p>
+    <div class="cs-two-col" style="align-items:center;">
+      <div class="fh-logo-block">
+        <img src="framehouse/fh-logo.png" alt="Frame House logo" />
+      </div>
+      <div>
+        <h2 class="cs-section-heading">A mark built from film history itself.</h2>
+        <p class="cs-body">Every shape in the mark is a quiet reference: the trapezoid nods to <strong>letterboxing</strong>, the practice of framing widescreen film on a narrower screen without losing its original ratio. The play-button triangle is a direct callback to <strong>Fantasmagorie (1908)</strong>, one of the earliest animated films on record. The three overlapping rings echo the <strong>CMYK tints</strong> that made Technicolor's layered color processes possible.</p>
+        <p class="cs-body">Together, the shapes overlap the way film history does — built by people, and by time.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-divider"></div>
+
+  <!-- ── TYPOGRAPHY ────────────────────────────────────────────── -->
+  <div class="cs-section">
+    <p class="chapter-label">Typography</p>
+    <h2 class="cs-section-heading">Three voices for one brand.</h2>
+    <p class="cs-body">A geometric sans for structure, a warm serif for storytelling, and a technical grotesk for the digital product — each one earning its place in the system.</p>
+    <div class="fh-type-grid">
+      <div class="fh-type-card">
+        <p class="fh-type-sample" style="font-family:'Trebuchet MS', sans-serif;">Aa</p>
+        <p class="fh-type-name">Quicksand</p>
+      </div>
+      <div class="fh-type-card">
+        <p class="fh-type-sample" style="font-family:Georgia, serif;">Aa</p>
+        <p class="fh-type-name">Newsreader</p>
+      </div>
+      <div class="fh-type-card">
+        <p class="fh-type-sample" style="font-family:'Lato', sans-serif;">Aa</p>
+        <p class="fh-type-name">Space Grotesk</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-divider"></div>
+
+  <!-- ── COLOR PALETTE ─────────────────────────────────────────── -->
+  <div class="cs-section">
+    <p class="chapter-label">Color Palette</p>
+    <h2 class="cs-section-heading">A palette pulled from film stock, not trend boards.</h2>
+    <p class="cs-body">Warm, slightly faded tones — closer to a found roll of film than a modern app icon.</p>
+    <div class="fh-palette">
+      <div>
+        <div class="fh-swatch" style="background:#EAC493;"></div>
+        <p class="fh-swatch-label">#EAC493</p>
+      </div>
+      <div>
+        <div class="fh-swatch" style="background:#9CBA8F;"></div>
+        <p class="fh-swatch-label">#9CBA8F</p>
+      </div>
+      <div>
+        <div class="fh-swatch" style="background:#D37576;"></div>
+        <p class="fh-swatch-label">#D37576</p>
+      </div>
+      <div>
+        <div class="fh-swatch" style="background:#529B9C;"></div>
+        <p class="fh-swatch-label">#529B9C</p>
+      </div>
+      <div>
+        <div class="fh-swatch" style="background:#675B55;"></div>
+        <p class="fh-swatch-label">#675B55</p>
+      </div>
+      <div>
+        <div class="fh-swatch" style="background:#8D6C89;"></div>
+        <p class="fh-swatch-label">#8D6C89</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-divider"></div>
+
+  <!-- ── APPLICATIONS ──────────────────────────────────────────── -->
+  <div class="cs-section">
+    <p class="chapter-label">In the Real World</p>
+    <h2 class="cs-section-heading">A system built to live outside the screen.</h2>
+    <p class="cs-body">Posters, tickets, badges, and merch — every touchpoint carries the same shapes, palette, and voice, so Frame House feels recognizable whether you're in the lobby or on the street.</p>
+    <div class="fh-apps-grid">
+      <figure>
+        <img src="framehouse/fh-posters.jpg" alt="Frame House movie posters on a street wall" />
+        <figcaption>Street posters</figcaption>
+      </figure>
+      <figure>
+        <img src="framehouse/fh-busstop.jpg" alt="Frame House bus stop ad" />
+        <figcaption>Transit advertising</figcaption>
+      </figure>
+      <figure>
+        <img src="framehouse/fh-tickets.jpg" alt="Frame House event tickets" />
+        <figcaption>Event tickets</figcaption>
+      </figure>
+      <figure>
+        <img src="framehouse/fh-badges.jpg" alt="Frame House guest, manager, and employee badges" />
+        <figcaption>Staff &amp; guest badges</figcaption>
+      </figure>
+      <figure>
+        <img src="framehouse/fh-tote.jpg" alt="Frame House tote bag" />
+        <figcaption>Tote bag</figcaption>
+      </figure>
+      <figure>
+        <img src="framehouse/fh-tshirt.jpg" alt="Frame House t-shirt" />
+        <figcaption>Apparel</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <!-- ── PULL QUOTE ────────────────────────────────────────────── -->
+  <div class="cs-quote">
+    <span class="cs-quote-mark">"</span>
+    <p class="cs-quote-text">Strong design needs both visual expression and consistency — and the collaboration along the way is what actually strengthens the final outcome.</p>
+    <p class="cs-quote-attr">Reflections on the project</p>
+  </div>
+
+  <!-- ── REFLECTIONS ───────────────────────────────────────────── -->
+  <div class="cs-section">
+    <p class="chapter-label">Reflections</p>
+    <h2 class="cs-section-heading">What this project taught me.</h2>
+    <p class="cs-body">We explored how color, shape, and symbols can communicate information and meaning on their own, before a single word of copy gets added.</p>
+    <p class="cs-body">We realized that strong design requires both visual expression <strong>and</strong> consistency — a striking mark means little if it falls apart the moment it's applied to a ticket, a tote bag, or a bus stop ad.</p>
+    <p class="cs-body">And we learned that collaboration played a real role in aligning ideas and strengthening the final outcome — the best version of this identity wasn't the first one any of us sketched alone.</p>
+  </div>
+
+  <!-- ── FOOTER ────────────────────────────────────────────────── -->
+  <div class="fh-bottombar">
+    <div class="fh-bottombar-links">
+      <a href="https://www.linkedin.com/in/camila-garcia-04r17/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="#">Substack</a>
+      <a href="https://drive.google.com/file/d/1g9xEyP9xjEwUIDGVso1VA5jVeM1jJgON/view?usp=sharing" target="_blank" rel="noopener">Resume</a>
+    </div>
+    <span class="fh-bottombar-email">e: cmlagarcia9@gmail.com</span>
+  </div>
+
+  <p class="fh-copyright">Camila Garcia 2026</p>
+
+  <script>
+    // ── NAV THEME ON SCROLL ────────────────────────────────────
+    (function initNavTheme() {
+      const darkSections = document.querySelectorAll('[data-nav-theme="dark"]');
+      if (!darkSections.length) return;
+      function updateNavTheme() {
+        const checkY = 50;
+        let isDark = false;
+        darkSections.forEach(sec => {
+          const rect = sec.getBoundingClientRect();
+          if (rect.top <= checkY && rect.bottom >= checkY) isDark = true;
+        });
+        document.body.classList.toggle('nav-on-dark', isDark);
+      }
+      window.addEventListener('scroll', updateNavTheme, { passive: true });
+      window.addEventListener('resize', updateNavTheme);
+      updateNavTheme();
+    })();
+
+    // ── SCROLL ANIMATIONS ──────────────────────────────────────
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.cs-section').forEach(el => observer.observe(el));
+  </script>
+
+  <script src="animations.js"></script>
+</body>
+</html>
