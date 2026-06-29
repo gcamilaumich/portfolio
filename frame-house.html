@@ -250,6 +250,13 @@
       border-radius: 0.6rem;
       display: block;
     }
+    .fh-apps-figure--wide {
+      grid-column: span 2;
+    }
+    .fh-apps-figure--wide img {
+      object-fit: contain;
+      background: #000;
+    }
     .fh-apps-grid figcaption {
       font-family: 'Poppins', sans-serif;
       font-size: 0.72rem;
@@ -257,6 +264,21 @@
       color: var(--muted);
       margin-top: 0.6rem;
       text-align: center;
+    }
+
+    /* ── FIGMA EMBEDS ──────────────────────────────────────────── */
+    .fh-figma-wrap {
+      width: 1100px;
+      max-width: 100%;
+      border-radius: 0.4rem;
+    }
+    .fh-figma-iframe {
+      display: block;
+      width: 100%;
+      height: 620px;
+    }
+    @media (max-width: 600px) {
+      .fh-figma-iframe { height: 700px; }
     }
 
     /* ── PULL QUOTE ──────────────────────────────────────────── */
@@ -358,6 +380,18 @@
 
   <div class="cs-divider"></div>
 
+  <!-- ── PROCESS ───────────────────────────────────────────────── -->
+  <div class="cs-section">
+    <p class="chapter-label">The Process</p>
+    <h2 class="cs-section-heading">Before the mark, a mess of references.</h2>
+    <p class="cs-body">I started by pulling together everything that felt like Frame House before I knew what Frame House looked like — film stills, type treatments, data visualizations, even a Nike ad — looking for the throughline between film history, data, and feeling.</p>
+    <img src="framehouse/fh-moodboard.png" alt="Moodboard of film stills, type treatments, and data visualization references for Frame House" style="width:100%; border-radius:0.75rem; margin-top:2rem; display:block;" />
+    <p class="cs-body" style="margin-top:2.5rem;">From there, sketches helped me test which shapes could actually carry meaning — circles, trapezoids, and filmstrip motifs, tried in every combination, in CMYK to keep the film-process reference honest from the start.</p>
+    <img src="framehouse/fh-sketches.png" alt="Early logo sketches exploring circles, trapezoids, and filmstrip motifs in CMYK" style="width:100%; border-radius:0.75rem; margin-top:2rem; display:block;" />
+  </div>
+
+  <div class="cs-divider"></div>
+
   <!-- ── LOGO ──────────────────────────────────────────────────── -->
   <div class="cs-section">
     <p class="chapter-label">The Mark</p>
@@ -371,6 +405,10 @@
         <p class="cs-body">Together, the shapes overlap the way film history does — built by people, and by time.</p>
       </div>
     </div>
+    <img src="framehouse/fh-logobreakdown.jpg" alt="Logo design breakdown referencing letterbox framing, Fantasmagorie (1908), and CMYK tints" style="width:100%; border-radius:0.75rem; margin-top:2.5rem; display:block;" />
+    <p class="cs-body" style="margin-top:2.5rem;">The mark also needed room to breathe and a way to hold its own in black and white — both essential to a guide that has to scale across signage, merch, and print.</p>
+    <img src="framehouse/fh-logoclearspace.png" alt="Frame House logo clear space guidelines" style="width:100%; border-radius:0.75rem; margin-top:2rem; display:block;" />
+    <img src="framehouse/fh-logobwvariants.png" alt="Frame House logo black and white variants" style="width:100%; border-radius:0.75rem; margin-top:1.5rem; display:block;" />
   </div>
 
   <div class="cs-divider"></div>
@@ -394,6 +432,17 @@
         <p class="fh-type-name">Space Grotesk</p>
       </div>
     </div>
+  </div>
+
+  <div class="cs-divider"></div>
+
+  <!-- ── DATA-DRIVEN DESIGN ───────────────────────────────────────── -->
+  <div class="cs-section">
+    <p class="chapter-label">A Data-Driven System</p>
+    <h2 class="cs-section-heading">The shapes aren't decoration — they're plot structure.</h2>
+    <p class="cs-body">Every circle, triangle, and trapezoid scattered across the identity traces back to a classic story arc — the rise-and-fall patterns writers have used for centuries to map narratives like <strong>Cinderella</strong> (rise-fall-rise), <strong>Oedipus</strong> (fall-rise-fall), and <strong>Man in a Hole</strong> (a fall followed by a rise). Each shape marks a beat plotted against the story's run time, in the spirit of <strong>Giorgia Lupi's</strong> data-humanism — using hand-drawn, personal marks to make data feel emotional rather than clinical.</p>
+    <p class="cs-body">That same visual language — a shape standing in for a story beat, a color standing in for a feeling — became the backbone of the whole system, resurfacing on the badges, the tote bag, and the popcorn cups.</p>
+    <img src="framehouse/fh-plotarchetypes.jpg" alt="Data chart mapping plot archetypes like Cinderella and Oedipus to rise-and-fall curves over run time" style="width:100%; border-radius:0.75rem; margin-top:2rem; display:block;" />
   </div>
 
   <div class="cs-divider"></div>
@@ -449,22 +498,57 @@
       </figure>
       <figure>
         <img src="framehouse/fh-tickets.jpg" alt="Frame House event tickets" />
-        <figcaption>Event tickets</figcaption>
+        <figcaption>Event tickets — front</figcaption>
+      </figure>
+      <figure>
+        <img src="framehouse/fh-movieticketback.png" alt="Frame House event ticket back, printed with a legend explaining the ticket's data" />
+        <figcaption>Event tickets — back (legend)</figcaption>
       </figure>
       <figure>
         <img src="framehouse/fh-badges.jpg" alt="Frame House guest, manager, and employee badges" />
         <figcaption>Staff &amp; guest badges</figcaption>
       </figure>
       <figure>
-        <img src="framehouse/fh-tote.jpg" alt="Frame House tote bag" />
-        <figcaption>Tote bag</figcaption>
+        <img src="framehouse/fh-tote.jpg" alt="Frame House tote bag front, printed with a colored grid pattern encoding each movie's frame style" />
+        <figcaption>Tote bag — front (the data)</figcaption>
       </figure>
       <figure>
-        <img src="framehouse/fh-tshirt.jpg" alt="Frame House t-shirt" />
-        <figcaption>Apparel</figcaption>
+        <img src="framehouse/fh-tote-legend.jpg" alt="Frame House tote bag back, printed with a legend of film aspect ratios by movie" />
+        <figcaption>Tote bag — back (legend)</figcaption>
+      </figure>
+      <figure>
+        <img src="framehouse/fh-tshirt.jpg" alt="Frame House t-shirt front" />
+        <figcaption>Apparel — front</figcaption>
+      </figure>
+      <figure>
+        <img src="framehouse/fh-tshirtback.png" alt="Frame House t-shirt back, printed with a legend" />
+        <figcaption>Apparel — back (legend)</figcaption>
+      </figure>
+      <figure class="fh-apps-figure--wide">
+        <img src="framehouse/fh-concessions.jpg" alt="Frame House popcorn cups, drink cups, and nacho trays" />
+        <figcaption>Concessions</figcaption>
       </figure>
     </div>
   </div>
+
+  <div class="cs-divider"></div>
+
+  <!-- ── MOBILE APP ────────────────────────────────────────────── -->
+  <div class="cs-section">
+    <p class="chapter-label">In the App</p>
+    <h2 class="cs-section-heading">The identity, carried into the pocket.</h2>
+    <p class="cs-body">Booking a seat, browsing what's playing, and exploring the catalog all needed to feel like the same Frame House — same shapes, same palette, same sense that every screen is shaped by people and time.</p>
+    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:1.5rem; margin-top:2rem;">
+      <div class="fh-figma-wrap">
+        <iframe class="fh-figma-iframe" style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/proto/WLWpmHHb1WIir2LAbY8yuW/Brand--Copy-?node-id=2065-2800&p=f&viewport=242%2C237%2C1&scaling=contain&content-scaling=fixed&page-id=2065%3A2799&embed-host=share&hide-ui=1" allowfullscreen></iframe>
+      </div>
+      <div class="fh-figma-wrap">
+        <iframe class="fh-figma-iframe" style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/proto/WLWpmHHb1WIir2LAbY8yuW/Brand--Copy-?node-id=2065-3636&viewport=40%2C106%2C0.43&scaling=contain&content-scaling=fixed&page-id=2065%3A3635&embed-host=share&hide-ui=1" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-divider"></div>
 
   <!-- ── PULL QUOTE ────────────────────────────────────────────── -->
   <div class="cs-quote">
