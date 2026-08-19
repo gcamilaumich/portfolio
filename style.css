@@ -26,6 +26,67 @@ body {
   overflow-x: hidden;
 }
 
+/* ── SHARED WORDMARK HEADER ─────────────────────────────────── */
+.site-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.5rem 2rem 0;
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.wordmark {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  line-height: 1;
+}
+.wordmark-name {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 100;
+  font-size: clamp(1.6rem, 4vw, 3.5rem);
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  display: flex;
+  gap: 0;
+}
+.wordmark-name span { display: inline-block; }
+.wordmark-girl {
+  height: clamp(2rem, 5vw, 4.2rem);
+  width: auto;
+  display: block;
+  margin: 0 0.4em;
+  position: relative;
+  top: 0.05em;
+}
+.l1 { color: #E79364; }
+.l2 { color: #F6DAA2; }
+.l3 { color: #3C8D91; }
+.l4 { color: #9F3A30; }
+.l5 { color: #839F8D; }
+.l6 { color: #695743; }
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  margin-top: 1.1rem;
+}
+.site-nav a {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #2a2018;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+  text-decoration: none;
+}
+.site-nav a:hover { opacity: 1; }
+.site-nav a.active { font-weight: 700; opacity: 1; }
+
 /* ── NAV ─────────────────────────────────────────────────────── */
 #site-nav {
   position: fixed;
