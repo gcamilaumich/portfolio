@@ -64,8 +64,18 @@ body.nav-on-dark .nav-links a {
   max-width: 36ch;
   margin: 0;
 }
+@keyframes border-cycle {
+  0%   { border-color: #E79364; }
+  17%  { border-color: #F6DAA2; }
+  33%  { border-color: #3C8D91; }
+  50%  { border-color: #9F3A30; }
+  67%  { border-color: #839F8D; }
+  83%  { border-color: #695743; }
+  100% { border-color: #E79364; }
+}
 .fh-say-hello {
-  border: 1.5px solid var(--dark);
+  border: 1.5px solid #E79364;
+  animation: border-cycle 3s linear infinite;
   border-radius: 999px;
   padding: 0.7rem 1.8rem;
   font-size: 0.78rem;
@@ -123,13 +133,6 @@ body.nav-on-dark .nav-links a {
   align-items: center;
   gap: 0.75rem;
   margin-bottom: 1.2rem;
-}
-.chapter-label::before {
-  content: '';
-  display: inline-block;
-  width: 28px;
-  height: 1px;
-  background: var(--muted);
 }
 
 /* ── BACK LINK ────────────────────────────────────────────────── */

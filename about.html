@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About — Camila Garcia</title>
-  <link rel="icon" type="image/png" href="shared/favicon.png">
+  <link rel="icon" type="image/png" href="index/home-icon-5.png">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:wght@300;400;700&family=Liu+Jian+Mao+Cao&display=swap" rel="stylesheet" />
@@ -12,28 +12,85 @@
   <link rel="stylesheet" href="pages.css" />
   <style>
     :root { --cycle: #6C8A73; }
-    #site-nav .nav-name-pill { background: none; color: var(--dark); border-radius: 0; }
-    #site-nav .nav-name-logo { filter: brightness(0) saturate(100%); }
+    .fh-footer, .fh-bottombar { max-width: 1220px; margin-left: auto; margin-right: auto; }
 
-    body { background: #fbfaf8; }
+    /* ── SHARED WORDMARK HEADER ─────────────────────────────────── */
+    .site-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2.5rem 2rem 0;
+      background: #fff;
+    }
+    .wordmark {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      line-height: 1;
+    }
+    .wordmark-name {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 100;
+      font-size: clamp(1.6rem, 4vw, 3.5rem);
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      display: flex;
+      gap: 0;
+    }
+    .wordmark-name span { display: inline-block; }
+    .wordmark-girl {
+      height: clamp(2rem, 5vw, 4.2rem);
+      width: auto;
+      display: block;
+      margin: 0 0.4em;
+      position: relative;
+      top: 0.05em;
+    }
+    .l1 { color: #E79364; }
+    .l2 { color: #F6DAA2; }
+    .l3 { color: #3C8D91; }
+    .l4 { color: #9F3A30; }
+    .l5 { color: #839F8D; }
+    .l6 { color: #695743; }
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      margin-top: 1.1rem;
+    }
+    .site-nav a {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #2a2018;
+      opacity: 0.6;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .site-nav a:hover { opacity: 1; }
+    .site-nav a.active { font-weight: 700; opacity: 1; }
+
+    body { background: #fff; }
 
     /* ── ABOUT HERO ─────────────────────────────────────────── */
     .about-hero {
-      background: #fbfaf8;
+      background: #fff;
       min-height: 100vh;
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: center;
-      padding: 4.5rem 6vw 3rem;
-      gap: 4rem;
+      padding: 2rem 18vw 3rem 6vw;
+      gap: 1rem;
       position: relative;
       overflow: hidden;
     }
 
     .about-hero-cycle-note {
       position: absolute;
-      top: 12%;
-      right: -1.5rem;
+      top: -4%;
+      right: -4rem;
       width: 200px;
       text-align: left;
       font-family: 'Liu Jian Mao Cao', cursive;
@@ -67,18 +124,21 @@
     }
 
     .about-hero-right p {
-      font-size: 1.05rem;
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: clamp(0.85rem, 1.5vw, 1rem);
       line-height: 1.85;
       color: #898078;
       max-width: 48ch;
+      text-align: justify;
     }
 
     .about-layer-stack {
       position: relative;
       width: 100%;
-      max-width: 480px;
+      max-width: 460px;
       aspect-ratio: 3/4;
-      margin-top: 1.5rem;
+      margin-top: -8rem;
       margin-left: 4rem;
     }
 
@@ -122,7 +182,7 @@
     }
 
     .about-body {
-      font-size: 1rem;
+      font-size: clamp(0.85rem, 1.5vw, 1rem);
       line-height: 1.9;
       color: rgba(42,32,24,0.7);
       max-width: 62ch;
@@ -314,33 +374,80 @@
       transform: rotate(2deg);
     }
 
-    /* ── TIMELINE ───────────────────────────────────────────── */
+    /* ── TIMELINE — sticky scroll, fade in place ────────────── */
+    .about-timeline-wrap {
+      position: relative;
+      /* height set by JS */
+    }
+
+    .about-timeline-sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      padding: 5rem 6% 0;
+    }
+
     .about-timeline {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      margin-top: 3rem;
-      border-left: 1px solid rgba(42,32,24,0.15);
-      padding-left: 2rem;
+      position: relative;
+      width: 100%;
+      height: 100%;
     }
 
     .timeline-item {
-      position: relative;
-      padding-bottom: 2.5rem;
-    }
-    .timeline-item:last-child { padding-bottom: 0; }
-
-    .timeline-item::before {
-      display: none;
-      content: '';
       position: absolute;
-      left: -2.4rem;
-      top: 0.3rem;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--olive);
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.6s ease;
     }
+    .timeline-item.active { opacity: 1; }
+
+    /* Fixed card — same spot every slide */
+    .timeline-inner {
+      position: absolute;
+      top: 42%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 340px;
+    }
+
+    /* Notes + photos are absolute to the full slide */
+    .timeline-note {
+      position: absolute;
+    }
+
+    .timeline-item .scrap-photo:hover {
+      transform: scale(2.6) !important;
+      z-index: 100;
+      box-shadow: 0 10px 22px rgba(42,32,24,0.35);
+    }
+
+    /* larger polaroids for the timeline, clear of the card */
+    .timeline-photo {
+      position: absolute;
+      width: 190px;
+      height: auto;
+      padding: 0.5rem 0.5rem 1.4rem;
+      background: #fdf9f2;
+      box-shadow: 0 8px 18px rgba(42,32,24,0.22);
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .timeline-photo img { width: 100%; height: auto; display: block; }
+    .timeline-photo .scrap-label { font-size: 0.6rem; }
+    .timeline-photo:hover {
+      transform: scale(1.8) !important;
+      z-index: 100;
+      box-shadow: 0 12px 28px rgba(42,32,24,0.35);
+    }
+
+    /* right column — close to card */
+    .tp-r1 { right: 10%; top: 28%; transform: rotate(-5deg); }
+    .tp-r2 { right: 16%; top: 56%; transform: rotate(4deg); }
+
+    /* left column — close to card */
+    .tp-l1 { left: 4%; top: 28%; transform: rotate(4deg); }
+    .tp-l2 { left: 4%; top: 56%; transform: rotate(-5deg); }
 
     .timeline-year {
       font-family: 'Poppins', sans-serif;
@@ -348,23 +455,71 @@
       font-weight: 700;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: rgba(42,32,24,0.35);
       margin-bottom: 0.3rem;
     }
 
     .timeline-title {
       font-family: 'Poppins', sans-serif;
-      font-weight: 700;
+      font-weight: 300;
       font-size: 0.85rem;
       color: #898078;
       margin-bottom: 0.3rem;
     }
 
     .timeline-desc {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
       font-size: 0.875rem;
       line-height: 1.7;
-      color: var(--muted);
+      color: rgba(42,32,24,0.5);
+      max-width: 48ch;
     }
+
+    /* strikethrough on title + desc only (not year) */
+    .timeline-item.struck .timeline-title,
+    .timeline-item.struck .timeline-desc {
+      text-decoration: line-through;
+      text-decoration-thickness: 1.5px;
+      text-decoration-color: rgba(42,32,24,0.45);
+    }
+
+    /* notes hidden until third phase; photos always visible */
+    .timeline-item .timeline-note {
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .timeline-item.noted .timeline-note {
+      opacity: 1;
+    }
+
+    .timeline-note {
+      font-family: 'Liu Jian Mao Cao', cursive;
+      font-size: 1.35rem;
+      line-height: 1.32;
+      color: rgba(42,32,24,0.55);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    /* progress dots bottom-center */
+    .timeline-dots {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.5rem;
+      pointer-events: none;
+    }
+    .timeline-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(42,32,24,0.15);
+      transition: background 0.3s;
+    }
+    .timeline-dot.active { background: #6C8A73; }
 
     /* ── PROCESS STORYBOARD ───────────────────────────────────── */
     .process-storyboard {
@@ -463,7 +618,7 @@
 
     /* ── OUTSIDE WORK ───────────────────────────────────────── */
     .about-band {
-      background: #E6ECE4;
+      background: #fff;
       padding: 5rem 0;
     }
 
@@ -493,7 +648,7 @@
     .interest-card {
       background: rgba(253,246,237,0.5);
       border-radius: 0.5rem;
-      padding: 1.75rem 1.5rem;
+      padding: 7rem 1.5rem 1.75rem;
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.5s ease, transform 0.5s ease;
@@ -517,8 +672,8 @@
 
     .interest-icon-note {
       position: absolute;
-      top: 1.8rem;
-      left: 8rem;
+      top: 2rem;
+      left: 7rem;
       font-family: 'Liu Jian Mao Cao', cursive;
       font-size: 0.85rem;
       line-height: 1.25;
@@ -555,7 +710,7 @@
     .interest-scrap--books-a:hover { transform: rotate(8deg) scale(2); }
 
     .interest-scrap--books-b {
-      top: -1.1rem;
+      top: 0.5rem;
       right: 4.8rem;
       left: auto;
       transform: rotate(-6deg);
@@ -564,7 +719,7 @@
     .interest-scrap--books-b:hover { transform: rotate(-6deg) scale(2); z-index: 5; }
 
     .interest-scrap--penpal {
-      top: -0.8rem;
+      top: 0.5rem;
       right: 0.5rem;
       left: auto;
       transform: rotate(-5deg);
@@ -589,7 +744,8 @@
     .interest-scrap--run1:hover { transform: rotate(6deg) scale(2); }
 
     .interest-scrap--run2 {
-      bottom: -3.5rem;
+      bottom: auto;
+      top: 0.5rem;
       right: 0.5rem;
       top: auto;
       left: auto;
@@ -600,7 +756,7 @@
 
     .interest-embed-wrap {
       position: absolute;
-      top: -2.2rem;
+      top: 0.5rem;
       right: -0.8rem;
       width: 108px;
       height: 108px;
@@ -624,7 +780,8 @@
     }
 
     .interest-title {
-      font-family: 'Bodoni Moda', serif;
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
       font-size: 1rem;
       color: var(--dark);
       margin-bottom: 0.4rem;
@@ -646,6 +803,62 @@
 
     .divider { height: 1px; background: rgba(42,32,24,0.1); margin: 0 6vw; }
 
+    /* ── ACCORDION ──────────────────────────────────────────────── */
+    .about-accordion {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 0 6vw;
+    }
+    .acc-section {
+      border-bottom: 1px solid rgba(42,32,24,0.1);
+    }
+    .acc-header {
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2rem 0;
+      text-align: left;
+    }
+    .acc-label {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 100;
+      font-size: clamp(0.85rem, 1.5vw, 1rem);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(42,32,24,0.5);
+      transition: color 0.2s;
+    }
+    .acc-header:hover .acc-label { color: #2a2018; }
+    .acc-arrow {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 200;
+      font-size: 1.4rem;
+      color: rgba(42,32,24,0.4);
+      transition: transform 0.35s ease, color 0.2s;
+      flex-shrink: 0;
+      margin-left: 1rem;
+    }
+    .acc-section.open .acc-arrow { transform: rotate(45deg); color: #2a2018; }
+    .acc-body {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.5s ease;
+    }
+    .acc-body > * {
+      overflow: hidden;
+      min-height: 0;
+    }
+    .acc-section.open .acc-body {
+      grid-template-rows: 1fr;
+    }
+    #acc-resume.open .acc-body > * {
+      overflow: visible;
+    }
+
     @media (max-width: 900px) {
       .about-hero { grid-template-columns: 1fr; }
       .about-two-col { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -657,15 +870,22 @@
 <body>
 
   <!-- ── NAV ──────────────────────────────────────────────────── -->
-  <nav id="site-nav">
-    <a href="index.html" class="nav-name-pill"><img src="shared/logomaybe.png" alt="" class="nav-name-logo" /><span class="nav-pill-text">Camila Garcia</span></a>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="index.html#work">Work</a></li>
-      <li><a href="about.html" class="active">About</a></li>
-      <li><a href="mailto:cmlagarcia9@gmail.com" class="nav-pill">Say Hello</a></li>
-    </ul>
-  </nav>
+  <header class="site-header">
+    <div class="wordmark">
+      <div class="wordmark-name">
+        <span class="l1">C</span><span class="l2">A</span><span class="l3">M</span><span class="l4">I</span><span class="l5">L</span><span class="l6">A</span>
+      </div>
+      <img src="index/girlonly.png" alt="" class="wordmark-girl" />
+      <div class="wordmark-name">
+        <span class="l1">G</span><span class="l2">A</span><span class="l3">R</span><span class="l4">C</span><span class="l5">I</span><span class="l6">A</span>
+      </div>
+    </div>
+    <nav class="site-nav">
+      <a href="index.html">Work</a>
+      <a href="about.html" class="active">My Story</a>
+      <a href="resume.html">Resume</a>
+    </nav>
+  </header>
 
   <!-- ── HERO ──────────────────────────────────────────────────── -->
   <section class="about-hero" data-nav-theme="light">
@@ -681,121 +901,146 @@
       <p class="about-hero-cycle-note" id="about-cycle-caption">I'm Camila.</p>
     </div>
     <div class="about-hero-right">
-      <p class="chapter-label" style="font-family:'Bodoni Moda', serif;">I didn't start as a designer. I started as a writer. So, why the shift?</p>
+      <p class="chapter-label" style="font-family:'Poppins', sans-serif; font-weight:100;">I didn't start as a designer. I started as a writer. So, why the shift?</p>
       <p class="about-body" style="max-width: 70ch; margin-bottom: 1rem;">My path into design began with a love of words and storytelling, paired with an early interest in graphic design. What makes a book or an app impossible to close? That question carried me into design almost accidentally.</p>
       <p class="about-body" style="max-width: 70ch;">As an English major, I was drawn to the challenge of shaping language within visual systems, too. This led me to pursue a master's in User Experience, with a focus on visual graphics — bridging design and words.</p>
     </div>
   </section>
 
-  <!-- ── THE STORY ─────────────────────────────────────────────── -->
-  <div class="divider" style="margin-top:0;"></div>
+  <!-- ── ACCORDION SECTIONS ────────────────────────────────────── -->
+  <div class="about-accordion">
 
-  <div class="about-section" id="story">
-    <p class="chapter-label">So many adventures!</p>
-    <!-- <h2 class="about-section-heading" style="max-width: 40ch;">I didn't start as a designer. I started as a writer. So, why the shift? </h2> -->
-    <!-- <p class="about-body" style="max-width: 70ch; margin-bottom: 1rem;">My path into design began with a love of words and storytelling, paired with an early interest in graphic design. What makes a book or an app impossible to close? That question carried me into design almost accidentally.</p> -->
-    <!-- <p class="about-body" style="max-width: 70ch;">As an English major, I was drawn to the challenge of shaping language within visual systems, too. This led me to pursue a master's in User Experience, with a focus on visual graphics — bridging design and words.</p> -->
-    <div class="about-two-col">
-      <div style="position: relative;">
-        <div class="about-note about-note--first">
-          <p>I was the kid who filled notebooks with stories until my hand cramped. Always chasing the next story to disappear into.</p>
-          <span class="about-note-arrow">⤳</span>
-          <div class="scrap-photo scrap-photo--5 has-label">
-            <img src="about/about-montage.jpg" alt="" />
-            <span class="scrap-label">montage arts journal</span>
-          </div>
-          <div class="scrap-photo scrap-photo--6 has-label">
-            <img src="about/about-ninthleaves.jpg" alt="" />
-            <span class="scrap-label">ninth letter</span>
-          </div>
-        </div>
+    <!-- 1: Behind the resume -->
+    <div class="acc-section" id="acc-resume">
+      <button class="acc-header" aria-expanded="false" data-target="acc-resume">
+        <span class="acc-label">Behind the resume</span>
+        <span class="acc-arrow">+</span>
+      </button>
+      <div class="acc-body">
+        <div id="story">
+    <div class="about-timeline-wrap" id="timeline-wrap">
+      <div class="about-timeline-sticky">
+        <div class="about-timeline" id="about-timeline">
 
-        <div class="about-note about-note--workiva">
-          <p>I loved finding the right words for any audience, and that passion eventually led me to my first role as a content designer. There, I discovered that good content is about making people's lives easier.</p>
-          <span class="about-note-arrow">⤳</span>
-          <div class="scrap-photo scrap-photo--1 has-label">
-            <img src="about/about-workiva1.png" alt="" />
-            <span class="scrap-label">the workiva team</span>
+          <!-- 01 Montage -->
+          <div class="timeline-item">
+            <span class="timeline-note" style="top:20%; left:18%; max-width:220px; transform:rotate(-2deg);">I was the kid who filled notebooks with stories until my hand cramped. Always chasing the next story to disappear into.</span>
+            <div class="timeline-photo has-label tp-r1">
+              <img src="about/about-montage.jpg" alt="" />
+              <span class="scrap-label">montage arts journal</span>
+            </div>
+            <div class="timeline-inner">
+              <p class="timeline-year">2019 – 2022</p>
+              <p class="timeline-title">Montage Arts Journal — Assistant Editor</p>
+              <p class="timeline-desc">Read and selected student submissions and helped design and lay out the journal each issue.</p>
+            </div>
           </div>
-          <div class="scrap-photo scrap-photo--2 has-label">
-            <img src="about/about-workiva2.png" alt="" />
-            <span class="scrap-label">Company retreat</span>
-          </div>
-        </div>
 
-        <div class="about-note about-note--vsolvit">
-          <p>After graduation, I put that same adaptability and storytelling to work in a new way. Learning how persuasion lives in every word, not just the ones inside a product.</p>
-          <span class="about-note-arrow">⤳</span>
-          <div class="scrap-photo scrap-photo--3 has-label">
-            <img src="about/UIgrad.png" alt="" />
-            <span class="scrap-label">University of Illinois grad</span>
+          <!-- 02 Ninth Letter -->
+          <div class="timeline-item">
+            <span class="timeline-note" style="top:15%; left:10%; max-width:240px; transform:rotate(-2deg);">Editing allowed me to dive into so many stories (good and bad, realistic and strange, short and long) while at the same time focusing on delivering and putting together something that people could immerse themselves in.</span>
+            <div class="timeline-photo has-label tp-r1">
+              <img src="about/about-ninthleaves.jpg" alt="" />
+              <span class="scrap-label">ninth letter</span>
+            </div>
+            <div class="timeline-inner">
+              <p class="timeline-year">2021 – 2023</p>
+              <p class="timeline-title">Ninth Letter — Junior Editor</p>
+              <p class="timeline-desc">Reviewed weekly submissions across fiction, poetry, and creative nonfiction for a nationally recognized literary magazine.</p>
+            </div>
           </div>
-          <div class="scrap-photo scrap-photo--1 scrap-photo--1-low has-label">
-            <img src="about/about-coding.jpg" alt="" />
-            <span class="scrap-label">coding...</span>
-          </div>
-          <div class="scrap-photo scrap-photo--2 scrap-photo--2-low has-label">
-            <img src="about/about-lowfi.jpg" alt="" />
-            <span class="scrap-label">paper prototypes!</span>
-          </div>
-        </div>
 
-        <div class="about-note about-note--gradschool">
-          <p>I went back to school to bridge my gap between writing, technology, and the people in between.</p>
-          <span class="about-note-arrow">⤳</span>
-          <div class="scrap-photo scrap-photo--4 has-label">
-            <img src="about/about-um-grad.jpeg" alt="" />
-            <span class="scrap-label">University of Michigan grad</span>
+          <!-- 03 Workiva intern -->
+          <div class="timeline-item">
+            <span class="timeline-note" style="top:28%; left:-2%; max-width:230px; transform:rotate(-2deg);">I loved finding the right words for any audience, and that passion eventually led me to my first role as a content designer. There, I discovered that good content is about making people's lives easier.</span>
+            <div class="timeline-photo has-label tp-r1">
+              <img src="about/about-workiva1.png" alt="" />
+              <span class="scrap-label">the workiva team</span>
+            </div>
+            <div class="timeline-photo has-label tp-r2">
+              <img src="about/about-workiva2.png" alt="" />
+              <span class="scrap-label">company retreat</span>
+            </div>
+            <div class="timeline-inner">
+              <p class="timeline-year">2022 – 2023</p>
+              <p class="timeline-title">Workiva — Content Design Intern</p>
+              <p class="timeline-desc">Authored 20+ help articles and built a 300+ term taxonomy system across 4+ languages.</p>
+            </div>
           </div>
+
+          <!-- 04 Illinois grad -->
+          <div class="timeline-item">
+            <span class="timeline-note" style="top:20%; left:2%; max-width:260px; transform:rotate(1deg);">Upon graduation, I knew I wanted to create experiences for people. I just didn't know what that looked like yet — what field, what medium, what version of me would get there. While I was (stressfully) job searching, I kept finding myself researching master's programs too. Design programs that let you tell stories through experience — for real people, in real products. It felt like the missing piece. So I applied.</span>
+            <div class="timeline-photo has-label tp-r1">
+              <img src="about/UIgrad.png" alt="" />
+              <span class="scrap-label">University of Illinois grad</span>
+            </div>
+            <div class="timeline-inner">
+              <p class="timeline-year">2023</p>
+              <p class="timeline-title">University of Illinois — B.A. English &amp; Creative Writing</p>
+              <p class="timeline-desc">Graduated while serving as Associate Editor at Ninth Letter, a nationally recognized literary magazine.</p>
+            </div>
+          </div>
+
+          <!-- 05 VSolvit -->
+          <div class="timeline-item">
+            <span class="timeline-note" style="top:22%; right:10%; max-width:240px; transform:rotate(-2deg);">I was able to put my adaptability and storytelling to work in a new way. Learning how persuasion lives in every word, not just the ones inside a product. Unfortunately my time at VSolvit was cut short because I was accepted to get my master's at Michigan on a full-ride. How could I turn it down!</span>
+            <div class="timeline-photo has-label tp-l1">
+              <img src="about/about-coding.jpg" alt="" />
+              <span class="scrap-label">coding...</span>
+            </div>
+            <div class="timeline-photo has-label tp-l2">
+              <img src="about/about-lowfi.jpg" alt="" />
+              <span class="scrap-label">paper prototypes!</span>
+            </div>
+            <div class="timeline-inner">
+              <p class="timeline-year">2024</p>
+              <p class="timeline-title">VSolvit — Content Writer (Contract)</p>
+              <p class="timeline-desc">Wrote proposal and compliance narratives for Department of Defense and U.S. Navy technology contracts.</p>
+            </div>
+          </div>
+
+          <!-- 06 Workiva strategy -->
+          <div class="timeline-item">
+            <span class="timeline-note" style="top:25%; right:4%; max-width:250px; transform:rotate(-2deg);">During the summer between my first and second year, I got the opportunity to return to my lovely Workiva team! This time with more knowledge of the UX world and more confidence. I dove into various projects during my short time. One of them included redesigning the Release Notes page of the Help center — putting both my design and copywriting skills to the test.</span>
+            <div class="timeline-inner">
+              <p class="timeline-year">2025</p>
+              <p class="timeline-title">Workiva — Content Design &amp; Strategy Intern</p>
+              <p class="timeline-desc">Migrated and standardized content across 5+ product areas, reducing support inquiries by 15%.</p>
+            </div>
+          </div>
+
+          <!-- 07 Michigan grad -->
+          <div class="timeline-item">
+            <span class="timeline-note" style="bottom:18%; right:18%; max-width:220px; transform:rotate(3deg);">I went back to school to bridge my gap between writing, technology, and the people in between. I am now a graduate ready for the next adventure!</span>
+            <div class="timeline-photo has-label tp-l1">
+              <img src="about/about-um-grad.jpeg" alt="" />
+              <span class="scrap-label">University of Michigan grad</span>
+            </div>
+            <div class="timeline-inner">
+              <p class="timeline-year">2026</p>
+              <p class="timeline-title">University of Michigan — M.S. in Information</p>
+              <p class="timeline-desc">Human-Computer Interaction, UMSI Achievement Fellow.</p>
+            </div>
+          </div>
+
         </div>
-      </div>
-      <div>
-        <div class="about-timeline">
-          <div class="timeline-item">
-            <p class="timeline-year">2019 – 2022</p>
-            <p class="timeline-title">Montage Arts Journal — Assistant Editor</p>
-            <p class="timeline-desc">Read and selected student submissions and helped design and lay out the journal each issue.</p>
-          </div>
-          <div class="timeline-item">
-            <p class="timeline-year">2021 – 2023</p>
-            <p class="timeline-title">Ninth Letter — Junior Editor</p>
-            <p class="timeline-desc">Reviewed weekly submissions across fiction, poetry, and creative nonfiction for a nationally recognized literary magazine.</p>
-          </div>
-          <div class="timeline-item">
-            <p class="timeline-year">2022 – 2023</p>
-            <p class="timeline-title">Workiva — Content Design Intern</p>
-            <p class="timeline-desc">Authored 20+ help articles and built a 300+ term taxonomy system across 4+ languages.</p>
-          </div>
-          <div class="timeline-item">
-            <p class="timeline-year">2023</p>
-            <p class="timeline-title">University of Illinois — B.A. English &amp; Creative Writing</p>
-            <p class="timeline-desc">Graduated while serving as Associate Editor at Ninth Letter, a nationally recognized literary magazine.</p>
-          </div>
-          <div class="timeline-item">
-            <p class="timeline-year">2024</p>
-            <p class="timeline-title">VSolvit — Content Writer (Contract)</p>
-            <p class="timeline-desc">Wrote proposal and compliance narratives for Department of Defense and U.S. Navy technology contracts.</p>
-          </div>
-          <div class="timeline-item">
-            <p class="timeline-year">2025</p>
-            <p class="timeline-title">Workiva — Content Design &amp; Strategy Intern</p>
-            <p class="timeline-desc">Migrated and standardized content across 5+ product areas, reducing support inquiries by 15%.</p>
-          </div>
-          <div class="timeline-item">
-            <p class="timeline-year">2026</p>
-            <p class="timeline-title">University of Michigan — M.S. in Information</p>
-            <p class="timeline-desc">Human-Computer Interaction, UMSI Achievement Fellow.</p>
-          </div>
-        </div>
+        <div class="timeline-dots" id="timeline-dots"></div>
       </div>
     </div>
   </div>
+        </div><!-- /acc-body -->
+    </div><!-- /acc-section resume -->
 
-  <div class="divider"></div>
-
-  <!-- ── SKILLS ────────────────────────────────────────────────── -->
-  <div class="about-section" id="skills">
-    <p class="chapter-label">What I've learned so far about my work process</p>
+    <!-- 2: What I've learned -->
+    <div class="acc-section" id="acc-skills">
+      <button class="acc-header" aria-expanded="false" data-target="acc-skills">
+        <span class="acc-label">What I've learned so far about my work process</span>
+        <span class="acc-arrow">+</span>
+      </button>
+      <div class="acc-body"><div>
+  <div class="about-section" id="skills" style="padding-top: 3rem; padding-left:0; padding-right:0;">
+    <p class="chapter-label" style="display:none;"></p>
     <!-- <h2 class="about-section-heading">The best design decisions rarely happen in Figma, rather they happen while listening.</h2> -->
     <div class="process-storyboard">
       <div class="process-frame">
@@ -820,11 +1065,19 @@
       </div>
     </div>
   </div>
+      </div></div><!-- /acc-body -->
+    </div><!-- /acc-section skills -->
 
-  <!-- ── OUTSIDE WORK ───────────────────────────────────────────── -->
+    <!-- 3: Outside work -->
+    <div class="acc-section" id="acc-outside">
+      <button class="acc-header" aria-expanded="false" data-target="acc-outside">
+        <span class="acc-label">The things that keep me curious outside of work</span>
+        <span class="acc-arrow">+</span>
+      </button>
+      <div class="acc-body"><div>
   <section class="about-band">
     <div>
-      <p class="chapter-label">The things that keep me curious outside of work</p>
+      <p class="chapter-label" style="display:none;"></p>
       <!-- <h2 class="about-section-heading" style="color:var(--dark); margin-bottom:0; max-width: none; white-space: nowrap;">The things that keep me curious.</h2> -->
       <div class="interests-row" id="interests">
         <div class="interest-card" style="position: relative;">
@@ -838,7 +1091,6 @@
             <span class="scrap-label">the bookshelf</span>
           </div>
           <p class="interest-title">Reading everything</p>
-          <p class="interest-desc">Fiction, criticism, instruction manuals. If there are words in it, I'm probably reading it too slowly and loving it.</p>
         </div>
         <div class="interest-card" style="position: relative;">
           <img class="interest-icon" src="about/about-letters.png" alt="" />
@@ -847,7 +1099,6 @@
             <span class="scrap-label">my penpal, cheryl &lt;3</span>
           </div>
           <p class="interest-title">Hand lettering</p>
-          <p class="interest-desc">Writing letters for my friends or for myself. I love being pen pals with my long distance friends.</p>
         </div>
         <div class="interest-card" style="position: relative;">
           <img class="interest-icon" src="about/about-playlist.png" alt="" />
@@ -855,7 +1106,6 @@
             <iframe data-testid="embed-iframe" src="https://open.spotify.com/embed/playlist/6CZ12qSICvxCf6sYpS99R8?utm_source=generator&theme=0" width="300" height="352" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
           </div>
           <p class="interest-title">Making playlists</p>
-          <p class="interest-desc">A song for every situation and every feeling. Each playlist becomes its own little world, shaped by whatever I discover along the way.</p>
         </div>
         <div class="interest-card" style="position: relative;">
           <img class="interest-icon" src="about/about-tea.png" alt="" />
@@ -865,7 +1115,6 @@
             <span class="scrap-label">flowers of capetown</span>
           </a>
           <p class="interest-title">Tea tasting</p>
-          <p class="interest-desc">I love trying new tea, whether at night or in the morning. My favorite tea is Jasmine.</p>
         </div>
         <div class="interest-card" style="position: relative;">
           <img class="interest-icon" src="about/about-running.png" alt="" />
@@ -878,18 +1127,21 @@
             <span class="scrap-label">even in below freezing temps</span>
           </div>
           <p class="interest-title">Running</p>
-          <p class="interest-desc">Clearing my head one mile at a time! Oh, also I'm training for a marathon :P </p>
         </div>
       </div>
       <p class="about-band-closing">And of course, designing, writing, and illustrating. My goal is to write and illustrate several children's books!</p>
     </div>
   </section>
+      </div></div><!-- /acc-body -->
+    </div><!-- /acc-section outside -->
+
+  </div><!-- /about-accordion -->
 
   <!-- ── CTA ───────────────────────────────────────────────────── -->
   <div class="fh-footer">
     <div class="fh-footer-left">
-      <h2>Let's create something together</h2>
-      <p>I'm currently open to full-time UX, content design, and hybrid design-writing roles.</p>
+      <h2 style="font-family:'Lato',sans-serif; font-weight:300; letter-spacing:0.04em;"><span style="color:#E79364">L</span><span style="color:#F6DAA2">e</span><span style="color:#3C8D91">t</span><span style="color:#9F3A30">'</span><span style="color:#839F8D">s</span> <span style="color:#695743">c</span><span style="color:#E79364">r</span><span style="color:#F6DAA2">e</span><span style="color:#3C8D91">a</span><span style="color:#9F3A30">t</span><span style="color:#839F8D">e</span> <span style="color:#695743">s</span><span style="color:#E79364">o</span><span style="color:#F6DAA2">m</span><span style="color:#3C8D91">e</span><span style="color:#9F3A30">t</span><span style="color:#839F8D">h</span><span style="color:#695743">i</span><span style="color:#E79364">n</span><span style="color:#F6DAA2">g</span> <span style="color:#3C8D91">t</span><span style="color:#9F3A30">o</span><span style="color:#839F8D">g</span><span style="color:#695743">e</span><span style="color:#E79364">t</span><span style="color:#F6DAA2">h</span><span style="color:#3C8D91">e</span><span style="color:#9F3A30">r</span></h2>
+      <p style="font-family:'Lato',sans-serif; font-weight:300; font-size:clamp(0.85rem, 1.5vw, 1rem);">I'm currently open to full-time UX, content design, and hybrid design-writing roles.</p>
     </div>
     <a href="mailto:cmlagarcia9@gmail.com" class="fh-say-hello">Say Hello</a>
   </div>
@@ -899,7 +1151,7 @@
     <div class="fh-bottombar-links">
       <a href="https://www.linkedin.com/in/camila-garcia-04r17/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="#">Substack</a>
-      <a href="https://drive.google.com/file/d/1g9xEyP9xjEwUIDGVso1VA5jVeM1jJgON/view?usp=sharing" target="_blank" rel="noopener">Resume</a>
+      <a href="resume.html">Resume</a>
     </div>
     <span class="fh-bottombar-email">e: cmlagarcia9@gmail.com</span>
   </div>
@@ -962,6 +1214,50 @@
     }, { threshold: 0.1 });
     revealEls.forEach(el => obs.observe(el));
 
+    /* ── STICKY TIMELINE — 2 scroll steps per item ───────────── */
+    const tlWrap = document.getElementById('timeline-wrap');
+    const tlTrack = document.getElementById('about-timeline');
+    const tlDotsWrap = document.getElementById('timeline-dots');
+    if (tlWrap && tlTrack) {
+      const items = Array.from(tlTrack.querySelectorAll('.timeline-item'));
+      const count = items.length;
+      // 25vh per sub-step × 3 steps × count items, +100vh for the sticky frame
+      tlWrap.style.height = (count * 3 * 25 + 100) + 'vh';
+
+      // Build progress dots
+      const dots = [];
+      items.forEach((_, i) => {
+        const d = document.createElement('div');
+        d.className = 'timeline-dot' + (i === 0 ? ' active' : '');
+        tlDotsWrap.appendChild(d);
+        dots.push(d);
+      });
+
+      function onScroll() {
+        const rect = tlWrap.getBoundingClientRect();
+        const scrolled = -rect.top;
+        const total = tlWrap.offsetHeight - window.innerHeight;
+        const progress = Math.max(0, Math.min(1, scrolled / total));
+
+        // 3 steps per item: 0 = card, 1 = strikethrough, 2 = note
+        const globalStep = progress * count * 3;
+        const index = Math.min(count - 1, Math.floor(globalStep / 3));
+        const subStep = globalStep - index * 3; // 0–3 within this item
+
+        items.forEach((item, i) => {
+          const isActive = i === index;
+          item.classList.toggle('active',  isActive);
+          item.classList.toggle('struck',  isActive && subStep >= 1);
+          item.classList.toggle('noted',   isActive && subStep >= 2);
+        });
+
+        dots.forEach((d, i) => d.classList.toggle('active', i === index));
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    }
+
     // Cycle the accent color used on "Let's work together!"
     const cycleColors = ['#6C8A73', '#F6DAA2', '#E59465', '#9E392F', '#CEB8AD'];
     let cycleColorIndex = 1;
@@ -969,6 +1265,22 @@
       document.documentElement.style.setProperty('--cycle', cycleColors[cycleColorIndex]);
       cycleColorIndex = (cycleColorIndex + 1) % cycleColors.length;
     }, 4000);
+  </script>
+
+  <script>
+    /* ── ACCORDION ─────────────────────────────────────────────── */
+    document.querySelectorAll('.acc-header').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const section = btn.closest('.acc-section');
+        const isOpen = section.classList.contains('open');
+        section.classList.toggle('open', !isOpen);
+        btn.setAttribute('aria-expanded', !isOpen);
+        // re-trigger scroll handler when timeline opens so progress is correct
+        if (!isOpen && section.id === 'acc-resume') {
+          window.dispatchEvent(new Event('scroll'));
+        }
+      });
+    });
   </script>
 </body>
 </html>
