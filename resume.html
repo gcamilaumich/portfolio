@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume — Camila Garcia</title>
+  <link rel="icon" type="image/png" href="index/home-icon-5.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fff;
+      color: #2a2018;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── HEADER ──────────────────────────────────────────────────── */
+    .site-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2.5rem 2rem 0;
+    }
+    .wordmark {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      line-height: 1;
+    }
+    .wordmark-name {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 100;
+      font-size: clamp(1.6rem, 4vw, 3.5rem);
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      display: flex;
+      gap: 0;
+    }
+    .wordmark-name span { display: inline-block; }
+    .wordmark-girl {
+      height: clamp(2rem, 5vw, 4.2rem);
+      width: auto;
+      display: block;
+      margin: 0 0.4em;
+      position: relative;
+      top: 0.05em;
+    }
+    .l1 { color: #E79364; }
+    .l2 { color: #F6DAA2; }
+    .l3 { color: #3C8D91; }
+    .l4 { color: #9F3A30; }
+    .l5 { color: #839F8D; }
+    .l6 { color: #695743; }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      margin-top: 1.1rem;
+    }
+    .site-nav a {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #2a2018;
+      opacity: 0.6;
+      transition: opacity 0.2s;
+    }
+    .site-nav a:hover { opacity: 1; }
+    .site-nav a.active { font-weight: 700; opacity: 1; }
+
+    /* ── RESUME AREA ─────────────────────────────────────────────── */
+    .resume-wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3rem 2rem 4rem;
+    }
+
+    .resume-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 860px;
+      margin-bottom: 1.25rem;
+    }
+
+    .resume-label {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(42,32,24,0.45);
+    }
+
+    .resume-download {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #2a2018;
+      border: 1px solid rgba(42,32,24,0.3);
+      border-radius: 999px;
+      padding: 0.5rem 1.4rem;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .resume-download:hover {
+      background: #2a2018;
+      color: #fff;
+      border-color: #2a2018;
+    }
+
+    .resume-frame {
+      width: 100%;
+      max-width: 860px;
+      height: 80vh;
+      border: 1px solid rgba(42,32,24,0.1);
+      border-radius: 0.5rem;
+      overflow: hidden;
+    }
+
+    .resume-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* ── FOOTER ──────────────────────────────────────────────────── */
+    .site-footer {
+      border-top: 1px solid rgba(42,32,24,0.1);
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a {
+      font-size: 0.68rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(42,32,24,0.5);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: #2a2018; }
+    .footer-email {
+      font-size: 0.68rem;
+      font-weight: 300;
+      color: rgba(42,32,24,0.4);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── HEADER ─────────────────────────────────────────────────── -->
+  <header class="site-header">
+    <div class="wordmark">
+      <div class="wordmark-name">
+        <span class="l1">C</span><span class="l2">A</span><span class="l3">M</span><span class="l4">I</span><span class="l5">L</span><span class="l6">A</span>
+      </div>
+      <img src="index/girlonly.png" alt="" class="wordmark-girl" />
+      <div class="wordmark-name">
+        <span class="l1">G</span><span class="l2">A</span><span class="l3">R</span><span class="l4">C</span><span class="l5">I</span><span class="l6">A</span>
+      </div>
+    </div>
+    <nav class="site-nav">
+      <a href="index.html">Work</a>
+      <a href="about.html">My Story</a>
+      <a href="resume.html" class="active">Resume</a>
+    </nav>
+  </header>
+
+  <!-- ── RESUME ─────────────────────────────────────────────────── -->
+  <div class="resume-wrap">
+    <div class="resume-toolbar">
+      <span class="resume-label">Camila Garcia — Resume</span>
+      <a class="resume-download" href="https://drive.google.com/uc?export=download&id=1g9xEyP9xjEwUIDGVso1VA5jVeM1jJgON" target="_blank" rel="noopener">↓ Download</a>
+    </div>
+    <div class="resume-frame">
+      <iframe src="https://drive.google.com/file/d/1g9xEyP9xjEwUIDGVso1VA5jVeM1jJgON/preview" allow="autoplay"></iframe>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ────────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/camila-garcia-04r17/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="#">Substack</a>
+      <a href="resume.html">Resume</a>
+    </div>
+    <span class="footer-email">cmlagarcia9@gmail.com</span>
+  </footer>
+
+</body>
+</html>
