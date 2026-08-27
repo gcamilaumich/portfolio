@@ -33,6 +33,10 @@
       flex-direction: column;
       align-items: center;
       padding: 2.5rem 2rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #fff;
     }
 
     /* CAMILA [girl] GARCIA */
@@ -44,7 +48,7 @@
     }
     .wordmark-name {
       font-family: 'Poppins', sans-serif;
-      font-weight: 100;
+      font-weight: 200;
       font-size: clamp(1.6rem, 4vw, 3.5rem);
       letter-spacing: -0.01em;
       text-transform: uppercase;
@@ -64,7 +68,7 @@
 
     /* Letter colors — CAMILA */
     .l1 { color: #E79364; }
-    .l2 { color: #F6DAA2; }
+    .l2 { color: #FFBE3D; }
     .l3 { color: #3C8D91; }
     .l4 { color: #9F3A30; }
     .l5 { color: #839F8D; }
@@ -101,7 +105,7 @@
       font-size: clamp(0.85rem, 1.5vw, 1rem);
       line-height: 1.7;
       color: rgba(42,32,24,0.55);
-      max-width: 42ch;
+      max-width: 56ch;
       margin: 15rem auto 15rem;
       padding: 0 1rem;
     }
@@ -227,13 +231,23 @@
     @media (max-width: 900px) {
       .work-grid { grid-template-columns: repeat(2, 1fr); }
     }
+
+    .site-header.wordmark-hidden { background: transparent; padding-left: 0; padding-right: 0; }
+    .site-header.wordmark-hidden .site-nav {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(42,32,24,0.1);
+      border-radius: 999px;
+      padding: 0.5rem 1.5rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
   </style>
 </head>
 <body>
 
   <!-- ── HEADER ─────────────────────────────────────────────────── -->
   <header class="site-header">
-    <div class="wordmark">
+    <div class="wordmark" id="site-wordmark" style="overflow: hidden; max-height: 200px; transition: max-height 0.25s, opacity 0.25s;">
       <!-- CAMILA -->
       <div class="wordmark-name">
         <span class="l1">C</span><span class="l2">A</span><span class="l3">M</span><span class="l4">I</span><span class="l5">L</span><span class="l6">A</span>
@@ -257,7 +271,7 @@
   </header>
 
   <!-- ── TAGLINE ────────────────────────────────────────────────── -->
-  <p class="tagline">There is always a story. My mission is to uncover it and share it with the world in whatever medium :)</p>
+  <p class="tagline">There is always a story. My mission is to uncover it<br>and share it with the world through whatever medium :)</p>
 
   <!-- ── WORK GRID ──────────────────────────────────────────────── -->
   <main class="work-grid" id="work">
@@ -311,5 +325,24 @@
     <span class="footer-email">cmlagarcia9@gmail.com</span>
   </footer>
 
+  <script>
+    const wordmark = document.getElementById('site-wordmark');
+    const header = document.querySelector('.site-header');
+    let wordmarkNaturalHeight = 200;
+    function updateWordmark() {
+      const hidden = window.scrollY > 60;
+      wordmark.style.maxHeight = hidden ? '0' : wordmarkNaturalHeight + 'px';
+      wordmark.style.opacity = hidden ? '0' : '1';
+      wordmark.style.pointerEvents = hidden ? 'none' : '';
+      header.style.paddingTop = hidden ? '1.25rem' : '2.5rem';
+      header.classList.toggle('wordmark-hidden', hidden);
+    }
+    window.addEventListener('load', () => {
+      wordmarkNaturalHeight = wordmark.scrollHeight || 200;
+      updateWordmark();
+    });
+    window.addEventListener('scroll', updateWordmark, { passive: true });
+    updateWordmark();
+  </script>
 </body>
 </html>
