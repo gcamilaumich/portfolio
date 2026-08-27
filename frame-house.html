@@ -35,11 +35,10 @@
     /* ── HERO ────────────────────────────────────────────────── */
     .cs-hero {
       background: #fff;
-      min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 4rem 0 5rem;
+      padding: 4rem 0 2rem;
       position: relative;
       overflow: hidden;
     }
@@ -55,7 +54,7 @@
     .cs-hero-title {
       font-family: 'Lato', sans-serif;
       font-size: clamp(2rem, 4vw, 3.5rem);
-      font-weight: 100;
+      font-weight: 400;
       line-height: 1.1;
       color: var(--fh);
       max-width: 18ch;
@@ -99,6 +98,17 @@
       max-width: 1100px;
       margin: 0 auto;
       transition: opacity 0.3s ease;
+    }
+    .cs-section, .cs-section-wide, .cs-two-col > * { opacity: 1 !important; transform: none !important; }
+
+    .site-header.wordmark-hidden { background: transparent; padding-left: 0; padding-right: 0; }
+    .site-header.wordmark-hidden .site-nav {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(42,32,24,0.1);
+      border-radius: 999px;
+      padding: 0.5rem 1.5rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
     }
 
     .cs-two-col {
@@ -333,7 +343,7 @@
 
   <!-- ── NAV ───────────────────────────────────────────────────── -->
   <header class="site-header">
-    <div class="wordmark">
+    <div class="wordmark" id="site-wordmark" style="transition: max-height 0.25s, opacity 0.25s; overflow: hidden;">
       <div class="wordmark-name"><span class="l1">C</span><span class="l2">A</span><span class="l3">M</span><span class="l4">I</span><span class="l5">L</span><span class="l6">A</span></div>
       <img src="index/girlonly.png" alt="" class="wordmark-girl" />
       <div class="wordmark-name"><span class="l1">G</span><span class="l2">A</span><span class="l3">R</span><span class="l4">C</span><span class="l5">I</span><span class="l6">A</span></div>
@@ -347,15 +357,6 @@
 
   <!-- ── HERO ──────────────────────────────────────────────────── -->
   <header class="cs-hero" style="position:relative;">
-    <!-- under construction -->
-    <div style="position:absolute; right:6vw; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; align-items:center; gap:0.75rem; max-width:220px;">
-      <div style="background:#fff; border:1px solid rgba(42,32,24,0.12); border-radius:1rem; padding:0.85rem 1rem; font-family:'Lato',sans-serif; font-weight:300; font-size:0.75rem; line-height:1.6; color:rgba(42,32,24,0.65); position:relative; text-align:center;">
-        this page is a little under construction — should be fixed by 8/20.
-        <span style="position:absolute; bottom:-8px; left:50%; transform:translateX(-50%); width:0; height:0; border-left:8px solid transparent; border-right:8px solid transparent; border-top:8px solid rgba(42,32,24,0.12);"></span>
-        <span style="position:absolute; bottom:-6px; left:50%; transform:translateX(-50%); width:0; height:0; border-left:7px solid transparent; border-right:7px solid transparent; border-top:7px solid #fff;"></span>
-      </div>
-      <img src="framehouse/underconstruction.png" alt="Under construction" style="width:120px; height:auto;" />
-    </div>
     <div style="max-width:1100px; width:100%; margin:0 auto; padding:0 6vw;">
       <p class="cs-hero-eyebrow">Frame House · Brand &amp; Graphic Design · 2026</p>
       <h1 class="cs-hero-title">A movie theater built like a living archive.</h1>
@@ -381,24 +382,33 @@
     </div>
   </header>
 
-  <!-- ── THE BRIEF ─────────────────────────────────────────────── -->
-  <div class="cs-section">
+  <!-- ── COVER IMAGE ──────────────────────────────────────────── -->
+  <div style="width:100%; max-width:1100px; margin:0 auto 0; padding:0 6vw;">
+    <img src="framehouse/framehousecover.png" alt="Frame House cover" style="width:100%; height:auto; display:block; border-radius:8px;" />
+  </div>
 
-    <h2 class="cs-section-heading">Position Frame House as a cultural hub, not just a theater.</h2>
-    <div class="cs-two-col">
+  <!-- ── THE BRIEF ─────────────────────────────────────────────── -->
+  <div class="cs-section" style="padding-top:2rem;">
+
+    <div class="cs-two-col" style="align-items:center;">
       <div>
         <p class="cs-body">Frame House is an independent, community-centered movie theater focused on preserving film culture and elevating indie, international, and underrepresented voices. Unlike traditional theaters, it operates as a living archive, where programming is shaped by both film history and community input.</p>
         <p class="cs-body">Currently located in New York, Ann Arbor, and Los Angeles, Frame House aims to grow into a recognized cultural brand expanding to cities nationwide — which meant the identity needed to scale as confidently as the business does.</p>
       </div>
       <div>
-        <ul class="fh-goals">
-          <li><span>01</span> Position Frame House as a cultural hub, not just a theater</li>
-          <li><span>02</span> Transform film data into emotional, visual storytelling</li>
-          <li><span>03</span> Encourage community participation through interactive programming</li>
-          <li><span>04</span> Support scalability as the brand expands to new cities</li>
-        </ul>
+        <img src="framehouse/filmfilm.png" alt="Film" style="width:100%; height:auto; display:block; border-radius:8px;" />
       </div>
     </div>
+  </div>
+
+  <!-- ── GOALS ─────────────────────────────────────────────────── -->
+  <div class="cs-section" style="padding-top:0;">
+    <ul class="fh-goals">
+      <li><span>01</span> Position Frame House as a cultural hub, not just a theater</li>
+      <li><span>02</span> Transform film data into emotional, visual storytelling</li>
+      <li><span>03</span> Encourage community participation through interactive programming</li>
+      <li><span>04</span> Support scalability as the brand expands to new cities</li>
+    </ul>
   </div>
 
   <div class="cs-divider"></div>
@@ -620,19 +630,22 @@
       updateNavTheme();
     })();
 
-    // ── SCROLL ANIMATIONS ──────────────────────────────────────
-    const fadeSections = Array.from(document.querySelectorAll('.cs-section, .cs-section-wide'));
-    function updateFade() {
-      const vh = window.innerHeight;
-      fadeSections.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        const center = rect.top + rect.height / 2;
-        const dist = Math.abs(center - vh / 2);
-        el.style.opacity = Math.max(0, 1 - dist / (vh * 0.75));
-      });
+    // scroll fade removed
+
+    // Hide wordmark on scroll
+    const wordmark = document.getElementById('site-wordmark');
+    const header = document.querySelector('.site-header');
+    const wordmarkNaturalHeight = wordmark.scrollHeight;
+    function updateWordmark() {
+      const hidden = window.scrollY > 60;
+      wordmark.style.maxHeight = hidden ? '0' : wordmarkNaturalHeight + 'px';
+      wordmark.style.opacity = hidden ? '0' : '1';
+      wordmark.style.pointerEvents = hidden ? 'none' : '';
+      header.style.paddingTop = hidden ? '1.25rem' : '2.5rem';
+      header.classList.toggle('wordmark-hidden', hidden);
     }
-    window.addEventListener('scroll', updateFade, { passive: true });
-    updateFade();
+    window.addEventListener('scroll', updateWordmark, { passive: true });
+    updateWordmark();
 
   </script>
 

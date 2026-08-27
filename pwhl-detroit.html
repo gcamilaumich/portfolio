@@ -56,7 +56,7 @@
     .cs-hero-title {
       font-family: 'Lato', sans-serif;
       font-size: clamp(2rem, 4vw, 3.5rem);
-      font-weight: 100;
+      font-weight: 400;
       line-height: 1.1;
       color: var(--det-red);
       max-width: 20ch;
@@ -820,13 +820,23 @@
       .guidelines-grid { grid-template-columns: 1fr; }
       .cs-progress { display: none; }
     }
+
+    .site-header.wordmark-hidden { background: transparent; padding-left: 0; padding-right: 0; }
+    .site-header.wordmark-hidden .site-nav {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(42,32,24,0.1);
+      border-radius: 999px;
+      padding: 0.5rem 1.5rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
   </style>
 </head>
 <body>
 
 <!-- ── NAV ──────────────────────────────────────────────────────── -->
 <header class="site-header">
-  <div class="wordmark">
+  <div class="wordmark" id="site-wordmark" style="transition: max-height 0.25s, opacity 0.25s; overflow: hidden;">
     <div class="wordmark-name"><span class="l1">C</span><span class="l2">A</span><span class="l3">M</span><span class="l4">I</span><span class="l5">L</span><span class="l6">A</span></div>
     <img src="index/girlonly.png" alt="" class="wordmark-girl" />
     <div class="wordmark-name"><span class="l1">G</span><span class="l2">A</span><span class="l3">R</span><span class="l4">C</span><span class="l5">I</span><span class="l6">A</span></div>
@@ -1623,6 +1633,22 @@
       if (target) target.scrollIntoView({ behavior: 'smooth' });
     });
   });
+</script>
+
+<script>
+  const wordmark = document.getElementById('site-wordmark');
+  const header = document.querySelector('.site-header');
+  const wordmarkNaturalHeight = wordmark.scrollHeight;
+  function updateWordmark() {
+    const hidden = window.scrollY > 60;
+    wordmark.style.maxHeight = hidden ? '0' : wordmarkNaturalHeight + 'px';
+    wordmark.style.opacity = hidden ? '0' : '1';
+    wordmark.style.pointerEvents = hidden ? 'none' : '';
+    header.style.paddingTop = hidden ? '1.25rem' : '2.5rem';
+    header.classList.toggle('wordmark-hidden', hidden);
+  }
+  window.addEventListener('scroll', updateWordmark, { passive: true });
+  updateWordmark();
 </script>
 
 </div>
