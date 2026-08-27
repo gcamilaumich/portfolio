@@ -34,11 +34,10 @@
     /* ── HERO ────────────────────────────────────────────────── */
     .cs-hero {
       background: #fff;
-      min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 4rem 0 5rem;
+      padding: 4rem 0 2rem;
       position: relative;
       overflow: hidden;
     }
@@ -54,7 +53,7 @@
     .cs-hero-title {
       font-family: 'Lato', sans-serif;
       font-size: clamp(2rem, 4vw, 3.5rem);
-      font-weight: 100;
+      font-weight: 400;
       font-style: normal;
       line-height: 1.1;
       color: var(--wv-green);
@@ -108,6 +107,7 @@
     }
 
     /* ── LAYOUT ──────────────────────────────────────────────── */
+    .cs-section, .cs-section-wide, .cs-two-col > * { opacity: 1 !important; transform: none !important; }
     .cs-section {
       padding: 6rem 6vw;
       max-width: 1100px;
@@ -440,13 +440,25 @@
       opacity: 1 !important;
       pointer-events: auto;
     }
+
+    .site-header.wordmark-hidden { background: transparent; padding-left: 0; padding-right: 0; }
+    .site-header.wordmark-hidden .site-nav {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(42,32,24,0.1);
+      border-radius: 999px;
+      padding: 0.5rem 1.5rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      opacity: 1 !important;
+      pointer-events: auto;
+    }
   </style>
 </head>
 <body>
 
   <!-- ── NAV ───────────────────────────────────────────────────── -->
   <header class="site-header">
-    <a href="index.html" class="wordmark" style="text-decoration:none;">
+    <a href="index.html" class="wordmark" id="site-wordmark" style="text-decoration:none; transition: max-height 0.25s, opacity 0.25s; overflow: hidden; display:flex; align-items:center; gap:0.5rem;">
       <div class="wordmark-name"><span class="l1">C</span><span class="l2">A</span><span class="l3">M</span><span class="l4">I</span><span class="l5">L</span><span class="l6">A</span></div>
       <img src="index/girlonly.png" alt="" class="wordmark-girl" style="pointer-events:none;" />
       <div class="wordmark-name"><span class="l1">G</span><span class="l2">A</span><span class="l3">R</span><span class="l4">C</span><span class="l5">I</span><span class="l6">A</span></div>
@@ -485,17 +497,20 @@
     </div>
   </header>
 
-  <!-- ── CONTEXT ───────────────────────────────────────────────── -->
-  <div class="cs-section">
+  <!-- ── COVER IMAGE ──────────────────────────────────────────── -->
+  <div style="width:100%; max-width:1100px; margin:0.5rem auto 0; padding:0 6vw;">
+    <img src="workiva/workivacover.png" alt="Workiva cover" style="width:100%; height:auto; display:block; border-radius:8px;" />
+  </div>
 
-    <div style="display:grid; grid-template-columns: 1fr auto; gap: 4rem; align-items: center;">
+  <!-- ── CONTEXT + SUBCOVER ────────────────────────────────────── -->
+  <div class="cs-section" style="padding-top:2rem;">
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
       <div>
-        <h2 class="cs-section-heading">When the app launched, the functionality was solid — but the voice wasn't.</h2>
         <p class="cs-body">As a Content Design Intern at Workiva, I took ownership of building a scalable content system that would unify the app's voice across mobile and documentation — before inconsistencies compounded at scale.</p>
         <p class="cs-body">The product needed to feel trustworthy in a regulated financial environment. That meant every word had to earn its place.</p>
       </div>
-      <div style="margin-right: calc(-6vw);">
-        <img src="shared/workiva-mobile-app-1.png" alt="Workiva mobile app" style="width:280px; height:auto; display:block;" />
+      <div>
+        <img src="workiva/workivasubcover.png" alt="Workiva sub cover" style="width:100%; height:auto; display:block; border-radius:8px;" />
       </div>
     </div>
   </div>
@@ -825,21 +840,7 @@
       updateNavTheme();
     })();
 
-    // ── SCROLL FADE (center-based, same as Spotter) ────────────
-    const fadeSections = Array.from(document.querySelectorAll('.cs-section, .cs-section-wide'));
-    function updateFade() {
-      const vh = window.innerHeight;
-      fadeSections.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        const visTop = Math.max(rect.top, 0);
-        const visBot = Math.min(rect.bottom, vh);
-        const center = rect.height > vh ? (visTop + visBot) / 2 : rect.top + rect.height / 2;
-        const dist = Math.abs(center - vh / 2);
-        const maxDist = vh * 0.75;
-        el.style.opacity = Math.max(0, 1 - dist / maxDist);
-      });
-    }
-    window.addEventListener('scroll', updateFade, { passive: true });
+    // scroll fade removed
 
     // ── NAV HIDE AFTER HERO ────────────────────────────────────
     const siteNav = document.querySelector('.site-nav');
@@ -853,7 +854,6 @@
       }
     }
     window.addEventListener('scroll', updateNav, { passive: true });
-    updateFade();
 
 
     // ── LIGHTBOX ───────────────────────────────────────────────
@@ -905,6 +905,21 @@
     document.getElementById('wv-next')?.addEventListener('click', () => goTo(current + 1));
   </script>
 
+  <script>
+    const wordmark = document.getElementById('site-wordmark');
+    const header = document.querySelector('.site-header');
+    const wordmarkNaturalHeight = wordmark.scrollHeight;
+    function updateWordmark() {
+      const hidden = window.scrollY > 60;
+      wordmark.style.maxHeight = hidden ? '0' : wordmarkNaturalHeight + 'px';
+      wordmark.style.opacity = hidden ? '0' : '1';
+      wordmark.style.pointerEvents = hidden ? 'none' : '';
+      header.style.paddingTop = hidden ? '1.25rem' : '2.5rem';
+      header.classList.toggle('wordmark-hidden', hidden);
+    }
+    window.addEventListener('scroll', updateWordmark, { passive: true });
+    updateWordmark();
+  </script>
   <script src="animations.js"></script>
 
 </body>
