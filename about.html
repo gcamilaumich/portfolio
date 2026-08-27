@@ -30,6 +30,9 @@
       align-items: center;
       padding: 2.5rem 2rem 0;
       background: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
     .wordmark {
       display: flex;
@@ -39,7 +42,7 @@
     }
     .wordmark-name {
       font-family: 'Poppins', sans-serif;
-      font-weight: 100;
+      font-weight: 200;
       font-size: clamp(1.6rem, 4vw, 3.5rem);
       letter-spacing: -0.01em;
       text-transform: uppercase;
@@ -56,7 +59,7 @@
       top: 0.05em;
     }
     .l1 { color: #E79364; }
-    .l2 { color: #F6DAA2; }
+    .l2 { color: #FFBE3D; }
     .l3 { color: #3C8D91; }
     .l4 { color: #9F3A30; }
     .l5 { color: #839F8D; }
@@ -874,13 +877,23 @@
       .interests-row { grid-template-columns: 1fr 1fr; }
       .skills-grid { grid-template-columns: 1fr; }
     }
+
+    .site-header.wordmark-hidden { background: transparent; padding-left: 0; padding-right: 0; }
+    .site-header.wordmark-hidden .site-nav {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(42,32,24,0.1);
+      border-radius: 999px;
+      padding: 0.5rem 1.5rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
   </style>
 </head>
 <body>
 
   <!-- ── NAV ──────────────────────────────────────────────────── -->
   <header class="site-header">
-    <div class="wordmark">
+    <div class="wordmark" id="site-wordmark" style="transition: max-height 0.25s, opacity 0.25s; overflow: hidden;">
       <div class="wordmark-name">
         <span class="l1">C</span><span class="l2">A</span><span class="l3">M</span><span class="l4">I</span><span class="l5">L</span><span class="l6">A</span>
       </div>
@@ -1149,7 +1162,7 @@
   <!-- ── CTA ───────────────────────────────────────────────────── -->
   <div class="fh-footer">
     <div class="fh-footer-left">
-      <h2 style="font-family:'Lato',sans-serif; font-weight:300; letter-spacing:0.04em;"><span style="color:#E79364">L</span><span style="color:#F6DAA2">e</span><span style="color:#3C8D91">t</span><span style="color:#9F3A30">'</span><span style="color:#839F8D">s</span> <span style="color:#695743">c</span><span style="color:#E79364">r</span><span style="color:#F6DAA2">e</span><span style="color:#3C8D91">a</span><span style="color:#9F3A30">t</span><span style="color:#839F8D">e</span> <span style="color:#695743">s</span><span style="color:#E79364">o</span><span style="color:#F6DAA2">m</span><span style="color:#3C8D91">e</span><span style="color:#9F3A30">t</span><span style="color:#839F8D">h</span><span style="color:#695743">i</span><span style="color:#E79364">n</span><span style="color:#F6DAA2">g</span> <span style="color:#3C8D91">t</span><span style="color:#9F3A30">o</span><span style="color:#839F8D">g</span><span style="color:#695743">e</span><span style="color:#E79364">t</span><span style="color:#F6DAA2">h</span><span style="color:#3C8D91">e</span><span style="color:#9F3A30">r</span></h2>
+      <h2 style="font-family:'Lato',sans-serif; font-weight:300; letter-spacing:0.04em;"><span style="color:#E79364">L</span><span style="color:#FFBE3D">e</span><span style="color:#3C8D91">t</span><span style="color:#9F3A30">'</span><span style="color:#839F8D">s</span> <span style="color:#695743">c</span><span style="color:#E79364">r</span><span style="color:#FFBE3D">e</span><span style="color:#3C8D91">a</span><span style="color:#9F3A30">t</span><span style="color:#839F8D">e</span> <span style="color:#695743">s</span><span style="color:#E79364">o</span><span style="color:#FFBE3D">m</span><span style="color:#3C8D91">e</span><span style="color:#9F3A30">t</span><span style="color:#839F8D">h</span><span style="color:#695743">i</span><span style="color:#E79364">n</span><span style="color:#FFBE3D">g</span> <span style="color:#3C8D91">t</span><span style="color:#9F3A30">o</span><span style="color:#839F8D">g</span><span style="color:#695743">e</span><span style="color:#E79364">t</span><span style="color:#FFBE3D">h</span><span style="color:#3C8D91">e</span><span style="color:#9F3A30">r</span></h2>
       <p style="font-family:'Lato',sans-serif; font-weight:300; font-size:clamp(0.85rem, 1.5vw, 1rem);">I'm currently open to full-time UX, content design, and hybrid design-writing roles.</p>
     </div>
     <a href="mailto:cmlagarcia9@gmail.com" class="fh-say-hello">Say Hello</a>
@@ -1168,6 +1181,21 @@
   <p class="fh-copyright">Camila Garcia 2026</p>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    const wordmark = document.getElementById('site-wordmark');
+    const header = document.querySelector('.site-header');
+    const wordmarkNaturalHeight = wordmark.scrollHeight;
+    function updateWordmark() {
+      const hidden = window.scrollY > 60;
+      wordmark.style.maxHeight = hidden ? '0' : wordmarkNaturalHeight + 'px';
+      wordmark.style.opacity = hidden ? '0' : '1';
+      wordmark.style.pointerEvents = hidden ? 'none' : '';
+      header.style.paddingTop = hidden ? '1.25rem' : '2.5rem';
+      header.classList.toggle('wordmark-hidden', hidden);
+    }
+    window.addEventListener('scroll', updateWordmark, { passive: true });
+    updateWordmark();
+  </script>
   <script src="animations.js"></script>
   <script>
     /* ── ABOUT LAYER CYCLE ─────────────────────────────────────── */

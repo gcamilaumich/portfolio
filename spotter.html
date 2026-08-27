@@ -22,15 +22,15 @@
   <style>
     :root { --spotter: #3E18A6; --spotter-light: #f0ecff; }
     body { background: #fff; }
+    .cs-section, .cs-section-wide, .cs-two-col > * { opacity: 1 !important; transform: none !important; }
 
     /* ── CASE STUDY HERO ─────────────────────────────────────── */
     .cs-hero {
       background: #fff;
-      min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 4rem 0 5rem;
+      padding: 4rem 0 2rem;
       position: relative;
       overflow: hidden;
     }
@@ -48,7 +48,7 @@
     .cs-hero-title {
       font-family: 'Lato', sans-serif;
       font-size: clamp(3rem, 7vw, 6rem);
-      font-weight: 100;
+      font-weight: 400;
       line-height: 1.05;
       color: #2a2018;
       max-width: 14ch;
@@ -113,27 +113,90 @@
     /* ── PROGRESS SIDEBAR ────────────────────────────────────── */
     .cs-progress {
       position: fixed;
-      right: 2rem;
+      right: 1.5rem;
       top: 50%;
       transform: translateY(-50%);
       z-index: 50;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 0.6rem;
+      align-items: flex-end;
+      gap: 0.4rem;
     }
 
     .cs-progress-dot {
-      width: 6px;
-      height: 6px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    .cs-progress-dot-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(42,32,24,0.35);
+      transition: color 0.3s;
+      white-space: nowrap;
+      background: rgba(255,255,255,0.85);
+      border: 1px solid rgba(42,32,24,0.12);
+      border-radius: 20px;
+      padding: 0.25rem 0.65rem;
+    }
+    .cs-progress-dot-pip {
+      width: 5px;
+      height: 5px;
       border-radius: 50%;
       background: rgba(42,32,24,0.2);
-      cursor: pointer;
+      flex-shrink: 0;
       transition: background 0.3s, transform 0.3s;
     }
-    .cs-progress-dot.active {
+    .cs-progress-dot.active .cs-progress-dot-pip {
       background: var(--spotter);
       transform: scale(1.5);
+    }
+    .cs-progress-dot.active .cs-progress-dot-label {
+      color: var(--spotter);
+      border-color: var(--spotter);
+    }
+
+    .site-header.wordmark-hidden {
+      background: transparent;
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .site-header.wordmark-hidden .site-nav {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(42,32,24,0.1);
+      border-radius: 999px;
+      padding: 0.5rem 1.5rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .toc-btn {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--spotter);
+      text-decoration: none;
+      background: #f0ecff;
+      border: 1px solid var(--spotter);
+      border-radius: 999px;
+      padding: 1.5rem 1rem;
+      flex: 1;
+      text-align: center;
+      transition: background 0.2s, color 0.2s;
+      cursor: pointer;
+    }
+    .toc-btn:hover {
+      background: var(--spotter);
+      color: #fff;
     }
 
     /* ── CHAPTER SECTIONS ────────────────────────────────────── */
@@ -141,12 +204,10 @@
       padding: 6rem 6vw;
       max-width: 1100px;
       margin: 0 auto;
-      transition: opacity 0.3s ease;
     }
 
     .cs-section-wide {
       padding: 6rem 0;
-      transition: opacity 0.3s ease;
     }
 
     /* two-col layout */
@@ -551,7 +612,7 @@
 
   <!-- ── NAV ──────────────────────────────────────────────────── -->
   <header class="site-header">
-    <div class="wordmark">
+    <div class="wordmark" id="site-wordmark" style="transition: max-height 0.25s, opacity 0.25s; overflow: hidden;">
       <div class="wordmark-name"><span class="l1">C</span><span class="l2">A</span><span class="l3">M</span><span class="l4">I</span><span class="l5">L</span><span class="l6">A</span></div>
       <img src="index/girlonly.png" alt="" class="wordmark-girl" />
       <div class="wordmark-name"><span class="l1">G</span><span class="l2">A</span><span class="l3">R</span><span class="l4">C</span><span class="l5">I</span><span class="l6">A</span></div>
@@ -565,11 +626,13 @@
 
   <!-- ── PROGRESS SIDEBAR ──────────────────────────────────────── -->
   <nav class="cs-progress" aria-label="Case study chapters">
-    <div class="cs-progress-dot active" data-section="0" title="Overview"></div>
-    <div class="cs-progress-dot" data-section="1" title="Problem"></div>
-    <div class="cs-progress-dot" data-section="2" title="Research"></div>
-    <div class="cs-progress-dot" data-section="3" title="Solution"></div>
-    <div class="cs-progress-dot" data-section="4" title="Outcome"></div>
+    <div class="cs-progress-dot active" data-section="0"><span class="cs-progress-dot-label">Overview</span><span class="cs-progress-dot-pip"></span></div>
+    <div class="cs-progress-dot" data-section="1"><span class="cs-progress-dot-label">Problem</span><span class="cs-progress-dot-pip"></span></div>
+    <div class="cs-progress-dot" data-section="2"><span class="cs-progress-dot-label">Research</span><span class="cs-progress-dot-pip"></span></div>
+    <div class="cs-progress-dot" data-section="5"><span class="cs-progress-dot-label">Design Process</span><span class="cs-progress-dot-pip"></span></div>
+    <div class="cs-progress-dot" data-section="6"><span class="cs-progress-dot-label">Identity</span><span class="cs-progress-dot-pip"></span></div>
+    <div class="cs-progress-dot" data-section="3"><span class="cs-progress-dot-label">Screens</span><span class="cs-progress-dot-pip"></span></div>
+    <div class="cs-progress-dot" data-section="4"><span class="cs-progress-dot-label">Reflection</span><span class="cs-progress-dot-pip"></span></div>
   </nav>
 
   <!-- ── HERO ──────────────────────────────────────────────────── -->
@@ -579,7 +642,7 @@
 
     <div style="max-width:1100px;width:100%;margin:0 auto;padding:0 6vw;">
     <p class="cs-hero-eyebrow">Case Study · Product Design</p>
-    <h1 class="cs-hero-title" data-reveal="words" style="color:var(--spotter);">Spotter</h1>
+    <h1 class="cs-hero-title" style="color:var(--spotter);">Spotter</h1>
     <p class="cs-hero-desc">Designing a dual-platform mobile and wearable experience that helps personal trainers capture session data in real time, without losing the human connection that keeps clients coming back.</p>
 
     <div class="cs-meta-row">
@@ -603,17 +666,23 @@
     </div>
   </section>
 
+  <!-- ── COVER IMAGE ──────────────────────────────────────────── -->
+  <div style="width:100%; max-width:1100px; margin:0 auto; padding:0 6vw;">
+    <img src="spotter/spottercover.png" alt="" style="width:100%; display:block; border-radius:8px;">
+  </div>
+
   <!-- ── CHAPTER 1: PROBLEM ────────────────────────────────────── -->
   <div id="cs-1" data-chapter="1">
     <div class="cs-section" style="padding-bottom:0; padding-top:8rem;">
 
       <div class="cs-two-col">
-        <div>
-          <h2 class="cs-section-heading">The trainers were stuck between two impossible things.</h2>
-        </div>
-        <div>
+        <div style="margin-top:-2rem;">
           <p class="cs-body">Personal trainers who manage <strong>four or more active clients</strong> constantly face the same impossible choice: look at their phone and log data accurately, or stay present and actually coach.</p>
           <p class="cs-body">Most existing tools were built for planning and post-session review, not for the floor. So trainers delayed their notes, relied on memory after long days, and watched the accuracy of their data quietly erode.</p>
+          <p class="cs-body">We built Spotter — a <strong>mobile and wearable system</strong> that captures session data in real time without pulling trainers out of the moment. A tap on the watch logs the set. The phone handles the rest.</p>
+        </div>
+        <div style="display:flex; align-items:center; justify-content:center; margin-top:-5rem;">
+          <img src="spotter/spotterlogo.png" alt="Spotter logo" style="width:100%; display:block; object-fit:contain; border-radius:8px;">
         </div>
       </div>
     </div>
@@ -684,9 +753,21 @@
       .qs-dot.active { background: var(--spotter); }
     </style>
 
+  <!-- ── TABLE OF CONTENTS ────────────────────────────────────── -->
+  <div style="width:100%; max-width:1100px; margin:0 auto; padding:8rem 6vw 3rem; border-top:1px solid rgba(42,32,24,0.1); margin-top:4rem;">
+    <div style="display:flex; gap:0.6rem;">
+      <a href="#toc-research" onclick="event.preventDefault(); const t=document.getElementById('toc-research'); window.scrollTo({top:t.getBoundingClientRect().top+scrollY-80,behavior:'smooth'});" class="toc-btn">Research</a>
+      <a href="#toc-design" onclick="event.preventDefault(); const t=document.getElementById('toc-design'); window.scrollTo({top:t.getBoundingClientRect().top+scrollY-80,behavior:'smooth'});" class="toc-btn">Design Process</a>
+      <a href="#toc-identity" onclick="event.preventDefault(); const t=document.getElementById('toc-identity'); window.scrollTo({top:t.getBoundingClientRect().top+scrollY-80,behavior:'smooth'});" class="toc-btn">Identity</a>
+      <a href="#toc-screens" onclick="event.preventDefault(); const t=document.getElementById('toc-screens'); window.scrollTo({top:t.getBoundingClientRect().top+scrollY-80,behavior:'smooth'});" class="toc-btn">Screens</a>
+      <a href="#toc-reflection" onclick="event.preventDefault(); const t=document.getElementById('toc-reflection'); window.scrollTo({top:t.getBoundingClientRect().top+scrollY-80,behavior:'smooth'});" class="toc-btn">Reflection</a>
+    </div>
+  </div>
+
   <!-- ── CHAPTER 2: RESEARCH ───────────────────────────────────── -->
-  <div id="cs-2" data-chapter="2">
-    <div class="cs-section" style="padding-top:10rem; padding-bottom:0;">
+  <div id="toc-research" data-chapter="2">
+    <div class="cs-section" style="padding-top:6rem; padding-bottom:0;">
+      <p class="cs-hero-eyebrow">Research</p>
 
       <div class="cs-two-col">
         <div>
@@ -849,7 +930,10 @@
   <div class="cs-divider"></div>
 
   <!-- ── CHAPTER 2.5: SKETCHES ─────────────────────────────────── -->
-  <div id="cs-2b">
+  <div id="toc-design" data-chapter="5">
+    <div style="max-width:1100px; margin:0 auto; padding:6rem 6vw 0; scroll-margin-top:5rem;">
+      <p class="cs-hero-eyebrow">Design Process</p>
+    </div>
     <div class="cs-section">
 
       <h2 class="cs-section-heading">Then, we began sketching.</h2>
@@ -1160,6 +1244,49 @@
 
   <div class="cs-divider"></div>
 
+  <!-- ── COLOR PALETTE ────────────────────────────────────────── -->
+  <div id="toc-identity" data-chapter="6">
+    <div style="max-width:1100px; margin:0 auto; padding:6rem 6vw 0; scroll-margin-top:5rem;">
+      <p class="cs-hero-eyebrow">Identity</p>
+    </div>
+  </div>
+  <div class="cs-section" style="padding-top:6rem; padding-bottom:6rem;">
+    <div class="cs-two-col" style="align-items:stretch; gap:3rem;">
+      <div>
+        <img src="spotter/spottercolorpaletter.png" alt="Spotter color palette" style="width:100%; display:block; border-radius:8px;">
+      </div>
+      <div id="swatch-box" style="border-radius:8px; width:100%; aspect-ratio:auto; height:100%; min-height:100%; position:relative; transition: background 0.4s ease;">
+        <span id="swatch-hex" style="position:absolute; top:0.75rem; right:0.9rem; font-family:'Poppins',sans-serif; font-size:0.75rem; transition: color 0.4s ease;"></span>
+      </div>
+      <script>
+        (function() {
+          var colors = [
+            { bg: '#E5E3FD', text: '#2a2018' },
+            { bg: '#A090F6', text: '#2a2018' },
+            { bg: '#5D2CE9', text: '#fff' },
+            { bg: '#3E18A6', text: '#fff' },
+            { bg: '#230B66', text: '#fff' },
+            { bg: '#3CD887', text: '#2a2018' },
+            { bg: '#EEFFF3', text: '#2a2018' }
+          ];
+          var i = 0;
+          var box = document.getElementById('swatch-box');
+          var hex = document.getElementById('swatch-hex');
+          function set(idx) {
+            box.style.background = colors[idx].bg;
+            hex.style.color = colors[idx].text;
+            hex.textContent = colors[idx].bg;
+          }
+          set(0);
+          setInterval(function() {
+            i = (i + 1) % colors.length;
+            set(i);
+          }, 1500);
+        })();
+      </script>
+    </div>
+  </div>
+
   <!-- ── CHAPTER 3: SOLUTION ───────────────────────────────────── -->
   <div id="cs-3" data-chapter="3">
     <div class="cs-section">
@@ -1185,6 +1312,7 @@
 
     <div class="cs-section">
 
+      <p class="cs-hero-eyebrow" id="toc-screens">Screens</p>
       <h2 class="cs-section-heading">Designed for quick glances</h2>
       <p class="cs-body" style="max-width:60ch; margin-bottom:3rem;">The wearable interface strips the experience down to its essentials. One tap to log, one tap to move on. Large tap targets, minimal text, voice fallback for everything that needs more detail.</p>
 
@@ -1276,9 +1404,10 @@
   <div class="cs-divider"></div>
 
   <!-- ── CHAPTER 4: REFLECTION ────────────────────────────────────── -->
-  <div id="cs-4" data-chapter="4">
+  <div id="toc-reflection" data-chapter="4">
     <div class="cs-section">
 
+      <p class="cs-hero-eyebrow">Reflection</p>
       <h2 class="cs-section-heading">What I'd carry forward.</h2>
       <div class="cs-two-col">
         <div>
@@ -1342,12 +1471,27 @@
   <script>
     gsap.registerPlugin(ScrollTrigger);
 
-    // Scroll-reveal all sections
-    const sections = document.querySelectorAll('.cs-section, .cs-section-wide');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    sections.forEach(s => observer.observe(s));
+    // Wordmark hide on scroll
+    const wordmark = document.getElementById('site-wordmark');
+    const header = document.querySelector('.site-header');
+    const wordmarkNaturalHeight = wordmark.scrollHeight;
+    function updateWordmark() {
+      const hidden = window.scrollY > 60;
+      wordmark.style.maxHeight = hidden ? '0' : wordmarkNaturalHeight + 'px';
+      wordmark.style.opacity = hidden ? '0' : '1';
+      wordmark.style.pointerEvents = hidden ? 'none' : '';
+      header.style.paddingTop = hidden ? '1.25rem' : '2.5rem';
+      header.classList.toggle('wordmark-hidden', hidden);
+    }
+    window.addEventListener('scroll', updateWordmark, { passive: true });
+    updateWordmark();
+
+    // All content visible — no scroll fade
+    document.querySelectorAll('.cs-section, .cs-section-wide, .cs-two-col, .cs-body, .cs-section-heading, .cs-finding-card').forEach(el => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+      el.classList.add('visible');
+    });
 
     // Progress dot tracking
     const chapters = document.querySelectorAll('[data-chapter]');
@@ -1370,7 +1514,10 @@
       dot.addEventListener('click', () => {
         const idx = dot.dataset.section;
         const target = document.querySelector(`[data-chapter="${idx}"]`);
-        if (target) target.scrollIntoView({ behavior: 'smooth' });
+        if (target) {
+          const top = target.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
       });
     });
 
@@ -1415,20 +1562,7 @@
   </script>
 
   <script>
-  (function() {
-    const cards = Array.from(document.querySelectorAll('.cs-finding-card'));
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const card = entry.target;
-          const idx = cards.indexOf(card);
-          setTimeout(() => card.classList.add('visible'), idx % 3 * 120);
-          observer.unobserve(card);
-        }
-      });
-    }, { threshold: 0.15 });
-    cards.forEach(c => observer.observe(c));
-  })();
+    document.querySelectorAll('.cs-finding-card').forEach(c => c.classList.add('visible'));
   </script>
 
   <script>
@@ -1450,6 +1584,9 @@
 
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+
+    // Hide wordmark on scroll
+    const wordmark = document.getElementById('site-wordmark');
   })();
   </script>
 </body>
