@@ -13,10 +13,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Resume — Camila Garcia</title>
-  <link rel="icon" type="image/png" href="index/home-icon-5.png">
+  <link rel="icon" type="image/png" href="index/newfavicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -31,65 +31,15 @@
     a { text-decoration: none; color: inherit; }
 
     /* ── HEADER ──────────────────────────────────────────────────── */
-    .site-header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 2.5rem 2rem 0;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: #fff;
+    .hero-nav { display: flex; justify-content: flex-end; width: 100%; padding: 1.5rem 6vw 0; position: sticky; top: 1rem; z-index: 500; }
+    .hero-nav-pill { display: flex; align-items: center; gap: 1.75rem; border: 1px solid rgba(22,19,15,0.15); border-radius: 999px; padding: 0.6rem 1.6rem; background: #fff; }
+    .hero-nav-pill a { font-weight: 500; font-size: 0.875rem; letter-spacing: 0.1em; text-transform: uppercase; color: #16130f; opacity: 0.55; transition: opacity 0.2s; white-space: nowrap; }
+    .hero-nav-pill a:hover { opacity: 1; }
+    .hero-nav-pill a.active { opacity: 1; font-weight: 700; }
+    @media (max-width: 700px) {
+      .hero-nav { justify-content: center; }
+      .hero-nav-pill { gap: 1rem; padding: 0.55rem 1.1rem; flex-wrap: wrap; justify-content: center; }
     }
-    .wordmark {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      line-height: 1;
-    }
-    .wordmark-name {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 200;
-      font-size: clamp(1.6rem, 4vw, 3.5rem);
-      letter-spacing: -0.01em;
-      text-transform: uppercase;
-      display: flex;
-      gap: 0;
-    }
-    .wordmark-name span { display: inline-block; }
-    .wordmark-girl {
-      height: clamp(2rem, 5vw, 4.2rem);
-      width: auto;
-      display: block;
-      margin: 0 0.4em;
-      position: relative;
-      top: 0.05em;
-    }
-    .l1 { color: #E79364; }
-    .l2 { color: #FFBE3D; }
-    .l3 { color: #3C8D91; }
-    .l4 { color: #9F3A30; }
-    .l5 { color: #839F8D; }
-    .l6 { color: #695743; }
-
-    .site-nav {
-      display: flex;
-      align-items: center;
-      gap: 2.5rem;
-      margin-top: 1.1rem;
-    }
-    .site-nav a {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 300;
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #2a2018;
-      opacity: 0.6;
-      transition: opacity 0.2s;
-    }
-    .site-nav a:hover { opacity: 1; }
-    .site-nav a.active { font-weight: 700; opacity: 1; }
 
     /* ── RESUME AREA ─────────────────────────────────────────────── */
     .resume-wrap {
@@ -110,12 +60,12 @@
     }
 
     .resume-label {
-      font-family: 'Lato', sans-serif;
-      font-weight: 300;
-      font-size: 0.78rem;
-      letter-spacing: 0.1em;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 0.875rem;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      color: rgba(42,32,24,0.45);
+      color: rgba(22,19,15,0.45);
     }
 
     .resume-download {
@@ -153,61 +103,52 @@
     }
 
     /* ── FOOTER ──────────────────────────────────────────────────── */
-    .site-footer {
-      border-top: 1px solid rgba(42,32,24,0.1);
-      padding: 2rem;
+    .site-footer-cta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 4rem 6vw 3.5rem;
+      text-align: center;
+    }
+    .footer-jar { width: 56px; height: auto; }
+    .footer-cta-text {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 0.875rem;
+      letter-spacing: 0.04em;
+      color: #16130f;
+    }
+    .footer-social {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
       gap: 1rem;
+      margin-top: 0.25rem;
     }
-    .footer-links { display: flex; gap: 1.5rem; }
-    .footer-links a {
-      font-size: 0.68rem;
-      font-weight: 300;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(42,32,24,0.5);
-      transition: color 0.2s;
+    .footer-social a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #16130f;
+      opacity: 0.7;
+      transition: opacity 0.2s;
     }
-    .footer-links a:hover { color: #2a2018; }
-    .footer-email {
-      font-size: 0.68rem;
-      font-weight: 300;
-      color: rgba(42,32,24,0.4);
-    }
+    .footer-social a:hover { opacity: 1; }
+    .footer-social svg { width: 18px; height: 18px; }
 
-    .site-header.wordmark-hidden { background: transparent; padding-left: 0; padding-right: 0; }
-    .site-header.wordmark-hidden .site-nav {
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(42,32,24,0.1);
-      border-radius: 999px;
-      padding: 0.5rem 1.5rem;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    }
   </style>
 </head>
 <body>
 
   <!-- ── HEADER ─────────────────────────────────────────────────── -->
-  <header class="site-header">
-    <div class="wordmark" id="site-wordmark" style="overflow: hidden; max-height: 200px; transition: max-height 0.25s, opacity 0.25s;">
-      <div class="wordmark-name">
-        <span class="l1">C</span><span class="l2">A</span><span class="l3">M</span><span class="l4">I</span><span class="l5">L</span><span class="l6">A</span>
-      </div>
-      <img src="index/girlonly.png" alt="" class="wordmark-girl" />
-      <div class="wordmark-name">
-        <span class="l1">G</span><span class="l2">A</span><span class="l3">R</span><span class="l4">C</span><span class="l5">I</span><span class="l6">A</span>
-      </div>
-    </div>
-    <nav class="site-nav">
+  <nav class="hero-nav">
+    <div class="hero-nav-pill">
       <a href="index.html">Work</a>
+      <a href="playground.html">Playground</a>
       <a href="about.html">My Story</a>
       <a href="resume.html" class="active">Resume</a>
-    </nav>
-  </header>
+    </div>
+  </nav>
 
   <!-- ── RESUME ─────────────────────────────────────────────────── -->
   <div class="resume-wrap">
@@ -221,33 +162,19 @@
   </div>
 
   <!-- ── FOOTER ────────────────────────────────────────────────── -->
-  <footer class="site-footer">
-    <div class="footer-links">
-      <a href="https://www.linkedin.com/in/camila-garcia-04r17/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="#">Substack</a>
-      <a href="resume.html">Resume</a>
+  <footer class="site-footer-cta">
+    <img src="index/newfavicon.png" alt="" class="footer-jar" />
+    <p class="footer-cta-text">LET'S WORK TOGETHER!</p>
+    <div class="footer-social">
+      <a href="https://www.linkedin.com/in/camila-garcia-04r17/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+      </a>
+      <a href="mailto:cmlagarcia9@gmail.com" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+      </a>
     </div>
-    <span class="footer-email">cmlagarcia9@gmail.com</span>
   </footer>
 
-  <script>
-    const wordmark = document.getElementById('site-wordmark');
-    const header = document.querySelector('.site-header');
-    let wordmarkNaturalHeight = 200;
-    function updateWordmark() {
-      const hidden = window.scrollY > 60;
-      wordmark.style.maxHeight = hidden ? '0' : wordmarkNaturalHeight + 'px';
-      wordmark.style.opacity = hidden ? '0' : '1';
-      wordmark.style.pointerEvents = hidden ? 'none' : '';
-      header.style.paddingTop = hidden ? '1.25rem' : '2.5rem';
-      header.classList.toggle('wordmark-hidden', hidden);
-    }
-    window.addEventListener('load', () => {
-      wordmarkNaturalHeight = wordmark.scrollHeight || 200;
-      updateWordmark();
-    });
-    window.addEventListener('scroll', updateWordmark, { passive: true });
-    updateWordmark();
-  </script>
+
 </body>
 </html>
