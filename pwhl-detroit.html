@@ -16,7 +16,7 @@
   <link rel="icon" type="image/png" href="index/newfavicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Barlow:wght@800&family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="pages.css" />
   <style>
@@ -176,13 +176,6 @@
       gap: 0.75rem;
       margin-bottom: 1.2rem;
     }
-    .chapter-label::before {
-      content: '';
-      display: inline-block;
-      width: 28px;
-      height: 1px;
-      background: rgba(22,19,15,0.3);
-    }
 
     /* ── IMAGE PLACEHOLDER ─────────────────────────────────────── */
     .cs-image {
@@ -220,41 +213,6 @@
     .cs-image-icon {
       font-size: 1.5rem;
       opacity: 0.3;
-    }
-
-    /* ── PULL QUOTE ─────────────────────────────────────────────── */
-    .cs-quote {
-      background: #fff;
-      padding: 5rem 10vw;
-      text-align: center;
-    }
-    .cs-quote-text {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 100;
-      font-style: italic;
-      font-size: clamp(1.3rem, 2.5vw, 1.9rem);
-      line-height: 1.55;
-      color: #2a2018;
-      max-width: 62ch;
-      margin: 0 auto 1.5rem;
-    }
-    .cs-quote-attr {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 300;
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(42,32,24,0.4);
-    }
-    .cs-quote-accent {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 100;
-      font-size: 5rem;
-      line-height: 0.5;
-      color: var(--det-red);
-      opacity: 0.3;
-      display: block;
-      margin-bottom: 1.5rem;
     }
 
     /* ── RESEARCH CARDS ────────────────────────────────────────── */
@@ -301,159 +259,6 @@
       border-radius: 999px;
       background: rgba(200,16,46,0.08);
       color: var(--det-red);
-    }
-
-    /* ── MOODBOARD GRID ────────────────────────────────────────── */
-    .moodboard-grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      grid-template-rows: repeat(3, 180px);
-      gap: 0.75rem;
-      margin-top: 2.5rem;
-    }
-    .mb-cell {
-      border-radius: 0.4rem;
-      overflow: hidden;
-      position: relative;
-    }
-    .mb-cell img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .mb-swatch {
-      width: 100%; height: 100%;
-      display: flex;
-      align-items: flex-end;
-      padding: 0.75rem;
-    }
-    .mb-swatch-label {
-      font-family: 'Poppins', sans-serif;
-      font-size: 0.58rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    /* Moodboard layout spans */
-    .mb-a { grid-column: 1 / 6;   grid-row: 1 / 3; }
-    .mb-b { grid-column: 6 / 9;   grid-row: 1 / 2; }
-    .mb-c { grid-column: 9 / 13;  grid-row: 1 / 2; }
-    .mb-d { grid-column: 6 / 9;   grid-row: 2 / 3; }
-    .mb-e { grid-column: 9 / 13;  grid-row: 2 / 3; }
-    .mb-f { grid-column: 1 / 5;   grid-row: 3 / 4; }
-    .mb-g { grid-column: 5 / 9;   grid-row: 3 / 4; }
-    .mb-h { grid-column: 9 / 13;  grid-row: 3 / 4; }
-
-    /* ── SKETCH GRID ───────────────────────────────────────────── */
-    .sketch-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
-      margin-top: 2.5rem;
-    }
-    .sketch-card {
-      background: #fff;
-      border: 1px solid rgba(42,32,24,0.07);
-      border-radius: 0.5rem;
-      overflow: hidden;
-    }
-    .sketch-img {
-      width: 100%;
-      aspect-ratio: 4/3;
-      background: #eee8df;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-    .sketch-img-icon { font-size: 2rem; opacity: 0.25; }
-    .sketch-meta {
-      padding: 1rem 1.25rem 1.25rem;
-    }
-    .sketch-label {
-      font-family: 'Poppins', sans-serif;
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--det-red);
-      margin-bottom: 0.35rem;
-    }
-    .sketch-title {
-      font-family: 'Poppins', sans-serif;
-      font-size: 1rem;
-      color: #16130f;
-      margin-bottom: 0.4rem;
-    }
-    .sketch-desc {
-      font-size: 0.8rem;
-      line-height: 1.7;
-      color: rgba(42,32,24,0.55);
-    }
-
-    /* ── COLOR PALETTE ─────────────────────────────────────────── */
-    .palette-row {
-      display: flex;
-      gap: 0;
-      border-radius: 0.6rem;
-      overflow: hidden;
-      margin-top: 2.5rem;
-      height: 220px;
-    }
-    .palette-swatch {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 1.25rem;
-      transition: flex 0.35s ease;
-      cursor: default;
-    }
-    .palette-swatch:hover { flex: 1.5; }
-    .swatch-name {
-      font-family: 'Poppins', sans-serif;
-      font-size: 0.95rem;
-      margin-bottom: 0.2rem;
-    }
-    .swatch-hex {
-      font-family: 'Poppins', sans-serif;
-      font-size: 0.62rem;
-      letter-spacing: 0.1em;
-      opacity: 0.7;
-    }
-    .swatch-on-dark { color: rgba(250,245,236,0.95); }
-    .swatch-on-light { color: rgba(42,32,24,0.85); }
-
-    .palette-notes {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.25rem;
-      margin-top: 1.5rem;
-    }
-    .palette-note {
-      display: flex;
-      flex-direction: column;
-      gap: 0.3rem;
-    }
-    .palette-note-role {
-      font-family: 'Poppins', sans-serif;
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .palette-note-name {
-      font-family: 'Poppins', sans-serif;
-      font-size: 0.95rem;
-      color: var(--dark);
-    }
-    .palette-note-use {
-      font-size: 0.78rem;
-      line-height: 1.65;
-      color: rgba(42,32,24,0.55);
     }
 
     /* ── TYPOGRAPHY ────────────────────────────────────────────── */
@@ -514,86 +319,6 @@
       color: var(--dark);
     }
 
-    /* ── LOGO SECTION ──────────────────────────────────────────── */
-    .logo-exploration {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
-      margin-top: 2.5rem;
-    }
-    .logo-card {
-      border: 1px solid rgba(42,32,24,0.07);
-      border-radius: 0.5rem;
-      overflow: hidden;
-    }
-    .logo-card-stage {
-      width: 100%;
-      aspect-ratio: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .logo-card-stage.dark { background: var(--det-navy); }
-    .logo-card-stage.light { background: #f0ece5; }
-    .logo-card-stage.red { background: var(--det-red); }
-    .logo-card-label {
-      padding: 0.85rem 1.1rem;
-      background: #fff;
-      border-top: 1px solid rgba(42,32,24,0.06);
-    }
-    .logo-card-num {
-      font-family: 'Poppins', sans-serif;
-      font-size: 0.58rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--det-red);
-      margin-bottom: 0.2rem;
-    }
-    .logo-card-name {
-      font-family: 'Poppins', sans-serif;
-      font-size: 0.9rem;
-      color: var(--dark);
-    }
-    .logo-placeholder-text {
-      font-family: 'Poppins', sans-serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      opacity: 0.25;
-      text-align: center;
-    }
-
-    /* final mark — large treatment */
-    .logo-final {
-      margin-top: 2rem;
-      background: var(--det-navy);
-      border-radius: 0.6rem;
-      padding: 4rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-    .logo-final-placeholder {
-      font-family: 'Poppins', sans-serif;
-      font-size: 0.78rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(250,245,236,0.25);
-      text-align: center;
-    }
-    .logo-final-box {
-      width: 280px;
-      height: 180px;
-      border: 1.5px dashed rgba(250,245,236,0.15);
-      border-radius: 0.4rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
     /* ── MERCHANDISE / JERSEYS ─────────────────────────────────── */
     .merch-grid {
       display: grid;
@@ -611,7 +336,6 @@
     .merch-img {
       width: 100%;
       aspect-ratio: 16/9;
-      background: #e8e3db;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -624,7 +348,6 @@
       object-fit: cover;
       display: block;
     }
-    .merch-img-icon { font-size: 2.5rem; opacity: 0.2; }
     .merch-info {
       padding: 1.25rem 1.5rem 1.5rem;
     }
@@ -647,118 +370,6 @@
       font-size: 0.83rem;
       line-height: 1.75;
       color: rgba(42,32,24,0.55);
-    }
-
-    /* Jersey strip previews */
-    .jersey-strips {
-      display: flex;
-      gap: 1rem;
-      padding: 2rem 1.5rem;
-      background: #f0ece5;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .jersey-strip {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.6rem;
-    }
-    .jersey-color-bar {
-      width: 60px;
-      height: 100px;
-      border-radius: 0.3rem;
-      display: flex;
-      align-items: flex-end;
-      padding-bottom: 0.5rem;
-      justify-content: center;
-    }
-    .jersey-strip-label {
-      font-family: 'Poppins', sans-serif;
-      font-size: 0.58rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(42,32,24,0.5);
-    }
-
-    /* ── BRAND GUIDELINES ──────────────────────────────────────── */
-    .guidelines-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      margin-top: 2.5rem;
-    }
-    .guideline-card {
-      border-radius: 0.5rem;
-      padding: 1.75rem 1.75rem;
-    }
-    .guideline-card.do {
-      background: #fff;
-      border: 1px solid rgba(42,32,24,0.07);
-      border-left: 3px solid #4aaa70;
-    }
-    .guideline-card.dont {
-      background: #fff;
-      border: 1px solid rgba(42,32,24,0.07);
-      border-left: 3px solid var(--det-red);
-    }
-    .guideline-header {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-    }
-    .guideline-badge {
-      font-family: 'Poppins', sans-serif;
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 0.2rem 0.6rem;
-      border-radius: 999px;
-    }
-    .guideline-badge.do  { background: rgba(74,170,112,0.1); color: #3a8a5a; }
-    .guideline-badge.dont { background: rgba(200,16,46,0.1); color: var(--det-red); }
-    .guideline-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-    .guideline-list li {
-      font-size: 0.875rem;
-      line-height: 1.7;
-      color: rgba(42,32,24,0.65);
-      padding-left: 1.25rem;
-      position: relative;
-    }
-    .guideline-list.do li::before   { content: '✓'; position: absolute; left: 0; color: #4aaa70; font-size: 0.75rem; font-weight: 700; }
-    .guideline-list.dont li::before { content: '×'; position: absolute; left: 0; color: var(--det-red); font-size: 0.85rem; font-weight: 700; }
-
-    .clearspace-demo {
-      margin-top: 1.5rem;
-      border: 1px solid rgba(42,32,24,0.07);
-      border-radius: 0.5rem;
-      background: #fff;
-      padding: 2rem;
-    }
-    .clearspace-inner {
-      border: 1.5px dashed rgba(42,32,24,0.15);
-      border-radius: 0.3rem;
-      padding: 2.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .clearspace-label {
-      font-family: 'Poppins', sans-serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(42,32,24,0.3);
-      margin-top: 0.75rem;
-      text-align: center;
     }
 
     /* ── FOOTER / NEXT ─────────────────────────────────────────── */
@@ -805,20 +416,8 @@
     @media (max-width: 768px) {
       .cs-two-col { grid-template-columns: 1fr; gap: 2.5rem; }
       .research-grid { grid-template-columns: 1fr; }
-      .moodboard-grid {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: auto;
-      }
-      .mb-a,.mb-b,.mb-c,.mb-d,.mb-e,.mb-f,.mb-g,.mb-h {
-        grid-column: auto;
-        grid-row: auto;
-      }
-      .sketch-grid { grid-template-columns: 1fr; }
-      .palette-notes { grid-template-columns: 1fr 1fr; }
       .type-card { grid-template-columns: 1fr; }
-      .logo-exploration { grid-template-columns: 1fr; }
       .merch-grid { grid-template-columns: 1fr; }
-      .guidelines-grid { grid-template-columns: 1fr; }
       .cs-progress { display: none; }
     }
 
@@ -840,13 +439,10 @@
 <nav class="cs-progress" id="progress-nav" aria-label="Page sections">
   <div class="cs-progress-dot active" data-section="0" title="Overview"></div>
   <div class="cs-progress-dot" data-section="1" title="Research"></div>
-  <div class="cs-progress-dot" data-section="2" title="Moodboard"></div>
-  <div class="cs-progress-dot" data-section="3" title="Sketches"></div>
   <div class="cs-progress-dot" data-section="4" title="Color Palette"></div>
   <div class="cs-progress-dot" data-section="5" title="Typography"></div>
   <div class="cs-progress-dot" data-section="6" title="Logo Mark"></div>
   <div class="cs-progress-dot" data-section="7" title="Merchandise"></div>
-  <div class="cs-progress-dot" data-section="8" title="Brand Guidelines"></div>
 </nav>
 
 <!-- ── HERO ──────────────────────────────────────────────────────── -->
@@ -854,7 +450,7 @@
   <div style="max-width:1800px; margin:0 auto; padding:0 6vw; width:100%;">
     <p class="cs-hero-eyebrow">Brand Identity Concept · PWHL Expansion</p>
     <h1 class="cs-hero-title">PWHL: Concept Design for the new Detroit team </h1>
-    <p class="cs-hero-desc">A graphic design concept for a PWHL expansion team rooted in Detroit's identity — its industrial grit, its hockey history, and its pride. This style guide documents the full design process from research through final merchandise.</p>
+    <p class="cs-hero-desc">A graphic design concept for a PWHL expansion team rooted in Detroit's identity — its industrial grit, its hockey history, and its pride.</p>
 
     <div class="cs-meta-row">
       <div class="cs-meta-item">
@@ -879,134 +475,37 @@
       </div>
     </div>
   </div>
-
-  <!-- under construction -->
-  <div style="position:absolute; right:6vw; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; align-items:center; gap:0.75rem; max-width:240px;">
-    <div style="background:#fff; border:1px solid rgba(42,32,24,0.12); border-radius:1rem; padding:0.85rem 1rem; font-family:'Poppins',sans-serif; font-weight:300; font-size:0.75rem; line-height:1.6; color:rgba(42,32,24,0.65); position:relative; text-align:center;">
-      this project is under construction. check back 8/22. in the meantime, enjoy a sneak peek below!
-      <span style="position:absolute; bottom:-8px; left:50%; transform:translateX(-50%); width:0; height:0; border-left:8px solid transparent; border-right:8px solid transparent; border-top:8px solid rgba(42,32,24,0.12);"></span>
-      <span style="position:absolute; bottom:-6px; left:50%; transform:translateX(-50%); width:0; height:0; border-left:7px solid transparent; border-right:7px solid transparent; border-top:7px solid #fff;"></span>
-    </div>
-    <img src="framehouse/underconstruction.png" alt="Under construction" style="width:120px; height:auto;" />
-  </div>
 </header>
 
-<!-- sneak peeks -->
-<style>
-  .peek-wrap {
-    position: relative;
-    display: inline-block;
-    width: 220px;
-  }
-  .peek-wrap img {
-    display: block;
-    width: 220px;
-    height: auto;
-    border-radius: 0.5rem;
-    user-select: none;
-    -webkit-user-drag: none;
-  }
-  .peek-canvas {
-    position: absolute;
-    inset: 0;
-    border-radius: 0.5rem;
-    cursor: crosshair;
-  }
-  .peek-hint {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 300;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(42,32,24,0.4);
-    pointer-events: none;
-    transition: opacity 0.4s ease;
-  }
-</style>
-<div style="margin:1rem auto 5rem; display:flex; gap:3rem; justify-content:center; flex-wrap:wrap; align-items:flex-start;">
-  <div class="peek-wrap">
-    <img src="pwhl/logosneakpeek.png" alt="Logo sneak peek" />
-    <canvas class="peek-canvas"></canvas>
-    <div class="peek-hint">brush to reveal</div>
-  </div>
-  <div class="peek-wrap">
-    <img src="pwhl/logosneakpeek2.png" alt="Logo sneak peek 2" />
-    <canvas class="peek-canvas"></canvas>
-    <div class="peek-hint">brush to reveal</div>
+<!-- ── COVER IMAGE ──────────────────────────────────────────── -->
+<div style="width:100%; max-width:1800px; margin:0.5rem auto 0; padding:0 6vw;">
+  <img src="pwhl/pwhlteams.jpeg" alt="PWHL teams" style="width:100%; height:auto; display:block; border-radius:8px;" />
+</div>
+
+<!-- ── SUBCOVER ─────────────────────────────────────────────── -->
+<div class="cs-section">
+  <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+    <div>
+      <h2 class="cs-section-heading">A concept born from Hockeytown pride</h2>
+      <p class="cs-body">This is a concept design project. While I was in Ann Arbor, Michigan for my undergraduate studies, I became a huge fan of Detroit sports — so when I heard the PWHL was bringing a women's hockey team to the city, I was thrilled.</p>
+      <p class="cs-body">I started sketching ideas and researching Detroit's history, especially its deep automotive roots. That connection felt like the right thread to pull — the Red Wings' own branding has long leaned on the city's manufacturing legacy, and I wanted this new team's identity to carry that same lineage forward.</p>
+    </div>
+    <div>
+      <div style="aspect-ratio:1/1; border-radius:8px; overflow:hidden;">
+        <img src="index/pwhlthumbnail.png" alt="PWHL Detroit concept thumbnail" style="width:100%; height:100%; object-fit:cover; display:block;" />
+      </div>
+    </div>
   </div>
 </div>
-<script>
-  document.querySelectorAll('.peek-wrap').forEach(wrap => {
-    const img = wrap.querySelector('img');
-    const canvas = wrap.querySelector('.peek-canvas');
-    const hint = wrap.querySelector('.peek-hint');
-    const ctx = canvas.getContext('2d');
-    let ready = false;
-
-    function initCanvas() {
-      canvas.width = img.offsetWidth;
-      canvas.height = img.offsetHeight;
-      ctx.fillStyle = '#f0ece7';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ready = true;
-    }
-
-    if (img.complete) initCanvas();
-    else img.addEventListener('load', initCanvas);
-
-    function scratch(x, y) {
-      if (!ready) return;
-      ctx.globalCompositeOperation = 'destination-out';
-      ctx.beginPath();
-      ctx.arc(x, y, 28, 0, Math.PI * 2);
-      ctx.fill();
-      hint.style.opacity = '0';
-    }
-
-    canvas.addEventListener('mousemove', e => {
-      const r = canvas.getBoundingClientRect();
-      scratch(e.clientX - r.left, e.clientY - r.top);
-    });
-
-    // touch support
-    canvas.addEventListener('touchmove', e => {
-      e.preventDefault();
-      const r = canvas.getBoundingClientRect();
-      const t = e.touches[0];
-      scratch(t.clientX - r.left, t.clientY - r.top);
-    }, { passive: false });
-  });
-</script>
-
-<!-- ── FOOTER (visible on the under-construction teaser) ────────── -->
-<footer class="site-footer-cta">
-  <img src="index/newfavicon.png" alt="" class="footer-jar" />
-  <p class="footer-cta-text">LET'S WORK TOGETHER!</p>
-  <div class="footer-social">
-    <a href="https://www.linkedin.com/in/camila-garcia-04r17/" target="_blank" rel="noopener" aria-label="LinkedIn">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
-    </a>
-    <a href="mailto:cmlagarcia9@gmail.com" aria-label="Email">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-    </a>
-  </div>
-</footer>
-
-<div style="display:none">
 
 <div class="cs-divider"></div>
 
 <!-- ── 01 RESEARCH ────────────────────────────────────────────────── -->
 <section class="cs-section" id="section-1">
-  <div class="chapter-label">01 — Research</div>
+  <div class="chapter-label">Research</div>
   <div class="cs-two-col">
     <div>
-      <h2 class="cs-section-heading">Understanding Detroit before drawing a single line</h2>
+      <!-- <h2 class="cs-section-heading">Understanding Detroit before drawing a single line</h2> -->
       <p class="cs-body">Before any mark is made, the city has to be understood. Detroit carries contradictions: industrial decay and creative resilience, blue-collar roots and boundary-pushing culture. Its identity is not one thing — and neither should a hockey team's brand be.</p>
       <p class="cs-body">Research covered two parallel tracks: the <strong>history of Detroit as a city</strong> and the <strong>history of hockey in Detroit</strong>. Both informed every decision that followed.</p>
     </div>
@@ -1042,221 +541,45 @@
       </div>
     </div>
   </div>
-
-  <!-- Key insight strip -->
-  <div style="margin-top:2rem; padding: 2rem 2rem; background: rgba(200,16,46,0.05); border-left: 3px solid var(--det-red); border-radius: 0 0.5rem 0.5rem 0;">
-    <div style="font-family:'Poppins',sans-serif; font-size:0.62rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--det-red); margin-bottom:0.6rem;">Key Design Insight</div>
-    <p style="font-family:'Poppins',sans-serif; font-size:1.15rem; line-height:1.55; color:var(--dark); max-width:68ch;">Detroit doesn't perform toughness — it lives it. The brand must feel <em>earned</em>, not imposed. Imagery of steel, rivers, and motion rather than generic sports aggression.</p>
-  </div>
-</section>
-
-<div class="cs-divider"></div>
-
-<!-- ── PULL QUOTE ─────────────────────────────────────────────────── -->
-<div class="cs-quote cs-section-wide" id="quote-1">
-  <span class="cs-quote-accent">"</span>
-  <p class="cs-quote-text">Detroit doesn't need to borrow toughness from anywhere else. It is the source.</p>
-  <p class="cs-quote-attr">— Research conclusion, brand brief</p>
-</div>
-
-<div class="cs-divider"></div>
-
-<!-- ── 02 MOODBOARD ───────────────────────────────────────────────── -->
-<section class="cs-section" id="section-2">
-  <div class="chapter-label">02 — Moodboard</div>
-  <div class="cs-two-col">
-    <div>
-      <h2 class="cs-section-heading">Visual references that shaped the direction</h2>
-      <p class="cs-body">The moodboard synthesizes the emotional tone of the brand before any logo or color decision is made. Images were selected across three themes: <strong>industrial Detroit</strong>, <strong>hockey culture</strong>, and <strong>women in sport</strong>.</p>
-    </div>
-    <div>
-      <p class="cs-body">Key visual references include the geometric patterns of Detroit's Pewabic tile work, the graphic language of vintage sports pennants, steel mill photography, Great Lakes light, and the physicality of women's hockey at the elite level.</p>
-    </div>
-  </div>
-
-  <!-- Moodboard grid — add your images by replacing the background colors / placeholder boxes -->
-  <div class="moodboard-grid">
-    <div class="mb-cell mb-a" style="background:#1a1a2e;">
-      <div class="mb-swatch" style="background: linear-gradient(135deg, #0C1F3F 0%, #1a3355 100%); height:100%;">
-        <span class="mb-swatch-label" style="color:rgba(250,245,236,0.4); font-family:'Poppins',sans-serif; font-size:0.58rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;">Image: Detroit Skyline / Steel</span>
-      </div>
-    </div>
-    <div class="mb-cell mb-b" style="background:#C8102E;">
-      <div class="mb-swatch" style="height:100%;">
-        <span class="mb-swatch-label" style="color:rgba(250,245,236,0.5); font-family:'Poppins',sans-serif; font-size:0.58rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;">Image: Hockey Action</span>
-      </div>
-    </div>
-    <div class="mb-cell mb-c" style="background:#e8e3db;">
-      <div class="mb-swatch" style="height:100%;">
-        <span class="mb-swatch-label" style="color:rgba(42,32,24,0.35); font-family:'Poppins',sans-serif; font-size:0.58rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;">Image: Pewabic Tile</span>
-      </div>
-    </div>
-    <div class="mb-cell mb-d" style="background:#C4922A;">
-      <div class="mb-swatch" style="height:100%;">
-        <span class="mb-swatch-label" style="color:rgba(250,245,236,0.5); font-family:'Poppins',sans-serif; font-size:0.58rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;">Image: Vintage Pennant</span>
-      </div>
-    </div>
-    <div class="mb-cell mb-e" style="background:#3a3a3a;">
-      <div class="mb-swatch" style="height:100%;">
-        <span class="mb-swatch-label" style="color:rgba(250,245,236,0.35); font-family:'Poppins',sans-serif; font-size:0.58rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;">Image: Steel Mill</span>
-      </div>
-    </div>
-    <div class="mb-cell mb-f" style="background:#8B9BAD;">
-      <div class="mb-swatch" style="height:100%;">
-        <span class="mb-swatch-label" style="color:rgba(250,245,236,0.55); font-family:'Poppins',sans-serif; font-size:0.58rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;">Image: Great Lakes Light</span>
-      </div>
-    </div>
-    <div class="mb-cell mb-g" style="background:#2a2018;">
-      <div class="mb-swatch" style="height:100%;">
-        <span class="mb-swatch-label" style="color:rgba(250,245,236,0.3); font-family:'Poppins',sans-serif; font-size:0.58rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;">Image: Women's Hockey</span>
-      </div>
-    </div>
-    <div class="mb-cell mb-h" style="background:#ddd7cf;">
-      <div class="mb-swatch" style="height:100%;">
-        <span class="mb-swatch-label" style="color:rgba(42,32,24,0.35); font-family:'Poppins',sans-serif; font-size:0.58rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;">Image: Typography Ref</span>
-      </div>
-    </div>
-  </div>
-  <p style="margin-top:0.75rem; font-size:0.72rem; color:rgba(42,32,24,0.4); font-family:'Poppins',sans-serif; letter-spacing:0.06em;">Replace placeholder cells with your moodboard images.</p>
-</section>
-
-<div class="cs-divider"></div>
-
-<!-- ── 03 SKETCHES ────────────────────────────────────────────────── -->
-<section class="cs-section" id="section-3">
-  <div class="chapter-label">03 — Sketches &amp; Ideation</div>
-  <div class="cs-two-col">
-    <div>
-      <h2 class="cs-section-heading">Exploring directions before committing to one</h2>
-      <p class="cs-body">Sketching serves one purpose: generating more ideas than you'll ever use. No concept is too literal or too abstract at this stage. The goal is volume, then ruthless editing.</p>
-    </div>
-    <div>
-      <p class="cs-body">Directions explored included a stylized Detroit River wave form, geometric interpretations of the Ambassador Bridge, letterform-based marks, and animal mascot concepts rooted in Michigan's natural iconography.</p>
-    </div>
-  </div>
-
-  <div class="sketch-grid">
-    <div class="sketch-card">
-      <div class="sketch-img">
-        <div class="sketch-img-icon">✏️</div>
-        <span class="cs-image-label">Concept Sketch A</span>
-      </div>
-      <div class="sketch-meta">
-        <div class="sketch-label">Direction 01</div>
-        <div class="sketch-title">River &amp; Wave Form</div>
-        <div class="sketch-desc">Abstract mark derived from the movement of the Detroit River — fluid, continuous, referencing both water and the motion of a skate blade.</div>
-      </div>
-    </div>
-    <div class="sketch-card">
-      <div class="sketch-img">
-        <div class="sketch-img-icon">✏️</div>
-        <span class="cs-image-label">Concept Sketch B</span>
-      </div>
-      <div class="sketch-meta">
-        <div class="sketch-label">Direction 02</div>
-        <div class="sketch-title">Bridge Geometry</div>
-        <div class="sketch-desc">Geometric interpretation of the Ambassador Bridge's structural arches — bold, angular, industrial. Connects Detroit and Windsor; connection as identity.</div>
-      </div>
-    </div>
-    <div class="sketch-card">
-      <div class="sketch-img">
-        <div class="sketch-img-icon">✏️</div>
-        <span class="cs-image-label">Concept Sketch C</span>
-      </div>
-      <div class="sketch-meta">
-        <div class="sketch-label">Direction 03</div>
-        <div class="sketch-title">Letterform Mark</div>
-        <div class="sketch-desc">Wordmark-forward approach using a custom "D" form that references the Red Wings' historic block lettering while carving out a distinct feminine energy.</div>
-      </div>
-    </div>
-    <div class="sketch-card">
-      <div class="sketch-img">
-        <div class="sketch-img-icon">✏️</div>
-        <span class="cs-image-label">Concept Sketch D</span>
-      </div>
-      <div class="sketch-meta">
-        <div class="sketch-label">Direction 04</div>
-        <div class="sketch-title">Wolf / Predator Mark</div>
-        <div class="sketch-desc">Michigan's timber wolf as a mascot mark — rendered in a flat, heraldic style with strong negative space. Power without aggression.</div>
-      </div>
-    </div>
-    <div class="sketch-card">
-      <div class="sketch-img">
-        <div class="sketch-img-icon">✏️</div>
-        <span class="cs-image-label">Concept Sketch E</span>
-      </div>
-      <div class="sketch-meta">
-        <div class="sketch-label">Direction 05</div>
-        <div class="sketch-title">Crest / Shield Form</div>
-        <div class="sketch-desc">Traditional hockey crest structure updated with asymmetric tension — a nod to sport heritage, pushed into a modern frame with sharp geometric subdivisions.</div>
-      </div>
-    </div>
-    <div class="sketch-card">
-      <div class="sketch-img">
-        <div class="sketch-img-icon">✏️</div>
-        <span class="cs-image-label">Concept Sketch F</span>
-      </div>
-      <div class="sketch-meta">
-        <div class="sketch-label">Direction 06</div>
-        <div class="sketch-title">Pewabic Tile Pattern</div>
-        <div class="sketch-desc">Pattern system inspired by Detroit's Pewabic Pottery tile — used as a secondary graphic element rather than a primary mark. Rich geometric surface texture.</div>
-      </div>
-    </div>
-  </div>
 </section>
 
 <div class="cs-divider"></div>
 
 <!-- ── 04 COLOR PALETTE ───────────────────────────────────────────── -->
 <section class="cs-section" id="section-4">
-  <div class="chapter-label">04 — Color Palette</div>
-  <h2 class="cs-section-heading">A palette built from Detroit, not borrowed from it</h2>
-  <p class="cs-body" style="max-width:64ch;">Each color is tied to a specific source in Detroit's identity. No color is decorative — every choice can be defended with context.</p>
+  <div class="chapter-label">Color Palette</div>
 
-  <div class="palette-row">
-    <div class="palette-swatch swatch-on-dark" style="background:#C8102E;">
-      <div class="swatch-name">Detroit Red</div>
-      <div class="swatch-hex">#C8102E</div>
+  <div class="cs-two-col" style="align-items:stretch; gap:3rem;">
+    <div>
+      <img src="pwhl/detroitdrivecolorpalette.png" alt="Detroit Drive color palette" style="width:100%; display:block; border-radius:8px;">
     </div>
-    <div class="palette-swatch swatch-on-dark" style="background:#0C1F3F;">
-      <div class="swatch-name">River Navy</div>
-      <div class="swatch-hex">#0C1F3F</div>
+    <div id="det-swatch-box" style="border-radius:8px; width:100%; height:100%; min-height:100%; position:relative; transition: background 0.4s ease;">
+      <span id="det-swatch-hex" style="position:absolute; top:0.75rem; right:0.9rem; font-family:'Poppins',sans-serif; font-size:0.75rem; font-weight:700; letter-spacing:0.05em; transition: color 0.4s ease;"></span>
     </div>
-    <div class="palette-swatch swatch-on-dark" style="background:#C4922A;">
-      <div class="swatch-name">Foundry Gold</div>
-      <div class="swatch-hex">#C4922A</div>
-    </div>
-    <div class="palette-swatch swatch-on-dark" style="background:#8B9BAD;">
-      <div class="swatch-name">Steel Fog</div>
-      <div class="swatch-hex">#8B9BAD</div>
-    </div>
-    <div class="palette-swatch swatch-on-light" style="background:#FAF5EC; border: 1px solid rgba(42,32,24,0.08);">
-      <div class="swatch-name">Lake Cream</div>
-      <div class="swatch-hex">#FAF5EC</div>
-    </div>
-  </div>
-
-  <div class="palette-notes">
-    <div class="palette-note">
-      <div class="palette-note-role">Primary</div>
-      <div class="palette-note-name">Detroit Red</div>
-      <div class="palette-note-use">Sourced from the Red Wings' century of hockey dominance. The dominant jersey color, logo color, and primary brand expression.</div>
-    </div>
-    <div class="palette-note">
-      <div class="palette-note-role">Primary</div>
-      <div class="palette-note-name">River Navy</div>
-      <div class="palette-note-use">The depth of the Detroit River at dusk. Used for dark backgrounds, the away jersey base, and typography on light surfaces.</div>
-    </div>
-    <div class="palette-note">
-      <div class="palette-note-role">Accent</div>
-      <div class="palette-note-name">Foundry Gold</div>
-      <div class="palette-note-use">Molten metal, Michigan manufacturing. Used sparingly for contrast and detail — jersey trim, logomark accents, and print highlights.</div>
-    </div>
-    <div class="palette-note">
-      <div class="palette-note-role">Secondary</div>
-      <div class="palette-note-name">Steel Fog + Lake Cream</div>
-      <div class="palette-note-use">Neutral tones for editorial use, off-white backgrounds, and breathing room. Steel Fog adds depth without competing with the primaries.</div>
-    </div>
+    <script>
+      (function() {
+        var colors = [
+          { bg: '#C8102E', text: '#fff' },
+          { bg: '#0C1F3F', text: '#fff' },
+          { bg: '#C4922A', text: '#1a1a1a' },
+          { bg: '#8B9BAD', text: '#1a1a1a' },
+          { bg: '#FAF5EC', text: '#1a1a1a' }
+        ];
+        var i = 0;
+        var box = document.getElementById('det-swatch-box');
+        var hex = document.getElementById('det-swatch-hex');
+        function set(idx) {
+          box.style.background = colors[idx].bg;
+          hex.style.color = colors[idx].text;
+          hex.textContent = colors[idx].bg;
+        }
+        set(0);
+        setInterval(function() {
+          i = (i + 1) % colors.length;
+          set(i);
+        }, 1500);
+      })();
+    </script>
   </div>
 </section>
 
@@ -1264,20 +587,18 @@
 
 <!-- ── 05 TYPOGRAPHY ──────────────────────────────────────────────── -->
 <section class="cs-section" id="section-5">
-  <div class="chapter-label">05 — Typography</div>
-  <h2 class="cs-section-heading">Type that carries the brand voice</h2>
-  <p class="cs-body" style="max-width:64ch;">Three typefaces work together to cover the full range from monumental display moments to functional body copy — each chosen to reinforce the brand's dual nature of legacy and modernity.</p>
+  <div class="chapter-label">Typography</div>
 
   <div class="type-showcase">
     <!-- Display -->
     <div class="type-card">
       <div class="type-meta-col">
         <div class="type-role-tag">Display / Hero</div>
-        <div class="type-family-name">Collegiate / Block Condensed</div>
-        <div class="type-note">Jersey numbers, scoreboard moments, arena signage. Bold and unapologetic. Add your chosen display font here.</div>
+        <div class="type-family-name">Barlow ExtraBold</div>
+        <div class="type-note">Jersey numbers, scoreboard moments, arena signage. Bold and unapologetic.</div>
       </div>
       <div class="type-specimen-col">
-        <div class="type-specimen-display" style="font-family:'Poppins',sans-serif; font-weight:900; letter-spacing:-0.01em;">DETROIT</div>
+        <div class="type-specimen-display" style="font-family:'Barlow',sans-serif; font-weight:800; letter-spacing:-0.01em;">DETROIT</div>
         <div class="type-specimen-caps" style="font-size:0.85rem; margin-top:0.5rem; color:var(--det-red);">PWHL · EXPANSION TEAM · HOCKEYTOWN</div>
       </div>
     </div>
@@ -1286,11 +607,11 @@
     <div class="type-card">
       <div class="type-meta-col">
         <div class="type-role-tag">Editorial / Headers</div>
-        <div class="type-family-name">Serif — Bodoni-style</div>
+        <div class="type-family-name">Bodoni Moda</div>
         <div class="type-note">Campaign headlines, editorial layouts, press materials. The contrast between thick and thin strokes echoes the sharpness of a skate blade.</div>
       </div>
       <div class="type-specimen-col">
-        <div class="type-specimen-display" style="font-family:'Poppins',sans-serif; font-weight:400; font-style:italic;">Built on Ice,<br>Born in Detroit</div>
+        <div class="type-specimen-display" style="font-family:'Bodoni Moda',serif; font-weight:400; font-style:italic;">Built on Ice,<br>Born in Detroit</div>
       </div>
     </div>
 
@@ -1298,11 +619,11 @@
     <div class="type-card">
       <div class="type-meta-col">
         <div class="type-role-tag">Functional / Body</div>
-        <div class="type-family-name">Sans-Serif — Geometric</div>
+        <div class="type-family-name">Jost</div>
         <div class="type-note">Tickets, programs, digital UI, captions. Utilitarian and legible at small sizes. The working-class counterpart to the display type's grandeur.</div>
       </div>
       <div class="type-specimen-col">
-        <div class="type-specimen-body" style="font-family:'Poppins',sans-serif;">The PWHL Detroit expansion team represents a new chapter in Hockeytown — one that belongs to every fan who has ever laced up.</div>
+        <div class="type-specimen-body" style="font-family:'Jost',sans-serif;">The PWHL Detroit expansion team represents a new chapter in Hockeytown — one that belongs to every fan who has ever laced up.</div>
         <div class="type-specimen-caps" style="margin-top:0.75rem; font-size:0.7rem; color:rgba(42,32,24,0.4);">SEASON TICKETS · ARENA LEVEL 2 · GATE D</div>
       </div>
     </div>
@@ -1313,276 +634,79 @@
 
 <!-- ── 06 LOGO MARK ───────────────────────────────────────────────── -->
 <section class="cs-section" id="section-6">
-  <div class="chapter-label">06 — Logo &amp; Wordmark</div>
-  <div class="cs-two-col">
-    <div>
-      <h2 class="cs-section-heading">From sketch to final mark</h2>
-      <p class="cs-body">The logo development process moved from the six sketch directions to three refined candidates, then to a single refined mark. Each iteration tested legibility at jersey scale, clarity at favicon scale, and expression of the brand's core tension.</p>
-    </div>
-    <div>
-      <p class="cs-body">The selected direction carries the full weight of the brand: it is rooted in Detroit's visual vocabulary, works in two colors, and reads clearly from the upper deck of a hockey arena. It is not delicate — and it doesn't need to be.</p>
-    </div>
-  </div>
+  <div class="chapter-label">Logo &amp; Wordmark</div>
 
-  <!-- Logo exploration -->
-  <div class="logo-exploration">
-    <div class="logo-card">
-      <div class="logo-card-stage dark">
-        <div style="text-align:center;">
-          <div class="logo-placeholder-text">Candidate A<br>Add logo image</div>
-        </div>
-      </div>
-      <div class="logo-card-label">
-        <div class="logo-card-num">Round 01</div>
-        <div class="logo-card-name">River Wave Mark</div>
-      </div>
+  <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.5rem;">
+    <div style="background:var(--det-navy); border-radius:0.6rem; padding:3rem; display:flex; align-items:center; justify-content:center;">
+      <img src="pwhl/detroitdrivemark.png" alt="Detroit Drive logo mark" style="max-width:100%; max-height:280px; height:auto; display:block;" />
     </div>
-    <div class="logo-card">
-      <div class="logo-card-stage red">
-        <div style="text-align:center;">
-          <div class="logo-placeholder-text" style="color:rgba(250,245,236,0.25);">Candidate B<br>Add logo image</div>
-        </div>
-      </div>
-      <div class="logo-card-label">
-        <div class="logo-card-num">Round 01</div>
-        <div class="logo-card-name">Letterform "D" Mark</div>
-      </div>
-    </div>
-    <div class="logo-card">
-      <div class="logo-card-stage light">
-        <div style="text-align:center;">
-          <div class="logo-placeholder-text">Candidate C<br>Add logo image</div>
-        </div>
-      </div>
-      <div class="logo-card-label">
-        <div class="logo-card-num">Round 01</div>
-        <div class="logo-card-name">Crest / Shield Form</div>
-      </div>
+    <div style="background:#f0ece5; border-radius:0.6rem; padding:3rem; display:flex; align-items:center; justify-content:center;">
+      <img src="pwhl/detroitdrivetagline.png" alt="Detroit Drive tagline lockup" style="max-width:100%; max-height:280px; height:auto; display:block;" />
     </div>
   </div>
-
-  <!-- Final mark -->
-  <div style="margin-top:1.5rem;">
-    <div style="font-family:'Poppins',sans-serif; font-size:0.6rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--det-red); margin-bottom:0.75rem;">Final Mark</div>
-    <div class="logo-final">
-      <div class="logo-final-box">
-        <div class="logo-final-placeholder">Add your final logo here</div>
-      </div>
-      <div class="logo-final-placeholder" style="margin-top:0.5rem;">Primary logomark · Primary wordmark · Secondary badge</div>
-    </div>
-  </div>
-
-  <!-- Logo on backgrounds -->
-  <div style="margin-top:1.5rem; display:grid; grid-template-columns: repeat(3,1fr); gap:1rem;">
-    <div style="background:var(--det-navy); border-radius:0.4rem; padding:2rem; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:0.5rem; min-height:120px;">
-      <div style="font-family:'Poppins',sans-serif; font-size:0.58rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(250,245,236,0.25);">On Navy</div>
-    </div>
-    <div style="background:var(--det-red); border-radius:0.4rem; padding:2rem; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:0.5rem; min-height:120px;">
-      <div style="font-family:'Poppins',sans-serif; font-size:0.58rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(250,245,236,0.25);">On Red</div>
-    </div>
-    <div style="background:#FAF5EC; border:1px solid rgba(42,32,24,0.08); border-radius:0.4rem; padding:2rem; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:0.5rem; min-height:120px;">
-      <div style="font-family:'Poppins',sans-serif; font-size:0.58rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(42,32,24,0.2);">On Light</div>
-    </div>
-  </div>
-  <p style="margin-top:0.6rem; font-size:0.72rem; color:rgba(42,32,24,0.4); font-family:'Poppins',sans-serif; letter-spacing:0.06em;">Logo shown on all approved background colors — replace with final artwork.</p>
 </section>
 
 <div class="cs-divider"></div>
 
 <!-- ── 07 MERCHANDISE & JERSEYS ───────────────────────────────────── -->
 <section class="cs-section" id="section-7">
-  <div class="chapter-label">07 — Merchandise &amp; Jersey Designs</div>
-  <div class="cs-two-col">
-    <div>
-      <h2 class="cs-section-heading">Where the brand becomes tangible</h2>
-      <p class="cs-body">Merchandise is proof of concept — it's where a brand identity has to survive contact with the real world: printed at scale, worn by fans, photographed under arena lights.</p>
-    </div>
-    <div>
-      <p class="cs-body">Three jersey colorways were designed: a home red, an away navy, and an alternate cream. Supporting merchandise extends the visual system across apparel, accessories, and arena graphics.</p>
-    </div>
-  </div>
-
-  <!-- Jersey color strip -->
-  <div style="background: #f0ece5; border-radius:0.5rem; margin-top:2.5rem; overflow:hidden;">
-    <div style="padding:1.25rem 1.75rem; border-bottom:1px solid rgba(42,32,24,0.07);">
-      <div style="font-family:'Poppins',sans-serif; font-size:0.6rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--det-red);">Jersey Colorways</div>
-    </div>
-    <div class="jersey-strips">
-      <div class="jersey-strip">
-        <div class="jersey-color-bar" style="background: linear-gradient(to bottom, var(--det-red) 60%, var(--det-navy) 60%);">
-          <span style="font-family:'Poppins',sans-serif; font-size:0.5rem; font-weight:700; color:rgba(250,245,236,0.6); letter-spacing:0.05em;">HOME</span>
-        </div>
-        <div class="jersey-strip-label">Home Red</div>
-        <div style="font-family:'Poppins',sans-serif; font-size:0.58rem; color:rgba(42,32,24,0.4);">#C8102E · #0C1F3F</div>
-      </div>
-      <div class="jersey-strip">
-        <div class="jersey-color-bar" style="background: linear-gradient(to bottom, var(--det-navy) 60%, var(--det-red) 60%);">
-          <span style="font-family:'Poppins',sans-serif; font-size:0.5rem; font-weight:700; color:rgba(250,245,236,0.6); letter-spacing:0.05em;">AWAY</span>
-        </div>
-        <div class="jersey-strip-label">Away Navy</div>
-        <div style="font-family:'Poppins',sans-serif; font-size:0.58rem; color:rgba(42,32,24,0.4);">#0C1F3F · #C8102E</div>
-      </div>
-      <div class="jersey-strip">
-        <div class="jersey-color-bar" style="background: linear-gradient(to bottom, #FAF5EC 60%, var(--det-gold) 60%); border:1px solid rgba(42,32,24,0.1);">
-          <span style="font-family:'Poppins',sans-serif; font-size:0.5rem; font-weight:700; color:rgba(42,32,24,0.4); letter-spacing:0.05em;">ALT</span>
-        </div>
-        <div class="jersey-strip-label">Alternate Cream</div>
-        <div style="font-family:'Poppins',sans-serif; font-size:0.58rem; color:rgba(42,32,24,0.4);">#FAF5EC · #C4922A</div>
-      </div>
-      <div class="jersey-strip">
-        <div class="jersey-color-bar" style="background: linear-gradient(to bottom, #1a1a1a 50%, var(--det-red) 50%);">
-          <span style="font-family:'Poppins',sans-serif; font-size:0.5rem; font-weight:700; color:rgba(250,245,236,0.5); letter-spacing:0.05em;">SPEC</span>
-        </div>
-        <div class="jersey-strip-label">Special Edition</div>
-        <div style="font-family:'Poppins',sans-serif; font-size:0.58rem; color:rgba(42,32,24,0.4);">#1a1a1a · #C8102E</div>
-      </div>
-    </div>
-  </div>
+  <div class="chapter-label">Merchandise &amp; Jersey Designs</div>
 
   <!-- Merch grid -->
   <div class="merch-grid">
-    <div class="merch-card full">
+    <div class="merch-card">
       <div class="merch-img">
-        <div class="merch-img-icon">🧊</div>
-        <span class="cs-image-label">Home &amp; Away Jersey Flat Lay</span>
+        <img src="pwhl/detroitdrivehome.png" alt="Detroit Drive home jersey" style="object-fit:contain;" />
       </div>
       <div class="merch-info">
         <div class="merch-type">Primary Deliverable</div>
-        <div class="merch-title">Jersey Designs — All Colorways</div>
-        <div class="merch-desc">Home red, away navy, alternate cream, and special edition black. Each jersey uses the same number font, logo placement, and stripe system — ensuring visual consistency across all court appearances.</div>
-      </div>
-    </div>
-
-    <div class="merch-card">
-      <div class="merch-img tall">
-        <div class="merch-img-icon">🧢</div>
-        <span class="cs-image-label">Cap / Hat Mockup</span>
-      </div>
-      <div class="merch-info">
-        <div class="merch-type">Merchandise</div>
-        <div class="merch-title">Snapback &amp; Fitted Cap</div>
-        <div class="merch-desc">Embroidered primary mark on navy wool. Red underbrim. Leather strap in navy with gold hardware.</div>
-      </div>
-    </div>
-
-    <div class="merch-card">
-      <div class="merch-img tall">
-        <div class="merch-img-icon">👕</div>
-        <span class="cs-image-label">T-Shirt Mockup</span>
-      </div>
-      <div class="merch-info">
-        <div class="merch-type">Merchandise</div>
-        <div class="merch-title">Fan Tee — Wordmark</div>
-        <div class="merch-desc">Oversized fit in cream with a two-color screen print. Secondary wordmark centered. City name across the back in display type.</div>
+        <div class="merch-title">Home Jersey</div>
+        <div class="merch-desc">The home colorway in Detroit Red, carrying the primary mark front and center.</div>
       </div>
     </div>
 
     <div class="merch-card">
       <div class="merch-img">
-        <div class="merch-img-icon">🎟️</div>
-        <span class="cs-image-label">Game Ticket / Program</span>
+        <img src="pwhl/detroitdriveaway.png" alt="Detroit Drive away jersey" style="object-fit:contain;" />
       </div>
       <div class="merch-info">
-        <div class="merch-type">Print Collateral</div>
-        <div class="merch-title">Season Ticket &amp; Game Program</div>
-        <div class="merch-desc">Foil-stamp logo on season ticket stock. Program cover uses the Pewabic-inspired pattern system as a background texture.</div>
+        <div class="merch-type">Primary Deliverable</div>
+        <div class="merch-title">Away Jersey</div>
+        <div class="merch-desc">The away colorway in River Navy, keeping the same mark placement and stripe system as the home jersey.</div>
       </div>
     </div>
 
     <div class="merch-card">
       <div class="merch-img">
-        <div class="merch-img-icon">🧣</div>
-        <span class="cs-image-label">Scarf / Banner Mockup</span>
+        <img src="pwhl/detroitdrivecrest.png" alt="Detroit Drive crest" style="object-fit:contain;" />
       </div>
       <div class="merch-info">
         <div class="merch-type">Merchandise</div>
-        <div class="merch-title">Supporter Scarf &amp; Arena Banner</div>
-        <div class="merch-desc">Woven scarf in home red with gold stripe. Arena banner system for the Little Caesars Arena concourse using the full palette.</div>
+        <div class="merch-title">Crest</div>
+        <div class="merch-desc">A compact, shield-style version of the mark built for patches, pins, and embroidery.</div>
       </div>
     </div>
-  </div>
-</section>
 
-<div class="cs-divider"></div>
+    <div class="merch-card">
+      <div class="merch-img">
+        <img src="pwhl/drivescarf.png" alt="Detroit Drive supporter scarf, version one" style="object-fit:contain;" />
+      </div>
+      <div class="merch-info">
+        <div class="merch-type">Merchandise</div>
+        <div class="merch-title">Supporter Scarf — 01</div>
+        <div class="merch-desc">A woven scarf in the primary colorway, made for game days.</div>
+      </div>
+    </div>
 
-<!-- ── 08 BRAND GUIDELINES ─────────────────────────────────────────── -->
-<section class="cs-section" id="section-8">
-  <div class="chapter-label">08 — Brand Guidelines</div>
-  <div class="cs-two-col">
-    <div>
-      <h2 class="cs-section-heading">How the brand is used — and protected</h2>
-      <p class="cs-body">A brand is only as strong as its consistency. These guidelines define how the visual system is applied across contexts — ensuring the identity holds from a 40-foot arena banner to a 16px mobile favicon.</p>
-    </div>
-    <div>
-      <p class="cs-body">Rules exist not to be restrictive, but to preserve the intent behind every design decision. Clear space, color hierarchy, and type pairing rules prevent the system from drifting over time.</p>
-    </div>
-  </div>
-
-  <div class="guidelines-grid">
-    <div class="guideline-card do">
-      <div class="guideline-header">
-        <span class="guideline-badge do">Do</span>
-        <span style="font-family:'Poppins',sans-serif; font-size:1rem; color:#16130f;">Logo Usage</span>
+    <div class="merch-card">
+      <div class="merch-img">
+        <img src="pwhl/drivescarf2.png" alt="Detroit Drive supporter scarf, version two" style="object-fit:contain;" />
       </div>
-      <ul class="guideline-list do">
-        <li>Use the primary mark on approved background colors only (navy, red, cream)</li>
-        <li>Maintain clear space equal to the height of the "D" on all sides</li>
-        <li>Use the one-color version when printing on a single-color surface</li>
-        <li>Scale the wordmark proportionally using the locked lockup file</li>
-        <li>Use the secondary badge mark for small-scale applications (under 1 inch)</li>
-      </ul>
-    </div>
-    <div class="guideline-card dont">
-      <div class="guideline-header">
-        <span class="guideline-badge dont">Don't</span>
-        <span style="font-family:'Poppins',sans-serif; font-size:1rem; color:#16130f;">Logo Usage</span>
+      <div class="merch-info">
+        <div class="merch-type">Merchandise</div>
+        <div class="merch-title">Supporter Scarf — 02</div>
+        <div class="merch-desc">An alternate scarf treatment carrying the same system in a different layout.</div>
       </div>
-      <ul class="guideline-list dont">
-        <li>Do not stretch, skew, or distort the logo mark</li>
-        <li>Do not place the logo on a patterned background without a solid backing</li>
-        <li>Do not use unapproved colors — the Steel Fog swatch is never used for the logo</li>
-        <li>Do not outline or add drop shadows to the mark</li>
-        <li>Do not recreate the logo in unauthorized typefaces</li>
-      </ul>
-    </div>
-    <div class="guideline-card do">
-      <div class="guideline-header">
-        <span class="guideline-badge do">Do</span>
-        <span style="font-family:'Poppins',sans-serif; font-size:1rem; color:#16130f;">Color &amp; Type</span>
-      </div>
-      <ul class="guideline-list do">
-        <li>Use Detroit Red as the dominant primary in all marketing contexts</li>
-        <li>Pair display type with generous white space — let it breathe</li>
-        <li>Use Lake Cream as a neutral backdrop for editorial layouts</li>
-        <li>Reserve Foundry Gold for detail and trim — never as a body color</li>
-        <li>Maintain a 4.5:1 contrast ratio for all text and background combinations</li>
-      </ul>
-    </div>
-    <div class="guideline-card dont">
-      <div class="guideline-header">
-        <span class="guideline-badge dont">Don't</span>
-        <span style="font-family:'Poppins',sans-serif; font-size:1rem; color:#16130f;">Color &amp; Type</span>
-      </div>
-      <ul class="guideline-list dont">
-        <li>Do not use red type on a navy background — insufficient contrast</li>
-        <li>Do not mix display and body type at the same hierarchy level</li>
-        <li>Do not introduce colors outside the approved five-color palette</li>
-        <li>Do not use Steel Fog as a primary surface color — it's a supporting neutral only</li>
-        <li>Do not set body copy in the display/collegiate typeface</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Clear space demo -->
-  <div style="margin-top:2rem;">
-    <div style="font-family:'Poppins',sans-serif; font-size:0.6rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); margin-bottom:0.75rem;">Minimum Clear Space</div>
-    <div class="clearspace-demo">
-      <div class="clearspace-inner">
-        <div style="display:flex; align-items:center; justify-content:center; padding:1.5rem; border:1px dashed rgba(200,16,46,0.3); width:160px; height:80px;">
-          <div style="font-family:'Poppins',sans-serif; font-size:0.72rem; color:rgba(42,32,24,0.25); letter-spacing:0.06em;">LOGO HERE</div>
-        </div>
-      </div>
-      <p class="clearspace-label">Dashed boundary = minimum clear space (equal to the cap-height of the wordmark). No other element may intrude.</p>
     </div>
   </div>
 </section>
@@ -1602,25 +726,9 @@
   </footer>
 
 <script>
-  // Center-based scroll fade
-  const fadeSections = Array.from(document.querySelectorAll('.cs-hero, .cs-section, .cs-section-wide'));
-  function updateFade() {
-    const vh = window.innerHeight;
-    fadeSections.forEach(el => {
-      const rect = el.getBoundingClientRect();
-      const visTop = Math.max(rect.top, 0);
-      const visBot = Math.min(rect.bottom, vh);
-      const center = rect.height > vh ? (visTop + visBot) / 2 : rect.top + rect.height / 2;
-      const dist = Math.abs(center - vh / 2);
-      el.style.opacity = Math.max(0, 1 - dist / (vh * 0.75));
-    });
-  }
-  window.addEventListener('scroll', updateFade, { passive: true });
-
   // Dot active state by scroll position
   const dots = document.querySelectorAll('.cs-progress-dot');
-  const sectionIds = ['section-0','section-1','quote-1','section-2','section-3','section-4','section-5','section-6','section-7','section-8'];
-  const sectionEls = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+  const sectionEls = Array.from(dots).map(d => document.getElementById('section-' + d.dataset.section));
   window.addEventListener('scroll', () => {
     const scrollY = window.scrollY + window.innerHeight * 0.4;
     let active = 0;
@@ -1631,15 +739,13 @@
   }, { passive: true });
 
   // Dot click navigation
-  dots.forEach((dot, i) => {
+  dots.forEach((dot) => {
     dot.addEventListener('click', () => {
-      const target = document.getElementById('section-' + i);
+      const target = document.getElementById('section-' + dot.dataset.section);
       if (target) target.scrollIntoView({ behavior: 'smooth' });
     });
   });
 </script>
-
-</div>
 
 </body>
 </html>
