@@ -8,13 +8,95 @@
   --olive-dark: #566349;
   --dark:    #2a2018;
   --muted:   rgba(42,32,24,0.5);
+
+  /* ── TYPOGRAPHY SYSTEM ──────────────────────────────────────
+     Title → hero name (index.html)
+     H1    → hero tagline (index.html) + case-study hero titles, e.g. "Spotter" (spotter.html) + About "I didn't start..." heading (about.html) — same scale as H1, but black instead of blue
+     H2    → "Playground" heading (playground.html)
+     H3    → About accordion section labels, e.g. "Behind the resume" (about.html)
+     H4    → work-grid card tags, e.g. "Product Design" (index.html)
+     Body  → paragraph copy across case studies, about, projects */
+  --type-title-size:   clamp(4.2rem, 12vw, 10rem);
+  --type-title-weight: 700;
+  --type-title-color:  #16130f;
+
+  --type-h1-size:   clamp(2rem, 4.8vw, 3.2rem);
+  --type-h1-weight: 500;
+  --type-h1-color:  #0077FF;
+
+  --type-h2-size:   clamp(1.8rem, 4vw, 2.6rem);
+  --type-h2-weight: 700;
+  --type-h2-color:  #16130f;
+
+  --type-h3-size:   clamp(1.1rem, 2.2vw, 1.4rem);
+  --type-h3-weight: 600;
+  --type-h3-color:  #16130f;
+
+  --type-h4-size:     0.875rem;
+  --type-h4-weight:   600;
+  --type-h4-tracking: 0.04em;
+  --type-h4-color:    rgba(22,19,15,0.45);
+
+  --type-body-size:        1.125rem;
+  --type-body-weight:      400;
+  --type-body-line-height: 1.75;
+  --type-body-color:       rgba(22,19,15,0.65);
 }
+
+/* ── TYPOGRAPHY UTILITY CLASSES ──────────────────────────────────
+   Reach for these on new elements going forward instead of
+   hardcoding a font-size/weight — keeps future pages in sync with
+   the system documented in the Typography Style Guide. */
+.type-title { font-family: 'Poppins', sans-serif; font-weight: var(--type-title-weight); font-size: var(--type-title-size); color: var(--type-title-color); line-height: 1; letter-spacing: -0.02em; }
+.type-h1    { font-family: 'Poppins', sans-serif; font-weight: var(--type-h1-weight); font-size: var(--type-h1-size); color: var(--type-h1-color); }
+.type-h2    { font-family: 'Poppins', sans-serif; font-weight: var(--type-h2-weight); font-size: var(--type-h2-size); color: var(--type-h2-color); letter-spacing: -0.01em; }
+.type-h3    { font-family: 'Poppins', sans-serif; font-weight: var(--type-h3-weight); font-size: var(--type-h3-size); color: var(--type-h3-color); }
+.type-h4    { font-family: 'Poppins', sans-serif; font-weight: var(--type-h4-weight); font-size: var(--type-h4-size); color: var(--type-h4-color); letter-spacing: var(--type-h4-tracking); text-transform: uppercase; }
+.type-body  { font-family: 'Poppins', sans-serif; font-weight: var(--type-body-weight); font-size: var(--type-body-size); line-height: var(--type-body-line-height); color: var(--type-body-color); }
 
 html { scroll-behavior: smooth; }
 
+/* ── SHARED PAGE NAV (pill, top-right on every page) ───────────── */
+.hero-nav {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding: 1.5rem 6vw 0;
+  position: sticky;
+  top: 1rem;
+  z-index: 500;
+}
+.hero-nav-pill {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  border: 1px solid rgba(22,19,15,0.15);
+  border-radius: 999px;
+  padding: 0.6rem 1.6rem;
+  background: #fff;
+}
+.hero-nav-pill a {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #16130f;
+  opacity: 0.55;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.hero-nav-pill a:hover { opacity: 1; }
+.hero-nav-pill a.active { opacity: 1; font-weight: 700; }
+@media (max-width: 700px) {
+  .hero-nav { justify-content: center; }
+  .hero-nav-pill { gap: 1rem; padding: 0.55rem 1.1rem; flex-wrap: wrap; justify-content: center; }
+}
+
 /* Override browser default Times New Roman */
 :where(h1,h2,h3,h4,h5,h6):not([class]) {
-  font-family: 'Liu Jian Mao Cao', cursive;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
@@ -100,7 +182,7 @@ body {
 
 .nav-name-pill {
   position: relative;
-  font-family: 'Bodoni Moda', serif;
+  font-family: 'Poppins', sans-serif;
   font-style: normal;
   font-size: 1.3rem;
   color: var(--cream);
@@ -282,7 +364,7 @@ body.nav-on-dark .nav-links a.nav-pill:hover {
 
 .hero-invite-line {
   display: inline-block;
-  font-family: 'Liu Jian Mao Cao', cursive;
+  font-family: 'Poppins', sans-serif;
   font-size: 1.2rem;
   font-weight: 300;
   color: #fdf6ed;
@@ -328,7 +410,7 @@ body.nav-on-dark .nav-links a.nav-pill:hover {
 /* cycling word (typewriter) */
 #cycling-word {
   display: inline-block;
-  font-family: 'Liu Jian Mao Cao', cursive;
+  font-family: 'Poppins', sans-serif;
   font-weight: 400;
   font-size: 1.2em;
   min-width: 5ch;
@@ -383,11 +465,11 @@ body.nav-on-dark .nav-links a.nav-pill:hover {
 }
 
 h1 {
-  font-family: 'Liu Jian Mao Cao', cursive;
+  font-family: 'Poppins', sans-serif;
 }
 
 .intro-heading {
-  font-family: 'Liu Jian Mao Cao', cursive;
+  font-family: 'Poppins', sans-serif;
   font-size: clamp(3.5rem, 6vw, 5.5rem);
   font-weight: 400;
   line-height: 1.1;
@@ -523,7 +605,7 @@ a.icon-circle:hover img {
 }
 
 .work-view-all {
-  font-family: 'Liu Jian Mao Cao', cursive;
+  font-family: 'Poppins', sans-serif;
   font-style: italic;
   font-size: 0.9rem;
   color: var(--dark);
@@ -666,7 +748,7 @@ a.icon-circle:hover img {
 }
 
 .cw-title {
-  font-family: 'Liu Jian Mao Cao', cursive;
+  font-family: 'Poppins', sans-serif;
   font-size: clamp(2.2rem, 3.5vw, 3rem);
   font-weight: 400;
   color: var(--dark);
@@ -688,7 +770,7 @@ a.icon-circle:hover img {
 }
 
 .cw-link {
-  font-family: 'Liu Jian Mao Cao', cursive;
+  font-family: 'Poppins', sans-serif;
   font-style: italic;
   font-size: 0.95rem;
   color: var(--olive);
@@ -761,7 +843,7 @@ a.icon-circle:hover img {
 }
 
 .project-title {
-  font-family: 'Liu Jian Mao Cao', cursive;
+  font-family: 'Poppins', sans-serif;
   font-size: clamp(2rem, 3.4vw, 2.8rem);
   font-weight: 400;
   line-height: 1.25;
@@ -802,34 +884,6 @@ a.icon-circle:hover img {
 }
 .project-link:hover { letter-spacing: 0.05em; color: var(--dark); }
 
-/* ── FOOTER ───────────────────────────────────────────────────── */
-footer {
-  background: var(--olive);
-  padding: 2.5rem 6vw;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.footer-label {
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.68rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(253,246,237,0.55);
-  margin-bottom: 0.4rem;
-}
-
-.footer-email {
-  font-family: 'Liu Jian Mao Cao', cursive;
-  font-size: 1rem;
-  color: var(--cream);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(253,246,237,0.3);
-  padding-bottom: 1px;
-  transition: border-color 0.2s;
-}
-.footer-email:hover { border-color: var(--cream); }
 
 .footer-right {
   display: flex;
@@ -868,3 +922,37 @@ footer {
   .discipline-tabs { grid-template-columns: 1fr 1fr; }
   .discipline-col:nth-child(2) { border-right: none; }
 }
+
+/* ── SHARED FOOTER (jar icon, "Let's work together!", socials) ── */
+.site-footer-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 4rem 6vw 3.5rem;
+  text-align: center;
+}
+.footer-jar { width: 56px; height: auto; }
+.footer-cta-text {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  color: #16130f;
+}
+.footer-social {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.25rem;
+}
+.footer-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #16130f;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+.footer-social a:hover { opacity: 1; }
+.footer-social svg { width: 18px; height: 18px; }
