@@ -13,10 +13,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>All Projects — Camila Garcia</title>
-  <link rel="icon" type="image/png" href="index/home-icon-5.png">
+  <link rel="icon" type="image/png" href="index/newfavicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:wght@300;400;700&family=Liu+Jian+Mao+Cao&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="pages.css" />
   <style>
@@ -27,9 +27,13 @@
       background: var(--olive);
       padding: 9rem 6vw 5rem;
     }
+    .projects-header-inner {
+      max-width: 1800px;
+      margin: 0 auto;
+    }
 
     .projects-header h1 {
-      font-family: 'Liu Jian Mao Cao', cursive;
+      font-family: 'Poppins', sans-serif;
       font-size: clamp(2.8rem, 6vw, 5rem);
       font-weight: 400;
       color: var(--cream);
@@ -52,6 +56,8 @@
     /* ── FILTER TABS ────────────────────────────────────────── */
     .filter-bar {
       background: var(--cream);
+      max-width: 1800px;
+      margin: 0 auto;
       padding: 2rem 6vw 0;
       display: flex;
       gap: 0.5rem;
@@ -83,6 +89,8 @@
 
     /* ── PROJECT LIST ───────────────────────────────────────── */
     .projects-list {
+      max-width: 1800px;
+      margin: 0 auto;
       padding: 0 6vw 6rem;
     }
 
@@ -123,18 +131,20 @@
     }
 
     .project-item-title {
-      font-family: 'Liu Jian Mao Cao', cursive;
+      font-family: 'Poppins', sans-serif;
       font-size: clamp(1.3rem, 2.5vw, 1.8rem);
       font-weight: 400;
-      color: var(--dark);
+      color: #16130f;
       margin-bottom: 0.75rem;
       line-height: 1.2;
     }
 
     .project-item-desc {
-      font-size: 0.9rem;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      font-size: 1.125rem;
       line-height: 1.75;
-      color: var(--muted);
+      color: rgba(22,19,15,0.65);
       max-width: 52ch;
       margin-bottom: 1.2rem;
     }
@@ -156,7 +166,7 @@
     }
 
     .project-item-arrow {
-      font-family: 'Liu Jian Mao Cao', cursive;
+      font-family: 'Poppins', sans-serif;
       font-style: italic;
       font-size: 1.1rem;
       color: var(--olive);
@@ -184,7 +194,7 @@
     }
 
     .projects-contact h2 {
-      font-family: 'Liu Jian Mao Cao', cursive;
+      font-family: 'Poppins', sans-serif;
       font-style: italic;
       font-size: clamp(1.4rem, 3vw, 2.2rem);
       font-weight: 400;
@@ -192,7 +202,7 @@
     }
 
     .projects-contact a {
-      font-family: 'Liu Jian Mao Cao', cursive;
+      font-family: 'Poppins', sans-serif;
       font-size: 1rem;
       color: var(--cream);
       text-decoration: none;
@@ -212,21 +222,22 @@
 <body>
 
   <!-- ── NAV ──────────────────────────────────────────────────── -->
-  <nav id="site-nav">
-    <a href="index.html" class="nav-name-pill"><img src="shared/logomaybe.png" alt="" class="nav-name-logo" /><span class="nav-pill-text">Camila Garcia</span></a>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="index.html#work">Work</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="mailto:cmlagarcia9@gmail.com" class="nav-pill">Say Hello</a></li>
-    </ul>
+  <nav class="hero-nav">
+    <div class="hero-nav-pill">
+      <a href="index.html" class="active">Work</a>
+      <a href="playground.html">Playground</a>
+      <a href="about.html">My Story</a>
+      <a href="resume.html">Resume</a>
+    </div>
   </nav>
 
   <!-- ── HEADER ────────────────────────────────────────────────── -->
   <header class="projects-header" data-nav-theme="dark">
-    <p class="chapter-label" style="color:rgba(253,246,237,0.45);">Every project</p>
-    <h1 data-reveal="words">The work.<br><em>All of it.</em></h1>
-    <p>Case studies, experiments, and a few things that didn't have a name until they were done.</p>
+    <div class="projects-header-inner">
+      <p class="chapter-label" style="color:rgba(253,246,237,0.45);">Every project</p>
+      <h1 data-reveal="words">The work.<br><em>All of it.</em></h1>
+      <p>Case studies, experiments, and a few things that didn't have a name until they were done.</p>
+    </div>
   </header>
 
   <!-- ── FILTERS ───────────────────────────────────────────────── -->
@@ -321,21 +332,19 @@
 
   </div>
 
-  <!-- ── CONTACT STRIP ─────────────────────────────────────────── -->
-  <section class="projects-contact" data-nav-theme="dark">
-    <h2>Want to work together?</h2>
-    <a href="mailto:cmlagarcia9@gmail.com">cmlagarcia9@gmail.com →</a>
-  </section>
-
-  <!-- ── FOOTER ─────────────────────────────────────────────────── -->
-  <div class="fh-bottombar">
-    <div class="fh-bottombar-links">
-      <a href="https://www.linkedin.com/in/camila-garcia-04r17/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="#">Substack</a>
-      <a href="https://drive.google.com/file/d/1g9xEyP9xjEwUIDGVso1VA5jVeM1jJgON/view?usp=sharing" target="_blank" rel="noopener">Resume</a>
+  <!-- ── FOOTER ───────────────────────────────────────────────────── -->
+  <footer class="site-footer-cta">
+    <img src="index/newfavicon.png" alt="" class="footer-jar" />
+    <p class="footer-cta-text">LET'S WORK TOGETHER!</p>
+    <div class="footer-social">
+      <a href="https://www.linkedin.com/in/camila-garcia-04r17/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+      </a>
+      <a href="mailto:cmlagarcia9@gmail.com" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+      </a>
     </div>
-    <span class="fh-bottombar-email">e: cmlagarcia9@gmail.com</span>
-  </div>
+  </footer>
 
   <p class="fh-copyright">Camila Garcia 2026</p>
 

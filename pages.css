@@ -5,7 +5,7 @@
 /* #site-nav layout now lives only in style.css for consistency across pages */
 
 .nav-name-pill {
-  font-family: 'Bodoni Moda', serif;
+  font-family: 'Poppins', sans-serif;
   font-style: normal;
   font-size: 1.3rem;
   color: var(--cream);
@@ -40,7 +40,8 @@ body.nav-on-dark .nav-links a {
 
 /* ── PAGE FOOTER (matches index.html) ───────────────────────────── */
 .fh-footer {
-  margin: 7rem 0 0;
+  max-width: 1800px;
+  margin: 7rem auto 0;
   padding: 0 6vw;
   display: flex;
   align-items: flex-start;
@@ -49,7 +50,7 @@ body.nav-on-dark .nav-links a {
   flex-wrap: wrap;
 }
 .fh-footer-left h2 {
-  font-family: 'Bodoni Moda', serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: 16pt;
   letter-spacing: 0.02em;
@@ -91,7 +92,8 @@ body.nav-on-dark .nav-links a {
 .fh-say-hello:hover { background: var(--dark); color: #fff; }
 
 .fh-bottombar {
-  margin: 2.5rem 0 0;
+  max-width: 1800px;
+  margin: 2.5rem auto 0;
   padding: 1.5rem 6vw 2.5rem;
   display: flex;
   align-items: center;

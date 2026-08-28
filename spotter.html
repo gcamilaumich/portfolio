@@ -13,10 +13,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Spotter — Camila Garcia</title>
-  <link rel="icon" type="image/png" href="index/home-icon-5.png">
+  <link rel="icon" type="image/png" href="index/newfavicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:wght@100;300;400;700&family=Liu+Jian+Mao+Cao&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="pages.css" />
   <style>
@@ -36,27 +36,28 @@
     }
 
     .cs-hero-eyebrow {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.68rem;
-      font-weight: 300;
-      letter-spacing: 0.22em;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      color: rgba(42,32,24,0.45);
+      color: rgba(22,19,15,0.45);
       margin-bottom: 1.5rem;
     }
 
     .cs-hero-title {
-      font-family: 'Lato', sans-serif;
-      font-size: clamp(3rem, 7vw, 6rem);
-      font-weight: 400;
-      line-height: 1.05;
-      color: #2a2018;
-      max-width: 14ch;
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2rem, 4.8vw, 3.2rem);
+      font-weight: 500;
+      line-height: 1.15;
+      color: #16130f;
+      max-width: 32ch;
       margin-bottom: 2rem;
+      text-wrap: balance;
     }
 
     .cs-hero-desc {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-weight: 300;
       font-size: clamp(0.85rem, 1.5vw, 1rem);
       line-height: 1.8;
@@ -74,15 +75,15 @@
 
     .cs-meta-item { display: flex; flex-direction: column; gap: 0.3rem; }
     .cs-meta-label {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.62rem;
-      font-weight: 300;
-      letter-spacing: 0.18em;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      color: rgba(42,32,24,0.4);
+      color: rgba(22,19,15,0.45);
     }
     .cs-meta-value {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-weight: 300;
       font-size: 1rem;
       color: #2a2018;
@@ -110,99 +111,128 @@
       pointer-events: none;
     }
 
-    /* ── PROGRESS SIDEBAR ────────────────────────────────────── */
-    .cs-progress {
+    /* ── PROCESS STEPPER ─────────────────────────────────────── */
+    .sp-stepper {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+    .sp-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      flex: 1;
+      position: relative;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .sp-step-num {
+      width: 2.5rem; height: 2.5rem;
+      border-radius: 50%;
+      border: 1.5px solid var(--spotter);
+      color: var(--spotter);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 100;
+      font-size: 1.1rem;
+      background: #fff;
+      z-index: 2;
+    }
+    .sp-step-name {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.8rem;
+      color: rgba(42,32,24,0.65);
+      text-align: center;
+      max-width: 9ch;
+    }
+    .sp-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 1.25rem;
+      left: 60%;
+      width: 100%;
+      height: 1px;
+      background: rgba(62,24,166,0.2);
+      z-index: 1;
+    }
+    .sp-step:hover .sp-step-num {
+      background: var(--spotter);
+      color: #fff;
+      transition: background 0.2s, color 0.2s;
+    }
+    .sp-step.active .sp-step-num {
+      background: var(--spotter);
+      color: #fff;
+    }
+    .sp-step.active .sp-step-name {
+      color: var(--spotter);
+      font-weight: 700;
+    }
+
+    /* ── STICKY SIDE PROGRESS BAR ────────────────────────────── */
+    .sp-side-nav {
       position: fixed;
       right: 1.5rem;
       top: 50%;
       transform: translateY(-50%);
-      z-index: 50;
+      z-index: 500;
       display: flex;
       flex-direction: column;
-      align-items: flex-end;
-      gap: 0.4rem;
-    }
-
-    .cs-progress-dot {
-      display: flex;
       align-items: center;
-      gap: 0.5rem;
-      cursor: pointer;
-      background: none;
-      border: none;
-      padding: 0;
+      gap: 0;
     }
-    .cs-progress-dot-label {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.6rem;
-      font-weight: 300;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(42,32,24,0.35);
-      transition: color 0.3s;
-      white-space: nowrap;
-      background: rgba(255,255,255,0.85);
-      border: 1px solid rgba(42,32,24,0.12);
-      border-radius: 20px;
-      padding: 0.25rem 0.65rem;
-    }
-    .cs-progress-dot-pip {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: rgba(42,32,24,0.2);
-      flex-shrink: 0;
-      transition: background 0.3s, transform 0.3s;
-    }
-    .cs-progress-dot.active .cs-progress-dot-pip {
-      background: var(--spotter);
-      transform: scale(1.5);
-    }
-    .cs-progress-dot.active .cs-progress-dot-label {
-      color: var(--spotter);
-      border-color: var(--spotter);
-    }
-
-    .site-header.wordmark-hidden {
-      background: transparent;
-      padding-left: 0;
-      padding-right: 0;
-    }
-    .site-header.wordmark-hidden .site-nav {
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(42,32,24,0.1);
-      border-radius: 999px;
-      padding: 0.5rem 1.5rem;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    }
-
-    .toc-btn {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 400;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--spotter);
+    .sp-side-dot {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       text-decoration: none;
-      background: #f0ecff;
-      border: 1px solid var(--spotter);
-      border-radius: 999px;
-      padding: 1.5rem 1rem;
-      flex: 1;
-      text-align: center;
-      transition: background 0.2s, color 0.2s;
       cursor: pointer;
     }
-    .toc-btn:hover {
-      background: var(--spotter);
-      color: #fff;
+    .sp-side-dot-circle {
+      width: 0.55rem;
+      height: 0.55rem;
+      border-radius: 50%;
+      border: 1.5px solid rgba(62,24,166,0.35);
+      background: transparent;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
     }
+    .sp-side-dot.active .sp-side-dot-circle {
+      background: var(--spotter);
+      border-color: var(--spotter);
+      transform: scale(1.3);
+    }
+    .sp-side-dot:hover .sp-side-dot-circle {
+      border-color: var(--spotter);
+      background: rgba(62,24,166,0.15);
+    }
+    .sp-side-dot-line {
+      width: 1px;
+      height: 1.8rem;
+      background: rgba(62,24,166,0.2);
+    }
+    .sp-side-dot:last-child .sp-side-dot-line { display: none; }
+    .sp-side-label {
+      position: absolute;
+      right: 1.2rem;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--spotter);
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+    .sp-side-dot:hover .sp-side-label,
+    .sp-side-dot.active .sp-side-label { opacity: 1; }
 
     /* ── CHAPTER SECTIONS ────────────────────────────────────── */
     .cs-section {
       padding: 6rem 6vw;
-      max-width: 1100px;
+      max-width: 1800px;
       margin: 0 auto;
     }
 
@@ -223,20 +253,20 @@
       font-size: clamp(1.2rem, 2vw, 1.6rem);
       font-weight: 100;
       line-height: 1.2;
-      color: var(--dark);
+      color: #16130f;
       margin-bottom: 1.5rem;
     }
 
     .cs-body {
-      font-family: 'Lato', sans-serif;
-      font-weight: 300;
-      font-size: clamp(0.85rem, 1.5vw, 1rem);
-      line-height: 1.85;
-      color: #898078;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      font-size: 1.125rem;
+      line-height: 1.75;
+      color: rgba(22,19,15,0.65);
       text-align: justify;
     }
     .cs-body + .cs-body { margin-top: 1rem; }
-    .cs-body strong { color: var(--dark); font-weight: 700; }
+    .cs-body strong { color: #16130f; font-weight: 700; }
 
     /* ── DIVIDER ─────────────────────────────────────────────── */
     .cs-divider {
@@ -252,7 +282,7 @@
       text-align: center;
     }
     .cs-quote-mark {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-size: 5rem;
       line-height: 0.5;
       color: rgba(253,246,237,0.2);
@@ -260,7 +290,7 @@
       margin-bottom: 1.5rem;
     }
     .cs-quote-text {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-style: italic;
       font-size: clamp(1.3rem, 2.5vw, 1.9rem);
       line-height: 1.55;
@@ -269,7 +299,7 @@
       margin: 0 auto 1.5rem;
     }
     .cs-quote-attr {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-size: 0.72rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
@@ -299,7 +329,7 @@
     }
 
     .cs-finding-num {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-size: 0.62rem;
       font-weight: 700;
       letter-spacing: 0.2em;
@@ -309,11 +339,11 @@
     }
 
     .cs-finding-title {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-size: 1.1rem;
       font-weight: 300;
       line-height: 1.35;
-      color: var(--dark);
+      color: #16130f;
       margin-bottom: 0.75rem;
     }
 
@@ -342,7 +372,7 @@
     .cs-process-step:last-child { border-right: none; }
 
     .cs-step-num {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-size: 0.6rem;
       font-weight: 700;
       letter-spacing: 0.2em;
@@ -352,9 +382,9 @@
     }
 
     .cs-step-name {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-size: 1rem;
-      color: var(--dark);
+      color: #16130f;
       margin-bottom: 0.75rem;
     }
 
@@ -389,7 +419,7 @@
       margin: 2rem 0;
     }
     .cs-image-label {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-size: 0.72rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -424,7 +454,7 @@
     .cs-stat:last-child { border-right: none; }
 
     .cs-stat-num {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-size: clamp(2rem, 4vw, 3rem);
       font-weight: 300;
       color: var(--spotter);
@@ -434,7 +464,7 @@
     }
 
     .cs-stat-label {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-size: 0.72rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -454,7 +484,7 @@
     .cs-next:hover { background: #f7f5ff; }
 
     .cs-next-label {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-size: 0.68rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
@@ -463,14 +493,14 @@
     }
 
     .cs-next-title {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-size: clamp(1rem, 2vw, 1.4rem);
       font-weight: 300;
-      color: var(--dark);
+      color: #16130f;
     }
 
     .cs-next-arrow {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-style: normal;
       font-weight: 300;
       font-size: 1.1rem;
@@ -482,7 +512,7 @@
       background: #e8e2f8;
       padding: 6rem 6vw;
     }
-    .cs-band .cs-section-heading { color: var(--dark); }
+    .cs-band .cs-section-heading { color: #16130f; }
 
     /* ── WATCH GRID ──────────────────────────────────────────── */
     .watch-grid {
@@ -524,7 +554,7 @@
       z-index: 9999;
       background: var(--spotter);
       color: #fff;
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-size: 0.65rem;
       font-weight: 700;
       letter-spacing: 0.14em;
@@ -573,7 +603,7 @@
       background: rgba(255,255,255,0.12);
       border: none;
       color: #fff;
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-size: 0.7rem;
       font-weight: 700;
       letter-spacing: 0.14em;
@@ -586,7 +616,7 @@
     .lightbox-close:hover { background: rgba(255,255,255,0.22); }
 
     .watch-caption {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-size: 0.65rem;
       font-weight: 700;
       letter-spacing: 0.18em;
@@ -603,7 +633,6 @@
       .cs-process-step { border-right: none; border-bottom: 1px solid rgba(42,32,24,0.1); }
       .cs-stats { grid-template-columns: 1fr; }
       .cs-stat { border-right: none; border-bottom: 1px solid rgba(42,32,24,0.1); }
-      .cs-progress { display: none; }
       .watch-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
@@ -611,28 +640,13 @@
 <body>
 
   <!-- ── NAV ──────────────────────────────────────────────────── -->
-  <header class="site-header">
-    <div class="wordmark" id="site-wordmark" style="transition: max-height 0.25s, opacity 0.25s; overflow: hidden;">
-      <div class="wordmark-name"><span class="l1">C</span><span class="l2">A</span><span class="l3">M</span><span class="l4">I</span><span class="l5">L</span><span class="l6">A</span></div>
-      <img src="index/girlonly.png" alt="" class="wordmark-girl" />
-      <div class="wordmark-name"><span class="l1">G</span><span class="l2">A</span><span class="l3">R</span><span class="l4">C</span><span class="l5">I</span><span class="l6">A</span></div>
-    </div>
-    <nav class="site-nav">
+  <nav class="hero-nav">
+    <div class="hero-nav-pill">
       <a href="index.html" class="active">Work</a>
+      <a href="playground.html">Playground</a>
       <a href="about.html">My Story</a>
       <a href="resume.html">Resume</a>
-    </nav>
-  </header>
-
-  <!-- ── PROGRESS SIDEBAR ──────────────────────────────────────── -->
-  <nav class="cs-progress" aria-label="Case study chapters">
-    <div class="cs-progress-dot active" data-section="0"><span class="cs-progress-dot-label">Overview</span><span class="cs-progress-dot-pip"></span></div>
-    <div class="cs-progress-dot" data-section="1"><span class="cs-progress-dot-label">Problem</span><span class="cs-progress-dot-pip"></span></div>
-    <div class="cs-progress-dot" data-section="2"><span class="cs-progress-dot-label">Research</span><span class="cs-progress-dot-pip"></span></div>
-    <div class="cs-progress-dot" data-section="5"><span class="cs-progress-dot-label">Design Process</span><span class="cs-progress-dot-pip"></span></div>
-    <div class="cs-progress-dot" data-section="6"><span class="cs-progress-dot-label">Identity</span><span class="cs-progress-dot-pip"></span></div>
-    <div class="cs-progress-dot" data-section="3"><span class="cs-progress-dot-label">Screens</span><span class="cs-progress-dot-pip"></span></div>
-    <div class="cs-progress-dot" data-section="4"><span class="cs-progress-dot-label">Reflection</span><span class="cs-progress-dot-pip"></span></div>
+    </div>
   </nav>
 
   <!-- ── HERO ──────────────────────────────────────────────────── -->
@@ -640,9 +654,9 @@
     <div class="cs-hero-circle"></div>
     <div class="cs-hero-circle-2"></div>
 
-    <div style="max-width:1100px;width:100%;margin:0 auto;padding:0 6vw;">
+    <div style="max-width:1800px;width:100%;margin:0 auto;padding:0 6vw;">
     <p class="cs-hero-eyebrow">Case Study · Product Design</p>
-    <h1 class="cs-hero-title" style="color:var(--spotter);">Spotter</h1>
+    <h1 class="cs-hero-title">Spotter: Simplifying workout tracking for personal trainers </h1>
     <p class="cs-hero-desc">Designing a dual-platform mobile and wearable experience that helps personal trainers capture session data in real time, without losing the human connection that keeps clients coming back.</p>
 
     <div class="cs-meta-row">
@@ -667,7 +681,7 @@
   </section>
 
   <!-- ── COVER IMAGE ──────────────────────────────────────────── -->
-  <div style="width:100%; max-width:1100px; margin:0 auto; padding:0 6vw;">
+  <div style="width:100%; max-width:1800px; margin:0 auto; padding:0 6vw;">
     <img src="spotter/spottercover.png" alt="" style="width:100%; display:block; border-radius:8px;">
   </div>
 
@@ -712,7 +726,7 @@
       }
       .qs-item.active { opacity: 1; pointer-events: auto; }
       .qs-mark {
-        font-family: 'Lato', sans-serif;
+        font-family: 'Poppins', sans-serif;
         font-size: 4rem;
         line-height: 0.6;
         color: rgba(62,24,166,0.15);
@@ -720,7 +734,7 @@
         margin-bottom: 1.5rem;
       }
       .qs-text {
-        font-family: 'Lato', sans-serif;
+        font-family: 'Poppins', sans-serif;
         font-style: italic;
         font-weight: 100;
         font-size: clamp(1.3rem, 2.5vw, 1.9rem);
@@ -729,7 +743,7 @@
         margin-bottom: 1.5rem;
       }
       .qs-attr {
-        font-family: 'Lato', sans-serif;
+        font-family: 'Poppins', sans-serif;
         font-size: 0.72rem;
         font-weight: 300;
         letter-spacing: 0.18em;
@@ -754,13 +768,13 @@
     </style>
 
   <!-- ── TABLE OF CONTENTS ────────────────────────────────────── -->
-  <div style="width:100%; max-width:1100px; margin:0 auto; padding:8rem 6vw 3rem; border-top:1px solid rgba(42,32,24,0.1); margin-top:4rem;">
-    <div style="display:flex; gap:0.6rem;">
-      <a href="#toc-research" onclick="event.preventDefault(); const t=document.getElementById('toc-research'); window.scrollTo({top:t.getBoundingClientRect().top+scrollY-80,behavior:'smooth'});" class="toc-btn">Research</a>
-      <a href="#toc-design" onclick="event.preventDefault(); const t=document.getElementById('toc-design'); window.scrollTo({top:t.getBoundingClientRect().top+scrollY-80,behavior:'smooth'});" class="toc-btn">Design Process</a>
-      <a href="#toc-identity" onclick="event.preventDefault(); const t=document.getElementById('toc-identity'); window.scrollTo({top:t.getBoundingClientRect().top+scrollY-80,behavior:'smooth'});" class="toc-btn">Identity</a>
-      <a href="#toc-screens" onclick="event.preventDefault(); const t=document.getElementById('toc-screens'); window.scrollTo({top:t.getBoundingClientRect().top+scrollY-80,behavior:'smooth'});" class="toc-btn">Screens</a>
-      <a href="#toc-reflection" onclick="event.preventDefault(); const t=document.getElementById('toc-reflection'); window.scrollTo({top:t.getBoundingClientRect().top+scrollY-80,behavior:'smooth'});" class="toc-btn">Reflection</a>
+  <div style="width:100%; max-width:1800px; margin:0 auto; padding:8rem 6vw 3rem; border-top:1px solid rgba(42,32,24,0.1); margin-top:4rem;">
+    <div class="sp-stepper">
+      <a class="sp-step" href="#toc-research"><span class="sp-step-num">1</span><span class="sp-step-name">Research</span></a>
+      <a class="sp-step" href="#toc-design"><span class="sp-step-num">2</span><span class="sp-step-name">Design Process</span></a>
+      <a class="sp-step" href="#toc-identity"><span class="sp-step-num">3</span><span class="sp-step-name">Identity</span></a>
+      <a class="sp-step" href="#toc-screens"><span class="sp-step-num">4</span><span class="sp-step-name">Screens</span></a>
+      <a class="sp-step" href="#toc-reflection"><span class="sp-step-num">5</span><span class="sp-step-name">Reflection</span></a>
     </div>
   </div>
 
@@ -931,7 +945,7 @@
 
   <!-- ── CHAPTER 2.5: SKETCHES ─────────────────────────────────── -->
   <div id="toc-design" data-chapter="5">
-    <div style="max-width:1100px; margin:0 auto; padding:6rem 6vw 0; scroll-margin-top:5rem;">
+    <div style="max-width:1800px; margin:0 auto; padding:6rem 6vw 0; scroll-margin-top:5rem;">
       <p class="cs-hero-eyebrow">Design Process</p>
     </div>
     <div class="cs-section">
@@ -1040,7 +1054,7 @@
 
   <!-- ── USABILITY TESTING ────────────────────────────────────── -->
   <div style="background: #fff;">
-    <div style="padding: 6rem 6vw; max-width: 1100px; margin: 0 auto;">
+    <div style="padding: 6rem 6vw; max-width: 1800px; margin: 0 auto;">
 
       <h2 class="cs-section-heading">We tested before we polished anything.</h2>
       <p class="cs-body" style="margin-bottom: 3.5rem;">We conducted moderated think-aloud tests with <strong>five participants</strong> using low fidelity prototypes across both mobile and wearable. Participants completed tasks like accessing daily sessions, editing client information, customizing programs, and logging actions on the wearable during a simulated training moment. The biggest issues centered on <strong>navigation consistency</strong>, unclear affordances on cards, and confusion between similar actions. We addressed these through clearer labels, stronger visual cues, and more consistent paths.</p>
@@ -1051,8 +1065,8 @@
         <!-- 01 -->
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start;">
           <div>
-            <p style="font-family:'Lato',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:rgba(62,24,166,0.5); margin-bottom:0.75rem;">Problem 01</p>
-            <h3 style="font-family:'Lato',sans-serif; font-size:clamp(1.1rem,2vw,1.4rem); font-weight:100; color:var(--spotter); line-height:1.35; margin-bottom:1.25rem;">Several participants hovered or hesitated on cards before tapping, unsure whether they were interactive or just informational.</h3>
+            <p style="font-family:'Poppins',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:rgba(62,24,166,0.5); margin-bottom:0.75rem;">Problem 01</p>
+            <h3 style="font-family:'Poppins',sans-serif; font-size:clamp(1.1rem,2vw,1.4rem); font-weight:100; color:var(--spotter); line-height:1.35; margin-bottom:1.25rem;">Several participants hovered or hesitated on cards before tapping, unsure whether they were interactive or just informational.</h3>
             <!-- <p class="cs-body">Several participants hovered or hesitated on cards before tapping, unsure whether they were interactive or just informational.</p> -->
             <!-- Phone container — wireframe -->
             <div style="margin-top:1.5rem; display:flex; justify-content:center;">
@@ -1073,7 +1087,7 @@
                   <div style="display:flex; align-items:center;">
                     <div style="width:8px; height:8px; border-radius:50%; background:var(--spotter); flex-shrink:0; margin-left:-4px; z-index:2;"></div>
                     <div style="width:48px; height:1.5px; background:var(--spotter);"></div>
-                    <div style="background:var(--spotter); color:#fff; font-family:'Lato',sans-serif; font-size:0.72rem; line-height:1.5; padding:0.6rem 0.85rem; border-radius:0.4rem; max-width:180px; white-space:normal;">
+                    <div style="background:var(--spotter); color:#fff; font-family:'Poppins',sans-serif; font-size:0.72rem; line-height:1.5; padding:0.6rem 0.85rem; border-radius:0.4rem; max-width:180px; white-space:normal;">
                       Placing "Finish" at the top forced trainers to scroll back up mid-session — interrupting their flow at the worst moment.
                     </div>
                   </div>
@@ -1084,7 +1098,7 @@
                   <div style="display:flex; align-items:center;">
                     <div style="width:8px; height:8px; border-radius:50%; background:var(--spotter); flex-shrink:0; margin-left:-4px; z-index:2;"></div>
                     <div style="width:48px; height:1.5px; background:var(--spotter);"></div>
-                    <div style="background:var(--spotter); color:#fff; font-family:'Lato',sans-serif; font-size:0.72rem; line-height:1.5; padding:0.6rem 0.85rem; border-radius:0.4rem; max-width:180px; white-space:normal;">
+                    <div style="background:var(--spotter); color:#fff; font-family:'Poppins',sans-serif; font-size:0.72rem; line-height:1.5; padding:0.6rem 0.85rem; border-radius:0.4rem; max-width:180px; white-space:normal;">
                       Two checkmarks per row created confusion — users weren't sure which one logged the set and which confirmed completion.
                     </div>
                   </div>
@@ -1093,8 +1107,8 @@
             </div>
           </div>
           <div>
-            <p style="font-family:'Lato',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:rgba(62,24,166,0.5); margin-bottom:0.75rem;">Solution 01</p>
-            <h3 style="font-family:'Lato',sans-serif; font-size:clamp(1.1rem,2vw,1.4rem); font-weight:100; color:var(--spotter); line-height:1.35; margin-bottom:1.25rem;">Interactive cards now carry a clear visual signal: a chevron, a subtle shadow, and a pressed state that confirms the tap registered.</h3>
+            <p style="font-family:'Poppins',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:rgba(62,24,166,0.5); margin-bottom:0.75rem;">Solution 01</p>
+            <h3 style="font-family:'Poppins',sans-serif; font-size:clamp(1.1rem,2vw,1.4rem); font-weight:100; color:var(--spotter); line-height:1.35; margin-bottom:1.25rem;">Interactive cards now carry a clear visual signal: a chevron, a subtle shadow, and a pressed state that confirms the tap registered.</h3>
             <!-- <p class="cs-body">Interactive cards now carry a clear visual signal: a chevron, a subtle shadow, and a pressed state that confirms the tap registered.</p> -->
             <!-- Phone container — final edit -->
             <div style="margin-top:1.5rem; display:flex; justify-content:center;">
@@ -1112,7 +1126,7 @@
                   <div style="display:flex; align-items:center;">
                     <div style="width:8px; height:8px; border-radius:50%; background:var(--spotter); flex-shrink:0; margin-left:-4px; z-index:2;"></div>
                     <div style="width:48px; height:1.5px; background:var(--spotter);"></div>
-                    <div style="background:var(--spotter); color:#fff; font-family:'Lato',sans-serif; font-size:0.72rem; line-height:1.5; padding:0.6rem 0.85rem; border-radius:0.4rem; max-width:180px; white-space:normal;">
+                    <div style="background:var(--spotter); color:#fff; font-family:'Poppins',sans-serif; font-size:0.72rem; line-height:1.5; padding:0.6rem 0.85rem; border-radius:0.4rem; max-width:180px; white-space:normal;">
                       A clear screen title and persistent header made it immediately obvious where trainers were — no guessing mid-session.
                     </div>
                   </div>
@@ -1123,7 +1137,7 @@
                   <div style="display:flex; align-items:center; flex-direction:row-reverse;">
                     <div style="width:8px; height:8px; border-radius:50%; background:var(--spotter); flex-shrink:0; margin-right:-4px; z-index:2;"></div>
                     <div style="width:48px; height:1.5px; background:var(--spotter);"></div>
-                    <div style="background:var(--spotter); color:#fff; font-family:'Lato',sans-serif; font-size:0.72rem; line-height:1.5; padding:0.6rem 0.85rem; border-radius:0.4rem; max-width:180px; white-space:normal; text-align:right;">
+                    <div style="background:var(--spotter); color:#fff; font-family:'Poppins',sans-serif; font-size:0.72rem; line-height:1.5; padding:0.6rem 0.85rem; border-radius:0.4rem; max-width:180px; white-space:normal; text-align:right;">
                       A visible progress bar gave trainers an at-a-glance sense of where they were in the session — without breaking focus.
                     </div>
                   </div>
@@ -1134,7 +1148,7 @@
                   <div style="display:flex; align-items:center;">
                     <div style="width:8px; height:8px; border-radius:50%; background:var(--spotter); flex-shrink:0; margin-left:-4px; z-index:2;"></div>
                     <div style="width:48px; height:1.5px; background:var(--spotter);"></div>
-                    <div style="background:var(--spotter); color:#fff; font-family:'Lato',sans-serif; font-size:0.72rem; line-height:1.5; padding:0.6rem 0.85rem; border-radius:0.4rem; max-width:180px; white-space:normal;">
+                    <div style="background:var(--spotter); color:#fff; font-family:'Poppins',sans-serif; font-size:0.72rem; line-height:1.5; padding:0.6rem 0.85rem; border-radius:0.4rem; max-width:180px; white-space:normal;">
                       An expandable notes section keeps wearable voice notes and session observations in one place — right where trainers need them.
                     </div>
                   </div>
@@ -1149,8 +1163,8 @@
         <!-- 02 -->
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start;">
           <div>
-            <p style="font-family:'Lato',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:rgba(62,24,166,0.5); margin-bottom:0.75rem;">Problem 02</p>
-            <h3 style="font-family:'Lato',sans-serif; font-size:clamp(1.1rem,2vw,1.4rem); font-weight:100; color:var(--spotter); line-height:1.35; margin-bottom:1.25rem;">The "Add Workout" action was buried in an empty state with instructional copy rather than surfaced as a clear button.</h3>
+            <p style="font-family:'Poppins',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:rgba(62,24,166,0.5); margin-bottom:0.75rem;">Problem 02</p>
+            <h3 style="font-family:'Poppins',sans-serif; font-size:clamp(1.1rem,2vw,1.4rem); font-weight:100; color:var(--spotter); line-height:1.35; margin-bottom:1.25rem;">The "Add Workout" action was buried in an empty state with instructional copy rather than surfaced as a clear button.</h3>
             <!-- <p class="cs-body">The "Add Workout" action was buried in an empty state with instructional copy rather than surfaced as a clear button, so the path forward wasn't obvious.</p> -->
             <div style="margin-top:1.5rem; display:flex; justify-content:center;">
               <div id="newprogram-wireframe-phone" style="position:relative; width:260px;">
@@ -1165,8 +1179,8 @@
             </div>
           </div>
           <div>
-            <p style="font-family:'Lato',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:rgba(62,24,166,0.5); margin-bottom:0.75rem;">Solution 02</p>
-            <h3 style="font-family:'Lato',sans-serif; font-size:clamp(1.1rem,2vw,1.4rem); font-weight:100; color:var(--spotter); line-height:1.35; margin-bottom:1.25rem;">Surfaced "Add Workout" as a prominent button and pre-populated the section so the path was immediately clear.</h3>
+            <p style="font-family:'Poppins',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:rgba(62,24,166,0.5); margin-bottom:0.75rem;">Solution 02</p>
+            <h3 style="font-family:'Poppins',sans-serif; font-size:clamp(1.1rem,2vw,1.4rem); font-weight:100; color:var(--spotter); line-height:1.35; margin-bottom:1.25rem;">Surfaced "Add Workout" as a prominent button and pre-populated the section so the path was immediately clear.</h3>
             <!-- <p class="cs-body">The action moved from buried instructional copy to a visible button alongside the Workouts label. A pre-populated workout item showed users exactly what adding one would produce — no guessing required.</p> -->
             <div style="margin-top:1.5rem; display:flex; justify-content:center;">
               <div id="newprogram-final-phone" style="position:relative; width:260px;">
@@ -1246,7 +1260,7 @@
 
   <!-- ── COLOR PALETTE ────────────────────────────────────────── -->
   <div id="toc-identity" data-chapter="6">
-    <div style="max-width:1100px; margin:0 auto; padding:6rem 6vw 0; scroll-margin-top:5rem;">
+    <div style="max-width:1800px; margin:0 auto; padding:6rem 6vw 0; scroll-margin-top:5rem;">
       <p class="cs-hero-eyebrow">Identity</p>
     </div>
   </div>
@@ -1299,13 +1313,13 @@
           <div style="margin-top:4.5rem; border-radius:0.5rem; overflow:hidden;">
             <img src="spotter/colorpalette.png" alt="Color palette" style="width:100%; height:auto; display:block;" />
           </div>
-          <p style="font-family:'Lato',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(62,24,166,0.45); margin-top:0.6rem;">Our color palette</p>
+          <p style="font-family:'Poppins',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(62,24,166,0.45); margin-top:0.6rem;">Our color palette</p>
         </div>
         <div>
           <div style="border-radius:0.5rem; overflow:hidden;">
             <img src="spotter/team-color-ideation.jpg" alt="Team color ideation" style="width:100%; height:auto; display:block; margin-top:-60px;" />
           </div>
-          <p style="font-family:'Lato',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(62,24,166,0.45); margin-top:0.6rem;">Fun team color ideation!</p>
+          <p style="font-family:'Poppins',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(62,24,166,0.45); margin-top:0.6rem;">Fun team color ideation!</p>
         </div>
       </div>
     </div>
@@ -1359,7 +1373,7 @@
   </div>
 
     <div class="cs-section-wide cs-band">
-      <div style="max-width:1100px; margin:0 auto; padding: 0 6vw;">
+      <div style="max-width:1800px; margin:0 auto; padding: 0 6vw;">
 
         <h2 class="cs-section-heading">I led the Home and Session flows end to end.</h2>
         <div class="cs-two-col">
@@ -1373,8 +1387,8 @@
 
   <!-- ── MOBILE PROTOTYPE ──────────────────────────────────────── -->
   <div style="background: #fff; padding: 6rem 6vw;">
-    <div style="max-width: 1100px; margin: 0 auto; padding: 0 6vw;">
-      <h2 style="font-family:'Poppins',sans-serif; font-size:clamp(1.2rem,2vw,1.6rem); font-weight:100; color:var(--dark); margin-bottom: 0.75rem;">Try the mobile experience.</h2>
+    <div style="max-width: 1800px; margin: 0 auto; padding: 0 6vw;">
+      <h2 style="font-family:'Poppins',sans-serif; font-size:clamp(1.2rem,2vw,1.6rem); font-weight:100; color:#16130f; margin-bottom: 0.75rem;">Try the mobile experience.</h2>
       <p style="font-size:0.9rem; color:#898078; margin-bottom: 2.5rem; max-width:52ch;">Navigate the full mobile flow from home to session to post-session summary.</p>
       <div style="border-radius: 0.75rem; overflow: hidden; box-shadow: 0 24px 64px rgba(0,0,0,0.35);">
         <iframe
@@ -1388,8 +1402,8 @@
 
   <!-- ── WEARABLE PROTOTYPE ────────────────────────────────────── -->
   <div style="background: #fff; padding: 6rem 6vw;">
-    <div style="max-width: 1100px; margin: 0 auto; padding: 0 6vw;">
-      <h2 style="font-family:'Poppins',sans-serif; font-size:clamp(1.2rem,2vw,1.6rem); font-weight:100; color:var(--dark); margin-bottom: 0.75rem;">Try the wearable experience.</h2>
+    <div style="max-width: 1800px; margin: 0 auto; padding: 0 6vw;">
+      <h2 style="font-family:'Poppins',sans-serif; font-size:clamp(1.2rem,2vw,1.6rem); font-weight:100; color:#16130f; margin-bottom: 0.75rem;">Try the wearable experience.</h2>
       <p style="font-size:0.9rem; color:#898078; margin-bottom: 2.5rem; max-width:52ch;">Click through the Apple Watch flow: log sets, move between clients, capture notes.</p>
       <div style="border-radius: 0.75rem; overflow: hidden; box-shadow: 0 24px 64px rgba(0,0,0,0.35);">
         <iframe
@@ -1445,16 +1459,18 @@
   </a>
 
   <!-- ── FOOTER ─────────────────────────────────────────────────── -->
-  <div class="fh-bottombar">
-    <div class="fh-bottombar-links">
-      <a href="https://www.linkedin.com/in/camila-garcia-04r17/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="#">Substack</a>
-      <a href="https://drive.google.com/file/d/1g9xEyP9xjEwUIDGVso1VA5jVeM1jJgON/view?usp=sharing" target="_blank" rel="noopener">Resume</a>
+  <footer class="site-footer-cta">
+    <img src="index/newfavicon.png" alt="" class="footer-jar" />
+    <p class="footer-cta-text">LET'S WORK TOGETHER!</p>
+    <div class="footer-social">
+      <a href="https://www.linkedin.com/in/camila-garcia-04r17/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+      </a>
+      <a href="mailto:cmlagarcia9@gmail.com" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+      </a>
     </div>
-    <span class="fh-bottombar-email">e: cmlagarcia9@gmail.com</span>
-  </div>
-
-  <p class="fh-copyright">Camila Garcia 2026</p>
+  </footer>
 
   <!-- lightbox -->
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
@@ -1471,54 +1487,11 @@
   <script>
     gsap.registerPlugin(ScrollTrigger);
 
-    // Wordmark hide on scroll
-    const wordmark = document.getElementById('site-wordmark');
-    const header = document.querySelector('.site-header');
-    const wordmarkNaturalHeight = wordmark.scrollHeight;
-    function updateWordmark() {
-      const hidden = window.scrollY > 60;
-      wordmark.style.maxHeight = hidden ? '0' : wordmarkNaturalHeight + 'px';
-      wordmark.style.opacity = hidden ? '0' : '1';
-      wordmark.style.pointerEvents = hidden ? 'none' : '';
-      header.style.paddingTop = hidden ? '1.25rem' : '2.5rem';
-      header.classList.toggle('wordmark-hidden', hidden);
-    }
-    window.addEventListener('scroll', updateWordmark, { passive: true });
-    updateWordmark();
-
     // All content visible — no scroll fade
     document.querySelectorAll('.cs-section, .cs-section-wide, .cs-two-col, .cs-body, .cs-section-heading, .cs-finding-card').forEach(el => {
       el.style.opacity = '1';
       el.style.transform = 'none';
       el.classList.add('visible');
-    });
-
-    // Progress dot tracking
-    const chapters = document.querySelectorAll('[data-chapter]');
-    const dots = document.querySelectorAll('.cs-progress-dot');
-
-    const chapterObserver = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          const idx = e.target.dataset.chapter;
-          dots.forEach(d => d.classList.remove('active'));
-          const dot = document.querySelector(`.cs-progress-dot[data-section="${idx}"]`);
-          if (dot) dot.classList.add('active');
-        }
-      });
-    }, { threshold: 0.3 });
-    chapters.forEach(c => chapterObserver.observe(c));
-
-    // Dot click scrolls to chapter
-    dots.forEach(dot => {
-      dot.addEventListener('click', () => {
-        const idx = dot.dataset.section;
-        const target = document.querySelector(`[data-chapter="${idx}"]`);
-        if (target) {
-          const top = target.getBoundingClientRect().top + window.scrollY - 80;
-          window.scrollTo({ top, behavior: 'smooth' });
-        }
-      });
     });
 
     // ── LIGHTBOX ────────────────────────────────────────────────
@@ -1584,10 +1557,56 @@
 
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
-
-    // Hide wordmark on scroll
-    const wordmark = document.getElementById('site-wordmark');
   })();
+  </script>
+
+  <!-- ── SIDE PROGRESS NAV ─────────────────────────────────────── -->
+  <nav class="sp-side-nav" aria-label="Section progress">
+    <a class="sp-side-dot" href="#toc-research" data-section="toc-research">
+      <span class="sp-side-label">Research</span>
+      <span class="sp-side-dot-circle"></span>
+      <span class="sp-side-dot-line"></span>
+    </a>
+    <a class="sp-side-dot" href="#toc-design" data-section="toc-design">
+      <span class="sp-side-label">Design Process</span>
+      <span class="sp-side-dot-circle"></span>
+      <span class="sp-side-dot-line"></span>
+    </a>
+    <a class="sp-side-dot" href="#toc-identity" data-section="toc-identity">
+      <span class="sp-side-label">Identity</span>
+      <span class="sp-side-dot-circle"></span>
+      <span class="sp-side-dot-line"></span>
+    </a>
+    <a class="sp-side-dot" href="#toc-screens" data-section="toc-screens">
+      <span class="sp-side-label">Screens</span>
+      <span class="sp-side-dot-circle"></span>
+      <span class="sp-side-dot-line"></span>
+    </a>
+    <a class="sp-side-dot" href="#toc-reflection" data-section="toc-reflection">
+      <span class="sp-side-label">Reflection</span>
+      <span class="sp-side-dot-circle"></span>
+      <span class="sp-side-dot-line"></span>
+    </a>
+  </nav>
+
+  <script>
+    // ── SIDE NAV + STEPPER ACTIVE STATE ───────────────────────────
+    const spSectionIds = ['toc-research', 'toc-design', 'toc-identity', 'toc-screens', 'toc-reflection'];
+    function spUpdateActive() {
+      let current = '';
+      spSectionIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && window.scrollY >= el.offsetTop - window.innerHeight * 0.4) current = id;
+      });
+      document.querySelectorAll('.sp-side-dot').forEach(dot => {
+        dot.classList.toggle('active', dot.dataset.section === current);
+      });
+      document.querySelectorAll('.sp-step').forEach(step => {
+        step.classList.toggle('active', step.getAttribute('href') === '#' + current);
+      });
+    }
+    window.addEventListener('scroll', spUpdateActive);
+    spUpdateActive();
   </script>
 </body>
 </html>
