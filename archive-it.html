@@ -13,10 +13,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Archive-It — Camila Garcia</title>
-  <link rel="icon" type="image/png" href="index/home-icon-5.png">
+  <link rel="icon" type="image/png" href="index/newfavicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:wght@100;300;400;700&family=Liu+Jian+Mao+Cao&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="pages.css" />
   <style>
@@ -34,25 +34,26 @@
       overflow: hidden;
     }
     .cs-hero-eyebrow {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.68rem;
-      font-weight: 300;
-      letter-spacing: 0.22em;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      color: rgba(42,32,24,0.45);
+      color: rgba(22,19,15,0.45);
       margin-bottom: 1.5rem;
     }
     .cs-hero-title {
-      font-family: 'Lato', sans-serif;
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      font-weight: 400;
-      line-height: 1.1;
-      color: var(--ai);
-      max-width: 20ch;
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2rem, 4.8vw, 3.2rem);
+      font-weight: 500;
+      line-height: 1.15;
+      color: #16130f;
+      max-width: 32ch;
       margin-bottom: 2rem;
+      text-wrap: balance;
     }
     .cs-hero-desc {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-weight: 300;
       font-size: clamp(0.85rem, 1.5vw, 1rem);
       line-height: 1.8;
@@ -69,15 +70,15 @@
     }
     .cs-meta-item { display: flex; flex-direction: column; gap: 0.3rem; }
     .cs-meta-label {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.62rem;
-      font-weight: 300;
-      letter-spacing: 0.18em;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      color: rgba(42,32,24,0.4);
+      color: rgba(22,19,15,0.45);
     }
     .cs-meta-value {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-weight: 300;
       font-size: 1rem;
       color: #2a2018;
@@ -100,7 +101,7 @@
     /* ── LAYOUT ──────────────────────────────────────────────── */
     .cs-section {
       padding: 6rem 6vw;
-      max-width: 1100px;
+      max-width: 1800px;
       margin: 0 auto;
       transition: opacity 0.3s ease;
     }
@@ -118,24 +119,24 @@
     }
 
     .cs-section-heading {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-size: clamp(0.85rem, 1.5vw, 1rem);
       font-weight: 300;
       line-height: 1.2;
-      color: var(--dark);
+      color: #16130f;
       margin-bottom: 1.5rem;
     }
     .cs-section, .cs-section-wide, .cs-two-col > * { opacity: 1 !important; transform: none !important; }
     .cs-body {
-      font-family: 'Lato', sans-serif;
-      font-weight: 300;
-      font-size: clamp(0.85rem, 1.5vw, 1rem);
-      line-height: 1.85;
-      color: #2a2018;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      font-size: 1.125rem;
+      line-height: 1.75;
+      color: rgba(22,19,15,0.65);
       text-align: justify;
     }
     .cs-body + .cs-body { margin-top: 1rem; }
-    .cs-body strong { color: var(--dark); font-weight: 700; }
+    .cs-body strong { color: #16130f; font-weight: 700; }
 
     /* ── DIVIDER ─────────────────────────────────────────────── */
     .cs-divider {
@@ -147,11 +148,11 @@
     /* ── CHAPTER LABEL ───────────────────────────────────────── */
     .chapter-label {
       font-family: 'Poppins', sans-serif;
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      color: rgba(27,58,75,0.5);
+      color: rgba(22,19,15,0.45);
       margin-bottom: 1rem;
       display: flex;
       align-items: center;
@@ -162,7 +163,7 @@
       display: block;
       width: 2rem;
       height: 1px;
-      background: rgba(27,58,75,0.3);
+      background: rgba(22,19,15,0.3);
     }
 
     /* ── META CARDS ──────────────────────────────────────────── */
@@ -180,10 +181,10 @@
       text-align: center;
     }
     .ai-meta-card h3 {
-      font-family: 'Bodoni Moda', serif;
+      font-family: 'Poppins', sans-serif;
       font-size: 1.15rem;
       font-weight: 400;
-      color: var(--ai);
+      color: #16130f;
       margin-bottom: 1rem;
     }
     .ai-meta-card p {
@@ -287,7 +288,7 @@
       border: 1.5px solid var(--ai);
       color: var(--ai);
       display: flex; align-items: center; justify-content: center;
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-weight: 100;
       font-size: 1.1rem;
       background: #fff;
@@ -323,7 +324,7 @@
       margin-bottom: 0.5rem;
     }
     .ai-finding-title {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-size: 1.15rem;
       font-weight: 300;
       color: var(--ai);
@@ -331,7 +332,7 @@
       line-height: 1.35;
     }
     .ai-finding-body {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-size: 0.9rem;
       font-weight: 300;
       line-height: 1.7;
@@ -376,7 +377,7 @@
       display: flex;
       gap: 0.75rem;
       align-items: flex-start;
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-weight: 300;
       font-size: 0.95rem;
       line-height: 1.7;
@@ -454,7 +455,7 @@
     }
     .cs-next:hover { background: #eef3f4; }
     .cs-next-label {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-size: 0.68rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
@@ -462,13 +463,13 @@
       margin-bottom: 0.6rem;
     }
     .cs-next-title {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-size: clamp(1rem, 2vw, 1.4rem);
       font-weight: 300;
       color: #2a2018;
     }
     .cs-next-arrow {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-style: normal;
       font-size: 1.1rem;
       color: var(--ai);
@@ -558,38 +559,25 @@
     }
     .ai-cursor.visible { opacity: 1; }
 
-    .site-header.wordmark-hidden { background: transparent; padding-left: 0; padding-right: 0; }
-    .site-header.wordmark-hidden .site-nav {
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(42,32,24,0.1);
-      border-radius: 999px;
-      padding: 0.5rem 1.5rem;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    }
   </style>
 </head>
 <body>
 
   <!-- ── NAV ───────────────────────────────────────────────────── -->
-  <header class="site-header">
-    <div class="wordmark" id="site-wordmark" style="transition: max-height 0.25s, opacity 0.25s; overflow: hidden;">
-      <div class="wordmark-name"><span class="l1">C</span><span class="l2">A</span><span class="l3">M</span><span class="l4">I</span><span class="l5">L</span><span class="l6">A</span></div>
-      <img src="index/girlonly.png" alt="" class="wordmark-girl" />
-      <div class="wordmark-name"><span class="l1">G</span><span class="l2">A</span><span class="l3">R</span><span class="l4">C</span><span class="l5">I</span><span class="l6">A</span></div>
-    </div>
-    <nav class="site-nav">
+  <nav class="hero-nav">
+    <div class="hero-nav-pill">
       <a href="index.html" class="active">Work</a>
+      <a href="playground.html">Playground</a>
       <a href="about.html">My Story</a>
       <a href="resume.html">Resume</a>
-    </nav>
-  </header>
+    </div>
+  </nav>
 
   <!-- ── HERO ──────────────────────────────────────────────────── -->
   <header class="cs-hero">
-    <div style="max-width:1100px; width:100%; margin:0 auto; padding:0 6vw;">
+    <div style="max-width:1800px; width:100%; margin:0 auto; padding:0 6vw;">
       <p class="cs-hero-eyebrow">Internet Archive · Archive-It · UX Research · 2025</p>
-      <h1 class="cs-hero-title">Modernizing web archive discovery for Archive-It</h1>
+      <h1 class="cs-hero-title">Internet Archive: Redesigning a web archiving platform</h1>
       <p class="cs-hero-desc">Evaluating search usability in a complex archival system.</p>
       <div class="cs-meta-row">
         <div class="cs-meta-item">
@@ -613,7 +601,7 @@
   </header>
 
   <!-- ── COVER IMAGE ──────────────────────────────────────────── -->
-  <div style="width:100%; max-width:1100px; margin:0.5rem auto 0; padding:0 6vw;">
+  <div style="width:100%; max-width:1800px; margin:0.5rem auto 0; padding:0 6vw;">
     <img src="archive-it/archiveitcover.png" alt="Archive-It cover" style="width:100%; height:auto; display:block; border-radius:8px;" />
   </div>
 
@@ -633,7 +621,7 @@
 
   <div class="cs-section">
     <img src="archive-it/archiveit-original.png" alt="Archive-It original interface" style="width:80%; height:auto; display:block; border-radius:0.5rem; border:1px solid rgba(27,58,75,0.1); margin: 0 auto;" />
-    <p style="font-family:'Lato',sans-serif; font-size:0.72rem; font-weight:300; letter-spacing:0.18em; text-transform:uppercase; color:rgba(27,58,75,0.45); margin-top:0.75rem; text-align:center;">The before</p>
+    <p style="font-family:'Poppins',sans-serif; font-size:0.72rem; font-weight:300; letter-spacing:0.18em; text-transform:uppercase; color:rgba(27,58,75,0.45); margin-top:0.75rem; text-align:center;">The before</p>
   </div>
 
   <!-- ── PROCESS ───────────────────────────────────────────────── -->
@@ -671,7 +659,7 @@
     <h2 class="cs-section-heading">Stakeholder and user interviews</h2>
     <p class="cs-body" style="max-width:70ch;">We conducted <strong>semi-structured, 30–45 minute interviews</strong> over Zoom with <strong>six key stakeholders</strong>. This method allowed us to probe into user motivations while following a standardized protocol for consistency.</p>
 
-    <p style="font-family:'Lato',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(27,58,75,0.5); margin-top:2rem; margin-bottom:0.75rem;">Who we interviewed</p>
+    <p style="font-family:'Poppins',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(27,58,75,0.5); margin-top:2rem; margin-bottom:0.75rem;">Who we interviewed</p>
     <ul class="ai-list">
       <li><strong>The Client Team:</strong> To understand the platform's vision and identified pain points like metadata display.</li>
       <li><strong>Three Archivists:</strong> From collecting organizations to learn how they curate and tag content.</li>
@@ -683,14 +671,14 @@
 
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:2.5rem;">
       <div>
-        <p style="font-family:'Lato',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:rgba(27,58,75,0.45); margin-bottom:0.75rem;">Archivist Interview Script</p>
+        <p style="font-family:'Poppins',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:rgba(27,58,75,0.45); margin-bottom:0.75rem;">Archivist Interview Script</p>
         <div style="position:relative; border-radius:0.5rem; overflow:hidden; height:380px; background:rgba(27,58,75,0.06);">
           <iframe src="https://docs.google.com/document/d/e/2PACX-1vTOCgyamqo31XiJt3ox_FA5Y6p7mm_Y3zdlH7hbYBc_78dR6oUOg-Nx15kivWWExp2DQm-3Ua0i2Bsk/pub?embedded=true" style="width:167%; height:167%; border:none; display:block; transform:scale(0.6); transform-origin:top left; pointer-events:auto;" loading="lazy"></iframe>
           <button class="sheet-expand-btn" data-embed-src="https://docs.google.com/document/d/e/2PACX-1vTOCgyamqo31XiJt3ox_FA5Y6p7mm_Y3zdlH7hbYBc_78dR6oUOg-Nx15kivWWExp2DQm-3Ua0i2Bsk/pub?embedded=true">⤢ Expand</button>
         </div>
       </div>
       <div>
-        <p style="font-family:'Lato',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:rgba(27,58,75,0.45); margin-bottom:0.75rem;">Scholar Interview Script</p>
+        <p style="font-family:'Poppins',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:rgba(27,58,75,0.45); margin-bottom:0.75rem;">Scholar Interview Script</p>
         <div style="position:relative; border-radius:0.5rem; overflow:hidden; height:380px; background:rgba(27,58,75,0.06);">
           <iframe src="https://docs.google.com/document/d/e/2PACX-1vQtQhQfMwLRRLw5aeKyuzFMsVarQgWcqTJNjDTyrJx6fjFiKc9-GtAUoYHhz3Z3LCTO910R_fZ-6_j2/pub?embedded=true" style="width:167%; height:167%; border:none; display:block; transform:scale(0.6); transform-origin:top left; pointer-events:auto;" loading="lazy"></iframe>
           <button class="sheet-expand-btn" data-embed-src="https://docs.google.com/document/d/e/2PACX-1vQtQhQfMwLRRLw5aeKyuzFMsVarQgWcqTJNjDTyrJx6fjFiKc9-GtAUoYHhz3Z3LCTO910R_fZ-6_j2/pub?embedded=true">⤢ Expand</button>
@@ -729,7 +717,7 @@
 
   <!-- ── COMPETITIVE ANALYSIS ──────────────────────────────────── -->
   <div class="cs-section-wide cs-band" id="section-comparative">
-    <div style="max-width:1100px; margin:0 auto; padding:0 6vw;">
+    <div style="max-width:1800px; margin:0 auto; padding:0 6vw;">
       <div class="cs-two-col" style="grid-template-columns: 1.6fr 1fr;">
         <div>
           <div style="position:relative; border-radius:0.5rem; overflow:hidden; height:420px; background:rgba(27,58,75,0.06);">
@@ -783,14 +771,14 @@
 
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:2rem;">
       <div>
-        <p style="font-family:'Lato',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:rgba(27,58,75,0.45); margin-bottom:0.75rem;">Usability Test Script</p>
+        <p style="font-family:'Poppins',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:rgba(27,58,75,0.45); margin-bottom:0.75rem;">Usability Test Script</p>
         <div style="position:relative; border-radius:0.5rem; overflow:hidden; height:380px; background:rgba(27,58,75,0.06);">
           <iframe src="https://docs.google.com/document/d/e/2PACX-1vQ2m4gakvAYApEkiXaPRS9TUkTeSIH8f0ag3NPMqGLwS7g-xk_wTWPDRgwFMPyIzyVSQSczxd8nn7XG/pub?embedded=true" style="width:167%; height:167%; border:none; display:block; transform:scale(0.6); transform-origin:top left; pointer-events:auto;" loading="lazy"></iframe>
           <button class="sheet-expand-btn" data-embed-src="https://docs.google.com/document/d/e/2PACX-1vQ2m4gakvAYApEkiXaPRS9TUkTeSIH8f0ag3NPMqGLwS7g-xk_wTWPDRgwFMPyIzyVSQSczxd8nn7XG/pub?embedded=true">⤢ Expand</button>
         </div>
       </div>
       <div>
-        <p style="font-family:'Lato',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:rgba(27,58,75,0.45); margin-bottom:0.75rem;">Usability Test Notes</p>
+        <p style="font-family:'Poppins',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:rgba(27,58,75,0.45); margin-bottom:0.75rem;">Usability Test Notes</p>
         <div style="position:relative; border-radius:0.5rem; overflow:hidden; height:380px; background:rgba(27,58,75,0.06);">
           <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSTpNC594Wi6Q6XOKmr5eT5qRP1VsmKlbwvfBFYoQvH_H4fFIQtZsaUw32NLTEtGYzSIH4ew7CFF57r/pubhtml?widget=true&amp;headers=false" style="width:238%; height:238%; border:none; display:block; transform:scale(0.42); transform-origin:top left; pointer-events:auto;" loading="lazy"></iframe>
           <button class="sheet-expand-btn" data-embed-src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSTpNC594Wi6Q6XOKmr5eT5qRP1VsmKlbwvfBFYoQvH_H4fFIQtZsaUw32NLTEtGYzSIH4ew7CFF57r/pubhtml?widget=true&amp;headers=false">⤢ Expand</button>
@@ -819,7 +807,7 @@
 
   <!-- ── RECOMMENDATIONS ───────────────────────────────────────── -->
   <div class="cs-section-wide cs-band">
-    <div style="max-width:1100px; margin:0 auto; padding:0 6vw;">
+    <div style="max-width:1800px; margin:0 auto; padding:0 6vw;">
   
       <h2 class="cs-section-heading">The recommendations</h2>
 
@@ -872,16 +860,16 @@
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; max-width:70%; margin:0 auto;">
       <div>
         <img src="archive-it/archiveit-collapsable.png" alt="Collapsible filters" style="width:100%; height:auto; display:block; border-radius:0.5rem; border:1px solid rgba(27,58,75,0.1);" />
-        <p style="font-family:'Lato',sans-serif; font-size:0.72rem; font-weight:300; letter-spacing:0.08em; color:rgba(27,58,75,0.45); margin-top:0.75rem;">More collapsible filters</p>
+        <p style="font-family:'Poppins',sans-serif; font-size:0.72rem; font-weight:300; letter-spacing:0.08em; color:rgba(27,58,75,0.45); margin-top:0.75rem;">More collapsible filters</p>
       </div>
       <div style="display:flex; flex-direction:column; gap:0;">
         <div style="margin-bottom:0.5rem;">
           <img src="archive-it/archiveit-search.png" alt="Search redesign" style="width:100%; height:auto; display:block; border-radius:0.5rem; border:1px solid rgba(27,58,75,0.1);" />
-          <p style="font-family:'Lato',sans-serif; font-size:0.72rem; font-weight:300; letter-spacing:0.08em; color:rgba(27,58,75,0.45); margin-top:0.5rem; margin-bottom:1.5rem;">One singular search bar, navigation landmarks, undo functionalities on filters</p>
+          <p style="font-family:'Poppins',sans-serif; font-size:0.72rem; font-weight:300; letter-spacing:0.08em; color:rgba(27,58,75,0.45); margin-top:0.5rem; margin-bottom:1.5rem;">One singular search bar, navigation landmarks, undo functionalities on filters</p>
         </div>
         <div>
           <img src="archive-it/archiveit-dedicated-helpcenter.png" alt="Dedicated help center" style="width:100%; height:auto; display:block; border-radius:0.5rem; border:1px solid rgba(27,58,75,0.1);" />
-          <p style="font-family:'Lato',sans-serif; font-size:0.72rem; font-weight:300; letter-spacing:0.08em; color:rgba(27,58,75,0.45); margin-top:0.5rem;">Dedicated how-to page</p>
+          <p style="font-family:'Poppins',sans-serif; font-size:0.72rem; font-weight:300; letter-spacing:0.08em; color:rgba(27,58,75,0.45); margin-top:0.5rem;">Dedicated how-to page</p>
         </div>
       </div>
     </div>
@@ -893,7 +881,7 @@
       <img id="before-after-img" src="shared/archiveit-redesign.png" alt="Archive-It interface" style="width:100%; height:auto; display:block; border-radius:0.5rem; border:1px solid rgba(27,58,75,0.1); transition: opacity 0.3s ease;" />
     </div>
     <div style="display:flex; align-items:center; justify-content:center; gap:1.5rem; margin-top:0.75rem;">
-      <p id="before-after-label" style="font-family:'Lato',sans-serif; font-size:0.72rem; font-weight:300; letter-spacing:0.18em; text-transform:uppercase; color:rgba(27,58,75,0.45);">so here is the after :)</p>
+      <p id="before-after-label" style="font-family:'Poppins',sans-serif; font-size:0.72rem; font-weight:300; letter-spacing:0.18em; text-transform:uppercase; color:rgba(27,58,75,0.45);">so here is the after :)</p>
       <button id="before-after-btn" style="font-family:'Poppins',sans-serif; font-weight:300; font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(27,58,75,0.6); border:1px solid rgba(27,58,75,0.25); background:transparent; border-radius:2rem; padding:0.4rem 1rem; cursor:pointer; white-space:nowrap;">see the before</button>
     </div>
     <script>
@@ -940,16 +928,18 @@
   </a>
 
   <!-- ── FOOTER ─────────────────────────────────────────────────── -->
-  <div class="fh-bottombar">
-    <div class="fh-bottombar-links">
-      <a href="https://www.linkedin.com/in/camila-garcia-04r17/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="#">Substack</a>
-      <a href="https://drive.google.com/file/d/1g9xEyP9xjEwUIDGVso1VA5jVeM1jJgON/view?usp=sharing" target="_blank" rel="noopener">Resume</a>
+  <footer class="site-footer-cta">
+    <img src="index/newfavicon.png" alt="" class="footer-jar" />
+    <p class="footer-cta-text">LET'S WORK TOGETHER!</p>
+    <div class="footer-social">
+      <a href="https://www.linkedin.com/in/camila-garcia-04r17/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+      </a>
+      <a href="mailto:cmlagarcia9@gmail.com" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+      </a>
     </div>
-    <span class="fh-bottombar-email">e: cmlagarcia9@gmail.com</span>
-  </div>
-
-  <p class="fh-copyright">Camila Garcia 2026</p>
+  </footer>
 
   <!-- ── LIGHTBOX ───────────────────────────────────────────────── -->
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
@@ -1102,21 +1092,6 @@
     updateActive();
   </script>
 
-  <script>
-    const wordmark = document.getElementById('site-wordmark');
-    const header = document.querySelector('.site-header');
-    const wordmarkNaturalHeight = wordmark.scrollHeight;
-    function updateWordmark() {
-      const hidden = window.scrollY > 60;
-      wordmark.style.maxHeight = hidden ? '0' : wordmarkNaturalHeight + 'px';
-      wordmark.style.opacity = hidden ? '0' : '1';
-      wordmark.style.pointerEvents = hidden ? 'none' : '';
-      header.style.paddingTop = hidden ? '1.25rem' : '2.5rem';
-      header.classList.toggle('wordmark-hidden', hidden);
-    }
-    window.addEventListener('scroll', updateWordmark, { passive: true });
-    updateWordmark();
-  </script>
   <script src="animations.js"></script>
 
 </body>

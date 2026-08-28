@@ -13,10 +13,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Workiva — Camila Garcia</title>
-  <link rel="icon" type="image/png" href="index/home-icon-5.png">
+  <link rel="icon" type="image/png" href="index/newfavicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:wght@100;300;400;700&family=Liu+Jian+Mao+Cao&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="pages.css" />
   <style>
@@ -42,26 +42,27 @@
       overflow: hidden;
     }
     .cs-hero-eyebrow {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.68rem;
-      font-weight: 300;
-      letter-spacing: 0.22em;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      color: rgba(42,32,24,0.45);
+      color: rgba(22,19,15,0.45);
       margin-bottom: 1.5rem;
     }
     .cs-hero-title {
-      font-family: 'Lato', sans-serif;
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      font-weight: 400;
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2rem, 4.8vw, 3.2rem);
+      font-weight: 500;
       font-style: normal;
-      line-height: 1.1;
-      color: var(--wv-green);
-      max-width: 18ch;
+      line-height: 1.15;
+      color: #16130f;
+      max-width: 32ch;
       margin-bottom: 2rem;
+      text-wrap: balance;
     }
     .cs-hero-desc {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-weight: 300;
       font-size: clamp(0.85rem, 1.5vw, 1rem);
       line-height: 1.8;
@@ -78,15 +79,15 @@
     }
     .cs-meta-item { display: flex; flex-direction: column; gap: 0.3rem; }
     .cs-meta-label {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.62rem;
-      font-weight: 300;
-      letter-spacing: 0.18em;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      color: rgba(42,32,24,0.4);
+      color: rgba(22,19,15,0.45);
     }
     .cs-meta-value {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-weight: 300;
       font-size: 1rem;
       color: #2a2018;
@@ -110,7 +111,7 @@
     .cs-section, .cs-section-wide, .cs-two-col > * { opacity: 1 !important; transform: none !important; }
     .cs-section {
       padding: 6rem 6vw;
-      max-width: 1100px;
+      max-width: 1800px;
       margin: 0 auto;
       transition: opacity 0.3s ease;
     }
@@ -132,19 +133,19 @@
       font-size: clamp(1.2rem, 2vw, 1.6rem);
       font-weight: 100;
       line-height: 1.2;
-      color: var(--dark);
+      color: #16130f;
       margin-bottom: 1.5rem;
     }
     .cs-body {
-      font-family: 'Lato', sans-serif;
-      font-weight: 300;
-      font-size: clamp(0.85rem, 1.5vw, 1rem);
-      line-height: 1.85;
-      color: #898078;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      font-size: 1.125rem;
+      line-height: 1.75;
+      color: rgba(22,19,15,0.65);
       text-align: justify;
     }
     .cs-body + .cs-body { margin-top: 1rem; }
-    .cs-body strong { color: var(--dark); font-weight: 700; }
+    .cs-body strong { color: #16130f; font-weight: 700; }
 
     /* ── DIVIDER ─────────────────────────────────────────────── */
     .cs-divider {
@@ -156,11 +157,11 @@
     /* ── CHAPTER LABEL ───────────────────────────────────────── */
     .chapter-label {
       font-family: 'Poppins', sans-serif;
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      color: rgba(20,35,56,0.5);
+      color: rgba(22,19,15,0.45);
       margin-bottom: 1rem;
       display: flex;
       align-items: center;
@@ -171,7 +172,7 @@
       display: block;
       width: 2rem;
       height: 1px;
-      background: rgba(20,35,56,0.3);
+      background: rgba(22,19,15,0.3);
     }
 
     /* ── PULL QUOTE ──────────────────────────────────────────── */
@@ -181,7 +182,7 @@
       text-align: center;
     }
     .cs-quote-mark {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-size: 5rem;
       line-height: 0.5;
       color: rgba(253,246,237,0.15);
@@ -189,7 +190,7 @@
       margin-bottom: 1.5rem;
     }
     .cs-quote-text {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-style: italic;
       font-weight: 100;
       font-size: clamp(1.1rem, 2vw, 1.5rem);
@@ -224,11 +225,11 @@
       font-family: 'Poppins', sans-serif;
       font-size: 1rem;
       font-weight: 300;
-      color: var(--wv-accent);
+      color: #16130f;
       margin-bottom: 1rem;
     }
     .wv-meta-card p {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-weight: 300;
       font-size: 0.9rem;
       line-height: 1.75;
@@ -248,7 +249,7 @@
       display: flex;
       align-items: flex-start;
       gap: 0.75rem;
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-weight: 300;
       font-size: clamp(0.85rem, 1.5vw, 1rem);
       line-height: 1.7;
@@ -287,11 +288,11 @@
       font-family: 'Poppins', sans-serif;
       font-size: 1rem;
       font-weight: 100;
-      color: var(--wv-purple);
+      color: #16130f;
       margin-bottom: 0.5rem;
     }
     .wv-principle p {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-weight: 300;
       font-size: 0.875rem;
       line-height: 1.7;
@@ -308,7 +309,7 @@
     .wv-ba-card {
       border-radius: 0.5rem;
       padding: 1.75rem;
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-weight: 300;
       font-size: 0.9rem;
       line-height: 1.75;
@@ -369,7 +370,7 @@
     }
     .cs-next:hover { background: #eaf2ec; }
     .cs-next-label {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-size: 0.68rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
@@ -377,13 +378,13 @@
       margin-bottom: 0.6rem;
     }
     .cs-next-title {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-size: clamp(1rem, 2vw, 1.4rem);
       font-weight: 300;
       color: #2a2018;
     }
     .cs-next-arrow {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-style: normal;
       font-size: 1.1rem;
       color: var(--wv);
@@ -428,53 +429,25 @@
       transition: opacity 0.2s ease; white-space: nowrap;
     }
     .wv-cursor.visible { opacity: 1; }
-    /* ── NAV HIDE ON SCROLL ──────────────────────────────────── */
-    .site-nav {
-      transition: opacity 0.3s ease;
-    }
-    .site-nav.nav-hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
-    .site-header:hover .site-nav {
-      opacity: 1 !important;
-      pointer-events: auto;
-    }
-
-    .site-header.wordmark-hidden { background: transparent; padding-left: 0; padding-right: 0; }
-    .site-header.wordmark-hidden .site-nav {
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(42,32,24,0.1);
-      border-radius: 999px;
-      padding: 0.5rem 1.5rem;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-      opacity: 1 !important;
-      pointer-events: auto;
-    }
   </style>
 </head>
 <body>
 
   <!-- ── NAV ───────────────────────────────────────────────────── -->
-  <header class="site-header">
-    <a href="index.html" class="wordmark" id="site-wordmark" style="text-decoration:none; transition: max-height 0.25s, opacity 0.25s; overflow: hidden; display:flex; align-items:center; gap:0.5rem;">
-      <div class="wordmark-name"><span class="l1">C</span><span class="l2">A</span><span class="l3">M</span><span class="l4">I</span><span class="l5">L</span><span class="l6">A</span></div>
-      <img src="index/girlonly.png" alt="" class="wordmark-girl" style="pointer-events:none;" />
-      <div class="wordmark-name"><span class="l1">G</span><span class="l2">A</span><span class="l3">R</span><span class="l4">C</span><span class="l5">I</span><span class="l6">A</span></div>
-    </a>
-    <nav class="site-nav">
+  <nav class="hero-nav">
+    <div class="hero-nav-pill">
       <a href="index.html" class="active">Work</a>
+      <a href="playground.html">Playground</a>
       <a href="about.html">My Story</a>
       <a href="resume.html">Resume</a>
-    </nav>
-  </header>
+    </div>
+  </nav>
 
   <!-- ── HERO ──────────────────────────────────────────────────── -->
   <header class="cs-hero">
-    <div style="max-width:1100px; width:100%; margin:0 auto; padding:0 6vw;">
+    <div style="max-width:1800px; width:100%; margin:0 auto; padding:0 6vw;">
       <p class="cs-hero-eyebrow">Workiva · Content Design · 2023</p>
-      <h1 class="cs-hero-title">The product was strong. The words weren't.</h1>
+      <h1 class="cs-hero-title">Workiva: Mobile Content Design for enterprise Saas</h1>
       <p class="cs-hero-desc">Building a scalable content system for a <strong>beta mobile app</strong> in a regulated environment.</p>
       <div class="cs-meta-row">
         <div class="cs-meta-item">
@@ -498,7 +471,7 @@
   </header>
 
   <!-- ── COVER IMAGE ──────────────────────────────────────────── -->
-  <div style="width:100%; max-width:1100px; margin:0.5rem auto 0; padding:0 6vw;">
+  <div style="width:100%; max-width:1800px; margin:0.5rem auto 0; padding:0 6vw;">
     <img src="workiva/workivacover.png" alt="Workiva cover" style="width:100%; height:auto; display:block; border-radius:8px;" />
   </div>
 
@@ -534,7 +507,7 @@
       </div>
       <div>
         <div style="background:#fff; border:1px solid rgba(20,35,56,0.1); border-radius:0.75rem; padding:2rem;">
-          <p style="font-family:'Lato',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:rgba(20,35,56,0.4); margin-bottom:1.25rem;">Impact of inconsistency</p>
+          <p style="font-family:'Poppins',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:rgba(20,35,56,0.4); margin-bottom:1.25rem;">Impact of inconsistency</p>
           <div style="display:flex; flex-direction:column; gap:1rem;">
             <div style="display:flex; align-items:flex-start; gap:0.75rem;">
               <span style="color:var(--wv-accent); font-size:1rem; flex-shrink:0;">↓</span>
@@ -596,7 +569,7 @@
 
   <!-- ── AUDIT ─────────────────────────────────────────────────── -->
   <div class="cs-section-wide cs-band">
-    <div style="max-width:1100px; margin:0 auto; padding: 0 6vw;">
+    <div style="max-width:1800px; margin:0 auto; padding: 0 6vw;">
   
       <h2 class="cs-section-heading">To understand the scope, I mapped the entire mobile content ecosystem.</h2>
       <div class="cs-two-col">
@@ -624,7 +597,7 @@
 
     <!-- Toast messages -->
     <div style="margin-bottom:4rem;">
-      <p style="font-family:'Lato',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(20,35,56,0.5); margin-bottom:1rem;">Toast messages that don't panic the user</p>
+      <p style="font-family:'Poppins',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(20,35,56,0.5); margin-bottom:1rem;">Toast messages that don't panic the user</p>
       <p class="cs-body" style="margin-bottom:1.5rem; max-width:60ch;">One of my favorite fixes: replacing the word <em>"Failed"</em> with <em>"Couldn't"</em>, because no one deserves to be yelled at by a toast. I also shortened each message so it could be understood in the tiny window of time it appears.</p>
       <div class="wv-before-after">
         <div class="wv-ba-card before">
@@ -642,7 +615,7 @@
 
     <!-- Confirmation dialogs -->
     <div>
-      <p style="font-family:'Lato',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(20,35,56,0.5); margin-bottom:1rem;">Confirmation dialogs with less "Are You Sure??" energy</p>
+      <p style="font-family:'Poppins',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(20,35,56,0.5); margin-bottom:1rem;">Confirmation dialogs with less "Are You Sure??" energy</p>
       <p class="cs-body" style="margin-bottom:1.5rem; max-width:60ch;">I trimmed them down, removed polite-but-unnecessary fear-mongering, and made the actions the star of the show.</p>
       <div class="cs-two-col" style="gap:1.5rem;">
         <div style="display:flex; justify-content:center;">
@@ -692,12 +665,12 @@
   <div class="cs-section">
     <h2 class="cs-section-heading">I scaled beyond the UI.</h2>
     <p class="cs-body" style="max-width:55ch;">Once core UI patterns were established, I extended the same principles to mobile help documentation — ensuring users received the same voice whether tapping through the app or searching for help.</p>
-    <p style="font-family:'Lato',sans-serif; font-size:0.72rem; font-weight:300; letter-spacing:0.18em; text-transform:uppercase; color:rgba(42,32,24,0.45); margin-top:2rem;">↓ The documentation</p>
+    <p style="font-family:'Poppins',sans-serif; font-size:0.72rem; font-weight:300; letter-spacing:0.18em; text-transform:uppercase; color:rgba(42,32,24,0.45); margin-top:2rem;">↓ The documentation</p>
   </div>
 
   <!-- ── DOCUMENTATION ─────────────────────────────────────────── -->
   <div class="cs-section-wide cs-band">
-    <div style="max-width:1100px; margin:0 auto; padding:0 6vw;">
+    <div style="max-width:1800px; margin:0 auto; padding:0 6vw;">
   
       <h2 class="cs-section-heading">With the UI aligned, the next question was: would the voice hold outside the app?</h2>
       <div class="cs-two-col">
@@ -751,15 +724,15 @@
 
   <!-- ── TAKEAWAY ───────────────────────────────────────────────── -->
   <div class="cs-section" style="text-align:center; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;">
-    <p style="font-family:'Lato',sans-serif; font-weight:300; font-size:clamp(0.85rem,1.5vw,1rem); color:#898078; max-width:70ch; margin:0 auto 1.5rem; line-height:1.7;">With the system in place, individual messages became sharper.</p>
+    <p style="font-family:'Poppins',sans-serif; font-weight:300; font-size:clamp(0.85rem,1.5vw,1rem); color:#898078; max-width:70ch; margin:0 auto 1.5rem; line-height:1.7;">With the system in place, individual messages became sharper.</p>
     <p style="font-family:'Poppins',sans-serif; font-weight:100; font-size:clamp(1.2rem,2.2vw,1.6rem); color:var(--wv-purple); max-width:60ch; margin:0 auto; line-height:1.4;">Content design isn't just about refining words. It's about building structures that support confident user decisions.</p>
   </div>
 
   <!-- ── TESTIMONIAL ────────────────────────────────────────────── -->
   <div class="cs-section" style="text-align:center;">
-    <span style="font-family:'Lato',sans-serif; font-size:4rem; line-height:0.5; color:rgba(42,32,24,0.1); display:block; margin-bottom:1.5rem;">"</span>
-    <p style="font-family:'Lato',sans-serif; font-style:italic; font-weight:300; font-size:clamp(1rem,1.8vw,1.25rem); line-height:1.7; color:#898078; max-width:65ch; margin:0 auto 1.5rem;">She readily took on the mobile app project and actively seeks out feedback on in-app copy from the team. When she had to create a series of new help articles on her own, she learned organizational strategies from others and applied those learnings to her own work, which shows that she is open to trying different processes to figure out what works best for her.</p>
-    <p style="font-family:'Lato',sans-serif; font-size:0.68rem; font-weight:300; letter-spacing:0.18em; text-transform:uppercase; color:rgba(42,32,24,0.4);">Sarah Kang · Workiva</p>
+    <span style="font-family:'Poppins',sans-serif; font-size:4rem; line-height:0.5; color:rgba(42,32,24,0.1); display:block; margin-bottom:1.5rem;">"</span>
+    <p style="font-family:'Poppins',sans-serif; font-style:italic; font-weight:300; font-size:clamp(1rem,1.8vw,1.25rem); line-height:1.7; color:#898078; max-width:65ch; margin:0 auto 1.5rem;">She readily took on the mobile app project and actively seeks out feedback on in-app copy from the team. When she had to create a series of new help articles on her own, she learned organizational strategies from others and applied those learnings to her own work, which shows that she is open to trying different processes to figure out what works best for her.</p>
+    <p style="font-family:'Poppins',sans-serif; font-size:0.68rem; font-weight:300; letter-spacing:0.18em; text-transform:uppercase; color:rgba(42,32,24,0.4);">Sarah Kang · Workiva</p>
   </div>
 
   <!-- ── REFLECTION ─────────────────────────────────────────────── -->
@@ -802,16 +775,18 @@
   </a>
 
   <!-- ── FOOTER ─────────────────────────────────────────────────── -->
-  <div class="fh-bottombar">
-    <div class="fh-bottombar-links">
-      <a href="https://www.linkedin.com/in/camila-garcia-04r17/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="#">Substack</a>
-      <a href="https://drive.google.com/file/d/1g9xEyP9xjEwUIDGVso1VA5jVeM1jJgON/view?usp=sharing" target="_blank" rel="noopener">Resume</a>
+  <footer class="site-footer-cta">
+    <img src="index/newfavicon.png" alt="" class="footer-jar" />
+    <p class="footer-cta-text">LET'S WORK TOGETHER!</p>
+    <div class="footer-social">
+      <a href="https://www.linkedin.com/in/camila-garcia-04r17/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+      </a>
+      <a href="mailto:cmlagarcia9@gmail.com" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+      </a>
     </div>
-    <span class="fh-bottombar-email">e: cmlagarcia9@gmail.com</span>
-  </div>
-
-  <p class="fh-copyright">Camila Garcia 2026</p>
+  </footer>
 
   <!-- ── LIGHTBOX ───────────────────────────────────────────────── -->
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
@@ -841,20 +816,6 @@
     })();
 
     // scroll fade removed
-
-    // ── NAV HIDE AFTER HERO ────────────────────────────────────
-    const siteNav = document.querySelector('.site-nav');
-    const siteHeader = document.querySelector('.site-header');
-    function updateNav() {
-      const headerBottom = siteHeader.getBoundingClientRect().bottom;
-      if (window.scrollY > headerBottom + 20) {
-        siteNav.classList.add('nav-hidden');
-      } else {
-        siteNav.classList.remove('nav-hidden');
-      }
-    }
-    window.addEventListener('scroll', updateNav, { passive: true });
-
 
     // ── LIGHTBOX ───────────────────────────────────────────────
     const lightbox      = document.getElementById('lightbox');
@@ -905,21 +866,6 @@
     document.getElementById('wv-next')?.addEventListener('click', () => goTo(current + 1));
   </script>
 
-  <script>
-    const wordmark = document.getElementById('site-wordmark');
-    const header = document.querySelector('.site-header');
-    const wordmarkNaturalHeight = wordmark.scrollHeight;
-    function updateWordmark() {
-      const hidden = window.scrollY > 60;
-      wordmark.style.maxHeight = hidden ? '0' : wordmarkNaturalHeight + 'px';
-      wordmark.style.opacity = hidden ? '0' : '1';
-      wordmark.style.pointerEvents = hidden ? 'none' : '';
-      header.style.paddingTop = hidden ? '1.25rem' : '2.5rem';
-      header.classList.toggle('wordmark-hidden', hidden);
-    }
-    window.addEventListener('scroll', updateWordmark, { passive: true });
-    updateWordmark();
-  </script>
   <script src="animations.js"></script>
 
 </body>
