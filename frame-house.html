@@ -13,10 +13,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Frame House — Camila Garcia</title>
-  <link rel="icon" type="image/png" href="index/home-icon-5.png">
+  <link rel="icon" type="image/png" href="index/newfavicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:wght@100;300;400;700&family=Liu+Jian+Mao+Cao&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="pages.css" />
   <style>
@@ -43,25 +43,26 @@
       overflow: hidden;
     }
     .cs-hero-eyebrow {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.68rem;
-      font-weight: 300;
-      letter-spacing: 0.22em;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      color: rgba(42,32,24,0.45);
+      color: rgba(22,19,15,0.45);
       margin-bottom: 1.5rem;
     }
     .cs-hero-title {
-      font-family: 'Lato', sans-serif;
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      font-weight: 400;
-      line-height: 1.1;
-      color: var(--fh);
-      max-width: 18ch;
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2rem, 4.8vw, 3.2rem);
+      font-weight: 500;
+      line-height: 1.15;
+      color: #16130f;
+      max-width: 32ch;
       margin-bottom: 2rem;
+      text-wrap: balance;
     }
     .cs-hero-desc {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-weight: 300;
       font-size: clamp(0.85rem, 1.5vw, 1rem);
       line-height: 1.8;
@@ -78,15 +79,15 @@
     }
     .cs-meta-item { display: flex; flex-direction: column; gap: 0.3rem; }
     .cs-meta-label {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.62rem;
-      font-weight: 300;
-      letter-spacing: 0.18em;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      color: rgba(42,32,24,0.4);
+      color: rgba(22,19,15,0.45);
     }
     .cs-meta-value {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-weight: 300;
       font-size: 1rem;
       color: #2a2018;
@@ -95,21 +96,11 @@
     /* ── LAYOUT ──────────────────────────────────────────────── */
     .cs-section {
       padding: 6rem 6vw;
-      max-width: 1100px;
+      max-width: 1800px;
       margin: 0 auto;
       transition: opacity 0.3s ease;
     }
     .cs-section, .cs-section-wide, .cs-two-col > * { opacity: 1 !important; transform: none !important; }
-
-    .site-header.wordmark-hidden { background: transparent; padding-left: 0; padding-right: 0; }
-    .site-header.wordmark-hidden .site-nav {
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(42,32,24,0.1);
-      border-radius: 999px;
-      padding: 0.5rem 1.5rem;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    }
 
     .cs-two-col {
       display: grid;
@@ -123,33 +114,33 @@
       font-size: clamp(1.2rem, 2vw, 1.6rem);
       font-weight: 100;
       line-height: 1.2;
-      color: var(--dark);
+      color: #16130f;
       margin-bottom: 1.5rem;
     }
     .cs-body {
-      font-family: 'Lato', sans-serif;
-      font-weight: 300;
-      font-size: clamp(0.85rem, 1.5vw, 1rem);
-      line-height: 1.85;
-      color: #898078;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      font-size: 1.125rem;
+      line-height: 1.75;
+      color: rgba(22,19,15,0.65);
       text-align: justify;
     }
     .cs-body + .cs-body { margin-top: 1rem; }
-    .cs-body strong { color: var(--dark); font-weight: 700; }
+    .cs-body strong { color: #16130f; font-weight: 700; }
 
     .cs-divider {
       height: 1px;
       background: rgba(42,32,24,0.1);
-      margin: 0 6vw;
+      margin: 0;
     }
 
     .chapter-label {
       font-family: 'Poppins', sans-serif;
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: rgba(22,19,15,0.45);
       margin-bottom: 1rem;
       display: flex;
       align-items: center;
@@ -160,7 +151,7 @@
       display: block;
       width: 2rem;
       height: 1px;
-      background: rgba(42,32,24,0.3);
+      background: rgba(22,19,15,0.3);
     }
 
     /* ── GOALS LIST ──────────────────────────────────────────── */
@@ -199,14 +190,12 @@
 
     /* ── LOGO BLOCK ──────────────────────────────────────────── */
     .fh-logo-block {
-      background: var(--fh);
-      border-radius: 1rem;
-      padding: 4rem 3rem;
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
     }
-    .fh-logo-block img { width: 100%; max-width: 380px; height: auto; display: block; }
+    .fh-logo-block img { width: 100%; height: auto; display: block; }
 
     /* ── TYPOGRAPHY ──────────────────────────────────────────── */
     .fh-type-grid {
@@ -233,26 +222,6 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--muted);
-    }
-
-    /* ── COLOR PALETTE ───────────────────────────────────────── */
-    .fh-palette {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 1rem;
-      margin-top: 2.5rem;
-    }
-    .fh-swatch {
-      border-radius: 0.6rem;
-      aspect-ratio: 1/1;
-      margin-bottom: 0.75rem;
-    }
-    .fh-swatch-label {
-      font-family: 'Poppins', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      color: var(--dark);
     }
 
     /* ── APPLICATIONS GRID ──────────────────────────────────── */
@@ -307,7 +276,7 @@
       text-align: center;
     }
     .cs-quote-mark {
-      font-family: 'Bodoni Moda', serif;
+      font-family: 'Poppins', sans-serif;
       font-size: 5rem;
       line-height: 0.5;
       color: rgba(253,246,237,0.15);
@@ -315,7 +284,7 @@
       margin-bottom: 1.5rem;
     }
     .cs-quote-text {
-      font-family: 'Bodoni Moda', serif;
+      font-family: 'Poppins', sans-serif;
       font-style: italic;
       font-size: clamp(1.1rem, 2vw, 1.5rem);
       line-height: 1.65;
@@ -334,7 +303,6 @@
     @media (max-width: 900px) {
       .cs-two-col { grid-template-columns: 1fr; gap: 2.5rem; }
       .fh-type-grid { grid-template-columns: 1fr; }
-      .fh-palette { grid-template-columns: repeat(3, 1fr); }
       .fh-apps-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
@@ -342,24 +310,20 @@
 <body>
 
   <!-- ── NAV ───────────────────────────────────────────────────── -->
-  <header class="site-header">
-    <div class="wordmark" id="site-wordmark" style="transition: max-height 0.25s, opacity 0.25s; overflow: hidden;">
-      <div class="wordmark-name"><span class="l1">C</span><span class="l2">A</span><span class="l3">M</span><span class="l4">I</span><span class="l5">L</span><span class="l6">A</span></div>
-      <img src="index/girlonly.png" alt="" class="wordmark-girl" />
-      <div class="wordmark-name"><span class="l1">G</span><span class="l2">A</span><span class="l3">R</span><span class="l4">C</span><span class="l5">I</span><span class="l6">A</span></div>
-    </div>
-    <nav class="site-nav">
+  <nav class="hero-nav">
+    <div class="hero-nav-pill">
       <a href="index.html" class="active">Work</a>
+      <a href="playground.html">Playground</a>
       <a href="about.html">My Story</a>
       <a href="resume.html">Resume</a>
-    </nav>
-  </header>
+    </div>
+  </nav>
 
   <!-- ── HERO ──────────────────────────────────────────────────── -->
   <header class="cs-hero" style="position:relative;">
-    <div style="max-width:1100px; width:100%; margin:0 auto; padding:0 6vw;">
+    <div style="max-width:1800px; width:100%; margin:0 auto; padding:0 6vw;">
       <p class="cs-hero-eyebrow">Frame House · Brand &amp; Graphic Design · 2026</p>
-      <h1 class="cs-hero-title">A movie theater built like a living archive.</h1>
+      <h1 class="cs-hero-title">Frame House: Full brand identity, frame by frame </h1>
       <p class="cs-hero-desc">A full identity guide for an independent, community-centered movie theater — built to feel like a cultural hub, not just a place to watch a film.</p>
       <div class="cs-meta-row">
         <div class="cs-meta-item">
@@ -383,8 +347,8 @@
   </header>
 
   <!-- ── COVER IMAGE ──────────────────────────────────────────── -->
-  <div style="width:100%; max-width:1100px; margin:0 auto 0; padding:0 6vw;">
-    <img src="framehouse/framehousecover.png" alt="Frame House cover" style="width:100%; height:auto; display:block; border-radius:8px;" />
+  <div style="width:100%; max-width:1800px; margin:0 auto; padding:0 6vw;">
+    <img src="framehouse/framehousecover.png" alt="Frame House cover" style="width:100%; height:auto; display:block;" />
   </div>
 
   <!-- ── THE BRIEF ─────────────────────────────────────────────── -->
@@ -393,22 +357,17 @@
     <div class="cs-two-col" style="align-items:center;">
       <div>
         <p class="cs-body">Frame House is an independent, community-centered movie theater focused on preserving film culture and elevating indie, international, and underrepresented voices. Unlike traditional theaters, it operates as a living archive, where programming is shaped by both film history and community input.</p>
-        <p class="cs-body">Currently located in New York, Ann Arbor, and Los Angeles, Frame House aims to grow into a recognized cultural brand expanding to cities nationwide — which meant the identity needed to scale as confidently as the business does.</p>
+        <ul class="fh-goals" style="margin-top:1.5rem;">
+          <li><span>01</span> Position Frame House as a cultural hub, not just a theater</li>
+          <li><span>02</span> Transform film data into emotional, visual storytelling</li>
+          <li><span>03</span> Encourage community participation through interactive programming</li>
+          <li><span>04</span> Support scalability as the brand expands to new cities</li>
+        </ul>
       </div>
       <div>
-        <img src="framehouse/filmfilm.png" alt="Film" style="width:100%; height:auto; display:block; border-radius:8px;" />
+        <img src="framehouse/filmfilm.png" alt="Film" style="width:100%; height:auto; display:block; border-radius:0;" />
       </div>
     </div>
-  </div>
-
-  <!-- ── GOALS ─────────────────────────────────────────────────── -->
-  <div class="cs-section" style="padding-top:0;">
-    <ul class="fh-goals">
-      <li><span>01</span> Position Frame House as a cultural hub, not just a theater</li>
-      <li><span>02</span> Transform film data into emotional, visual storytelling</li>
-      <li><span>03</span> Encourage community participation through interactive programming</li>
-      <li><span>04</span> Support scalability as the brand expands to new cities</li>
-    </ul>
   </div>
 
   <div class="cs-divider"></div>
@@ -418,9 +377,9 @@
 
     <h2 class="cs-section-heading">Before the mark, a mess of references.</h2>
     <p class="cs-body">I started by pulling together everything that felt like Frame House before I knew what Frame House looked like — film stills, type treatments, data visualizations, even a Nike ad — looking for the throughline between film history, data, and feeling.</p>
-    <img src="framehouse/fh-moodboard.png" alt="Moodboard of film stills, type treatments, and data visualization references for Frame House" style="width:100%; border-radius:0.75rem; margin-top:2rem; display:block;" />
+    <img src="framehouse/fh-moodboard.png" alt="Moodboard of film stills, type treatments, and data visualization references for Frame House" style="width:100%; border-radius:0; margin-top:2rem; display:block;" />
     <p class="cs-body" style="margin-top:2.5rem;">From there, sketches helped me test which shapes could actually carry meaning — circles, trapezoids, and filmstrip motifs, tried in every combination, in CMYK to keep the film-process reference honest from the start.</p>
-    <img src="framehouse/fh-sketches.png" alt="Early logo sketches exploring circles, trapezoids, and filmstrip motifs in CMYK" style="width:100%; border-radius:0.75rem; margin-top:2rem; display:block;" />
+    <img src="framehouse/fh-sketches.png" alt="Early logo sketches exploring circles, trapezoids, and filmstrip motifs in CMYK" style="width:100%; border-radius:0; margin-top:2rem; display:block;" />
   </div>
 
   <div class="cs-divider"></div>
@@ -429,7 +388,7 @@
   <div class="cs-section">
 
     <div class="cs-two-col" style="align-items:center;">
-      <div class="fh-logo-block">
+      <div class="fh-logo-block" style="background:#000;">
         <img src="framehouse/fh-logo.png" alt="Frame House logo" />
       </div>
       <div>
@@ -438,10 +397,10 @@
         <p class="cs-body">Together, the shapes overlap the way film history does — built by people, and by time.</p>
       </div>
     </div>
-    <img src="framehouse/fh-logobreakdown.jpg" alt="Logo design breakdown referencing letterbox framing, Fantasmagorie (1908), and CMYK tints" style="width:100%; border-radius:0.75rem; margin-top:2.5rem; display:block;" />
-    <p class="cs-body" style="margin-top:2.5rem;">The mark also needed room to breathe and a way to hold its own in black and white — both essential to a guide that has to scale across signage, merch, and print.</p>
-    <img src="framehouse/fh-logoclearspace.png" alt="Frame House logo clear space guidelines" style="width:100%; border-radius:0.75rem; margin-top:2rem; display:block;" />
-    <img src="framehouse/fh-logobwvariants.png" alt="Frame House logo black and white variants" style="width:100%; border-radius:0.75rem; margin-top:1.5rem; display:block;" />
+    <img src="framehouse/fh-logobreakdown.jpg" alt="Logo design breakdown referencing letterbox framing, Fantasmagorie (1908), and CMYK tints" style="width:100%; border-radius:0; margin-top:2.5rem; display:block;" />
+    <!-- <p class="cs-body" style="margin-top:2.5rem;">The mark also needed room to breathe and a way to hold its own in black and white — both essential to a guide that has to scale across signage, merch, and print.</p> -->
+    <img src="framehouse/fh-logoclearspace.png" alt="Frame House logo clear space guidelines" style="width:100%; border-radius:0; margin-top:2rem; display:block;" />
+    <img src="framehouse/fh-logobwvariants.png" alt="Frame House logo black and white variants" style="width:100%; border-radius:0; margin-top:1.5rem; display:block;" />
   </div>
 
   <div class="cs-divider"></div>
@@ -453,7 +412,7 @@
     <p class="cs-body">A geometric sans for structure, a warm serif for storytelling, and a technical grotesk for the digital product — each one earning its place in the system.</p>
     <div class="fh-type-grid">
       <div class="fh-type-card">
-        <p class="fh-type-sample" style="font-family:'Trebuchet MS', sans-serif;">Aa</p>
+        <p class="fh-type-sample" style="font-family:'Poppins', sans-serif;">Aa</p>
         <p class="fh-type-name">Quicksand</p>
       </div>
       <div class="fh-type-card">
@@ -461,9 +420,51 @@
         <p class="fh-type-name">Newsreader</p>
       </div>
       <div class="fh-type-card">
-        <p class="fh-type-sample" style="font-family:'Lato', sans-serif;">Aa</p>
+        <p class="fh-type-sample" style="font-family:'Poppins', sans-serif;">Aa</p>
         <p class="fh-type-name">Space Grotesk</p>
       </div>
+    </div>
+  </div>
+
+  <div class="cs-divider"></div>
+
+  <!-- ── COLOR PALETTE ─────────────────────────────────────────── -->
+  <div class="cs-section">
+
+    <h2 class="cs-section-heading">A palette pulled from film stock, not trend boards.</h2>
+    <p class="cs-body">Warm, slightly faded tones — closer to a found roll of film than a modern app icon.</p>
+    <div class="cs-two-col" style="align-items:stretch; gap:3rem; margin-top:2.5rem;">
+      <div>
+        <img src="framehouse/fh-colorpallete.png" alt="Frame House color palette" style="width:100%; display:block; border-radius:8px;">
+      </div>
+      <div id="fh-swatch-box" style="border-radius:8px; width:100%; height:100%; min-height:100%; position:relative; transition: background 0.4s ease;">
+        <span id="fh-swatch-hex" style="position:absolute; top:0.75rem; right:0.9rem; font-family:'Poppins',sans-serif; font-size:0.75rem; font-weight:700; letter-spacing:0.05em; transition: color 0.4s ease;"></span>
+      </div>
+      <script>
+        (function() {
+          var colors = [
+            { bg: '#EAC493', text: '#1a1a1a' },
+            { bg: '#9CBA8F', text: '#1a1a1a' },
+            { bg: '#D37576', text: '#fff' },
+            { bg: '#529B9C', text: '#fff' },
+            { bg: '#675B55', text: '#fff' },
+            { bg: '#8D6C89', text: '#fff' }
+          ];
+          var i = 0;
+          var box = document.getElementById('fh-swatch-box');
+          var hex = document.getElementById('fh-swatch-hex');
+          function set(idx) {
+            box.style.background = colors[idx].bg;
+            hex.style.color = colors[idx].text;
+            hex.textContent = colors[idx].bg;
+          }
+          set(0);
+          setInterval(function() {
+            i = (i + 1) % colors.length;
+            set(i);
+          }, 1500);
+        })();
+      </script>
     </div>
   </div>
 
@@ -475,42 +476,7 @@
     <h2 class="cs-section-heading">The shapes aren't decoration — they're plot structure.</h2>
     <p class="cs-body">Every circle, triangle, and trapezoid scattered across the identity traces back to a classic story arc — the rise-and-fall patterns writers have used for centuries to map narratives like <strong>Cinderella</strong> (rise-fall-rise), <strong>Oedipus</strong> (fall-rise-fall), and <strong>Man in a Hole</strong> (a fall followed by a rise). Each shape marks a beat plotted against the story's run time, in the spirit of <strong>Giorgia Lupi's</strong> data-humanism — using hand-drawn, personal marks to make data feel emotional rather than clinical.</p>
     <p class="cs-body">That same visual language — a shape standing in for a story beat, a color standing in for a feeling — became the backbone of the whole system, resurfacing on the badges, the tote bag, and the popcorn cups.</p>
-    <img src="framehouse/fh-plotarchetypes.jpg" alt="Data chart mapping plot archetypes like Cinderella and Oedipus to rise-and-fall curves over run time" style="width:100%; border-radius:0.75rem; margin-top:2rem; display:block;" />
-  </div>
-
-  <div class="cs-divider"></div>
-
-  <!-- ── COLOR PALETTE ─────────────────────────────────────────── -->
-  <div class="cs-section">
-
-    <h2 class="cs-section-heading">A palette pulled from film stock, not trend boards.</h2>
-    <p class="cs-body">Warm, slightly faded tones — closer to a found roll of film than a modern app icon.</p>
-    <div class="fh-palette">
-      <div>
-        <div class="fh-swatch" style="background:#EAC493;"></div>
-        <p class="fh-swatch-label">#EAC493</p>
-      </div>
-      <div>
-        <div class="fh-swatch" style="background:#9CBA8F;"></div>
-        <p class="fh-swatch-label">#9CBA8F</p>
-      </div>
-      <div>
-        <div class="fh-swatch" style="background:#D37576;"></div>
-        <p class="fh-swatch-label">#D37576</p>
-      </div>
-      <div>
-        <div class="fh-swatch" style="background:#529B9C;"></div>
-        <p class="fh-swatch-label">#529B9C</p>
-      </div>
-      <div>
-        <div class="fh-swatch" style="background:#675B55;"></div>
-        <p class="fh-swatch-label">#675B55</p>
-      </div>
-      <div>
-        <div class="fh-swatch" style="background:#8D6C89;"></div>
-        <p class="fh-swatch-label">#8D6C89</p>
-      </div>
-    </div>
+    <img src="framehouse/fh-plotarchetypes.jpg" alt="Data chart mapping plot archetypes like Cinderella and Oedipus to rise-and-fall curves over run time" style="width:100%; border-radius:0; margin-top:2rem; display:block;" />
   </div>
 
   <div class="cs-divider"></div>
@@ -600,16 +566,18 @@
   </div>
 
   <!-- ── FOOTER ────────────────────────────────────────────────── -->
-  <div class="fh-bottombar">
-    <div class="fh-bottombar-links">
-      <a href="https://www.linkedin.com/in/camila-garcia-04r17/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="#">Substack</a>
-      <a href="https://drive.google.com/file/d/1g9xEyP9xjEwUIDGVso1VA5jVeM1jJgON/view?usp=sharing" target="_blank" rel="noopener">Resume</a>
+  <footer class="site-footer-cta">
+    <img src="index/newfavicon.png" alt="" class="footer-jar" />
+    <p class="footer-cta-text">LET'S WORK TOGETHER!</p>
+    <div class="footer-social">
+      <a href="https://www.linkedin.com/in/camila-garcia-04r17/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+      </a>
+      <a href="mailto:cmlagarcia9@gmail.com" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+      </a>
     </div>
-    <span class="fh-bottombar-email">e: cmlagarcia9@gmail.com</span>
-  </div>
-
-  <p class="fh-copyright">Camila Garcia 2026</p>
+  </footer>
 
   <script>
     // ── NAV THEME ON SCROLL ────────────────────────────────────
@@ -631,21 +599,6 @@
     })();
 
     // scroll fade removed
-
-    // Hide wordmark on scroll
-    const wordmark = document.getElementById('site-wordmark');
-    const header = document.querySelector('.site-header');
-    const wordmarkNaturalHeight = wordmark.scrollHeight;
-    function updateWordmark() {
-      const hidden = window.scrollY > 60;
-      wordmark.style.maxHeight = hidden ? '0' : wordmarkNaturalHeight + 'px';
-      wordmark.style.opacity = hidden ? '0' : '1';
-      wordmark.style.pointerEvents = hidden ? 'none' : '';
-      header.style.paddingTop = hidden ? '1.25rem' : '2.5rem';
-      header.classList.toggle('wordmark-hidden', hidden);
-    }
-    window.addEventListener('scroll', updateWordmark, { passive: true });
-    updateWordmark();
 
   </script>
 
