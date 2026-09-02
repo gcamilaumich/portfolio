@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LF1Q9621QJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-LF1Q9621QJ');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Letterboxd — Camila Garcia</title>
+  <link rel="icon" type="image/png" href="index/newfavicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="pages.css" />
+  <style>
+    :root {
+      --lb-navy:   #202830;
+      --lb-orange: #FF8000;
+      --lb-green:  #00E054;
+      --lb-blue:   #40BCF4;
+    }
+    body { background: #fff; }
+
+    /* ── HERO ────────────────────────────────────────────────── */
+    .cs-hero {
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4rem 0 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .cs-hero-eyebrow {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: rgba(22,19,15,0.45);
+      margin-bottom: 1.5rem;
+    }
+    .cs-hero-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2rem, 4.8vw, 3.2rem);
+      font-weight: 500;
+      line-height: 1.15;
+      color: #16130f;
+      max-width: 32ch;
+      margin-bottom: 2rem;
+      text-wrap: balance;
+    }
+    .cs-hero-desc {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300;
+      font-size: clamp(0.85rem, 1.5vw, 1rem);
+      line-height: 1.8;
+      color: rgba(42,32,24,0.6);
+      max-width: 54ch;
+      margin-bottom: 3rem;
+    }
+    .cs-meta-row {
+      display: flex;
+      gap: 3rem;
+      border-top: 1px solid rgba(42,32,24,0.1);
+      padding-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .cs-meta-item { display: flex; flex-direction: column; gap: 0.3rem; }
+    .cs-meta-label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: rgba(22,19,15,0.45);
+    }
+    .cs-meta-value {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      color: #2a2018;
+    }
+
+    /* ── LAYOUT ──────────────────────────────────────────────── */
+    .cs-section {
+      padding: 5rem 6vw;
+      max-width: 1800px;
+      margin: 0 auto;
+    }
+    .cs-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .cs-section-heading {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+      color: #16130f;
+      margin-bottom: 1.5rem;
+    }
+    .cs-body {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      font-size: 1.125rem;
+      line-height: 1.75;
+      color: rgba(22,19,15,0.65);
+      text-align: justify;
+    }
+    .cs-body + .cs-body { margin-top: 1rem; }
+    .cs-body strong { color: #16130f; font-weight: 700; }
+    .cs-body em { color: #16130f; font-style: italic; }
+    .cs-caption {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: rgba(42,32,24,0.45);
+      margin-top: 0.75rem;
+      line-height: 1.6;
+    }
+
+    /* ── DIVIDER ─────────────────────────────────────────────── */
+    .cs-divider {
+      height: 1px;
+      background: rgba(42,32,24,0.1);
+      margin: 0 6vw;
+    }
+
+    /* ── CHAPTER LABEL ───────────────────────────────────────── */
+    .chapter-label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: rgba(22,19,15,0.45);
+      margin-bottom: 1.2rem;
+    }
+
+    /* ── COVER IMAGE ─────────────────────────────────────────── */
+    .lb-cover {
+      width: 100%;
+      max-width: 1800px;
+      margin: 0.5rem auto 0;
+      padding: 0 6vw;
+    }
+    .lb-cover img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+    }
+
+    /* ── GOAL CARDS ──────────────────────────────────────────── */
+    .lb-goal-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .lb-goal-card {
+      background: #fff;
+      border: 1px solid rgba(42,32,24,0.08);
+      border-top: 3px solid var(--lb-accent, var(--lb-green));
+      border-radius: 0.75rem;
+      padding: 2.25rem 2rem;
+    }
+    .lb-goal-num {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--lb-accent, var(--lb-green));
+      margin-bottom: 0.75rem;
+    }
+    .lb-goal-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: #16130f;
+      margin-bottom: 0.6rem;
+    }
+    .lb-goal-desc {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: rgba(42,32,24,0.6);
+    }
+
+    /* ── PROCESS STEPPER ─────────────────────────────────────── */
+    .lb-stepper {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-top: 3rem;
+      gap: 0.5rem;
+    }
+    .lb-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      flex: 1;
+      position: relative;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .lb-step-num {
+      width: 2.5rem; height: 2.5rem;
+      border-radius: 50%;
+      border: 1.5px solid var(--lb-green);
+      color: #16130f;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      font-size: 1.1rem;
+      background: #fff;
+      z-index: 2;
+    }
+    .lb-step-name {
+      font-size: 0.8rem;
+      color: rgba(42,32,24,0.65);
+      text-align: center;
+      max-width: 12ch;
+    }
+    .lb-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 1.25rem;
+      left: 60%;
+      width: 100%;
+      height: 1px;
+      background: rgba(42,32,24,0.2);
+      z-index: 1;
+    }
+    .lb-step:hover .lb-step-num { background: var(--lb-green); color: #16130f; }
+    .lb-step.active .lb-step-num { background: var(--lb-green); color: #16130f; }
+    .lb-step.active .lb-step-name { color: #16130f; font-weight: 600; }
+
+    /* ── STICKY SIDE PROGRESS BAR ───────────────────────────────── */
+    .lb-side-nav {
+      position: fixed;
+      right: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 500;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+    .lb-side-dot {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .lb-side-dot-circle {
+      width: 0.55rem;
+      height: 0.55rem;
+      border-radius: 50%;
+      border: 1.5px solid rgba(0,224,84,0.4);
+      background: transparent;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    }
+    .lb-side-dot.active .lb-side-dot-circle {
+      background: var(--lb-green);
+      border-color: var(--lb-green);
+      transform: scale(1.3);
+    }
+    .lb-side-dot:hover .lb-side-dot-circle {
+      border-color: var(--lb-green);
+      background: rgba(0,224,84,0.15);
+    }
+    .lb-side-dot-line {
+      width: 1px;
+      height: 1.8rem;
+      background: rgba(42,32,24,0.15);
+    }
+    .lb-side-dot:last-child .lb-side-dot-line { display: none; }
+    .lb-side-label {
+      position: absolute;
+      right: 1.2rem;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: #16130f;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+    .lb-side-dot:hover .lb-side-label,
+    .lb-side-dot.active .lb-side-label { opacity: 1; }
+
+    /* ── PERSONA CARDS ───────────────────────────────────────── */
+    .lb-persona-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .lb-persona-card {
+      background: #fff;
+      border: 1px solid rgba(42,32,24,0.08);
+      border-radius: 0.75rem;
+      padding: 2rem 1.75rem;
+    }
+    .lb-persona-header {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      margin-bottom: 1.1rem;
+    }
+    .lb-persona-avatar {
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .lb-persona-name {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: #16130f;
+    }
+    .lb-persona-tag {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(42,32,24,0.45);
+      margin-top: 0.15rem;
+    }
+    .lb-persona-body {
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: rgba(42,32,24,0.62);
+    }
+
+    /* ── RECOMMENDATION BLOCKS ───────────────────────────────── */
+    .lb-rec {
+      margin-top: 3.5rem;
+    }
+    .lb-rec:first-of-type { margin-top: 2.5rem; }
+    .lb-rec-kicker {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--lb-green);
+      margin-bottom: 0.6rem;
+    }
+
+    /* ── EMPTY STATE EXAMPLE ─────────────────────────────────── */
+    .lb-empty-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1.75rem;
+    }
+    .lb-empty-card {
+      border-radius: 0.6rem;
+      padding: 1.75rem;
+    }
+    .lb-empty-card.before {
+      background: #fff;
+      border: 1px solid rgba(42,32,24,0.1);
+    }
+    .lb-empty-card.after {
+      background: var(--lb-navy);
+    }
+    .lb-empty-label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .lb-empty-card.before .lb-empty-label { color: rgba(42,32,24,0.4); }
+    .lb-empty-card.after .lb-empty-label { color: var(--lb-green); }
+    .lb-empty-card.before p {
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: rgba(42,32,24,0.65);
+    }
+    .lb-empty-mock {
+      text-align: center;
+      padding: 1rem 0.5rem;
+    }
+    .lb-empty-mock-header {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 1.1rem;
+    }
+    .lb-empty-mock-quote {
+      font-family: 'Poppins', sans-serif;
+      font-style: italic;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.7);
+      max-width: 30ch;
+      margin: 0 auto 0.4rem;
+      line-height: 1.6;
+    }
+    .lb-empty-mock-source {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 1.5rem;
+    }
+    .lb-empty-mock-btn {
+      display: inline-block;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: #16130f;
+      background: var(--lb-green);
+      padding: 0.6rem 1.4rem;
+      border-radius: 999px;
+    }
+
+    /* ── LOCALIZATION LIST ───────────────────────────────────── */
+    .lb-check-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .lb-check-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: rgba(22,19,15,0.7);
+    }
+    .lb-check-list li::before {
+      content: '✓';
+      color: var(--lb-green);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 0.1em;
+    }
+
+    /* ── LEARNINGS ───────────────────────────────────────────── */
+    .lb-takeaways {
+      list-style: none;
+      padding: 0;
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+    .lb-takeaways li {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.1rem;
+      font-size: 1rem;
+      line-height: 1.65;
+      color: rgba(22,19,15,0.7);
+    }
+    .lb-takeaways li span {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      color: #16130f;
+      border: 1.5px solid var(--lb-green);
+      border-radius: 999px;
+      width: 1.8rem;
+      height: 1.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.05em;
+    }
+
+    @media (max-width: 900px) {
+      .cs-two-col { grid-template-columns: 1fr; gap: 2.5rem; }
+      .lb-goal-grid { grid-template-columns: 1fr; }
+      .lb-persona-grid { grid-template-columns: 1fr; }
+      .lb-empty-compare { grid-template-columns: 1fr; }
+      .lb-stepper { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+      .lb-step:not(:last-child)::after { display: none; }
+      .lb-side-nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ──────────────────────────────────────────────────────── -->
+  <nav class="hero-nav">
+    <div class="hero-nav-pill">
+      <a href="index.html" class="active">Work</a>
+      <a href="playground.html">Playground</a>
+      <a href="about.html">My Story</a>
+      <a href="resume.html">Resume</a>
+    </div>
+  </nav>
+
+  <!-- ── HERO ──────────────────────────────────────────────────────── -->
+  <header class="cs-hero">
+    <div style="max-width:1800px; width:100%; margin:0 auto; padding:0 6vw;">
+      <p class="cs-hero-eyebrow">Letterboxd · UX Writing · 2025</p>
+      <h1 class="cs-hero-title">Designing for Translation on Letterboxd</h1>
+      <p class="cs-hero-desc">A UX writing case study examining clarity, tone, and inclusivity in Letterboxd's interface.</p>
+      <div class="cs-meta-row">
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Role</span>
+          <span class="cs-meta-value">Lead UX Writer</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Tools</span>
+          <span class="cs-meta-value">Figma, Photoshop, Letterboxd</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Team</span>
+          <span class="cs-meta-value">1 Designer</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Timeline</span>
+          <span class="cs-meta-value">September – December 2025 (8 weeks)</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── COVER IMAGE ──────────────────────────────────────────────── -->
+  <div class="lb-cover">
+    <img src="index/letterboxd.png" alt="Letterboxd logo on its dark navy brand background" />
+  </div>
+
+  <!-- ── OVERVIEW ─────────────────────────────────────────────────── -->
+  <div class="cs-section">
+    <div class="chapter-label">Overview</div>
+    <div class="cs-two-col">
+      <div>
+        <h2 class="cs-section-heading">A global community, speaking one language</h2>
+        <p class="cs-body">Letterboxd has become a beloved hub for film lovers to log movies, write reviews, and connect with cinephiles worldwide. The platform brands itself as a <em>"global social network for grass-roots film discussion and discovery,"</em> yet it currently exists only in English.</p>
+      </div>
+      <div>
+        <p class="cs-body">Users post reviews in dozens of languages, but without translation or localization features, these diverse voices remain isolated from the wider community they're part of.</p>
+        <p class="cs-caption">Source: Letterboxd's Countries &amp; Languages page, showcasing the range of countries its database of films is produced in — letterboxd.com/countries</p>
+      </div>
+    </div>
+
+    <div class="lb-goal-grid">
+      <div class="lb-goal-card" style="--lb-accent:var(--lb-blue);">
+        <div class="lb-goal-num">Goal 01</div>
+        <div class="lb-goal-title">Clarity</div>
+        <div class="lb-goal-desc">Simplify microcopy for easier reading and understanding.</div>
+      </div>
+      <div class="lb-goal-card" style="--lb-accent:var(--lb-green);">
+        <div class="lb-goal-num">Goal 02</div>
+        <div class="lb-goal-title">Consistency</div>
+        <div class="lb-goal-desc">Establish a unified tone across the platform.</div>
+      </div>
+      <div class="lb-goal-card" style="--lb-accent:var(--lb-orange);">
+        <div class="lb-goal-num">Goal 03</div>
+        <div class="lb-goal-title">Translatability</div>
+        <div class="lb-goal-desc">Refine phrasing so copy can be easily and accurately localized.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-divider"></div>
+
+  <!-- ── PROBLEM ──────────────────────────────────────────────────── -->
+  <div class="cs-section">
+    <div class="chapter-label">The Problem</div>
+    <h2 class="cs-section-heading">Before translation, clarity</h2>
+    <p class="cs-body" style="max-width:80ch;">Before Letterboxd can offer translation tools or localized versions, its microcopy needs to be simplified and standardized. The current voice is passionate and reference-heavy — it captures the energy of film culture, but makes translation difficult. Ambiguous phrasing, idioms, and insider references can't easily or accurately be localized for global audiences.</p>
+
+    <div class="lb-stepper">
+      <a class="lb-step" href="#section-research"><span class="lb-step-num">1</span><span class="lb-step-name">Research &amp; Discovery</span></a>
+      <a class="lb-step" href="#section-voice"><span class="lb-step-num">2</span><span class="lb-step-name">Voice &amp; Tone Analysis</span></a>
+      <a class="lb-step" href="#section-recommendations"><span class="lb-step-num">3</span><span class="lb-step-name">Recommendations</span></a>
+    </div>
+  </div>
+
+  <div class="cs-divider"></div>
+
+  <!-- ── 01 RESEARCH & DISCOVERY ──────────────────────────────────── -->
+  <section class="cs-section" id="section-research">
+    <div class="chapter-label">Research &amp; Discovery</div>
+    <h2 class="cs-section-heading">Understanding the audience</h2>
+    <p class="cs-body" style="max-width:80ch;">Explored Letterboxd's interface and community through the lens of global accessibility.</p>
+
+    <div style="margin-top:3rem;">
+      <div class="lb-rec-kicker">The People</div>
+      <p class="cs-body" style="max-width:80ch;">To understand how Letterboxd's copy impacts real users, I developed two personas that represent key segments of the platform's audience — one a native English speaker, the other a native Spanish speaker. Both illustrate how voice and tone shape accessibility, clarity, and engagement across different cultural and linguistic contexts.</p>
+
+      <div class="lb-persona-grid">
+        <div class="lb-persona-card">
+          <div class="lb-persona-header">
+            <div class="lb-persona-avatar" style="background:var(--lb-blue);">J</div>
+            <div>
+              <div class="lb-persona-name">Johnny</div>
+              <div class="lb-persona-tag">Native English Speaker</div>
+            </div>
+          </div>
+          <p class="lb-persona-body">Johnny is fluent in Letterboxd's playful, reference-heavy voice. He gets the idioms, catches the film-nerd jokes, and feels right at home in the community's inside language — the tone is part of why he keeps coming back.</p>
+        </div>
+        <div class="lb-persona-card">
+          <div class="lb-persona-header">
+            <div class="lb-persona-avatar" style="background:var(--lb-orange);">S</div>
+            <div>
+              <div class="lb-persona-name">Sara</div>
+              <div class="lb-persona-tag">Native Spanish Speaker</div>
+            </div>
+          </div>
+          <p class="lb-persona-body">Sara is just as passionate about film as Johnny, but she navigates Letterboxd entirely in her second language. English idioms, cultural references, and ambiguous phrasing occasionally slow her down or leave her guessing at meaning the interface never intended to hide.</p>
+        </div>
+      </div>
+
+      <p class="cs-body" style="max-width:80ch; margin-top:2rem;">Johnny and Sara together reveal how Letterboxd's strong, cinephile-driven voice builds community, but can unintentionally exclude users unfamiliar with English idioms or film references. These personas inform opportunities to balance enthusiasm with clarity, and style with inclusivity.</p>
+    </div>
+  </section>
+
+  <div class="cs-divider"></div>
+
+  <!-- ── 02 VOICE & TONE ANALYSIS ─────────────────────────────────── -->
+  <section class="cs-section" id="section-voice">
+    <div class="chapter-label">Voice &amp; Tone Analysis</div>
+    <h2 class="cs-section-heading">Auditing the microcopy</h2>
+    <p class="cs-body" style="max-width:80ch;">Audited Letterboxd's microcopy to identify patterns in tone, clarity, and inclusivity. The analysis reveals that Letterboxd maintains a playful, cinephile-driven voice that fosters community and enthusiasm for film. Yet tonal inconsistencies weaken clarity and inclusivity — the dialogue provides little to no guidance or reassurance in instances where it may be needed most, such as empty states or error messages.</p>
+    <p class="cs-body" style="max-width:80ch;">These findings provide a foundation for understanding how Letterboxd's language choices affect user interactions.</p>
+    <p class="cs-caption">Analysis conducted using Torrey Podmajersky's voice and tone framework.</p>
+  </section>
+
+  <div class="cs-divider"></div>
+
+  <!-- ── 03 RECOMMENDATIONS ───────────────────────────────────────── -->
+  <section class="cs-section" id="section-recommendations">
+    <div class="chapter-label">Recommendations</div>
+
+    <div class="lb-rec">
+      <div class="lb-rec-kicker">Recommendation 01</div>
+      <h2 class="cs-section-heading">Clear, actionable labels to support decision-making</h2>
+      <p class="cs-body" style="max-width:80ch;">I redesigned critical labels across the platform to reduce ambiguity and support immediate comprehension. The updated system replaces vague noun phrases with plain-language, verb-led options.</p>
+      <p class="cs-body" style="max-width:80ch;">These changes create stronger alignment between intention and action, improve trust in system feedback, and make the UI more accessible for multilingual users. The clarity also ensures more accurate translation during future localization.</p>
+    </div>
+
+    <div class="lb-rec">
+      <div class="lb-rec-kicker">Recommendation 02</div>
+      <h2 class="cs-section-heading">Empty states that guide, not confuse</h2>
+      <p class="cs-body" style="max-width:80ch;">Letterboxd uses movie quotes in empty states, but some of them can read as alarming, or as if placing blame on the user (e.g. "Houston, we have a problem"). To keep Letterboxd's personality while improving usability, I introduced a standardized empty-state pattern.</p>
+
+      <div class="lb-empty-compare">
+        <div class="lb-empty-card before">
+          <div class="lb-empty-label">Before</div>
+          <p>A movie quote stands alone with no functional context — it can read as alarming, or as if the system is blaming the user for the empty state, e.g. <em>"Houston, we have a problem."</em></p>
+        </div>
+        <div class="lb-empty-card after">
+          <div class="lb-empty-label">After</div>
+          <div class="lb-empty-mock">
+            <div class="lb-empty-mock-header">No shared lists yet</div>
+            <div class="lb-empty-mock-quote">"Every great film should seem new every time you see it."</div>
+            <div class="lb-empty-mock-source">— Roger Ebert</div>
+            <span class="lb-empty-mock-btn">Create List</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="cs-body" style="max-width:80ch; margin-top:1.75rem;">This gives the copy a predictable structure: a functional header ("No shared lists yet"), followed by the movie quote, the movie's source, and finally an action button ("Create List"). By standardizing the English copy first, Letterboxd ensures consistency and quality when expanding into Spanish, or any other language.</p>
+    </div>
+
+    <div class="lb-rec">
+      <div class="lb-rec-kicker">Recommendation 03</div>
+      <h2 class="cs-section-heading">A voice and tone optimized for localization</h2>
+      <p class="cs-body" style="max-width:80ch;">I developed foundational guidelines to help Letterboxd grow into a truly global platform. By standardizing the English UX copy first, Letterboxd can expand into additional languages with consistency and quality.</p>
+      <ul class="lb-check-list">
+        <li>Clear, concise microcopy that avoids idioms and culturally specific humor</li>
+        <li>Labels, instructions, and errors that translate reliably</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="cs-divider"></div>
+
+  <!-- ── LEARNINGS ────────────────────────────────────────────────── -->
+  <div class="cs-section">
+    <div class="chapter-label">Learnings</div>
+    <div class="cs-two-col">
+      <div>
+        <p class="cs-body">Working on this project deepened my understanding of how intertwined UX writing and interaction design are. Something as small as one ambiguous label can disrupt the entire user journey. I also saw how personality-driven brands like Letterboxd must find a balance between voice and usability — too much personality can obscure meaning, but too little weakens the brand experience.</p>
+      </div>
+      <div>
+        <p class="cs-body">I gained a new appreciation for language as a design material. I had to consider not only what the copy conveyed, but how it would scale across contexts, screen sizes, and languages — which required thinking beyond English-speaking users, and imagining how these patterns might translate globally.</p>
+      </div>
+    </div>
+
+    <ul class="lb-takeaways">
+      <li><span>1</span>Microcopy is UX design — every word influences navigation, comprehension, and behavior.</li>
+      <li><span>2</span>Voice and tone guidelines make it easier to maintain consistency across UI components.</li>
+      <li><span>3</span>Designing with inclusivity in mind requires anticipating diverse user backgrounds and literacy levels.</li>
+      <li><span>4</span>Preparing content for localization early creates a more sustainable product long term.</li>
+    </ul>
+  </div>
+
+  <!-- ── SIDE PROGRESS NAV ────────────────────────────────────────── -->
+  <nav class="lb-side-nav" aria-label="Section progress">
+    <a class="lb-side-dot" href="#section-research" data-section="section-research">
+      <span class="lb-side-label">Research &amp; Discovery</span>
+      <span class="lb-side-dot-circle"></span>
+      <span class="lb-side-dot-line"></span>
+    </a>
+    <a class="lb-side-dot" href="#section-voice" data-section="section-voice">
+      <span class="lb-side-label">Voice &amp; Tone</span>
+      <span class="lb-side-dot-circle"></span>
+      <span class="lb-side-dot-line"></span>
+    </a>
+    <a class="lb-side-dot" href="#section-recommendations" data-section="section-recommendations">
+      <span class="lb-side-label">Recommendations</span>
+      <span class="lb-side-dot-circle"></span>
+      <span class="lb-side-dot-line"></span>
+    </a>
+  </nav>
+
+  <!-- ── FOOTER ───────────────────────────────────────────────────── -->
+  <footer class="site-footer-cta">
+    <img src="index/newfavicon.png" alt="" class="footer-jar" />
+    <p class="footer-cta-text">LET'S WORK TOGETHER!</p>
+    <div class="footer-social">
+      <a href="https://www.linkedin.com/in/camila-garcia-04r17/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+      </a>
+      <a href="mailto:cmlagarcia9@gmail.com" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    // ── SIDE NAV + STEPPER ACTIVE STATE ───────────────────────────
+    const lbSectionIds = ['section-research', 'section-voice', 'section-recommendations'];
+    function lbUpdateActive() {
+      let current = '';
+      lbSectionIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && window.scrollY >= el.offsetTop - window.innerHeight * 0.4) current = id;
+      });
+      document.querySelectorAll('.lb-side-dot').forEach(dot => {
+        dot.classList.toggle('active', dot.dataset.section === current);
+      });
+      document.querySelectorAll('.lb-step').forEach(step => {
+        step.classList.toggle('active', step.getAttribute('href') === '#' + current);
+      });
+    }
+    window.addEventListener('scroll', lbUpdateActive);
+    lbUpdateActive();
+  </script>
+
+</body>
+</html>
