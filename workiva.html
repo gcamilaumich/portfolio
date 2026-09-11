@@ -29,7 +29,84 @@
       --wv-purple: #6C8A73; /* matches primary — principle headings */
       --wv-light:  #FFFFFF; /* white — page background */
     }
-    body { background: var(--wv-light); }
+    body { background: #eef3ef; }
+
+    /* ── STICKY LEFT TOC RAIL ─────────────────────────────────── */
+    .wv-toc-rail {
+      position: fixed;
+      left: 2.5rem;
+      top: 8rem;
+      z-index: 400;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      width: 210px;
+    }
+    .wv-toc-eyebrow {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(22,19,15,0.35);
+      margin-bottom: 0.4rem;
+    }
+    .wv-toc-link {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: rgba(22,19,15,0.45);
+      text-decoration: none;
+      line-height: 1.4;
+      transition: color 0.2s;
+    }
+    .wv-toc-link:hover { color: var(--wv); }
+    .wv-toc-link.active { color: var(--wv); font-weight: 700; }
+    @media (max-width: 1280px) {
+      .wv-toc-rail { display: none; }
+    }
+
+    /* ── STICKY RAIL DECORATIVE STICKERS ─────────────────────── */
+    .wv-toc-stickers {
+      position: fixed;
+      left: 2.5rem;
+      bottom: 3rem;
+      width: 210px;
+      height: 210px;
+      z-index: 399;
+      pointer-events: none;
+    }
+    .wv-toc-sticker {
+      position: absolute;
+      display: block;
+      filter: drop-shadow(0 4px 10px rgba(108,138,115,0.18));
+      pointer-events: auto;
+      cursor: grab;
+      user-select: none;
+      -webkit-user-drag: none;
+      touch-action: none;
+    }
+    .wv-toc-sticker:active { cursor: grabbing; z-index: 401; }
+    .wv-toc-sticker.dragging { transition: none !important; z-index: 401; }
+    @media (max-width: 1280px) {
+      .wv-toc-stickers { display: none; }
+    }
+
+    /* ── PAGE SHELL (gives the sticky rail room, keeps content off it) ── */
+    .wv-page-shell {
+      background: var(--wv-light);
+      border-radius: 1.5rem;
+      max-width: 1500px;
+      margin: 1.5rem auto;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(20, 40, 30, 0.12);
+    }
+    @media (min-width: 1281px) {
+      .wv-page-shell { margin-left: 15.5rem; margin-right: 2.5rem; }
+    }
+    @media (max-width: 900px) {
+      .wv-page-shell { border-radius: 0; margin: 0; }
+    }
 
     /* ── HERO ────────────────────────────────────────────────── */
     .cs-hero {
@@ -41,56 +118,46 @@
       position: relative;
       overflow: hidden;
     }
-    .cs-hero-eyebrow {
-      font-family: 'Poppins', sans-serif;
-      font-size: 0.875rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: rgba(22,19,15,0.45);
-      margin-bottom: 1.5rem;
-    }
     .cs-hero-title {
       font-family: 'Poppins', sans-serif;
-      font-size: clamp(2rem, 4.8vw, 3.2rem);
+      font-size: clamp(1.6rem, 3.2vw, 2.4rem);
       font-weight: 500;
       font-style: normal;
       line-height: 1.15;
       color: #16130f;
       max-width: 32ch;
-      margin-bottom: 2rem;
+      margin-bottom: 0.5rem;
       text-wrap: balance;
     }
-    .cs-hero-desc {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 300;
-      font-size: clamp(0.85rem, 1.5vw, 1rem);
-      line-height: 1.8;
-      color: rgba(42,32,24,0.6);
-      max-width: 52ch;
-      margin-bottom: 3rem;
-    }
-    .cs-meta-row {
+    .cs-hero-pills {
       display: flex;
-      gap: 3rem;
-      border-top: 1px solid rgba(42,32,24,0.1);
-      padding-top: 2rem;
       flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 1.25rem 0 2rem;
     }
-    .cs-meta-item { display: flex; flex-direction: column; gap: 0.3rem; }
-    .cs-meta-label {
+    .cs-hero-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #eaf2ec;
+      border-radius: 999px;
+      padding: 0.5rem 1rem;
       font-family: 'Poppins', sans-serif;
-      font-size: 0.875rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: rgba(22,19,15,0.45);
+      font-size: 0.78rem;
+      white-space: nowrap;
     }
-    .cs-meta-value {
+    .cs-hero-pill b { font-weight: 700; color: #16130f; }
+    .cs-hero-pill span { color: rgba(22,19,15,0.55); }
+    .cs-hero-bio {
       font-family: 'Poppins', sans-serif;
-      font-weight: 300;
-      font-size: 1rem;
-      color: #2a2018;
+      font-weight: 400;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: #16130f;
+      max-width: 68ch;
+      border-left: 3px solid var(--wv);
+      padding-left: 1.5rem;
+      margin: 2rem 0 3.5rem;
     }
     .cs-hero-circle {
       position: absolute; right: -8vw; bottom: -8vw;
@@ -433,40 +500,76 @@
 </head>
 <body>
 
-  <!-- ── NAV ───────────────────────────────────────────────────── -->
-  <nav class="hero-nav">
-    <div class="hero-nav-pill">
-      <a href="index.html" class="active">Work</a>
-      <a href="playground.html">Playground</a>
-      <a href="about.html">My Story</a>
-      <a href="resume.html">Resume</a>
-    </div>
-  </nav>
+
+  <aside class="wv-toc-rail" id="wv-toc-rail">
+    <img src="workiva/workivalogo.png" alt="Workiva logo" class="wv-toc-logo" style="width:36px; height:36px; object-fit:contain; display:block; margin-bottom:0.4rem;">
+    <p class="wv-toc-eyebrow">Workiva</p>
+    <a href="#wv-0" class="wv-toc-link" data-chapter="0">Overview</a>
+    <a href="#wv-1" class="wv-toc-link" data-chapter="1">01 The problem</a>
+    <a href="#wv-2" class="wv-toc-link" data-chapter="2">02 The system</a>
+    <a href="#wv-3" class="wv-toc-link" data-chapter="3">03 Scaling the voice</a>
+  </aside>
+
+  <div class="wv-toc-stickers">
+    <img src="workiva/workivasticker1.png" alt="Workiva sticker" class="wv-toc-sticker" style="width:62px; top:5px; left:20px; transform:rotate(-12deg);">
+    <img src="workiva/workivasticker2.png" alt="Workiva sticker" class="wv-toc-sticker" style="width:44px; top:75px; left:140px; transform:rotate(10deg);">
+    <img src="workiva/workivasticker3.png" alt="Workiva sticker" class="wv-toc-sticker" style="width:52px; top:105px; left:15px; transform:rotate(9deg);">
+    <img src="workiva/workivasticker4.png" alt="Workiva sticker" class="wv-toc-sticker" style="width:70px; top:150px; left:90px; transform:rotate(-6deg);">
+    <img src="workiva/workivasticker5.png" alt="Workiva sticker" class="wv-toc-sticker" style="width:56px; top:0px; left:125px; transform:rotate(15deg);">
+  </div>
+
+  <script>
+    // ── Drag-and-drop for the sticky-rail stickers (mouse + touch) ──
+    // Stickers switch to position:fixed on pick-up so they can be dragged
+    // anywhere on screen, including over the white page shell.
+    document.querySelectorAll('.wv-toc-sticker').forEach(sticker => {
+      let offsetX = 0, offsetY = 0;
+
+      sticker.addEventListener('pointerdown', (e) => {
+        const rect = sticker.getBoundingClientRect();
+        sticker.style.position = 'fixed';
+        sticker.style.left = rect.left + 'px';
+        sticker.style.top = rect.top + 'px';
+        sticker.style.margin = '0';
+
+        offsetX = e.clientX - rect.left;
+        offsetY = e.clientY - rect.top;
+
+        sticker.classList.add('dragging');
+        sticker.setPointerCapture(e.pointerId);
+      });
+
+      sticker.addEventListener('pointermove', (e) => {
+        if (!sticker.classList.contains('dragging')) return;
+        sticker.style.left = (e.clientX - offsetX) + 'px';
+        sticker.style.top = (e.clientY - offsetY) + 'px';
+      });
+
+      const endDrag = (e) => {
+        if (!sticker.classList.contains('dragging')) return;
+        sticker.classList.remove('dragging');
+        try { sticker.releasePointerCapture(e.pointerId); } catch (err) {}
+      };
+      sticker.addEventListener('pointerup', endDrag);
+      sticker.addEventListener('pointercancel', endDrag);
+    });
+  </script>
+
+  <div class="wv-page-shell">
 
   <!-- ── HERO ──────────────────────────────────────────────────── -->
-  <header class="cs-hero">
+  <header class="cs-hero" id="wv-0" data-chapter="0">
     <div style="max-width:1800px; width:100%; margin:0 auto; padding:0 6vw;">
-      <p class="cs-hero-eyebrow">Workiva · Content Design · 2023</p>
       <h1 class="cs-hero-title">Workiva: Mobile Content Design for enterprise Saas</h1>
-      <p class="cs-hero-desc">Building a scalable content system for a <strong>beta mobile app</strong> in a regulated environment.</p>
-      <div class="cs-meta-row">
-        <div class="cs-meta-item">
-          <span class="cs-meta-label">Role</span>
-          <span class="cs-meta-value">Lead Content Designer</span>
-        </div>
-        <div class="cs-meta-item">
-          <span class="cs-meta-label">Tools</span>
-          <span class="cs-meta-value">Figma, Zendesk</span>
-        </div>
-        <div class="cs-meta-item">
-          <span class="cs-meta-label">Team</span>
-          <span class="cs-meta-value">Director of PM, 2 Engineers</span>
-        </div>
-        <div class="cs-meta-item">
-          <span class="cs-meta-label">Timeline</span>
-          <span class="cs-meta-value">January – May 2023</span>
-        </div>
+
+      <div class="cs-hero-pills">
+        <div class="cs-hero-pill"><b>Role:</b><span>Lead Content Designer</span></div>
+        <div class="cs-hero-pill"><b>Team:</b><span>Director of PM, 2 Engineers</span></div>
+        <div class="cs-hero-pill"><b>Timeline:</b><span>January – May 2023</span></div>
+        <div class="cs-hero-pill"><b>Tools:</b><span>Figma, Zendesk</span></div>
       </div>
+
+      <p class="cs-hero-bio">Building a scalable content system for a <strong>beta mobile app</strong> in a regulated environment.</p>
     </div>
   </header>
 
@@ -490,7 +593,7 @@
 
 
   <!-- ── PROBLEM ───────────────────────────────────────────────── -->
-  <div class="cs-section">
+  <div class="cs-section" id="wv-1" data-chapter="1">
 
     <h2 class="cs-section-heading">The app lacked a unified voice.</h2>
     <div class="cs-two-col">
@@ -539,7 +642,7 @@
 
 
   <!-- ── PROCESS ───────────────────────────────────────────────── -->
-  <div class="cs-section">
+  <div class="cs-section" id="wv-2" data-chapter="2">
 
     <h2 class="cs-section-heading">The product needed a system — not just edits.</h2>
     <p class="cs-body" style="max-width:60ch;">The issue wasn't sentence quality. It was structural inconsistency. To scale effectively, the app needed a content system that felt:</p>
@@ -662,7 +765,7 @@
   </div>
 
   <!-- ── CHAPTER TRANSITION ────────────────────────────────────── -->
-  <div class="cs-section">
+  <div class="cs-section" id="wv-3" data-chapter="3">
     <h2 class="cs-section-heading">I scaled beyond the UI.</h2>
     <p class="cs-body" style="max-width:55ch;">Once core UI patterns were established, I extended the same principles to mobile help documentation — ensuring users received the same voice whether tapping through the app or searching for help.</p>
     <p style="font-family:'Poppins',sans-serif; font-size:0.72rem; font-weight:300; letter-spacing:0.18em; text-transform:uppercase; color:rgba(42,32,24,0.45); margin-top:2rem;">↓ The documentation</p>
@@ -777,7 +880,7 @@
   <!-- ── FOOTER ─────────────────────────────────────────────────── -->
   <footer class="site-footer-cta">
     <img src="index/newfavicon.png" alt="" class="footer-jar" />
-    <p class="footer-cta-text">LET'S WORK TOGETHER!</p>
+    <p class="footer-cta-text">Want to know more? <span style="font-weight:400;">Reach out!</span></p>
     <div class="footer-social">
       <a href="https://www.linkedin.com/in/camila-garcia-04r17/" target="_blank" rel="noopener" aria-label="LinkedIn">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
@@ -787,6 +890,8 @@
       </a>
     </div>
   </footer>
+
+  </div><!-- /.wv-page-shell -->
 
   <!-- ── LIGHTBOX ───────────────────────────────────────────────── -->
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
@@ -837,7 +942,7 @@
     lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
-    document.querySelectorAll('img:not(#lightbox-img):not(.nav-name-logo)').forEach(img => {
+    document.querySelectorAll('img:not(#lightbox-img):not(.nav-name-logo):not(.wv-toc-logo):not(.wv-toc-sticker)').forEach(img => {
       img.parentElement.style.cursor = 'pointer';
       img.addEventListener('mousemove', e => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
       img.addEventListener('mouseenter', () => cursor.classList.add('visible'));
@@ -867,6 +972,39 @@
   </script>
 
   <script src="animations.js"></script>
+
+  <script>
+  (function() {
+    // ── STICKY TOC — highlight the active rail link as you scroll ──
+    const rail = document.getElementById('wv-toc-rail');
+    if (!rail) return;
+    const links = Array.from(rail.querySelectorAll('.wv-toc-link'));
+    const sections = Array.from(document.querySelectorAll('[data-chapter]')).filter(el => !el.classList.contains('wv-toc-link'));
+
+    function setActive(chapter) {
+      links.forEach(l => l.classList.toggle('active', l.dataset.chapter === chapter));
+    }
+
+    let ticking = false;
+    function updateActive() {
+      ticking = false;
+      const line = window.innerHeight * 0.42;
+      let current = sections[0];
+      for (const sec of sections) {
+        if (sec.getBoundingClientRect().top <= line) current = sec;
+        else break;
+      }
+      setActive(current.dataset.chapter);
+    }
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(updateActive);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    updateActive();
+  })();
+  </script>
 
 </body>
 </html>
