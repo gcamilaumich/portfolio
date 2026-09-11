@@ -27,98 +27,142 @@
       --det-cream:  #FAF5EC;
       --det-light:  #f7f3ee;
       --det-steel:  #8B9BAD;
+      --det-bg:     #16171c; /* page background (dark mode) — lighter, surrounds the shell */
+      --det-shell:  #0D0E12; /* shell / hero surface (dark mode) — near-black container */
+      --det-card:   #202127; /* card surface (dark mode) */
+      --det-border: rgba(255,255,255,0.1);
+      --dark:       #f2ede6; /* override global light-mode token for this page */
     }
 
-    body { background: #fff; }
+    body { background: var(--det-bg); }
+
+    /* ── STICKY LEFT TOC RAIL ─────────────────────────────────── */
+    .det-toc-rail {
+      position: fixed;
+      left: 2.5rem;
+      top: 8rem;
+      z-index: 400;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      width: 210px;
+    }
+    .det-toc-eyebrow {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 0.4rem;
+    }
+    .det-toc-link {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      line-height: 1.4;
+      transition: color 0.2s;
+    }
+    .det-toc-link:hover { color: var(--det-red); }
+    .det-toc-link.active { color: var(--det-red); font-weight: 700; }
+    .det-toc-stickers {
+      position: fixed;
+      left: 2.5rem;
+      bottom: 3rem;
+      width: 210px;
+      height: 210px;
+      z-index: 399;
+      pointer-events: none;
+    }
+    .det-toc-sticker {
+      position: absolute;
+      display: block;
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.45));
+      pointer-events: auto;
+      cursor: grab;
+      user-select: none;
+      -webkit-user-drag: none;
+      touch-action: none;
+    }
+    .det-toc-sticker:active { cursor: grabbing; z-index: 401; }
+    .det-toc-sticker.dragging { transition: none !important; z-index: 401; }
+    @media (max-width: 1280px) {
+      .det-toc-rail { display: none; }
+      .det-toc-stickers { display: none; }
+    }
+
+    /* ── PAGE SHELL (gives the sticky rail room, keeps content off it) ── */
+    .det-page-shell {
+      background: var(--det-shell);
+      border-radius: 1.5rem;
+      max-width: 1500px;
+      margin: 1.5rem auto;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+    }
+    @media (min-width: 1281px) {
+      .det-page-shell { margin-left: 15.5rem; margin-right: 2.5rem; }
+    }
+    @media (max-width: 900px) {
+      .det-page-shell { border-radius: 0; margin: 0; }
+    }
+    .det-page-shell .site-footer-cta .footer-cta-text,
+    .det-page-shell .site-footer-cta .footer-social a { color: var(--det-light); }
 
     /* ── HERO ────────────────────────────────────────────────────── */
     .cs-hero {
-      background: #fff;
-      min-height: 100vh;
+      background: var(--det-shell);
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 4rem 0 5rem;
+      padding: 4rem 0 2rem;
       position: relative;
       overflow: hidden;
     }
     .hero-geo, .hero-geo-stripe, .hero-geo-stripe-2, .hero-geo-ring, .hero-geo-ring-inner, .hero-tape { display: none; }
 
-    .cs-hero-eyebrow {
-      font-family: 'Poppins', sans-serif;
-      font-size: 0.875rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: rgba(22,19,15,0.45);
-      margin-bottom: 1.5rem;
-    }
     .cs-hero-title {
       font-family: 'Poppins', sans-serif;
-      font-size: clamp(2rem, 4.8vw, 3.2rem);
+      font-size: clamp(1.6rem, 3.2vw, 2.4rem);
       font-weight: 500;
       line-height: 1.15;
-      color: #16130f;
+      color: var(--det-light);
       max-width: 32ch;
-      margin-bottom: 2rem;
+      margin-bottom: 0.5rem;
       text-wrap: balance;
     }
-    .cs-hero-title em { font-style: normal; color: #16130f; }
-    .cs-hero-desc {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 300;
-      font-size: clamp(0.85rem, 1.5vw, 1rem);
-      line-height: 1.8;
-      color: rgba(42,32,24,0.6);
-      max-width: 54ch;
-      margin-bottom: 3rem;
-    }
-    .cs-meta-row {
+    .cs-hero-title em { font-style: normal; color: var(--det-red); }
+    .cs-hero-pills {
       display: flex;
-      gap: 3rem;
-      border-top: 1px solid rgba(42,32,24,0.1);
-      padding-top: 2rem;
       flex-wrap: wrap;
-    }
-    .cs-meta-item { display: flex; flex-direction: column; gap: 0.3rem; }
-    .cs-meta-label {
-      font-family: 'Poppins', sans-serif;
-      font-size: 0.875rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: rgba(22,19,15,0.45);
-    }
-    .cs-meta-value {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 300;
-      font-size: 1rem;
-      color: #2a2018;
-    }
-
-    /* ── PROGRESS SIDEBAR ───────────────────────────────────────── */
-    .cs-progress {
-      position: fixed;
-      right: 2rem;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 50;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       gap: 0.6rem;
+      margin: 1.25rem 0 2rem;
     }
-    .cs-progress-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: rgba(12,31,63,0.2);
-      cursor: pointer;
-      transition: background 0.3s, transform 0.3s;
+    .cs-hero-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--det-card);
+      border-radius: 999px;
+      padding: 0.5rem 1rem;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.78rem;
+      white-space: nowrap;
     }
-    .cs-progress-dot.active {
-      background: var(--det-red);
-      transform: scale(1.5);
+    .cs-hero-pill b { font-weight: 700; color: var(--det-light); }
+    .cs-hero-pill span { color: rgba(255,255,255,0.55); }
+    .cs-hero-bio {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--det-light);
+      max-width: 68ch;
+      border-left: 3px solid var(--det-red);
+      padding-left: 1.5rem;
+      margin: 2rem 0 3.5rem;
     }
 
     /* ── CHAPTER SECTIONS ──────────────────────────────────────── */
@@ -136,7 +180,7 @@
       font-size: clamp(1.2rem, 2vw, 1.6rem);
       font-weight: 100;
       line-height: 1.3;
-      color: #16130f;
+      color: var(--det-light);
       margin-bottom: 1.5rem;
     }
     .cs-body {
@@ -144,11 +188,11 @@
       font-weight: 400;
       font-size: 1.125rem;
       line-height: 1.75;
-      color: rgba(22,19,15,0.65);
+      color: rgba(255,255,255,0.7);
       text-align: justify;
     }
     .cs-body + .cs-body { margin-top: 1rem; }
-    .cs-body strong { color: #16130f; font-weight: 700; }
+    .cs-body strong { color: var(--det-light); font-weight: 700; }
 
     .cs-two-col {
       display: grid;
@@ -159,7 +203,7 @@
 
     .cs-divider {
       height: 1px;
-      background: rgba(42,32,24,0.08);
+      background: var(--det-border);
       margin: 0 6vw;
     }
 
@@ -170,7 +214,7 @@
       font-weight: 600;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      color: rgba(22,19,15,0.45);
+      color: rgba(255,255,255,0.45);
       display: flex;
       align-items: center;
       gap: 0.75rem;
@@ -223,8 +267,8 @@
       margin-top: 2.5rem;
     }
     .research-card {
-      background: #fff;
-      border: 1px solid rgba(42,32,24,0.07);
+      background: var(--det-card);
+      border: 1px solid var(--det-border);
       border-radius: 0.5rem;
       padding: 2rem 1.75rem;
     }
@@ -235,13 +279,13 @@
     .research-card-title {
       font-family: 'Poppins', sans-serif;
       font-size: 1.15rem;
-      color: #16130f;
+      color: var(--det-light);
       margin-bottom: 0.75rem;
     }
     .research-card-body {
       font-size: 0.875rem;
       line-height: 1.8;
-      color: rgba(42,32,24,0.62);
+      color: rgba(255,255,255,0.65);
     }
     .research-card-tags {
       display: flex;
@@ -269,8 +313,8 @@
       gap: 1.25rem;
     }
     .type-card {
-      background: #fff;
-      border: 1px solid rgba(42,32,24,0.07);
+      background: var(--det-card);
+      border: 1px solid var(--det-border);
       border-radius: 0.5rem;
       padding: 2rem 2rem 2rem;
       display: grid;
@@ -297,7 +341,7 @@
     .type-note {
       font-size: 0.78rem;
       line-height: 1.65;
-      color: rgba(42,32,24,0.5);
+      color: rgba(255,255,255,0.5);
     }
     .type-specimen-col {}
     .type-specimen-display {
@@ -308,7 +352,7 @@
     .type-specimen-body {
       font-size: 1.05rem;
       line-height: 1.8;
-      color: rgba(42,32,24,0.7);
+      color: rgba(255,255,255,0.75);
     }
     .type-specimen-caps {
       font-family: 'Poppins', sans-serif;
@@ -327,10 +371,10 @@
       margin-top: 2.5rem;
     }
     .merch-card {
-      border: 1px solid rgba(42,32,24,0.07);
+      border: 1px solid var(--det-border);
       border-radius: 0.5rem;
       overflow: hidden;
-      background: #fff;
+      background: var(--det-card);
     }
     .merch-card.full { grid-column: 1 / -1; }
     .merch-img {
@@ -363,13 +407,13 @@
     .merch-title {
       font-family: 'Poppins', sans-serif;
       font-size: 1.1rem;
-      color: #16130f;
+      color: var(--det-light);
       margin-bottom: 0.4rem;
     }
     .merch-desc {
       font-size: 0.83rem;
       line-height: 1.75;
-      color: rgba(42,32,24,0.55);
+      color: rgba(255,255,255,0.55);
     }
 
     /* ── FOOTER / NEXT ─────────────────────────────────────────── */
@@ -425,55 +469,72 @@
 </head>
 <body>
 
-<!-- ── NAV ──────────────────────────────────────────────────────── -->
-<nav class="hero-nav">
-  <div class="hero-nav-pill">
-    <a href="index.html" class="active">Work</a>
-    <a href="playground.html">Playground</a>
-    <a href="about.html">My Story</a>
-    <a href="resume.html">Resume</a>
-  </div>
-</nav>
 
-<!-- ── PROGRESS DOTS ─────────────────────────────────────────────── -->
-<nav class="cs-progress" id="progress-nav" aria-label="Page sections">
-  <div class="cs-progress-dot active" data-section="0" title="Overview"></div>
-  <div class="cs-progress-dot" data-section="1" title="Research"></div>
-  <div class="cs-progress-dot" data-section="4" title="Color Palette"></div>
-  <div class="cs-progress-dot" data-section="5" title="Typography"></div>
-  <div class="cs-progress-dot" data-section="6" title="Logo Mark"></div>
-  <div class="cs-progress-dot" data-section="7" title="Merchandise"></div>
-</nav>
+<aside class="det-toc-rail" id="det-toc-rail">
+  <img src="pwhl/detroitdrivemark.png" alt="Detroit Drive mark" class="det-toc-logo" style="width:36px; height:36px; object-fit:contain; display:block; margin-bottom:0.4rem;">
+  <p class="det-toc-eyebrow">Detroit Drive</p>
+  <a href="#section-0" class="det-toc-link" data-chapter="0">Overview</a>
+  <a href="#section-1" class="det-toc-link" data-chapter="1">01 Research</a>
+  <a href="#section-4" class="det-toc-link" data-chapter="4">02 Color palette</a>
+  <a href="#section-5" class="det-toc-link" data-chapter="5">03 Typography</a>
+  <a href="#section-6" class="det-toc-link" data-chapter="6">04 Logo &amp; wordmark</a>
+  <a href="#section-7" class="det-toc-link" data-chapter="7">05 Merchandise</a>
+</aside>
+
+<div class="det-toc-stickers">
+  <img src="pwhl/pwhlsticker1.png" alt="PWHL sticker" class="det-toc-sticker" style="width:56px; top:75px; left:10px; transform:rotate(-12deg);">
+  <img src="pwhl/pwhlsticker2.png" alt="PWHL sticker" class="det-toc-sticker" style="width:40px; top:95px; left:150px; transform:rotate(10deg);">
+  <img src="pwhl/pwhlsticker3.png" alt="PWHL sticker" class="det-toc-sticker" style="width:48px; top:150px; left:15px; transform:rotate(9deg);">
+  <img src="pwhl/pwhlsticker4.png" alt="PWHL sticker" class="det-toc-sticker" style="width:64px; top:155px; left:90px; transform:rotate(-6deg);">
+  <img src="pwhl/pwhlsticker5.png" alt="PWHL sticker" class="det-toc-sticker" style="width:118px; top:8px; left:50px; transform:rotate(-3deg);">
+</div>
+
+<script>
+  // ── Drag-and-drop for the sticky-rail stickers (mouse + touch) ──
+  document.querySelectorAll('.det-toc-sticker').forEach(sticker => {
+    let offsetX = 0, offsetY = 0;
+    sticker.addEventListener('pointerdown', (e) => {
+      const rect = sticker.getBoundingClientRect();
+      sticker.style.position = 'fixed';
+      sticker.style.left = rect.left + 'px';
+      sticker.style.top = rect.top + 'px';
+      sticker.style.margin = '0';
+      offsetX = e.clientX - rect.left;
+      offsetY = e.clientY - rect.top;
+      sticker.classList.add('dragging');
+      sticker.setPointerCapture(e.pointerId);
+    });
+    sticker.addEventListener('pointermove', (e) => {
+      if (!sticker.classList.contains('dragging')) return;
+      sticker.style.left = (e.clientX - offsetX) + 'px';
+      sticker.style.top = (e.clientY - offsetY) + 'px';
+    });
+    const endDrag = (e) => {
+      if (!sticker.classList.contains('dragging')) return;
+      sticker.classList.remove('dragging');
+      try { sticker.releasePointerCapture(e.pointerId); } catch (err) {}
+    };
+    sticker.addEventListener('pointerup', endDrag);
+    sticker.addEventListener('pointercancel', endDrag);
+  });
+</script>
+
+<div class="det-page-shell">
 
 <!-- ── HERO ──────────────────────────────────────────────────────── -->
-<header class="cs-hero" id="section-0">
+<header class="cs-hero" id="section-0" data-chapter="0">
   <div style="max-width:1800px; margin:0 auto; padding:0 6vw; width:100%;">
-    <p class="cs-hero-eyebrow">Brand Identity Concept · PWHL Expansion</p>
     <h1 class="cs-hero-title">PWHL: Concept Design for the new Detroit team </h1>
-    <p class="cs-hero-desc">A graphic design concept for a PWHL expansion team rooted in Detroit's identity — its industrial grit, its hockey history, and its pride.</p>
 
-    <div class="cs-meta-row">
-      <div class="cs-meta-item">
-        <span class="cs-meta-label">Discipline</span>
-        <span class="cs-meta-value">Brand Identity</span>
-      </div>
-      <div class="cs-meta-item">
-        <span class="cs-meta-label">League</span>
-        <span class="cs-meta-value">PWHL</span>
-      </div>
-      <div class="cs-meta-item">
-        <span class="cs-meta-label">City</span>
-        <span class="cs-meta-value">Detroit, MI</span>
-      </div>
-      <div class="cs-meta-item">
-        <span class="cs-meta-label">Type</span>
-        <span class="cs-meta-value">Concept / Student Work</span>
-      </div>
-      <div class="cs-meta-item">
-        <span class="cs-meta-label">Deliverables</span>
-        <span class="cs-meta-value">Logo · Palette · Typography · Jerseys · Merch</span>
-      </div>
+    <div class="cs-hero-pills">
+      <div class="cs-hero-pill"><b>Discipline:</b><span>Brand Identity</span></div>
+      <div class="cs-hero-pill"><b>League:</b><span>PWHL</span></div>
+      <div class="cs-hero-pill"><b>City:</b><span>Detroit, MI</span></div>
+      <div class="cs-hero-pill"><b>Type:</b><span>Concept / Student Work</span></div>
+      <div class="cs-hero-pill"><b>Deliverables:</b><span>Logo · Palette · Typography · Jerseys · Merch</span></div>
     </div>
+
+    <p class="cs-hero-bio">A graphic design concept for a PWHL expansion team rooted in Detroit's identity — its industrial grit, its hockey history, and its pride.</p>
   </div>
 </header>
 
@@ -501,19 +562,8 @@
 <div class="cs-divider"></div>
 
 <!-- ── 01 RESEARCH ────────────────────────────────────────────────── -->
-<section class="cs-section" id="section-1">
+<section class="cs-section" id="section-1" data-chapter="1">
   <div class="chapter-label">Research</div>
-  <div class="cs-two-col">
-    <div>
-      <!-- <h2 class="cs-section-heading">Understanding Detroit before drawing a single line</h2> -->
-      <p class="cs-body">Before any mark is made, the city has to be understood. Detroit carries contradictions: industrial decay and creative resilience, blue-collar roots and boundary-pushing culture. Its identity is not one thing — and neither should a hockey team's brand be.</p>
-      <p class="cs-body">Research covered two parallel tracks: the <strong>history of Detroit as a city</strong> and the <strong>history of hockey in Detroit</strong>. Both informed every decision that followed.</p>
-    </div>
-    <div>
-      <p class="cs-body">Detroit is a city defined by reinvention. From the auto industry that shaped American manufacturing, to Motown that gave the world a new sound, to a contemporary art and design scene that continues to emerge from its own ruins — Detroit refuses to be only what it was.</p>
-      <p class="cs-body">That tension — grit and grace, legacy and ambition — became the emotional core of this brand.</p>
-    </div>
-  </div>
 
   <div class="research-grid">
     <div class="research-card">
@@ -546,14 +596,14 @@
 <div class="cs-divider"></div>
 
 <!-- ── 04 COLOR PALETTE ───────────────────────────────────────────── -->
-<section class="cs-section" id="section-4">
+<section class="cs-section" id="section-4" data-chapter="4">
   <div class="chapter-label">Color Palette</div>
 
   <div class="cs-two-col" style="align-items:stretch; gap:3rem;">
     <div>
       <img src="pwhl/detroitdrivecolorpalette.png" alt="Detroit Drive color palette" style="width:100%; display:block; border-radius:8px;">
     </div>
-    <div id="det-swatch-box" style="border-radius:8px; width:100%; height:100%; min-height:100%; position:relative; border:1px solid rgba(22,19,15,0.08); box-sizing:border-box; transition: background 0.4s ease;">
+    <div id="det-swatch-box" style="border-radius:8px; width:100%; height:100%; min-height:100%; position:relative; border:1px solid rgba(255,255,255,0.12); box-sizing:border-box; transition: background 0.4s ease;">
       <span id="det-swatch-hex" style="position:absolute; top:0.75rem; right:0.9rem; font-family:'Poppins',sans-serif; font-size:0.75rem; font-weight:700; letter-spacing:0.05em; transition: color 0.4s ease;"></span>
     </div>
     <script>
@@ -585,7 +635,7 @@
 <div class="cs-divider"></div>
 
 <!-- ── 05 TYPOGRAPHY ──────────────────────────────────────────────── -->
-<section class="cs-section" id="section-5">
+<section class="cs-section" id="section-5" data-chapter="5">
   <div class="chapter-label">Typography</div>
 
   <div class="type-showcase">
@@ -632,14 +682,14 @@
 <div class="cs-divider"></div>
 
 <!-- ── 06 LOGO MARK ───────────────────────────────────────────────── -->
-<section class="cs-section" id="section-6">
+<section class="cs-section" id="section-6" data-chapter="6">
   <div class="chapter-label">Logo &amp; Wordmark</div>
 
   <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.5rem;">
     <div style="background:var(--det-navy); border-radius:0.6rem; padding:3rem; display:flex; align-items:center; justify-content:center;">
       <img src="pwhl/detroitdrivemark.png" alt="Detroit Drive logo mark" style="max-width:100%; max-height:280px; height:auto; display:block;" />
     </div>
-    <div style="background:#f0ece5; border-radius:0.6rem; padding:3rem; display:flex; align-items:center; justify-content:center;">
+    <div style="background:var(--det-card); border-radius:0.6rem; padding:3rem; display:flex; align-items:center; justify-content:center;">
       <img src="pwhl/detroitdrivetagline.png" alt="Detroit Drive tagline lockup" style="max-width:100%; max-height:280px; height:auto; display:block;" />
     </div>
   </div>
@@ -648,7 +698,7 @@
 <div class="cs-divider"></div>
 
 <!-- ── 07 MERCHANDISE & JERSEYS ───────────────────────────────────── -->
-<section class="cs-section" id="section-7">
+<section class="cs-section" id="section-7" data-chapter="7">
   <div class="chapter-label">Merchandise &amp; Jersey Designs</div>
 
   <!-- Merch grid -->
@@ -713,7 +763,7 @@
 <!-- ── FOOTER ─────────────────────────────────────────────────── -->
   <footer class="site-footer-cta">
     <img src="index/newfavicon.png" alt="" class="footer-jar" />
-    <p class="footer-cta-text">LET'S WORK TOGETHER!</p>
+    <p class="footer-cta-text">Want to know more? <span style="font-weight:400;">Reach out!</span></p>
     <div class="footer-social">
       <a href="https://www.linkedin.com/in/camila-garcia-04r17/" target="_blank" rel="noopener" aria-label="LinkedIn">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
@@ -724,26 +774,39 @@
     </div>
   </footer>
 
-<script>
-  // Dot active state by scroll position
-  const dots = document.querySelectorAll('.cs-progress-dot');
-  const sectionEls = Array.from(dots).map(d => document.getElementById('section-' + d.dataset.section));
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY + window.innerHeight * 0.4;
-    let active = 0;
-    sectionEls.forEach((el, i) => {
-      if (el && el.offsetTop <= scrollY) active = i;
-    });
-    dots.forEach((d, i) => d.classList.toggle('active', i === active));
-  }, { passive: true });
+  </div><!-- /.det-page-shell -->
 
-  // Dot click navigation
-  dots.forEach((dot) => {
-    dot.addEventListener('click', () => {
-      const target = document.getElementById('section-' + dot.dataset.section);
-      if (target) target.scrollIntoView({ behavior: 'smooth' });
-    });
-  });
+<script>
+(function() {
+  // ── STICKY TOC — highlight the active rail link as you scroll ──
+  const rail = document.getElementById('det-toc-rail');
+  if (!rail) return;
+  const links = Array.from(rail.querySelectorAll('.det-toc-link'));
+  const sections = Array.from(document.querySelectorAll('[data-chapter]')).filter(el => !el.classList.contains('det-toc-link'));
+
+  function setActive(chapter) {
+    links.forEach(l => l.classList.toggle('active', l.dataset.chapter === chapter));
+  }
+
+  let ticking = false;
+  function updateActive() {
+    ticking = false;
+    const line = window.innerHeight * 0.42;
+    let current = sections[0];
+    for (const sec of sections) {
+      if (sec.getBoundingClientRect().top <= line) current = sec;
+      else break;
+    }
+    setActive(current.dataset.chapter);
+  }
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(updateActive);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  updateActive();
+})();
 </script>
 
 </body>

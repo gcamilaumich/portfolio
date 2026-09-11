@@ -13,9 +13,11 @@
     body { font-family: 'Poppins', sans-serif; background: #fff; color: #16130f; }
     a { text-decoration: none; color: inherit; }
 
-    .hero-nav { display: flex; justify-content: flex-end; width: 100%; padding: 1.5rem 6vw 0; position: sticky; top: 1rem; z-index: 500; }
-    .hero-nav-pill { display: flex; align-items: center; gap: 1.75rem; border: 1px solid rgba(22,19,15,0.15); border-radius: 999px; padding: 0.6rem 1.6rem; background: #fff; }
-    .hero-nav-pill a { font-weight: 500; font-size: 0.875rem; letter-spacing: 0.1em; text-transform: uppercase; color: #16130f; opacity: 0.55; transition: opacity 0.2s; white-space: nowrap; }
+    .hero-nav { display: flex; justify-content: flex-end; max-width: 1800px; margin: 0 auto; padding: 0.75rem 2.5vw 0; position: sticky; top: 0.5rem; z-index: 500; }
+    .hero-nav-pill { display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 1rem; border: 1px solid rgba(22,19,15,0.15); border-radius: 999px; padding: 0.4rem 1.1rem; background: #fff; }
+    .hero-nav-brand { font-weight: 700; font-size: 0.72rem; letter-spacing: 0.08em; color: #16130f; white-space: nowrap; }
+    .hero-nav-links { display: flex; align-items: center; gap: 1.25rem; }
+    .hero-nav-pill a { font-weight: 500; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: #16130f; opacity: 0.55; transition: opacity 0.2s; white-space: nowrap; }
     .hero-nav-pill a:hover { opacity: 1; }
     .hero-nav-pill a.active { opacity: 1; font-weight: 700; }
 
@@ -40,7 +42,8 @@
 
     @media (max-width: 700px) {
       .hero-nav { justify-content: center; }
-      .hero-nav-pill { gap: 1rem; padding: 0.55rem 1.1rem; flex-wrap: wrap; justify-content: center; }
+      .hero-nav-pill { gap: 0.75rem; padding: 0.55rem 1.1rem; flex-wrap: wrap; justify-content: center; }
+      .hero-nav-links { flex-wrap: wrap; justify-content: center; gap: 0.85rem; }
     }
 
   </style>
@@ -49,10 +52,13 @@
 
   <nav class="hero-nav">
     <div class="hero-nav-pill">
-      <a href="index.html">Work</a>
-      <a href="playground.html">Playground</a>
-      <a href="about.html">My Story</a>
-      <a href="resume.html">Resume</a>
+      <span class="hero-nav-brand">GCAMILA.COM</span>
+      <div class="hero-nav-links">
+        <a href="index.html" class="active">Work</a>
+        <a href="playground.html">Playground</a>
+        <a href="about.html">My Story</a>
+        <a href="resume.html">Resume</a>
+      </div>
     </div>
   </nav>
 

@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="pages.css" />
   <style>
     :root {
-      --fh:         #1a1a1a; /* near-black — hero, nav, footer, dark sections */
+      --fh:         #000000; /* black — hero, shell, footer, dark sections (darkest) */
       --fh-accent:  #529B9C; /* teal — links, arrows, accents */
       --fh-sand:    #EAC493;
       --fh-sage:    #9CBA8F;
@@ -29,12 +29,92 @@
       --fh-taupe:   #675B55;
       --fh-mauve:   #8D6C89;
       --fh-light:   #fdfbf7;
+      --fh-bg:      #1a1a1a; /* page background (dark mode) — lighter, surrounds the shell */
+      --fh-card:    #232323; /* card / surface background (dark mode) */
+      --fh-border:  rgba(253,246,237,0.14);
+      --dark:       #f2ede6; /* override global light-mode token for this page */
+      --muted:      rgba(245,240,232,0.55); /* override global light-mode token for this page */
     }
-    body { background: #fff; }
+    body { background: var(--fh-bg); }
+
+    /* ── STICKY LEFT TOC RAIL ─────────────────────────────────── */
+    .fh-toc-rail {
+      position: fixed;
+      left: 2.5rem;
+      top: 8rem;
+      z-index: 400;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      width: 210px;
+    }
+    .fh-toc-eyebrow {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(253,246,237,0.35);
+      margin-bottom: 0.4rem;
+    }
+    .fh-toc-link {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: rgba(253,246,237,0.45);
+      text-decoration: none;
+      line-height: 1.4;
+      transition: color 0.2s;
+    }
+    .fh-toc-link:hover { color: var(--fh-accent); }
+    .fh-toc-link.active { color: var(--fh-accent); font-weight: 700; }
+    .fh-toc-stickers {
+      position: fixed;
+      left: 2.5rem;
+      bottom: 3rem;
+      width: 210px;
+      height: 210px;
+      z-index: 399;
+      pointer-events: none;
+    }
+    .fh-toc-sticker {
+      position: absolute;
+      display: block;
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.45));
+      pointer-events: auto;
+      cursor: grab;
+      user-select: none;
+      -webkit-user-drag: none;
+      touch-action: none;
+    }
+    .fh-toc-sticker:active { cursor: grabbing; z-index: 401; }
+    .fh-toc-sticker.dragging { transition: none !important; z-index: 401; }
+    @media (max-width: 1280px) {
+      .fh-toc-rail { display: none; }
+      .fh-toc-stickers { display: none; }
+    }
+
+    /* ── PAGE SHELL (gives the sticky rail room, keeps content off it) ── */
+    .fh-page-shell {
+      background: var(--fh);
+      border-radius: 1.5rem;
+      max-width: 1500px;
+      margin: 1.5rem auto;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+    }
+    @media (min-width: 1281px) {
+      .fh-page-shell { margin-left: 15.5rem; margin-right: 2.5rem; }
+    }
+    @media (max-width: 900px) {
+      .fh-page-shell { border-radius: 0; margin: 0; }
+    }
+    .fh-page-shell .site-footer-cta .footer-cta-text,
+    .fh-page-shell .site-footer-cta .footer-social a { color: var(--fh-light); }
 
     /* ── HERO ────────────────────────────────────────────────── */
     .cs-hero {
-      background: #fff;
+      background: var(--fh);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -42,55 +122,45 @@
       position: relative;
       overflow: hidden;
     }
-    .cs-hero-eyebrow {
-      font-family: 'Poppins', sans-serif;
-      font-size: 0.875rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: rgba(22,19,15,0.45);
-      margin-bottom: 1.5rem;
-    }
     .cs-hero-title {
       font-family: 'Poppins', sans-serif;
-      font-size: clamp(2rem, 4.8vw, 3.2rem);
+      font-size: clamp(1.6rem, 3.2vw, 2.4rem);
       font-weight: 500;
       line-height: 1.15;
-      color: #16130f;
+      color: var(--fh-light);
       max-width: 32ch;
-      margin-bottom: 2rem;
+      margin-bottom: 0.5rem;
       text-wrap: balance;
     }
-    .cs-hero-desc {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 300;
-      font-size: clamp(0.85rem, 1.5vw, 1rem);
-      line-height: 1.8;
-      color: rgba(42,32,24,0.6);
-      max-width: 56ch;
-      margin-bottom: 3rem;
-    }
-    .cs-meta-row {
+    .cs-hero-pills {
       display: flex;
-      gap: 3rem;
-      border-top: 1px solid rgba(42,32,24,0.1);
-      padding-top: 2rem;
       flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 1.25rem 0 2rem;
     }
-    .cs-meta-item { display: flex; flex-direction: column; gap: 0.3rem; }
-    .cs-meta-label {
+    .cs-hero-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--fh-card);
+      border-radius: 999px;
+      padding: 0.5rem 1rem;
       font-family: 'Poppins', sans-serif;
-      font-size: 0.875rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: rgba(22,19,15,0.45);
+      font-size: 0.78rem;
+      white-space: nowrap;
     }
-    .cs-meta-value {
+    .cs-hero-pill b { font-weight: 700; color: var(--fh-light); }
+    .cs-hero-pill span { color: rgba(253,246,237,0.55); }
+    .cs-hero-bio {
       font-family: 'Poppins', sans-serif;
-      font-weight: 300;
-      font-size: 1rem;
-      color: #2a2018;
+      font-weight: 400;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--fh-light);
+      max-width: 68ch;
+      border-left: 3px solid var(--fh-accent);
+      padding-left: 1.5rem;
+      margin: 2rem 0 3.5rem;
     }
 
     /* ── LAYOUT ──────────────────────────────────────────────── */
@@ -114,7 +184,7 @@
       font-size: clamp(1.2rem, 2vw, 1.6rem);
       font-weight: 100;
       line-height: 1.2;
-      color: #16130f;
+      color: var(--fh-light);
       margin-bottom: 1.5rem;
     }
     .cs-body {
@@ -122,15 +192,15 @@
       font-weight: 400;
       font-size: 1.125rem;
       line-height: 1.75;
-      color: rgba(22,19,15,0.65);
+      color: rgba(253,246,237,0.7);
       text-align: justify;
     }
     .cs-body + .cs-body { margin-top: 1rem; }
-    .cs-body strong { color: #16130f; font-weight: 700; }
+    .cs-body strong { color: var(--fh-light); font-weight: 700; }
 
     .cs-divider {
       height: 1px;
-      background: rgba(42,32,24,0.1);
+      background: var(--fh-border);
       margin: 0;
     }
 
@@ -140,7 +210,7 @@
       font-weight: 600;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      color: rgba(22,19,15,0.45);
+      color: rgba(253,246,237,0.45);
       margin-bottom: 1rem;
       display: flex;
       align-items: center;
@@ -151,7 +221,7 @@
       display: block;
       width: 2rem;
       height: 1px;
-      background: rgba(22,19,15,0.3);
+      background: rgba(253,246,237,0.3);
     }
 
     /* ── GOALS LIST ──────────────────────────────────────────── */
@@ -169,7 +239,7 @@
       gap: 1rem;
       font-size: 1rem;
       line-height: 1.6;
-      color: rgba(42,32,24,0.75);
+      color: rgba(253,246,237,0.8);
     }
     .fh-goals li span {
       font-family: 'Poppins', sans-serif;
@@ -205,8 +275,8 @@
       margin-top: 2.5rem;
     }
     .fh-type-card {
-      background: #fff;
-      border: 1px solid rgba(42,32,24,0.1);
+      background: var(--fh-card);
+      border: 1px solid var(--fh-border);
       border-radius: 0.75rem;
       padding: 2rem 1.5rem;
     }
@@ -309,40 +379,69 @@
 </head>
 <body>
 
-  <!-- ── NAV ───────────────────────────────────────────────────── -->
-  <nav class="hero-nav">
-    <div class="hero-nav-pill">
-      <a href="index.html" class="active">Work</a>
-      <a href="playground.html">Playground</a>
-      <a href="about.html">My Story</a>
-      <a href="resume.html">Resume</a>
-    </div>
-  </nav>
+
+  <aside class="fh-toc-rail" id="fh-toc-rail">
+    <img src="framehouse/fh-mark.png" alt="Frame House mark" class="fh-toc-logo" style="width:36px; height:36px; object-fit:contain; display:block; margin-bottom:0.4rem;">
+    <p class="fh-toc-eyebrow">Frame House</p>
+    <a href="#fh-0" class="fh-toc-link" data-chapter="0">Overview</a>
+    <a href="#fh-1" class="fh-toc-link" data-chapter="1">01 The brief</a>
+    <a href="#fh-2" class="fh-toc-link" data-chapter="2">02 Visual identity</a>
+    <a href="#fh-3" class="fh-toc-link" data-chapter="3">03 In the wild</a>
+  </aside>
+
+  <div class="fh-toc-stickers">
+    <img src="framehouse/fh-sticker1.png" alt="Frame House sticker" class="fh-toc-sticker" style="width:62px; top:5px; left:20px; transform:rotate(-12deg);">
+    <img src="framehouse/fh-sticker2.png" alt="Frame House sticker" class="fh-toc-sticker" style="width:44px; top:75px; left:140px; transform:rotate(10deg);">
+    <img src="framehouse/fh-sticker3.png" alt="Frame House sticker" class="fh-toc-sticker" style="width:52px; top:105px; left:15px; transform:rotate(9deg);">
+    <img src="framehouse/fh-sticker4.png" alt="Frame House sticker" class="fh-toc-sticker" style="width:70px; top:150px; left:90px; transform:rotate(-6deg);">
+    <img src="framehouse/fh-sticker5.png" alt="Frame House sticker" class="fh-toc-sticker" style="width:56px; top:0px; left:125px; transform:rotate(15deg);">
+  </div>
+
+  <script>
+    // ── Drag-and-drop for the sticky-rail stickers (mouse + touch) ──
+    document.querySelectorAll('.fh-toc-sticker').forEach(sticker => {
+      let offsetX = 0, offsetY = 0;
+      sticker.addEventListener('pointerdown', (e) => {
+        const rect = sticker.getBoundingClientRect();
+        sticker.style.position = 'fixed';
+        sticker.style.left = rect.left + 'px';
+        sticker.style.top = rect.top + 'px';
+        sticker.style.margin = '0';
+        offsetX = e.clientX - rect.left;
+        offsetY = e.clientY - rect.top;
+        sticker.classList.add('dragging');
+        sticker.setPointerCapture(e.pointerId);
+      });
+      sticker.addEventListener('pointermove', (e) => {
+        if (!sticker.classList.contains('dragging')) return;
+        sticker.style.left = (e.clientX - offsetX) + 'px';
+        sticker.style.top = (e.clientY - offsetY) + 'px';
+      });
+      const endDrag = (e) => {
+        if (!sticker.classList.contains('dragging')) return;
+        sticker.classList.remove('dragging');
+        try { sticker.releasePointerCapture(e.pointerId); } catch (err) {}
+      };
+      sticker.addEventListener('pointerup', endDrag);
+      sticker.addEventListener('pointercancel', endDrag);
+    });
+  </script>
+
+  <div class="fh-page-shell">
 
   <!-- ── HERO ──────────────────────────────────────────────────── -->
-  <header class="cs-hero" style="position:relative;">
+  <header class="cs-hero" id="fh-0" data-chapter="0" style="position:relative;">
     <div style="max-width:1800px; width:100%; margin:0 auto; padding:0 6vw;">
-      <p class="cs-hero-eyebrow">Frame House · Brand &amp; Graphic Design · 2026</p>
       <h1 class="cs-hero-title">Frame House: Full brand identity, frame by frame </h1>
-      <p class="cs-hero-desc">A full identity guide for an independent, community-centered movie theater — built to feel like a cultural hub, not just a place to watch a film.</p>
-      <div class="cs-meta-row">
-        <div class="cs-meta-item">
-          <span class="cs-meta-label">Role</span>
-          <span class="cs-meta-value">Brand &amp; Graphic Designer</span>
-        </div>
-        <div class="cs-meta-item">
-          <span class="cs-meta-label">Tools</span>
-          <span class="cs-meta-value">Illustrator, Figma</span>
-        </div>
-        <div class="cs-meta-item">
-          <span class="cs-meta-label">Deliverables</span>
-          <span class="cs-meta-value">Identity guide, app concept</span>
-        </div>
-        <div class="cs-meta-item">
-          <span class="cs-meta-label">Year</span>
-          <span class="cs-meta-value">2026</span>
-        </div>
+
+      <div class="cs-hero-pills">
+        <div class="cs-hero-pill"><b>Role:</b><span>Brand &amp; Graphic Designer</span></div>
+        <div class="cs-hero-pill"><b>Deliverables:</b><span>Identity guide, app concept</span></div>
+        <div class="cs-hero-pill"><b>Year:</b><span>2026</span></div>
+        <div class="cs-hero-pill"><b>Tools:</b><span>Illustrator, Figma</span></div>
       </div>
+
+      <p class="cs-hero-bio">A full identity guide for an independent, community-centered movie theater — built to feel like a cultural hub, not just a place to watch a film.</p>
     </div>
   </header>
 
@@ -352,7 +451,7 @@
   </div>
 
   <!-- ── THE BRIEF ─────────────────────────────────────────────── -->
-  <div class="cs-section" style="padding-top:2rem;">
+  <div class="cs-section" id="fh-1" data-chapter="1" style="padding-top:2rem;">
 
     <div class="cs-two-col" style="align-items:center;">
       <div>
@@ -385,7 +484,7 @@
   <div class="cs-divider"></div>
 
   <!-- ── LOGO ──────────────────────────────────────────────────── -->
-  <div class="cs-section">
+  <div class="cs-section" id="fh-2" data-chapter="2">
 
     <div class="cs-two-col" style="align-items:center;">
       <div class="fh-logo-block" style="background:#000;">
@@ -482,7 +581,7 @@
   <div class="cs-divider"></div>
 
   <!-- ── APPLICATIONS ──────────────────────────────────────────── -->
-  <div class="cs-section">
+  <div class="cs-section" id="fh-3" data-chapter="3">
 
     <h2 class="cs-section-heading">A system built to live outside the screen.</h2>
     <p class="cs-body">Posters, tickets, badges, and merch — every touchpoint carries the same shapes, palette, and voice, so Frame House feels recognizable whether you're in the lobby or on the street.</p>
@@ -568,7 +667,7 @@
   <!-- ── FOOTER ────────────────────────────────────────────────── -->
   <footer class="site-footer-cta">
     <img src="index/newfavicon.png" alt="" class="footer-jar" />
-    <p class="footer-cta-text">LET'S WORK TOGETHER!</p>
+    <p class="footer-cta-text">Want to know more? <span style="font-weight:400;">Reach out!</span></p>
     <div class="footer-social">
       <a href="https://www.linkedin.com/in/camila-garcia-04r17/" target="_blank" rel="noopener" aria-label="LinkedIn">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
@@ -578,6 +677,8 @@
       </a>
     </div>
   </footer>
+
+  </div><!-- /.fh-page-shell -->
 
   <script>
     // ── NAV THEME ON SCROLL ────────────────────────────────────
@@ -603,5 +704,39 @@
   </script>
 
   <script src="animations.js"></script>
+
+  <script>
+  (function() {
+    // ── STICKY TOC — highlight the active rail link as you scroll ──
+    const rail = document.getElementById('fh-toc-rail');
+    if (!rail) return;
+    const links = Array.from(rail.querySelectorAll('.fh-toc-link'));
+    const sections = Array.from(document.querySelectorAll('[data-chapter]')).filter(el => !el.classList.contains('fh-toc-link'));
+
+    function setActive(chapter) {
+      links.forEach(l => l.classList.toggle('active', l.dataset.chapter === chapter));
+    }
+
+    let ticking = false;
+    function updateActive() {
+      ticking = false;
+      const line = window.innerHeight * 0.42;
+      let current = sections[0];
+      for (const sec of sections) {
+        if (sec.getBoundingClientRect().top <= line) current = sec;
+        else break;
+      }
+      setActive(current.dataset.chapter);
+    }
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(updateActive);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    updateActive();
+  })();
+  </script>
+
 </body>
 </html>
