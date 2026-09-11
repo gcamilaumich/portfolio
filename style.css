@@ -56,30 +56,46 @@
 
 html { scroll-behavior: smooth; }
 
-/* ── SHARED PAGE NAV (pill, top-right on every page) ───────────── */
+/* ── SHARED PAGE NAV (full-width pill, every page) ───────────── */
 .hero-nav {
   display: flex;
   justify-content: flex-end;
-  width: 100%;
-  padding: 1.5rem 6vw 0;
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 0.75rem 2.5vw 0;
   position: sticky;
-  top: 1rem;
+  top: 0.5rem;
   z-index: 500;
 }
 .hero-nav-pill {
   display: flex;
   align-items: center;
-  gap: 1.75rem;
+  justify-content: space-between;
+  width: 100%;
+  gap: 1rem;
   border: 1px solid rgba(22,19,15,0.15);
   border-radius: 999px;
-  padding: 0.6rem 1.6rem;
+  padding: 0.4rem 1.1rem;
   background: #fff;
+}
+.hero-nav-brand {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: #16130f;
+  white-space: nowrap;
+}
+.hero-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
 }
 .hero-nav-pill a {
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
-  font-size: 0.875rem;
-  letter-spacing: 0.1em;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #16130f;
   opacity: 0.55;
@@ -91,7 +107,18 @@ html { scroll-behavior: smooth; }
 .hero-nav-pill a.active { opacity: 1; font-weight: 700; }
 @media (max-width: 700px) {
   .hero-nav { justify-content: center; }
-  .hero-nav-pill { gap: 1rem; padding: 0.55rem 1.1rem; flex-wrap: wrap; justify-content: center; }
+  .hero-nav-pill { gap: 0.75rem; padding: 0.55rem 1.1rem; flex-wrap: wrap; justify-content: center; }
+  .hero-nav-links { flex-wrap: wrap; justify-content: center; gap: 0.85rem; }
+}
+
+/* ── DEMO: page-transition option A (View Transitions API) ─────── */
+@view-transition { navigation: auto; }
+::view-transition-old(root) { animation: cg-vt-zoom-out 0.45s ease forwards; }
+::view-transition-new(root) { animation: cg-vt-zoom-in 0.45s ease forwards; }
+@keyframes cg-vt-zoom-out { to { transform: scale(1.04); opacity: 0; } }
+@keyframes cg-vt-zoom-in { from { transform: scale(0.96); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
 }
 
 /* Override browser default Times New Roman */
