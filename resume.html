@@ -22,7 +22,11 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      background: #fff;
+      background-color: #ddd5c3;
+      background-image: linear-gradient(rgba(255,255,255,0.35), rgba(255,255,255,0.35)), url('index_redesign/index_section_bg.png');
+      background-size: auto, auto;
+      background-repeat: repeat, repeat;
+      background-position: top center, top center;
       color: #2a2018;
       display: flex;
       flex-direction: column;
@@ -30,15 +34,79 @@
     }
     a { text-decoration: none; color: inherit; }
 
-    /* ── HEADER ──────────────────────────────────────────────────── */
-    .hero-nav { display: flex; justify-content: flex-end; width: 100%; padding: 1.5rem 6vw 0; position: sticky; top: 1rem; z-index: 500; }
-    .hero-nav-pill { display: flex; align-items: center; gap: 1.75rem; border: 1px solid rgba(22,19,15,0.15); border-radius: 999px; padding: 0.6rem 1.6rem; background: #fff; }
-    .hero-nav-pill a { font-weight: 500; font-size: 0.875rem; letter-spacing: 0.1em; text-transform: uppercase; color: #16130f; opacity: 0.55; transition: opacity 0.2s; white-space: nowrap; }
-    .hero-nav-pill a:hover { opacity: 1; }
-    .hero-nav-pill a.active { opacity: 1; font-weight: 700; }
+    /* ── NAV (matches the redesigned homepage) ────────────────── */
+    .gc-nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem clamp(1.5rem, 5vw, 4rem) 1rem;
+    }
+    .gc-nav-logo {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .gc-nav-logo .highlight {
+      position: absolute;
+      left: -24px;
+      top: 50%;
+      transform: translateY(-42%);
+      width: calc(100% + 48px);
+      height: 3.2em;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+      user-select: none;
+    }
+    .gc-nav-logo:hover .highlight { opacity: 1; }
+    .gc-nav-logo span {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: #16130f;
+    }
+    .gc-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .gc-nav-link {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      font-size: 1rem;
+      color: #16130f;
+      padding: 0.1rem 0.2rem;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .gc-nav-link .highlight {
+      position: absolute;
+      left: -14px;
+      top: 50%;
+      transform: translateY(-42%);
+      width: calc(100% + 28px);
+      height: 2.8em;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+      user-select: none;
+    }
+    .gc-nav-link.active .highlight,
+    .gc-nav-link:hover .highlight { opacity: 1; }
     @media (max-width: 700px) {
-      .hero-nav { justify-content: center; }
-      .hero-nav-pill { gap: 1rem; padding: 0.55rem 1.1rem; flex-wrap: wrap; justify-content: center; }
+      .gc-nav-links { gap: 1rem; }
+      .gc-nav-link { font-size: 0.85rem; }
     }
 
     /* ── RESUME AREA ─────────────────────────────────────────────── */
@@ -140,13 +208,21 @@
 </head>
 <body>
 
-  <!-- ── HEADER ─────────────────────────────────────────────────── -->
-  <nav class="hero-nav">
-    <div class="hero-nav-pill">
-      <a href="index.html">Work</a>
-      <a href="playground.html">Playground</a>
-      <a href="about.html">My Story</a>
-      <a href="resume.html" class="active">Resume</a>
+  <!-- ── NAV ──────────────────────────────────────────────────── -->
+  <nav class="gc-nav">
+    <a href="index.html" class="gc-nav-logo">
+      <img src="index_redesign/orangehighlight.png" alt="" class="highlight">
+      <span>Camila Garcia</span>
+    </a>
+    <div class="gc-nav-links">
+      <a href="about.html" class="gc-nav-link">
+        <img src="index_redesign/greenhighlight-work.png" alt="" class="highlight">
+        About
+      </a>
+      <a href="resume.html" class="gc-nav-link active">
+        <img src="index_redesign/pinkhighlight-about.png" alt="" class="highlight">
+        Resume
+      </a>
     </div>
   </nav>
 
