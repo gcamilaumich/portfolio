@@ -177,14 +177,14 @@
     /* ── LAYOUT ──────────────────────────────────────────────── */
     .cs-section, .cs-section-wide, .cs-two-col > * { opacity: 1 !important; transform: none !important; }
     .cs-section {
-      padding: 6rem 6vw;
+      padding: 2rem 6vw 6rem;
       max-width: 1800px;
       margin: 0 auto;
       transition: opacity 0.3s ease;
     }
 
     .cs-section-wide {
-      padding: 6rem 0;
+      padding: 2rem 0 6rem;
       transition: opacity 0.3s ease;
     }
 
@@ -196,23 +196,59 @@
     }
 
     .cs-section-heading {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
       font-family: 'Poppins', sans-serif;
-      font-size: clamp(1.2rem, 2vw, 1.6rem);
-      font-weight: 100;
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      font-weight: 700;
       line-height: 1.2;
       color: #16130f;
       margin-bottom: 1.5rem;
     }
+    .cs-section-heading::after {
+      content: '';
+      flex: 1 1 3rem;
+      height: 1px;
+      background: rgba(42,32,24,0.15);
+    }
+    .cs-numbered-heading {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .cs-numbered-heading .num {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      color: var(--wv-accent);
+      flex-shrink: 0;
+    }
+    .cs-numbered-heading .txt {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      color: #16130f;
+      line-height: 1.2;
+    }
     .cs-body {
       font-family: 'Poppins', sans-serif;
       font-weight: 400;
-      font-size: 1.125rem;
-      line-height: 1.75;
+      font-size: 0.9rem;
+      line-height: 1.45;
       color: rgba(22,19,15,0.65);
       text-align: justify;
     }
     .cs-body + .cs-body { margin-top: 1rem; }
     .cs-body strong { color: #16130f; font-weight: 700; }
+    .cs-highlight {
+      background: #d3e4fb;
+      color: #16130f;
+      font-weight: 400;
+      padding: 0.05em 0.3em;
+      border-radius: 4px;
+    }
 
     /* ── DIVIDER ─────────────────────────────────────────────── */
     .cs-divider {
@@ -318,8 +354,8 @@
       gap: 0.75rem;
       font-family: 'Poppins', sans-serif;
       font-weight: 300;
-      font-size: clamp(0.85rem, 1.5vw, 1rem);
-      line-height: 1.7;
+      font-size: 0.9rem;
+      line-height: 1.45;
       color: #898078;
     }
     .wv-list li::before {
@@ -342,6 +378,260 @@
       border-radius: 0.5rem;
       padding: 1.75rem 1.5rem;
     }
+    /* outcome stats (same layout as Spotter's) */
+    .cs-stats {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      border: 1px solid rgba(42,32,24,0.1);
+      border-radius: 0.5rem;
+      overflow: hidden;
+      margin-bottom: 5rem;
+    }
+    .cs-stat {
+      padding: 2.5rem 2rem;
+      border-right: 1px solid rgba(42,32,24,0.1);
+      text-align: center;
+    }
+    .cs-stat:last-child { border-right: none; }
+    .cs-stat-num {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      color: var(--wv-accent);
+      display: block;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .cs-stat-label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #898078;
+    }
+    @media (max-width: 700px) {
+      .cs-stats { grid-template-columns: 1fr; }
+      .cs-stat { border-right: none; border-bottom: 1px solid rgba(42,32,24,0.1); }
+      .cs-stat:last-child { border-bottom: none; }
+    }
+    /* hero screen fan: shipped "after" screens dealt out like a hand of cards */
+    .wv-fan-wrap {
+      max-width: 1800px;
+      margin: 0.5rem auto 0;
+      padding: 1rem 6vw 2.5rem;
+    }
+    .wv-fan {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .wv-fan-item {
+      position: relative;
+      z-index: calc(10 - var(--o));
+      margin: 0 -1.75rem;
+      rotate: var(--r);
+      translate: 0 var(--y);
+      transition: rotate 0.45s cubic-bezier(0.34,1.56,0.64,1), translate 0.45s cubic-bezier(0.34,1.56,0.64,1), scale 0.45s cubic-bezier(0.34,1.56,0.64,1);
+      opacity: 0;
+      animation: wv-deal 0.9s cubic-bezier(0.22,1.2,0.36,1) forwards;
+      animation-delay: calc(0.15s + var(--o) * 0.18s);
+    }
+    .wv-fan-item:hover {
+      z-index: 20;
+      rotate: 0deg;
+      translate: 0 -14px;
+      scale: 1.04;
+    }
+    @keyframes wv-deal {
+      from { opacity: 0; transform: translateY(90px) scale(0.85); }
+      to   { opacity: 1; transform: none; }
+    }
+    .wv-fan .wv-tile {
+      box-shadow: 0 18px 40px rgba(42,32,24,0.12);
+      animation: wv-float 6s ease-in-out infinite alternate;
+      animation-delay: calc(var(--f) * -1.3s);
+    }
+    @keyframes wv-float {
+      from { transform: translateY(0); }
+      to   { transform: translateY(-10px); }
+    }
+    /* phones: no fan, just a swipeable row */
+    @media (max-width: 760px) {
+      .wv-fan-wrap { padding: 0 0 1.5rem; }
+      .wv-fan {
+        justify-content: flex-start; gap: 0.75rem;
+        overflow-x: auto; scroll-snap-type: x mandatory;
+        padding: 0.5rem 16px 1.5rem;
+      }
+      .wv-fan-item { margin: 0; rotate: none; translate: none; scroll-snap-align: center; }
+      .wv-fan .wv-tile { animation: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .wv-fan-item { animation: none; opacity: 1; transition: none; }
+      .wv-fan .wv-tile { animation: none; }
+    }
+    .wv-tile {
+      --h: clamp(230px, 21vw, 340px);
+      position: relative;
+      flex-shrink: 0;
+      height: var(--h);
+      width: calc(var(--h) * 0.8);
+      border-radius: 1rem;
+      overflow: hidden;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 0.9rem;
+      box-sizing: border-box;
+      padding: 0 1.5rem;
+    }
+    .wv-tile.blue { background: #e2ecfa; }
+    .wv-tile.yellow { background: #fbf3d5; }
+    /* phones rise out of the bottom edge */
+    .wv-tile-phone {
+      position: absolute; bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 78%;
+      filter: drop-shadow(0 10px 20px rgba(42,32,24,0.15));
+    }
+    .wv-tile-phone.dialog { width: auto; height: 104%; bottom: -8%; }
+    .wv-tile-card {
+      width: 100%;
+      background: #fff;
+      border-radius: 0.6rem;
+      box-shadow: 0 10px 26px rgba(42,32,24,0.12), 0 2px 6px rgba(42,32,24,0.06);
+      position: relative;
+      overflow: hidden;
+    }
+    .wv-tile-card.crop img { position: absolute; display: block; max-width: none; }
+    .wv-tile-card.pills { width: 80%; padding: 2%; }
+    .wv-tile-card.pills img { width: 100%; display: block; }
+    /* crops: show only the "after" side of each before/after image */
+    .wv-tile-card.empty   { aspect-ratio: 309 / 243; }
+    .wv-tile-card.empty img   { width: 213.3%; left: -107.8%; top: -6.2%; }
+    .wv-tile-card.details { aspect-ratio: 365 / 283; }
+    .wv-tile-card.details img { width: 200%; left: -91.8%; top: -21.9%; }
+    .wv-tile-card.remove  { aspect-ratio: 708 / 515; }
+    .wv-tile-card.remove img  { width: 335.6%; left: -116.8%; top: -9.7%; }
+    .wv-tile-card.clear   { aspect-ratio: 704 / 515; }
+    .wv-tile-card.clear img   { width: 337.5%; left: -236.6%; top: -9.7%; }
+
+    /* testimonial speech bubble */
+    .wv-bubble-wrap { max-width: 65ch; margin: 0 auto; }
+    .wv-bubble {
+      position: relative;
+      background: #f3f7f4;
+      border: 1px solid rgba(108,138,115,0.25);
+      border-radius: 1.5rem;
+      padding: 2rem 2.25rem;
+      font-family: 'Poppins', sans-serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(0.85rem, 1.3vw, 0.95rem);
+      line-height: 1.7;
+      color: #5f5850;
+      text-align: left;
+    }
+    /* tail */
+    .wv-bubble::after {
+      content: '';
+      position: absolute;
+      left: 50%; bottom: -0.7rem;
+      width: 1.3rem; height: 1.3rem;
+      background: #f3f7f4;
+      border-right: 1px solid rgba(108,138,115,0.25);
+      border-bottom: 1px solid rgba(108,138,115,0.25);
+      transform: translateX(-50%) rotate(45deg);
+    }
+    .wv-bubble-cite {
+      margin-top: 1.75rem;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.68rem; font-weight: 300;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(42,32,24,0.4);
+    }
+    .wv-bubble-wrap { position: relative; padding-top: 1.5rem; }
+    .wv-bubble-badge {
+      position: absolute; top: 0; left: 1.75rem; z-index: 2;
+      width: 3rem; height: 3rem; border-radius: 50%;
+      background: var(--wv-accent); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 16px rgba(108,138,115,0.3);
+    }
+    .wv-bubble-badge svg { width: 1.3rem; height: 1.3rem; }
+    .wv-bubble { padding-top: 2.5rem; }
+    .wv-bubble-sticker {
+      position: absolute; z-index: 2; pointer-events: none;
+      filter: drop-shadow(0 4px 8px rgba(22,19,15,0.12));
+    }
+    .wv-bubble-sticker.goose  { width: 78px; right: -2.25rem; bottom: 2.5rem; transform: rotate(10deg); }
+    .wv-bubble-sticker.folder { width: 54px; right: 2rem; top: -0.25rem; transform: rotate(-12deg); }
+    .wv-bubble-cite {
+      display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+    }
+    .wv-bubble-avatar {
+      width: 2.25rem; height: 2.25rem; border-radius: 50%;
+      background: #e3ece5; color: var(--wv-accent);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em;
+    }
+    @media (max-width: 600px) {
+      .wv-bubble { padding: 2.25rem 1.5rem 1.5rem; }
+      .wv-bubble-sticker.goose { width: 56px; right: -0.75rem; bottom: -1.5rem; }
+      .wv-bubble-sticker.folder { width: 42px; right: 1rem; }
+    }
+    /* principle mini-visuals */
+    .wv-pv {
+      height: 7.5rem;
+      margin: -0.5rem -0.5rem 1.25rem;
+      border-radius: 0.4rem;
+      background: #f3f7f4;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 0.4rem;
+      font-family: Inter, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+      overflow: hidden;
+    }
+    .wv-pv-toast {
+      display: flex; align-items: center; gap: 0.5rem;
+      background: #2a2a2a; color: #fff;
+      font-size: 0.7rem; line-height: 1.2;
+      padding: 0.5rem 0.65rem; border-radius: 0.4rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .wv-pv-toast b { color: #b9d4bf; font-weight: 600; }
+    .wv-pv-dot {
+      flex-shrink: 0; width: 1rem; height: 1rem; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--c, #6C8A73); color: #fff;
+    }
+    .wv-pv-dot svg { width: 0.6rem; height: 0.6rem; }
+    .wv-pv-btn {
+      width: 7.5rem; text-align: center;
+      font-size: 0.68rem; color: #16130f;
+      background: #fff; border: 1px solid rgba(20,35,56,0.15);
+      padding: 0.3rem 0; border-radius: 0.3rem;
+    }
+    .wv-pv-btn.primary { background: #6C8A73; border-color: #6C8A73; color: #fff; }
+    .wv-pv-card {
+      background: #fff; border: 1px solid rgba(20,35,56,0.1);
+      border-radius: 0.4rem; padding: 0.55rem 0.7rem;
+      display: flex; gap: 0.5rem; align-items: flex-start;
+      font-size: 0.68rem; line-height: 1.3; color: #16130f; max-width: 85%;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .wv-pv-card span { display: block; color: #6d6660; margin-top: 0.15rem; }
+    .wv-pv-lang {
+      display: flex; align-items: center; gap: 0.45rem;
+      width: 9.5rem;
+      font-size: 0.68rem; color: #16130f;
+    }
+    .wv-pv-lang i {
+      font-style: normal; font-size: 0.55rem; font-weight: 700; letter-spacing: 0.05em;
+      width: 1.6rem; text-align: center; padding: 0.15rem 0;
+      border-radius: 0.2rem; background: #fff; color: #6C8A73;
+      border: 1px solid rgba(108,138,115,0.35);
+    }
+    .wv-pv-lang .wv-pv-btn { width: auto; padding: 0.3rem 0.6rem; }
+    @media (max-width: 1100px) { .wv-principles { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px)  { .wv-principles { grid-template-columns: 1fr; } }
     .wv-principle-num {
       font-family: 'Poppins', sans-serif;
       font-size: 0.6rem;
@@ -354,7 +644,7 @@
     .wv-principle h4 {
       font-family: 'Poppins', sans-serif;
       font-size: 1rem;
-      font-weight: 100;
+      font-weight: 500;
       color: #16130f;
       margin-bottom: 0.5rem;
     }
@@ -401,6 +691,364 @@
     .wv-ba-card.after .wv-ba-label { color: var(--wv-green); }
     .wv-ba-card p { color: rgba(42,32,24,0.7); }
     .wv-ba-card strong { color: var(--dark); }
+
+    /* ── IMPACT CYCLE ────────────────────────────────────────── */
+    .wv-cycle {
+      position: relative;
+      width: 100%;
+      max-width: 820px;
+      margin: 2rem auto 0;
+      aspect-ratio: 820 / 420;
+    }
+    .wv-cycle-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .wv-cycle-node {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      width: 31%;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      background: #fff;
+      border: 1px solid rgba(20,35,56,0.1);
+      border-radius: 0.6rem;
+      padding: 0.7rem 0.9rem;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      line-height: 1.3;
+      color: #16130f;
+      text-align: left;
+      box-shadow: 0 4px 14px rgba(20,35,56,0.06);
+    }
+    .wv-cycle-badge {
+      flex-shrink: 0;
+      width: 2.1rem; height: 2.1rem;
+      border-radius: 50%;
+      background: var(--c, #6C8A73);
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .wv-cycle-badge svg { width: 1.15rem; height: 1.15rem; }
+    .wv-cycle-center {
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      line-height: 1.6;
+      text-align: center;
+      color: rgba(20,35,56,0.4);
+    }
+
+    /* reveal: node 1 → arrow → node 2 → arrow → node 3 → arrow → node 4 → arrow back to 1 */
+    .wv-cycle.armed .wv-cycle-node { opacity: 0; transform: translate(-50%, -50%) scale(0.92); }
+    .wv-cycle.armed .wv-cycle-line { stroke-dasharray: 1; stroke-dashoffset: 1; }
+    .wv-cycle.armed .wv-cycle-head { opacity: 0; }
+    .wv-cycle.armed.in .wv-cycle-node { opacity: 1; transform: translate(-50%, -50%) scale(1); transition: opacity 0.4s ease, transform 0.4s ease; }
+    .wv-cycle.armed.in .wv-cycle-line { stroke-dashoffset: 0; transition: stroke-dashoffset 0.35s ease-in-out; }
+    .wv-cycle.armed.in .wv-cycle-head { opacity: 1; transition: opacity 0.2s ease; }
+    .wv-cycle.armed.in .n1 { transition-delay: 0s; }
+    .wv-cycle.armed.in .a1 { transition-delay: 0.2s; }
+    .wv-cycle.armed.in .h1 { transition-delay: 0.5s; }
+    .wv-cycle.armed.in .n2 { transition-delay: 0.5s; }
+    .wv-cycle.armed.in .a2 { transition-delay: 0.7s; }
+    .wv-cycle.armed.in .h2 { transition-delay: 1s; }
+    .wv-cycle.armed.in .n3 { transition-delay: 1s; }
+    .wv-cycle.armed.in .a3 { transition-delay: 1.2s; }
+    .wv-cycle.armed.in .h3 { transition-delay: 1.5s; }
+    .wv-cycle.armed.in .n4 { transition-delay: 1.5s; }
+    .wv-cycle.armed.in .a4 { transition-delay: 1.7s; }
+    .wv-cycle.armed.in .h4 { transition-delay: 2s; }
+    @media (prefers-reduced-motion: reduce) {
+      .wv-cycle.armed .wv-cycle-node { opacity: 1; transform: translate(-50%, -50%); transition: none; }
+      .wv-cycle.armed .wv-cycle-line { stroke-dashoffset: 0; transition: none; }
+      .wv-cycle.armed .wv-cycle-head { opacity: 1; transition: none; }
+    }
+    @media (max-width: 700px) {
+      .wv-cycle { aspect-ratio: auto; display: flex; flex-direction: column; gap: 1.5rem; }
+      .wv-cycle-svg, .wv-cycle-center { display: none; }
+      .wv-cycle-node, .wv-cycle.armed .wv-cycle-node { position: relative; left: auto !important; top: auto !important; transform: none; width: 100%; opacity: 1; transition: none; }
+      .wv-cycle-node:not(:last-child)::after {
+        content: '↓';
+        position: absolute;
+        left: 50%; bottom: -1.5rem;
+        transform: translateX(-50%);
+        color: #6C8A73;
+      }
+    }
+
+    /* ── PROBLEM VISUAL CARDS ────────────────────────────────── */
+    .wv-prob-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+    .wv-prob-card {
+      background: #fff;
+      border: 1px solid rgba(20,35,56,0.1);
+      border-radius: 0.5rem;
+      overflow: hidden;
+    }
+    .wv-prob-visual {
+      background: #eef3ef;
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .wv-prob-caption {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 400;
+      line-height: 1.4;
+      color: #16130f;
+      padding: 1rem 1.1rem;
+    }
+    .wv-mock-btns, .wv-mock-alert, .wv-mock-dialog, .wv-mock-pill, .wv-mock-devices em {
+      font-family: Inter, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    }
+    .wv-mock-btns { display: flex; flex-direction: column; gap: 0.4rem; width: 70%; }
+    .wv-mock-btn {
+      font-size: 0.68rem;
+      text-align: center;
+      padding: 0.4rem 0.6rem;
+      background: #fff;
+      color: #16130f;
+      border: 1px solid rgba(20,35,56,0.15);
+      border-radius: 0.4rem;
+    }
+    .wv-mock-alert {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      background: #c03b2b;
+      color: #fff;
+      font-size: 0.7rem;
+      line-height: 1.35;
+      padding: 0.8rem 0.9rem;
+      border-radius: 0.5rem;
+      width: 100%;
+    }
+    .wv-mock-alert-icon {
+      flex-shrink: 0;
+      width: 1.25rem; height: 1.25rem;
+      border-radius: 50%;
+      background: #fff;
+      color: #c03b2b;
+      font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem;
+    }
+    .wv-mock-stack { position: relative; width: 100%; height: 130px; }
+    .wv-mock-dialog {
+      position: absolute;
+      width: 78%;
+      background: #fff;
+      border: 1px solid rgba(20,35,56,0.12);
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 12px rgba(20,35,56,0.1);
+      padding: 0.6rem 0.7rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .wv-mock-dialog b { font-size: 0.62rem; line-height: 1.3; color: #16130f; }
+    .wv-mock-dialog-btns { display: flex; gap: 0.35rem; }
+    .wv-mock-dialog-btns i {
+      font-style: normal;
+      font-size: 0.55rem;
+      padding: 0.25rem 0.55rem;
+      border-radius: 0.3rem;
+      background: #d6d6d6;
+      color: #16130f;
+    }
+    .wv-mock-dialog-btns i.primary { background: #4170c9; color: #fff; }
+    .wv-mock-dialog-back { top: 0; left: 0; }
+    .wv-mock-dialog-front { bottom: 0; right: 0; }
+    .wv-mock-devices { display: flex; align-items: flex-end; gap: 0.6rem; width: 100%; }
+    .wv-mock-browser {
+      position: relative;
+      flex: 1.7;
+      height: 110px;
+      background: #fff;
+      border: 1px solid rgba(20,35,56,0.15);
+      border-radius: 0.4rem;
+      padding: 0.35rem 0.5rem;
+    }
+    .wv-mock-browser-bar { display: flex; gap: 0.2rem; margin-bottom: 0.5rem; }
+    .wv-mock-browser-bar i { width: 0.3rem; height: 0.3rem; border-radius: 50%; background: rgba(20,35,56,0.25); }
+    .wv-mock-phone {
+      position: relative;
+      flex: 1;
+      height: 130px;
+      background: #fff;
+      border: 2px solid #16130f;
+      border-radius: 0.8rem;
+      padding: 1.1rem 0.4rem 0.4rem;
+    }
+    .wv-mock-pill {
+      display: block;
+      font-size: 0.5rem;
+      line-height: 1.3;
+      background: #4a4a4a;
+      color: #fff;
+      border-radius: 0.3rem;
+      padding: 0.35rem 0.4rem;
+    }
+    .wv-mock-devices em {
+      position: absolute;
+      left: 0; right: 0; bottom: 0.35rem;
+      text-align: center;
+      font-style: normal;
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(20,35,56,0.45);
+    }
+    @media (max-width: 1100px) { .wv-prob-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .wv-prob-grid { grid-template-columns: 1fr; } }
+
+    /* ── TOAST BEFORE / AFTER ────────────────────────────────── */
+    .wv-toast-demo {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      background: #eef3ef;
+      border-radius: 0.75rem;
+      padding: 2.5rem 2rem;
+    }
+    .wv-toast-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .wv-toast-col-after { flex: 1.2; }
+    .wv-toast {
+      font-family: Inter, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.3;
+      padding: 1.5rem 1.5rem;
+      border-radius: 0.6rem;
+    }
+    .wv-toast-info { background: #4170c9; color: #e9effb; }
+    .wv-toast-error { background: #c03b2b; color: #f6e4e1; }
+    .wv-toast-dark { background: #4a4a4a; color: #f4f4f4; border-radius: 0.8rem; }
+    .wv-toast-dark-error { color: #e8b9b9; }
+    .wv-toast-arrow { width: 3rem; flex-shrink: 0; }
+    @media (max-width: 800px) {
+      .wv-toast-demo { flex-direction: column; }
+      .wv-toast-col, .wv-toast-col-after { width: 100%; flex: none; }
+      .wv-toast-arrow { transform: rotate(90deg); }
+    }
+
+    .wv-toast-demo.armed .wv-toast-arrow { opacity: 0; }
+    .wv-toast-demo.armed .wv-toast-col-after .wv-toast {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    .wv-toast-demo.armed.in .wv-toast-arrow {
+      opacity: 1;
+      transition: opacity 0.4s ease 0.6s;
+    }
+    .wv-toast-demo.armed.in .wv-toast-col-after .wv-toast:nth-child(1) {
+      opacity: 1;
+      transform: none;
+      transition: opacity 0.4s ease 0.9s, transform 0.4s ease 0.9s;
+    }
+    .wv-toast-demo.armed.in .wv-toast-col-after .wv-toast:nth-child(2) {
+      opacity: 1;
+      transform: none;
+      transition: opacity 0.4s ease 1.2s, transform 0.4s ease 1.2s;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .wv-toast-demo.armed .wv-toast-arrow { opacity: 1; transition: none; }
+      .wv-toast-demo.armed .wv-toast-col-after .wv-toast { opacity: 1; transform: none; transition: none; }
+    }
+    .wv-dialog-outline rect { vector-effect: non-scaling-stroke; }
+    /* ── SENTENCE CASE EXAMPLES ──────────────────────────────── */
+    .wv-sc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .wv-sc-col {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+    .wv-sc-pair {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .wv-sc-pair img { width: calc(50% - 0.5rem); }
+    .wv-sc-label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(20,35,56,0.5);
+      margin-bottom: 1rem;
+    }
+    .wv-sc-item img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 0.5rem;
+    }
+    .wv-sc-item .wv-sc-pair img { width: calc(50% - 0.5rem); }
+    /* bounce-in on scroll (same motion as Spotter's competitive analysis) */
+    .wv-sc-grid.wv-sc-armed .wv-sc-item img {
+      opacity: 0;
+      transform: scale(0.5) translateY(20px);
+    }
+    .wv-sc-grid.wv-sc-armed .wv-sc-item img.wv-sc-bounce-in {
+      animation: wvScBounceIn 0.85s cubic-bezier(0.34,1.56,0.64,1) forwards;
+    }
+    @keyframes wvScBounceIn {
+      0%   { opacity: 0; transform: scale(0.5) translateY(20px); }
+      55%  { opacity: 1; transform: scale(1.06) translateY(-6px); }
+      75%  { transform: scale(0.97) translateY(2px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    @media (max-width: 800px) {
+      .wv-sc-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── ANNOTATION ANIMATION (highlight → circles → underline) ── */
+    .wv-annotated.armed .wv-annot-hl {
+      transform-box: fill-box;
+      transform-origin: left center;
+      transform: scaleX(0);
+    }
+    .wv-annotated.armed .wv-annot-draw {
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+    }
+    .wv-annotated.armed.in .wv-annot-hl { animation: wvHighlight 0.7s ease-out 0.3s forwards; }
+    .wv-annotated.armed.in .wv-annot-c1 { animation: wvDraw 0.6s ease-in-out 1.2s forwards; }
+    .wv-annotated.armed.in .wv-annot-c2 { animation: wvDraw 0.7s ease-in-out 1.8s forwards; }
+    .wv-annotated.armed.in .wv-annot-ul { animation: wvDraw 0.6s ease-out 2.6s forwards; }
+    .wv-swap-wrap.armed .wv-cancel-swap { opacity: 0; }
+    .wv-swap-wrap.armed.in .wv-cancel-swap { opacity: 1; transition: opacity 0.8s ease 0.5s; }
+    @keyframes wvHighlight { to { transform: scaleX(1); } }
+    @keyframes wvDraw { to { stroke-dashoffset: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      .wv-annotated.armed .wv-annot-hl { transform: none; }
+      .wv-annotated.armed .wv-annot-draw { stroke-dashoffset: 0; }
+      .wv-annotated.armed.in .wv-annot-hl,
+      .wv-annotated.armed.in .wv-annot-draw { animation: none; }
+      .wv-swap-wrap.armed .wv-cancel-swap { opacity: 1; transition: none; }
+    }
 
     /* ── IMAGE PLACEHOLDER ───────────────────────────────────── */
     .cs-image {
@@ -569,103 +1217,207 @@
         <div class="cs-hero-pill"><b>Tools:</b><span>Figma, Zendesk</span></div>
       </div>
 
-      <p class="cs-hero-bio">Building a scalable content system for a <strong>beta mobile app</strong> in a regulated environment.</p>
+      <p class="cs-hero-bio">During my content design internship at Workiva, I built a scalable content system for a <strong>beta mobile app</strong>. The goal: one consistent, trustworthy voice across the app and its help documentation, in a regulated financial environment.</p>
     </div>
   </header>
 
-  <!-- ── COVER IMAGE ──────────────────────────────────────────── -->
-  <div style="width:100%; max-width:1800px; margin:0.5rem auto 0; padding:0 6vw;">
-    <img src="workiva/workivacover.png" alt="Workiva cover" style="width:100%; height:auto; display:block; border-radius:8px;" />
-  </div>
-
-  <!-- ── CONTEXT + SUBCOVER ────────────────────────────────────── -->
-  <div class="cs-section" style="padding-top:2rem;">
-    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
-      <div>
-        <p class="cs-body">As a Content Design Intern at Workiva, I took ownership of building a scalable content system that would unify the app's voice across mobile and documentation — before inconsistencies compounded at scale.</p>
-        <p class="cs-body">The product needed to feel trustworthy in a regulated financial environment. That meant every word had to earn its place.</p>
+  <!-- ── SCREEN FAN ────────────────────────────────────────────── -->
+  <div class="wv-fan-wrap">
+    <div class="wv-fan">
+      <div class="wv-fan-item" style="--r:-8deg; --y:34px; --o:2; --f:0;">
+        <div class="wv-tile blue">
+          <img class="wv-tile-phone dialog" src="workiva/workiva-areyousure2.png" alt="Confirmation dialog: Apply label to all comments?" />
+        </div>
       </div>
-      <div>
-        <img src="workiva/workivasubcover.png" alt="Workiva sub cover" style="width:100%; height:auto; display:block; border-radius:8px;" />
+      <div class="wv-fan-item" style="--r:-4deg; --y:10px; --o:1; --f:1;">
+        <div class="wv-tile yellow">
+          <div class="wv-tile-card crop empty"><img src="workiva/sentencecase3.png" alt="Empty state: No files yet" /></div>
+        </div>
       </div>
-    </div>
-  </div>
-
-
-  <!-- ── PROBLEM ───────────────────────────────────────────────── -->
-  <div class="cs-section" id="wv-1" data-chapter="1">
-
-    <h2 class="cs-section-heading">The app lacked a unified voice.</h2>
-    <div class="cs-two-col">
-      <div>
-        <p class="cs-body">Across similar flows, users encountered inconsistent writing that eroded confidence in the product:</p>
-        <ul class="wv-list" style="margin-top: 1.25rem;">
-          <li>Multiple casing styles across the same screen types</li>
-          <li>Alarmist error language that created unnecessary anxiety</li>
-          <li>Redundant confirmation prompts that slowed users down</li>
-          <li>Tone inconsistencies between web and mobile</li>
-        </ul>
-        <p class="cs-body" style="margin-top: 1.5rem;">Individually, these were small inconsistencies. Collectively, they slowed comprehension, reduced perceived polish, complicated localization, and undermined trust in a regulated product.</p>
-        <p class="cs-body" style="margin-top:1rem;"><strong>The product was strong. The content wasn't reinforcing that strength.</strong></p>
+      <div class="wv-fan-item" style="--r:0deg; --y:0px; --o:0; --f:2;">
+        <div class="wv-tile blue">
+          <img class="wv-tile-phone" src="workiva/workiva-files-phone.png" alt="Workiva Files screen on mobile" />
+        </div>
       </div>
-      <div>
-        <div style="background:#fff; border:1px solid rgba(20,35,56,0.1); border-radius:0.75rem; padding:2rem;">
-          <p style="font-family:'Poppins',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:rgba(20,35,56,0.4); margin-bottom:1.25rem;">Impact of inconsistency</p>
-          <div style="display:flex; flex-direction:column; gap:1rem;">
-            <div style="display:flex; align-items:flex-start; gap:0.75rem;">
-              <span style="color:var(--wv-accent); font-size:1rem; flex-shrink:0;">↓</span>
-              <p style="font-size:0.9rem; color:rgba(42,32,24,0.7); line-height:1.6;">Slowed comprehension across flows</p>
-            </div>
-            <div style="display:flex; align-items:flex-start; gap:0.75rem;">
-              <span style="color:var(--wv-accent); font-size:1rem; flex-shrink:0;">↓</span>
-              <p style="font-size:0.9rem; color:rgba(42,32,24,0.7); line-height:1.6;">Reduced perceived polish of the product</p>
-            </div>
-            <div style="display:flex; align-items:flex-start; gap:0.75rem;">
-              <span style="color:var(--wv-accent); font-size:1rem; flex-shrink:0;">↓</span>
-              <p style="font-size:0.9rem; color:rgba(42,32,24,0.7); line-height:1.6;">Complicated future localization efforts</p>
-            </div>
-            <div style="display:flex; align-items:flex-start; gap:0.75rem;">
-              <span style="color:var(--wv-accent); font-size:1rem; flex-shrink:0;">↓</span>
-              <p style="font-size:0.9rem; color:rgba(42,32,24,0.7); line-height:1.6;">Undermined trust in a regulated environment</p>
-            </div>
-          </div>
+      <div class="wv-fan-item" style="--r:4deg; --y:10px; --o:1; --f:3;">
+        <div class="wv-tile yellow">
+          <div class="wv-tile-card crop details"><img src="workiva/sentencecase6.png" alt="File details sheet in sentence case" /></div>
+        </div>
+      </div>
+      <div class="wv-fan-item" style="--r:8deg; --y:34px; --o:2; --f:4;">
+        <div class="wv-tile blue stack">
+          <div class="wv-tile-card crop remove"><img src="workiva/confirmation2.png" alt="Confirmation dialog: Remove label?" /></div>
+          <div class="wv-tile-card pills"><img src="workiva/sentencecase2.png" alt="Status labels in sentence case" /></div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- ── PROBLEM ───────────────────────────────────────────────── -->
+  <div class="cs-section" id="wv-1" data-chapter="1" style="padding-top:7.5rem;">
+
+    <div class="cs-numbered-heading" style="margin-bottom:1.1rem;"><span class="num">01</span><span class="txt">The problem</span></div>
+    <div style="max-width:70ch; margin-bottom:4.5rem;">
+      <p class="cs-body" style="text-align:left;"><span class="cs-highlight">I was the first content designer on Workiva's mobile app</span>, and its copy didn't match the rest of the platform or follow our style guide. In a regulated financial product, inconsistency erodes trust. Every word had to earn its place.</p>
+    </div>
+    <h2 class="cs-section-heading">No unified voice</h2>
+    <div style="max-width:70ch;">
+      <p class="cs-body">The product was strong. The content wasn't reinforcing that strength.</p>
+    </div>
+
+    <div class="wv-prob-grid">
+      <div class="wv-prob-card">
+        <div class="wv-prob-visual">
+          <div class="wv-mock-btns">
+            <span class="wv-mock-btn">Upload File</span>
+            <span class="wv-mock-btn">Save changes</span>
+            <span class="wv-mock-btn">DELETE</span>
+            <span class="wv-mock-btn">add comment</span>
+          </div>
+        </div>
+        <p class="wv-prob-caption">Mixed casing across similar screens</p>
+      </div>
+
+      <div class="wv-prob-card">
+        <div class="wv-prob-visual">
+          <div class="wv-mock-alert">
+            <span class="wv-mock-alert-icon">!</span>
+            <span><b>ERROR!</b><br>Upload FAILED. Something went wrong.</span>
+          </div>
+        </div>
+        <p class="wv-prob-caption">Alarmist error language</p>
+      </div>
+
+      <div class="wv-prob-card">
+        <div class="wv-prob-visual">
+          <div class="wv-mock-stack">
+            <div class="wv-mock-dialog wv-mock-dialog-back">
+              <b>Are you sure you want to delete this?</b>
+              <span class="wv-mock-dialog-btns"><i>Cancel</i><i class="primary">Yes</i></span>
+            </div>
+            <div class="wv-mock-dialog wv-mock-dialog-front">
+              <b>Are you really sure?</b>
+              <span class="wv-mock-dialog-btns"><i>Cancel</i><i class="primary">Yes</i></span>
+            </div>
+          </div>
+        </div>
+        <p class="wv-prob-caption">Redundant confirmation prompts</p>
+      </div>
+
+      <div class="wv-prob-card">
+        <div class="wv-prob-visual">
+          <div class="wv-mock-devices">
+            <div class="wv-mock-browser">
+              <span class="wv-mock-browser-bar"><i></i><i></i><i></i></span>
+              <span class="wv-mock-pill">File uploaded successfully.</span>
+              <em>Web</em>
+            </div>
+            <div class="wv-mock-phone">
+              <span class="wv-mock-pill">Yay, all done!</span>
+              <em>Mobile</em>
+            </div>
+          </div>
+        </div>
+        <p class="wv-prob-caption">Different tone on web and mobile</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── IMPACT CYCLE ──────────────────────────────────────────── -->
+  <div class="cs-section">
+    <h2 class="cs-section-heading">Why it mattered</h2>
+    <div class="wv-cycle" id="wv-cycle" role="img" aria-label="A cycle: slowed comprehension leads to reduced product polish, which leads to harder localization, which leads to undermined trust in a regulated product, which loops back to slowed comprehension.">
+      <svg class="wv-cycle-svg" viewBox="0 0 820 420" fill="none" aria-hidden="true">
+        <ellipse cx="410" cy="210" rx="280" ry="158" fill="#f3f7f4"/>
+        <ellipse cx="410" cy="210" rx="280" ry="158" stroke="#6C8A73" stroke-opacity="0.25" stroke-width="1.5" stroke-dasharray="2 8" stroke-linecap="round"/>
+        <g class="wv-cycle-arrow" stroke="#6C8A73" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path class="wv-cycle-line a1" pathLength="1" d="M 547 40 C 640 40 688 90 688 172"/>
+          <path class="wv-cycle-head h1" d="M 680 162 L 688 174 L 696 162"/>
+          <path class="wv-cycle-line a2" pathLength="1" d="M 688 248 C 688 330 640 380 547 380"/>
+          <path class="wv-cycle-head h2" d="M 557 372 L 545 380 L 557 388"/>
+          <path class="wv-cycle-line a3" pathLength="1" d="M 273 380 C 180 380 132 330 132 254"/>
+          <path class="wv-cycle-head h3" d="M 124 264 L 132 252 L 140 264"/>
+          <path class="wv-cycle-line a4" pathLength="1" d="M 132 168 C 132 90 180 40 273 40"/>
+          <path class="wv-cycle-head h4" d="M 263 32 L 275 40 L 263 48"/>
+        </g>
+        <path id="wv-cycle-loop" d="M 547 40 C 640 40 688 90 688 172 L 688 248 C 688 330 640 380 547 380 L 273 380 C 180 380 132 330 132 254 L 132 168 C 132 90 180 40 273 40 Z"/>
+        <circle class="wv-cycle-dot" r="6" fill="#6C8A73" opacity="0">
+          <animateMotion id="wv-cycle-motion" dur="7s" repeatCount="indefinite" begin="indefinite"><mpath href="#wv-cycle-loop"/></animateMotion>
+        </circle>
+      </svg>
+      <p class="wv-cycle-center">Impact of<br>inconsistency</p>
+
+      <div class="wv-cycle-node n1" style="left:50%; top:9.5%; --c:#6C8A73;">
+        <span class="wv-cycle-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+        <span>Slowed comprehension</span>
+      </div>
+      <div class="wv-cycle-node n2" style="left:83.9%; top:50%; --c:#c2a24a;">
+        <span class="wv-cycle-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg></span>
+        <span>Reduced product polish</span>
+      </div>
+      <div class="wv-cycle-node n3" style="left:50%; top:90.5%; --c:#e59465;">
+        <span class="wv-cycle-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+        <span>Harder localization</span>
+      </div>
+      <div class="wv-cycle-node n4" style="left:16.1%; top:50%; --c:#c0503a;">
+        <span class="wv-cycle-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M12 8v5M12 16.5h.01"/></svg></span>
+        <span>Undermined trust in a regulated product</span>
+      </div>
+    </div>
+  </div>
+
   <!-- ── WHAT WAS NEEDED ───────────────────────────────────────── -->
-  <div class="cs-section" style="text-align:center; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+  <div class="cs-section" style="text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center;">
     <div style="width:2.5rem; height:3px; background:var(--wv-yellow); margin:0 auto 1.5rem; border-radius:2px;"></div>
-    <p style="font-family:'Poppins',sans-serif; font-weight:100; font-size:clamp(1.2rem,2.2vw,1.6rem); color:#2a2018; max-width:60ch; margin:0 auto; line-height:1.6;">So, I took charge of building a system that would bring the experience into alignment.</p>
+    <p style="font-family:'Poppins',sans-serif; font-weight:400; font-size:clamp(1rem,1.6vw,1.2rem); color:#16130f; max-width:60ch; margin:0 auto; line-height:1.6;"><span class="cs-highlight">So, I took charge of building a system that would bring the experience into alignment.</span></p>
   </div>
 
 
   <!-- ── PROCESS ───────────────────────────────────────────────── -->
-  <div class="cs-section" id="wv-2" data-chapter="2">
+  <div class="cs-section" id="wv-2" data-chapter="2" style="padding-top:6rem;">
 
-    <h2 class="cs-section-heading">The product needed a system — not just edits.</h2>
+    <div class="cs-numbered-heading" style="margin-bottom:1.1rem;"><span class="num">02</span><span class="txt">The system</span></div>
+    <div style="max-width:70ch; margin-bottom:4.5rem;">
+      <p class="cs-body" style="text-align:left;">Rather than fixing copy screen by screen, I built a system to fix it everywhere: a set of guiding principles, a full content audit, and repeatable patterns for casing, toasts, and confirmation dialogs.</p>
+    </div>
+    <h2 class="cs-section-heading">A system, not edits</h2>
     <p class="cs-body" style="max-width:60ch;">The issue wasn't sentence quality. It was structural inconsistency. To scale effectively, the app needed a content system that felt:</p>
     <div class="wv-principles">
       <div class="wv-principle">
+        <div class="wv-pv" aria-hidden="true">
+          <div class="wv-pv-toast"><span class="wv-pv-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg></span>File uploaded. <b>View</b></div>
+        </div>
         <p class="wv-principle-num">01</p>
         <h4>Clear</h4>
-        <p>No ambiguity. Every message should tell the user exactly what happened and what to do next.</p>
+        <p>Every message says what happened and what to do next.</p>
       </div>
       <div class="wv-principle">
+        <div class="wv-pv" aria-hidden="true">
+          <div class="wv-pv-btn primary">Save changes</div>
+          <div class="wv-pv-btn">Upload file</div>
+          <div class="wv-pv-btn">Delete file</div>
+        </div>
         <p class="wv-principle-num">02</p>
         <h4>Consistent</h4>
-        <p>Predictable patterns across flows, so users never have to re-learn the product's language.</p>
+        <p>Predictable patterns across flows.</p>
       </div>
       <div class="wv-principle">
+        <div class="wv-pv" aria-hidden="true">
+          <div class="wv-pv-card" style="--c:#e59465;"><span class="wv-pv-dot" style="margin-top:0.05rem;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 7v6M12 17h.01"/></svg></span><div>Couldn't upload your file<span>Check your connection and try again.</span></div></div>
+        </div>
         <p class="wv-principle-num">03</p>
         <h4>Human</h4>
-        <p>Informative, not alarming. Errors should feel like guidance, not system failures.</p>
+        <p>Errors guide users instead of alarming them.</p>
       </div>
       <div class="wv-principle">
+        <div class="wv-pv" aria-hidden="true">
+          <div class="wv-pv-lang"><i>EN</i><div class="wv-pv-btn">Upload file</div></div>
+          <div class="wv-pv-lang"><i>DE</i><div class="wv-pv-btn">Datei hochladen</div></div>
+          <div class="wv-pv-lang"><i>FR</i><div class="wv-pv-btn">Importer le fichier</div></div>
+        </div>
         <p class="wv-principle-num">04</p>
         <h4>Scalable</h4>
-        <p>Ready for localization, growth, and a team that changes over time.</p>
+        <p>Ready for localization and growth.</p>
       </div>
     </div>
   </div>
@@ -674,58 +1426,142 @@
   <div class="cs-section-wide cs-band">
     <div style="max-width:1800px; margin:0 auto; padding: 0 6vw;">
   
-      <h2 class="cs-section-heading">To understand the scope, I mapped the entire mobile content ecosystem.</h2>
-      <div class="cs-two-col">
+      <h2 class="cs-section-heading">The content audit</h2>
+      <div class="cs-two-col" style="grid-template-columns: 0.6fr 1.4fr;">
         <div>
-          <p class="cs-body">I began by auditing every piece of user-facing content across the mobile app — including buttons, toasts, error states, confirmation dialogs, and empty states.</p>
-          <p class="cs-body">I catalogued inconsistencies in casing, tone, length, and intent — noting where content felt unclear, redundant, or unnecessarily alarming.</p>
-          <p class="cs-body" style="margin-top:1rem;"><strong>The audit made one thing clear: this wasn't a copy problem. It was a systems problem.</strong></p>
-          <p class="cs-body">I defined a small set of content principles to guide decisions across the app. These principles became a lightweight content system that made future decisions faster and more consistent.</p>
+          <p class="cs-body">I audited all user-facing content in the mobile app and catalogued inconsistencies in <span class="cs-highlight">casing, tone, and length.</span></p>
         </div>
-        <div>
-          <div class="cs-image" style="padding:0; overflow:hidden; min-height:320px; background:none;">
-            <img src="workiva/workiva-mobile-audit.png" alt="Workiva mobile content audit" style="width:100%; height:auto; display:block; border-radius:0.5rem;" />
-          </div>
+        <div style="border-radius:0.5rem; overflow:hidden; border:1px solid rgba(42,32,24,0.1);">
+          <img src="workiva/workiva-mobile-audit.png" alt="Workiva mobile content audit" style="width:100%; height:auto; display:block;" />
         </div>
       </div>
     </div>
   </div>
 
 
+  <!-- ── SENTENCE CASE ──────────────────────────────────────────── -->
+  <div class="cs-section">
+
+    <h2 class="cs-section-heading">Sentence case</h2>
+    <p class="cs-body" style="max-width:70ch; margin-bottom:3rem;">It not only followed new changes to our style guide, it also supported a separate localization project we were working on during my time there.</p>
+
+    <div class="wv-sc-grid">
+      <div class="wv-sc-col">
+        <div class="wv-sc-item">
+          <p class="wv-sc-label">Status labels</p>
+          <div class="wv-sc-pair">
+            <img src="workiva/sentencecase1.png" alt="Status labels in title case (before)" />
+            <img src="workiva/sentencecase2.png" alt="Status labels in sentence case (after)" />
+          </div>
+        </div>
+        <div class="wv-sc-item">
+          <p class="wv-sc-label">Table headers</p>
+          <img src="workiva/sentencecase4.png" alt="Table headers before and after: title case to sentence case" />
+        </div>
+        <div class="wv-sc-item">
+          <p class="wv-sc-label">Menus</p>
+          <img src="workiva/sentencecase5.png" alt="Menu before and after: title case to sentence case" />
+        </div>
+      </div>
+      <div class="wv-sc-col">
+        <div class="wv-sc-item">
+          <p class="wv-sc-label">Empty states</p>
+          <img src="workiva/sentencecase3.png" alt="Empty state before and after: title case to sentence case" />
+        </div>
+        <div class="wv-sc-item">
+          <p class="wv-sc-label">File details</p>
+          <img src="workiva/sentencecase6.png" alt="File details sheet before and after: title case to sentence case" />
+        </div>
+      </div>
+    </div>
+    <script>
+      (function() {
+        const grid = document.querySelector('.wv-sc-grid');
+        if (!grid || !('IntersectionObserver' in window)) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        // reading order: left column, then right
+        const imgs = grid.querySelectorAll('.wv-sc-item img');
+        grid.classList.add('wv-sc-armed');
+
+        const obs = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            imgs.forEach((img, i) => {
+              setTimeout(() => { img.classList.add('wv-sc-bounce-in'); }, i * 220);
+            });
+            obs.disconnect();
+          });
+        }, { threshold: 0.15 });
+
+        obs.observe(grid);
+      })();
+    </script>
+  </div>
+
+
   <!-- ── THE COPY ───────────────────────────────────────────────── -->
   <div class="cs-section">
 
-    <h2 class="cs-section-heading">UI copy that actually makes sense together.</h2>
-    <p class="cs-body" style="max-width:60ch; margin-bottom:3rem;">Goodbye Title Case Everywhere. Hello sentence case and readable, consistent patterns. This boosted readability, improved accessibility, and made future localization less painful.</p>
-
     <!-- Toast messages -->
-    <div style="margin-bottom:4rem;">
-      <p style="font-family:'Poppins',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(20,35,56,0.5); margin-bottom:1rem;">Toast messages that don't panic the user</p>
-      <p class="cs-body" style="margin-bottom:1.5rem; max-width:60ch;">One of my favorite fixes: replacing the word <em>"Failed"</em> with <em>"Couldn't"</em>, because no one deserves to be yelled at by a toast. I also shortened each message so it could be understood in the tiny window of time it appears.</p>
-      <div class="wv-before-after">
-        <div class="wv-ba-card before">
-          <p class="wv-ba-label">Before</p>
-          <p><strong>"Failed to upload file"</strong></p>
-          <p style="margin-top:0.5rem; font-size:0.875rem; color:rgba(42,32,24,0.5);">Harsh, alarming, no recovery path</p>
+    <div style="margin-bottom:8rem;">
+      <h2 class="cs-section-heading">Calmer toasts</h2>
+      <p class="cs-body" style="margin-bottom:1.5rem; max-width:60ch;">One of my favorite fixes: replacing <em>"Failed"</em> with <em>"Couldn't"</em>, because no one deserves to be yelled at by a toast.</p>
+      <div class="wv-toast-demo" id="wv-toast-demo" role="img" aria-label="Before: a blue 'Thread reopened' toast and a red 'Failed to reopen thread' toast. After: gray 'Reopened thread' and 'Couldn't reopen thread' toasts.">
+        <div class="wv-toast-col">
+          <div class="wv-toast wv-toast-info">Thread reopened</div>
+          <div class="wv-toast wv-toast-error">Failed to reopen thread</div>
         </div>
-        <div class="wv-ba-card after">
-          <p class="wv-ba-label">After</p>
-          <p><strong>"Couldn't upload file. Try again."</strong></p>
-          <p style="margin-top:0.5rem; font-size:0.875rem; color:rgba(20,35,56,0.6);">Calm, informative, action-oriented</p>
+        <svg class="wv-toast-arrow" viewBox="0 0 80 60" fill="none" stroke="#16130f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 30h66M46 6l26 24-26 24"/></svg>
+        <div class="wv-toast-col wv-toast-col-after">
+          <div class="wv-toast wv-toast-dark">Reopened thread</div>
+          <div class="wv-toast wv-toast-dark wv-toast-dark-error">Couldn't reopen thread</div>
         </div>
       </div>
     </div>
 
     <!-- Confirmation dialogs -->
     <div>
-      <p style="font-family:'Poppins',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(20,35,56,0.5); margin-bottom:1rem;">Confirmation dialogs with less "Are You Sure??" energy</p>
-      <p class="cs-body" style="margin-bottom:1.5rem; max-width:60ch;">I trimmed them down, removed polite-but-unnecessary fear-mongering, and made the actions the star of the show.</p>
-      <div class="cs-two-col" style="gap:1.5rem;">
-        <div style="display:flex; justify-content:center;">
-          <img src="workiva/workiva-areyousure1.png" alt="Before — confirmation dialog" style="width:55%; height:auto; border-radius:0.5rem; display:block;" />
+      <h2 class="cs-section-heading">Clearer confirmations</h2>
+      <p class="cs-body" style="margin-bottom:1.5rem; max-width:60ch;">I trimmed them down, removed polite-but-unnecessary fear-mongering, and <span class="cs-highlight">made the actions the star of the show.</span></p>
+      <div style="display:flex; flex-direction:column; gap:2rem;">
+        <div class="wv-ba-card before" style="background:none; border:none; padding:0;">
+          <p class="wv-ba-label" style="margin-bottom:0.75rem;">Before</p>
+          <div class="wv-annotated" id="wv-annotated" style="position:relative;">
+            <img src="workiva/confirmation1.png" alt="Before — confirmation dialogs" style="width:100%; height:auto; border-radius:0.5rem; display:block;" />
+            <svg viewBox="0 0 2000 515" preserveAspectRatio="none" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none; overflow:visible;">
+              <g class="wv-dialog-outline" transform="scale(0.8298755)" fill="none" stroke="#142338" stroke-opacity="0.1" stroke-width="1">
+                <rect x="15" y="53" width="706" height="512" rx="20"/>
+                <rect x="841" y="53" width="707" height="512" rx="20"/>
+                <rect x="1692" y="53" width="706" height="512" rx="20"/>
+              </g>
+              <rect class="wv-annot-hl" x="62" y="102" width="486" height="44" rx="4" fill="#f5c542" fill-opacity="0.75" style="mix-blend-mode:multiply;"/>
+              <ellipse class="wv-annot-draw wv-annot-c1" pathLength="1" cx="882" cy="168" rx="96" ry="38" fill="none" stroke="#3a8f4a" stroke-width="6" transform="rotate(-3 882 168)"/>
+              <ellipse class="wv-annot-draw wv-annot-c2" pathLength="1" cx="1133" cy="389" rx="136" ry="54" fill="none" stroke="#3a8f4a" stroke-width="6" transform="rotate(-2 1133 389)"/>
+              <line class="wv-annot-draw wv-annot-ul" pathLength="1" x1="1470" y1="326" x2="1930" y2="326" stroke="#e0643a" stroke-width="6" stroke-linecap="round"/>
+            </svg>
+          </div>
         </div>
-        <div style="display:flex; justify-content:center;">
-          <img src="workiva/workiva-areyousure2.png" alt="After — confirmation dialog" style="width:55%; height:auto; border-radius:0.5rem; display:block;" />
+        <div class="wv-ba-card after" style="background:none; border:none; padding:0;">
+          <p class="wv-ba-label" style="margin-bottom:0.75rem;">After</p>
+          <div class="wv-swap-wrap" id="wv-swap-wrap" style="position:relative;">
+            <img src="workiva/confirmation2.png" alt="After — confirmation dialogs, with Cancel as a gray secondary button and the action in blue" style="width:100%; height:auto; border-radius:0.5rem; display:block;" />
+            <svg viewBox="0 0 2376 628" preserveAspectRatio="none" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none;">
+              <g class="wv-dialog-outline" fill="none" stroke="#142338" stroke-opacity="0.1" stroke-width="1">
+                <rect x="13" y="57" width="696" height="504" rx="20"/>
+                <rect x="828" y="57" width="697" height="504" rx="20"/>
+                <rect x="1667" y="57" width="698" height="504" rx="20"/>
+              </g>
+              <g class="wv-cancel-swap" font-family="Inter, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="34" text-anchor="middle" fill="#111">
+                <rect x="62" y="421" width="259" height="91" rx="18" fill="#d0d0d0"/>
+                <text x="191.5" y="478">Cancel</text>
+                <rect x="879" y="421" width="259" height="91" rx="18" fill="#d0d0d0"/>
+                <text x="1008" y="478">Cancel</text>
+                <rect x="1719" y="421" width="259" height="91" rx="18" fill="#d0d0d0"/>
+                <text x="1847.5" y="478">Cancel</text>
+              </g>
+            </svg>
+          </div>
+          <p style="margin-top:0.75rem; max-width:60ch; font-family:'Poppins',sans-serif; font-size:0.8rem; line-height:1.6; color:rgba(42,32,24,0.6);"><em>Note: With a design lens, I'd go one step further. Cancel is now a neutral gray and the action stays blue, so the two choices are visually distinct and users can tell them apart at a glance, not just by the words.</em></p>
         </div>
       </div>
     </div>
@@ -734,15 +1570,12 @@
 
   <!-- ── TEMPLATE ──────────────────────────────────────────────── -->
   <div class="cs-section">
-    <div class="cs-two-col">
+    <h2 class="cs-section-heading">Reusable templates</h2>
+    <div class="cs-two-col" style="grid-template-columns: 0.7fr 1.3fr;">
       <div>
-    
-        <h2 class="cs-section-heading">I even made a template.</h2>
-        <p class="cs-body">Once the content system was defined, I wanted to make sure it could actually outlive me. So I built a set of reusable copy templates to make onboarding new content designers as frictionless as possible.</p>
-        <p class="cs-body">The templates covered common patterns — error messages, confirmation dialogs, empty states, and toast notifications — giving anyone joining the team a ready-made starting point that already aligned with our voice and guidelines.</p>
-        <p class="cs-body">The goal was simple: <strong>a consistent voice shouldn't depend on institutional memory.</strong> It should be baked into the tools.</p>
+        <p class="cs-body" style="text-align:left;"><span class="cs-highlight">I built reusable copy templates</span> for error messages, confirmation dialogs, empty states, and toasts, so new content designers could start from our voice and guidelines.</p>
       </div>
-      <div style="display:flex; align-items:flex-start; justify-content:center; padding-top:8.5rem;">
+      <div style="display:flex; align-items:flex-start; justify-content:center;">
         <img src="workiva/workiva-mobile-template.png" alt="Workiva content design template" style="width:100%; height:auto; border-radius:0.5rem; display:block;" />
       </div>
     </div>
@@ -751,12 +1584,10 @@
 
   <!-- ── COLLABORATION ──────────────────────────────────────────── -->
   <div class="cs-section">
-
-    <div class="cs-two-col">
+    <h2 class="cs-section-heading">Reviewed in context</h2>
+    <div class="cs-two-col" style="grid-template-columns: 0.7fr 1.3fr;">
       <div>
-        <h2 class="cs-section-heading">A system is only useful if it survives reality.</h2>
-        <p class="cs-body">I partnered closely with the Product Manager and engineers to review proposed changes in context, ensuring the copy matched real system behavior and technical constraints.</p>
-        <p class="cs-body">Feedback often surfaced edge cases — timing, truncation, platform-specific behavior — which helped refine messages so they worked in production, not just in mockups.</p>
+        <p class="cs-body">I partnered with the Product Manager and engineers to review changes in context, catching edge cases like timing and truncation so messages worked in production, not just in mockups.</p>
       </div>
       <div>
         <img src="workiva/workiva-survives-reality.png" alt="Workiva collaboration and Zendesk process" style="width:100%; height:auto; display:block; border-radius:0.5rem;" />
@@ -765,20 +1596,19 @@
   </div>
 
   <!-- ── CHAPTER TRANSITION ────────────────────────────────────── -->
-  <div class="cs-section" id="wv-3" data-chapter="3">
-    <h2 class="cs-section-heading">I scaled beyond the UI.</h2>
-    <p class="cs-body" style="max-width:55ch;">Once core UI patterns were established, I extended the same principles to mobile help documentation — ensuring users received the same voice whether tapping through the app or searching for help.</p>
-    <p style="font-family:'Poppins',sans-serif; font-size:0.72rem; font-weight:300; letter-spacing:0.18em; text-transform:uppercase; color:rgba(42,32,24,0.45); margin-top:2rem;">↓ The documentation</p>
+  <div class="cs-section" id="wv-3" data-chapter="3" style="padding-bottom:2.5rem; padding-top:6rem;">
+    <div class="cs-numbered-heading" style="margin-bottom:1.1rem;"><span class="num">03</span><span class="txt">Scaling the voice</span></div>
+    <p class="cs-body" style="max-width:55ch; text-align:left;">With the UI aligned, the next question was: would the voice hold outside the app?</p>
   </div>
 
   <!-- ── DOCUMENTATION ─────────────────────────────────────────── -->
-  <div class="cs-section-wide cs-band">
+  <div class="cs-section-wide cs-band" style="padding-bottom:2rem;">
     <div style="max-width:1800px; margin:0 auto; padding:0 6vw;">
   
-      <h2 class="cs-section-heading">With the UI aligned, the next question was: would the voice hold outside the app?</h2>
+      <h2 class="cs-section-heading">The documentation</h2>
       <div class="cs-two-col">
         <div>
-          <p class="cs-body">I built a complete library of mobile-specific help articles grounded in the same principles:</p>
+          <p class="cs-body"><span class="cs-highlight">I built a library of 7 mobile-specific help articles</span> grounded in the same principles:</p>
           <ul class="wv-list" style="margin-top:1rem;">
             <li>Clear introductions</li>
             <li>Action-driven headings</li>
@@ -786,7 +1616,6 @@
             <li>Bolded button labels</li>
             <li>Consistent structural templates</li>
           </ul>
-          <p class="cs-body" style="margin-top:1.25rem;">This ensured users encountered the same voice whether tapping through the app or searching for help.</p>
         </div>
         <div>
           <div class="cs-image" style="padding:0; overflow:hidden; background:none;">
@@ -798,7 +1627,7 @@
   </div>
 
   <!-- ── MOBILE CAROUSEL ──────────────────────────────────────────── -->
-  <div style="padding: 5rem 6vw; background: var(--wv-light);">
+  <div style="padding: 0 6vw 6rem; background: var(--wv-light);">
 
     <div style="position:relative; overflow:hidden;">
       <div id="wv-carousel-track" style="display:flex; gap:2rem; transition: transform 0.45s cubic-bezier(.16,1,.3,1);">
@@ -825,28 +1654,48 @@
     </div>
   </div>
 
-  <!-- ── TAKEAWAY ───────────────────────────────────────────────── -->
-  <div class="cs-section" style="text-align:center; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;">
-    <p style="font-family:'Poppins',sans-serif; font-weight:300; font-size:clamp(0.85rem,1.5vw,1rem); color:#898078; max-width:70ch; margin:0 auto 1.5rem; line-height:1.7;">With the system in place, individual messages became sharper.</p>
-    <p style="font-family:'Poppins',sans-serif; font-weight:100; font-size:clamp(1.2rem,2.2vw,1.6rem); color:var(--wv-purple); max-width:60ch; margin:0 auto; line-height:1.4;">Content design isn't just about refining words. It's about building structures that support confident user decisions.</p>
-  </div>
+  <!-- ── OUTCOME ────────────────────────────────────────────────── -->
+  <div class="cs-section">
+    <h2 class="cs-section-heading">Outcome</h2>
+    <div style="max-width:70ch; margin-bottom:2.5rem;">
+      <p class="cs-body" style="text-align:left;">With the system in place, individual messages became sharper. Content design isn't just about refining words. It's about building structures that support confident user decisions.</p>
+    </div>
 
-  <!-- ── TESTIMONIAL ────────────────────────────────────────────── -->
-  <div class="cs-section" style="text-align:center;">
-    <span style="font-family:'Poppins',sans-serif; font-size:4rem; line-height:0.5; color:rgba(42,32,24,0.1); display:block; margin-bottom:1.5rem;">"</span>
-    <p style="font-family:'Poppins',sans-serif; font-style:italic; font-weight:300; font-size:clamp(1rem,1.8vw,1.25rem); line-height:1.7; color:#898078; max-width:65ch; margin:0 auto 1.5rem;">She readily took on the mobile app project and actively seeks out feedback on in-app copy from the team. When she had to create a series of new help articles on her own, she learned organizational strategies from others and applied those learnings to her own work, which shows that she is open to trying different processes to figure out what works best for her.</p>
-    <p style="font-family:'Poppins',sans-serif; font-size:0.68rem; font-weight:300; letter-spacing:0.18em; text-transform:uppercase; color:rgba(42,32,24,0.4);">Sarah Kang · Workiva</p>
+    <div class="cs-stats">
+      <div class="cs-stat">
+        <span class="cs-stat-num" data-count="20" data-suffix="+">20+</span>
+        <span class="cs-stat-label">Screens revised</span>
+      </div>
+      <div class="cs-stat">
+        <span class="cs-stat-num" data-count="7">7</span>
+        <span class="cs-stat-label">Mobile help articles written</span>
+      </div>
+      <div class="cs-stat">
+        <span class="cs-stat-num" data-count="4">4</span>
+        <span class="cs-stat-label">Reusable copy templates</span>
+      </div>
+    </div>
+
+    <div style="text-align:center;">
+      <figure class="wv-bubble-wrap">
+        <span class="wv-bubble-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 18v-5.5C4 8.4 6.2 5.6 10 5l.6 1.8C8.4 7.5 7.4 9 7.3 11H10v7H4zm10 0v-5.5c0-4.1 2.2-6.9 6-7.5l.6 1.8c-2.2.7-3.2 2.2-3.3 4.2H20v7h-6z"/></svg></span>
+        <img src="workiva/workivasticker5.png" alt="" class="wv-bubble-sticker folder" aria-hidden="true">
+        <img src="workiva/workivasticker1.png" alt="" class="wv-bubble-sticker goose" aria-hidden="true">
+        <blockquote class="wv-bubble">She <span class="cs-highlight">readily took on the mobile app project</span> and actively seeks out feedback on in-app copy from the team. When she had to create a series of new help articles on her own, she learned organizational strategies from others and applied those learnings to her own work, which shows that she is <span class="cs-highlight">open to trying different processes</span> to figure out what works best for her.</blockquote>
+        <figcaption class="wv-bubble-cite"><span class="wv-bubble-avatar" aria-hidden="true">SK</span>Sarah Kang · Workiva</figcaption>
+      </figure>
+    </div>
   </div>
 
   <!-- ── REFLECTION ─────────────────────────────────────────────── -->
   <div class="cs-section">
 
-    <h2 class="cs-section-heading">What I'd carry forward.</h2>
+    <h2 class="cs-section-heading">Takeaways</h2>
     <div class="cs-two-col">
       <div>
-        <p class="cs-body"><strong>Working on a beta product reinforced the importance of establishing systems early</strong> — before scale amplifies inconsistency. What began as scattered tone differences revealed a structural gap.</p>
-        <p class="cs-body"><strong>By addressing it holistically, I helped create alignment across UI and documentation.</strong> In regulated environments especially, clarity builds trust.</p>
-        <p class="cs-body"><strong>Content design is systems design.</strong> Every word decision is a design decision — and the best ones hold up at scale.</p>
+        <p class="cs-body"><span class="cs-highlight">Working on a beta product reinforced the importance of establishing systems early</span> — before scale amplifies inconsistency. What began as scattered tone differences revealed a structural gap.</p>
+        <p class="cs-body"><span class="cs-highlight">By addressing it holistically, I helped create alignment across UI and documentation.</span> In regulated environments especially, clarity builds trust.</p>
+        <p class="cs-body"><span class="cs-highlight">Content design is systems design.</span> Every word decision is a design decision — and the best ones hold up at scale.</p>
       </div>
       <div>
 
@@ -1004,6 +1853,32 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     updateActive();
   })();
+  </script>
+
+  <script>
+    // ── Play the toast reveal / Before annotations / After button swap once when each scrolls into view ──
+    (function () {
+      ['wv-annotated', 'wv-swap-wrap', 'wv-toast-demo', 'wv-cycle'].forEach(function (id) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.classList.add('armed');
+        if (!('IntersectionObserver' in window)) { el.classList.add('in'); return; }
+        const io = new IntersectionObserver((entries) => {
+          if (entries.some(e => e.isIntersecting)) {
+            el.classList.add('in');
+            if (id === 'wv-cycle' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+              setTimeout(function () {
+                const dot = el.querySelector('.wv-cycle-dot');
+                const motion = document.getElementById('wv-cycle-motion');
+                if (dot && motion && motion.beginElement) { dot.setAttribute('opacity', '1'); motion.beginElement(); }
+              }, 2300);
+            }
+            io.disconnect();
+          }
+        }, { threshold: 0.6 });
+        io.observe(el);
+      });
+    })();
   </script>
 
 </body>
