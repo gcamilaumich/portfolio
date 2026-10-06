@@ -35,7 +35,12 @@
       --dark:       #f2ede6; /* override global light-mode token for this page */
       --muted:      rgba(245,240,232,0.55); /* override global light-mode token for this page */
     }
-    body { background: var(--fh-bg); }
+    body {
+      background: var(--fh-bg);
+      /* light-on-dark text renders heavier on macOS; this matches Spotter/Workiva's visual weight */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
 
     /* ── STICKY LEFT TOC RAIL ─────────────────────────────────── */
     .fh-toc-rail {
@@ -165,7 +170,7 @@
 
     /* ── LAYOUT ──────────────────────────────────────────────── */
     .cs-section {
-      padding: 6rem 6vw;
+      padding: 2rem 6vw 6rem;
       max-width: 1800px;
       margin: 0 auto;
       transition: opacity 0.3s ease;
@@ -180,22 +185,59 @@
     }
 
     .cs-section-heading {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
       font-family: 'Poppins', sans-serif;
-      font-size: clamp(1.2rem, 2vw, 1.6rem);
-      font-weight: 100;
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      font-weight: 700;
       line-height: 1.2;
       color: var(--fh-light);
       margin-bottom: 1.5rem;
     }
+    .cs-section-heading::after {
+      content: '';
+      flex: 1 1 3rem;
+      height: 1px;
+      background: var(--fh-border);
+    }
+    .cs-numbered-heading {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .cs-numbered-heading .num {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      color: var(--fh-accent);
+      flex-shrink: 0;
+    }
+    .cs-numbered-heading .txt {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      color: var(--fh-light);
+      line-height: 1.2;
+    }
     .cs-body {
       font-family: 'Poppins', sans-serif;
       font-weight: 400;
-      font-size: 1.125rem;
-      line-height: 1.75;
+      font-size: 0.9rem;
+      line-height: 1.45;
       color: rgba(253,246,237,0.7);
       text-align: justify;
     }
     .cs-body + .cs-body { margin-top: 1rem; }
+    /* light teal highlight (tint of --fh-accent), regular weight */
+    .cs-body .fh-highlight {
+      background: rgba(82,155,156,0.5);
+      color: var(--fh-light);
+      font-weight: 400;
+      padding: 0.05em 0.3em;
+      border-radius: 4px;
+    }
     .cs-body strong { color: var(--fh-light); font-weight: 700; }
 
     .cs-divider {
@@ -237,7 +279,7 @@
       display: flex;
       align-items: flex-start;
       gap: 1rem;
-      font-size: 1rem;
+      font-size: 0.9rem;
       line-height: 1.6;
       color: rgba(253,246,237,0.8);
     }
@@ -294,40 +336,131 @@
       color: var(--muted);
     }
 
-    /* ── APPLICATIONS GRID ──────────────────────────────────── */
-    .fh-apps-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
-      margin-top: 2.5rem;
-    }
-    .fh-apps-grid img {
-      width: 100%;
-      height: 260px;
-      object-fit: cover;
-      border-radius: 0.6rem;
-      display: block;
-    }
-    .fh-apps-figure--wide {
-      grid-column: span 2;
-    }
-    .fh-apps-figure--wide img {
-      object-fit: contain;
+    /* ── ANIMATED COVER: mark draws on, slide wall warms up like a projector ── */
+    .fh-cover {
+      position: relative;
+      aspect-ratio: 5062 / 2332;
+      overflow: hidden;
       background: #000;
     }
-    .fh-apps-grid figcaption {
+    .fh-cover-brand {
+      position: absolute; inset: 0; z-index: 2;
+      display: flex; align-items: center; justify-content: center;
+      gap: 1.4%;
+      pointer-events: none;
+    }
+    .fh-cover-mark { width: 17%; flex-shrink: 0; overflow: visible; }
+    .fh-cover-mark circle, .fh-cover-mark path {
+      fill: none; stroke-width: 27; stroke-linecap: round; stroke-linejoin: round;
+      stroke-dasharray: 1 1; stroke-dashoffset: 1; opacity: 0;
+      animation: fh-draw 1.3s cubic-bezier(0.65,0,0.35,1) forwards;
+    }
+    .fh-cover-mark .s1 { animation-delay: 0.2s; }
+    .fh-cover-mark .s2 { animation-delay: 0.55s; }
+    .fh-cover-mark .s3 { animation-delay: 0.9s; }
+    @keyframes fh-draw {
+      0%   { opacity: 0; stroke-dashoffset: 1; }
+      1%   { opacity: 1; }
+      100% { opacity: 1; stroke-dashoffset: 0; }
+    }
+    .fh-cover-word {
+      width: 23%; height: auto; display: block;
+      clip-path: inset(0 100% 0 0);
+      animation: fh-wipe 0.9s cubic-bezier(0.65,0,0.35,1) 1.7s forwards;
+    }
+    @keyframes fh-wipe { to { clip-path: inset(0 0 0 0); } }
+
+    .fh-cover-wall { position: absolute; inset: 0; overflow: hidden; }
+    /* darken the middle so the logo reads over the slides */
+    .fh-cover-wall::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 45% 55% at 50% 50%, rgba(0,0,0,0.78), rgba(0,0,0,0.45) 60%, rgba(0,0,0,0.25) 100%);
+    }
+    .fh-cover-wall img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      filter: brightness(0.05);
+      transform-origin: 60% 40%;
+    }
+    .is-on .fh-cover-wall img {
+      animation:
+        fh-warmup 1.8s linear 0.3s forwards,
+        fh-pan 26s ease-in-out 2.1s infinite alternate;
+    }
+    /* projector bulb flickering on */
+    @keyframes fh-warmup {
+      0%   { filter: brightness(0.05); }
+      12%  { filter: brightness(0.7); }
+      18%  { filter: brightness(0.15); }
+      30%  { filter: brightness(0.85); }
+      36%  { filter: brightness(0.4); }
+      55%  { filter: brightness(0.95); }
+      62%  { filter: brightness(0.75); }
+      100% { filter: brightness(1); }
+    }
+    @keyframes fh-pan {
+      from { transform: scale(1.04) translate(0, 0); }
+      to   { transform: scale(1.12) translate(-3%, 1.5%); }
+    }
+    /* cursor beam: dims the wall except a soft warm pool of light */
+    .fh-cover-beam {
+      position: absolute; inset: 0; pointer-events: none;
+      opacity: 0; transition: opacity 0.5s ease;
+      background:
+        radial-gradient(circle 160px at var(--mx, 50%) var(--my, 50%), rgba(255,236,200,0.14), transparent 70%),
+        radial-gradient(circle 340px at var(--mx, 50%) var(--my, 50%), transparent 35%, rgba(0,0,0,0.6) 100%);
+    }
+    .fh-cover-wall:hover .fh-cover-beam { opacity: 1; }
+    @media (hover: none) { .fh-cover-beam { display: none; } }
+
+    @media (max-width: 700px) {
+      .fh-cover { aspect-ratio: 4 / 3; }
+      .fh-cover-mark { width: 30%; }
+      .fh-cover-word { width: 40%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .fh-cover-mark circle, .fh-cover-mark path { animation: none; opacity: 1; stroke-dashoffset: 0; }
+      .fh-cover-word { animation: none; clip-path: none; }
+      .fh-cover-wall img, .is-on .fh-cover-wall img { animation: none; filter: none; transform: none; }
+    }
+
+    /* ── DELIVERABLES (editorial layout) ─────────────────────────
+       grouped by touchpoint; each row's images share one height and
+       keep their natural proportions (flex-grow = aspect ratio) */
+    .fh-deliv { margin-top: 3.5rem; display: flex; flex-direction: column; gap: 4.5rem; }
+    .fh-deliv-label {
+      display: flex; align-items: baseline; gap: 0.9rem;
       font-family: 'Poppins', sans-serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.05em;
-      color: var(--muted);
-      margin-top: 0.6rem;
-      text-align: center;
+      font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--fh-light);
+      padding-bottom: 0.9rem; margin-bottom: 1.25rem;
+      border-bottom: 1px solid var(--fh-border);
+    }
+    .fh-deliv-label span { color: var(--fh-accent); font-weight: 700; letter-spacing: 0.05em; }
+    .fh-deliv-imgs { display: flex; gap: 1rem; align-items: flex-start; }
+    .fh-deliv-imgs figure { margin: 0; min-width: 0; flex-basis: 0; }
+    .fh-deliv-imgs img {
+      display: block; width: 100%; height: auto;
+      border-radius: 2px;
+      background: var(--fh-card);
+    }
+    .fh-deliv-imgs figcaption {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.72rem; letter-spacing: 0.04em;
+      color: rgba(253,246,237,0.5);
+      margin-top: 0.7rem;
+    }
+    @media (max-width: 700px) {
+      .fh-deliv { gap: 3rem; }
+      .fh-deliv-imgs { flex-direction: column; gap: 1.5rem; }
+      .fh-deliv-imgs figure { flex: none !important; width: 100%; }
     }
 
     /* ── FIGMA EMBEDS ──────────────────────────────────────────── */
     .fh-figma-wrap {
       width: 1100px;
       max-width: 100%;
+      margin: 0 auto;
       border-radius: 0.4rem;
     }
     .fh-figma-iframe {
@@ -335,8 +468,13 @@
       width: 100%;
       height: 620px;
     }
-    @media (max-width: 600px) {
-      .fh-figma-iframe { height: 700px; }
+    /* the Figma frames have empty canvas above and below the screens;
+       crop it off by hiding the top/bottom of the embed */
+    .fh-figma-wrap.crop { overflow: hidden; height: var(--vis); }
+    .fh-figma-wrap.crop .fh-figma-iframe { margin-top: calc(-1 * var(--top)); }
+    @media (max-width: 760px) {
+      .fh-figma-wrap.crop { height: auto; }
+      .fh-figma-wrap.crop .fh-figma-iframe { margin-top: 0; }
     }
 
     /* ── PULL QUOTE ──────────────────────────────────────────── */
@@ -373,7 +511,6 @@
     @media (max-width: 900px) {
       .cs-two-col { grid-template-columns: 1fr; gap: 2.5rem; }
       .fh-type-grid { grid-template-columns: 1fr; }
-      .fh-apps-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -386,7 +523,8 @@
     <a href="#fh-0" class="fh-toc-link" data-chapter="0">Overview</a>
     <a href="#fh-1" class="fh-toc-link" data-chapter="1">01 The brief</a>
     <a href="#fh-2" class="fh-toc-link" data-chapter="2">02 Visual identity</a>
-    <a href="#fh-3" class="fh-toc-link" data-chapter="3">03 In the wild</a>
+    <a href="#fh-3" class="fh-toc-link" data-chapter="3">03 Deliverables</a>
+    <a href="#fh-4" class="fh-toc-link" data-chapter="4">04 UI/UX Design</a>
   </aside>
 
   <div class="fh-toc-stickers">
@@ -447,11 +585,44 @@
 
   <!-- ── COVER IMAGE ──────────────────────────────────────────── -->
   <div style="width:100%; max-width:1800px; margin:0 auto; padding:0 6vw;">
-    <img src="framehouse/framehousecover.png" alt="Frame House cover" style="width:100%; height:auto; display:block;" />
+    <div class="fh-cover" id="fh-cover">
+      <div class="fh-cover-brand" role="img" aria-label="Frame House logo">
+        <!-- mark redrawn as strokes so it can draw itself on load -->
+        <svg class="fh-cover-mark" viewBox="0 0 690 549" aria-hidden="true">
+          <circle class="s1" cx="347" cy="347" r="170" stroke="#D37576" pathLength="1" />
+          <path class="s2" stroke="#529B9C" pathLength="1" d="M414.3 43.9 L627.7 166.6 Q671.0 191.5 630.4 220.7 L478.7 329.8 Q438.1 359.0 428.4 309.9 L380.7 68.1 Q371.0 19.0 414.3 43.9 Z" />
+          <path class="s3" stroke="#EAC493" pathLength="1" d="M123.6 35.0 L325.6 35.0 Q372.6 35.0 380.5 81.3 L418.3 303.7 Q426.2 350.0 379.2 350.0 L79.1 350.0 Q32.1 350.0 38.7 303.5 L70.0 81.5 Q76.6 35.0 123.6 35.0 Z" />
+        </svg>
+        <img class="fh-cover-word" src="framehouse/fh-wordmark.png" alt="" />
+      </div>
+      <div class="fh-cover-wall">
+        <img src="framehouse/fh-slidewall.jpg" alt="A lit wall of 35mm film slides" />
+        <div class="fh-cover-beam" aria-hidden="true"></div>
+      </div>
+    </div>
+    <script>
+      (function() {
+        const cover = document.getElementById('fh-cover');
+        if (!cover) return;
+        const wall = cover.querySelector('.fh-cover-wall');
+        const img = wall.querySelector('img');
+        // start the projector warm-up once the slide wall has actually loaded
+        const go = () => cover.classList.add('is-on');
+        if (img.complete) go(); else img.addEventListener('load', go);
+        setTimeout(go, 2500);
+        // cursor acts as a projector beam over the slides
+        wall.addEventListener('pointermove', (e) => {
+          const r = wall.getBoundingClientRect();
+          wall.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+          wall.style.setProperty('--my', (e.clientY - r.top) + 'px');
+        });
+      })();
+    </script>
   </div>
 
   <!-- ── THE BRIEF ─────────────────────────────────────────────── -->
-  <div class="cs-section" id="fh-1" data-chapter="1" style="padding-top:2rem;">
+  <div class="cs-section" id="fh-1" data-chapter="1" style="padding-top:6rem;">
+    <div class="cs-numbered-heading"><span class="num">01</span><span class="txt">The brief</span></div>
 
     <div class="cs-two-col" style="align-items:center;">
       <div>
@@ -469,30 +640,28 @@
     </div>
   </div>
 
-  <div class="cs-divider"></div>
 
   <!-- ── PROCESS ───────────────────────────────────────────────── -->
   <div class="cs-section">
 
-    <h2 class="cs-section-heading">Before the mark, a mess of references.</h2>
-    <p class="cs-body">I started by pulling together everything that felt like Frame House before I knew what Frame House looked like — film stills, type treatments, data visualizations, even a Nike ad — looking for the throughline between film history, data, and feeling.</p>
+    <h2 class="cs-section-heading">Moodboard</h2>
     <img src="framehouse/fh-moodboard.png" alt="Moodboard of film stills, type treatments, and data visualization references for Frame House" style="width:100%; border-radius:0; margin-top:2rem; display:block;" />
-    <p class="cs-body" style="margin-top:2.5rem;">From there, sketches helped me test which shapes could actually carry meaning — circles, trapezoids, and filmstrip motifs, tried in every combination, in CMYK to keep the film-process reference honest from the start.</p>
-    <img src="framehouse/fh-sketches.png" alt="Early logo sketches exploring circles, trapezoids, and filmstrip motifs in CMYK" style="width:100%; border-radius:0; margin-top:2rem; display:block;" />
+    <h2 class="cs-section-heading" style="margin-top:8rem;">Sketches</h2>
+    <img src="framehouse/fh-sketches-cropped.png" alt="Early logo sketches exploring circles, trapezoids, and filmstrip motifs in CMYK" style="width:100%; border-radius:0; margin-top:2rem; display:block;" />
   </div>
 
-  <div class="cs-divider"></div>
 
   <!-- ── LOGO ──────────────────────────────────────────────────── -->
-  <div class="cs-section" id="fh-2" data-chapter="2">
+  <div class="cs-section" id="fh-2" data-chapter="2" style="padding-top:6rem;">
+    <div class="cs-numbered-heading"><span class="num">02</span><span class="txt">Visual identity</span></div>
 
     <div class="cs-two-col" style="align-items:center;">
       <div class="fh-logo-block" style="background:#000;">
         <img src="framehouse/fh-logo.png" alt="Frame House logo" />
       </div>
       <div>
-        <h2 class="cs-section-heading">A mark built from film history itself.</h2>
-        <p class="cs-body">Every shape in the mark is a quiet reference: the trapezoid nods to <strong>letterboxing</strong>, the practice of framing widescreen film on a narrower screen without losing its original ratio. The play-button triangle is a direct callback to <strong>Fantasmagorie (1908)</strong>, one of the earliest animated films on record. The three overlapping rings echo the <strong>CMYK tints</strong> that made Technicolor's layered color processes possible.</p>
+        <h2 class="cs-section-heading">Logo</h2>
+        <p class="cs-body">Every shape in the mark is a quiet reference: the trapezoid nods to <span class="fh-highlight">letterboxing</span>, the practice of framing widescreen film on a narrower screen without losing its original ratio. The play-button triangle is a direct callback to <span class="fh-highlight">Fantasmagorie (1908)</span>, one of the earliest animated films on record. The three overlapping rings echo the <span class="fh-highlight">CMYK tints</span> that made Technicolor's layered color processes possible.</p>
         <p class="cs-body">Together, the shapes overlap the way film history does — built by people, and by time.</p>
       </div>
     </div>
@@ -502,13 +671,12 @@
     <img src="framehouse/fh-logobwvariants.png" alt="Frame House logo black and white variants" style="width:100%; border-radius:0; margin-top:1.5rem; display:block;" />
   </div>
 
-  <div class="cs-divider"></div>
 
   <!-- ── TYPOGRAPHY ────────────────────────────────────────────── -->
   <div class="cs-section">
 
-    <h2 class="cs-section-heading">Three voices for one brand.</h2>
-    <p class="cs-body">A geometric sans for structure, a warm serif for storytelling, and a technical grotesk for the digital product — each one earning its place in the system.</p>
+    <h2 class="cs-section-heading">Typography</h2>
+    <p class="cs-body">A geometric sans for structure, a warm serif for storytelling, and a technical grotesk for the digital product.</p>
     <div class="fh-type-grid">
       <div class="fh-type-card">
         <p class="fh-type-sample" style="font-family:'Poppins', sans-serif;">Aa</p>
@@ -525,12 +693,11 @@
     </div>
   </div>
 
-  <div class="cs-divider"></div>
 
   <!-- ── COLOR PALETTE ─────────────────────────────────────────── -->
   <div class="cs-section">
 
-    <h2 class="cs-section-heading">A palette pulled from film stock, not trend boards.</h2>
+    <h2 class="cs-section-heading">A palette pulled from film stock</h2>
     <p class="cs-body">Warm, slightly faded tones — closer to a found roll of film than a modern app icon.</p>
     <div class="cs-two-col" style="align-items:stretch; gap:3rem; margin-top:2.5rem;">
       <div>
@@ -567,101 +734,87 @@
     </div>
   </div>
 
-  <div class="cs-divider"></div>
 
   <!-- ── DATA-DRIVEN DESIGN ───────────────────────────────────────── -->
   <div class="cs-section">
 
-    <h2 class="cs-section-heading">The shapes aren't decoration — they're plot structure.</h2>
+    <h2 class="cs-section-heading">Shapes as plot structure</h2>
     <p class="cs-body">Every circle, triangle, and trapezoid scattered across the identity traces back to a classic story arc — the rise-and-fall patterns writers have used for centuries to map narratives like <strong>Cinderella</strong> (rise-fall-rise), <strong>Oedipus</strong> (fall-rise-fall), and <strong>Man in a Hole</strong> (a fall followed by a rise). Each shape marks a beat plotted against the story's run time, in the spirit of <strong>Giorgia Lupi's</strong> data-humanism — using hand-drawn, personal marks to make data feel emotional rather than clinical.</p>
     <p class="cs-body">That same visual language — a shape standing in for a story beat, a color standing in for a feeling — became the backbone of the whole system, resurfacing on the badges, the tote bag, and the popcorn cups.</p>
     <img src="framehouse/fh-plotarchetypes.jpg" alt="Data chart mapping plot archetypes like Cinderella and Oedipus to rise-and-fall curves over run time" style="width:100%; border-radius:0; margin-top:2rem; display:block;" />
   </div>
 
-  <div class="cs-divider"></div>
 
   <!-- ── APPLICATIONS ──────────────────────────────────────────── -->
-  <div class="cs-section" id="fh-3" data-chapter="3">
+  <div class="cs-section" id="fh-3" data-chapter="3" style="padding-top:6rem;">
+    <div class="cs-numbered-heading"><span class="num">03</span><span class="txt">Deliverables</span></div>
 
-    <h2 class="cs-section-heading">A system built to live outside the screen.</h2>
+    <h2 class="cs-section-heading" style="margin-top:4.5rem;">A system built to live outside the screen.</h2>
     <p class="cs-body">Posters, tickets, badges, and merch — every touchpoint carries the same shapes, palette, and voice, so Frame House feels recognizable whether you're in the lobby or on the street.</p>
-    <div class="fh-apps-grid">
-      <figure>
-        <img src="framehouse/fh-posters.jpg" alt="Frame House movie posters on a street wall" />
-        <figcaption>Street posters</figcaption>
-      </figure>
-      <figure>
-        <img src="framehouse/fh-busstop.jpg" alt="Frame House bus stop ad" />
-        <figcaption>Transit advertising</figcaption>
-      </figure>
-      <figure>
-        <img src="framehouse/fh-tickets.jpg" alt="Frame House event tickets" />
-        <figcaption>Event tickets — front</figcaption>
-      </figure>
-      <figure>
-        <img src="framehouse/fh-movieticketback.png" alt="Frame House event ticket back, printed with a legend explaining the ticket's data" />
-        <figcaption>Event tickets — back (legend)</figcaption>
-      </figure>
-      <figure>
-        <img src="framehouse/fh-badges.jpg" alt="Frame House guest, manager, and employee badges" />
-        <figcaption>Staff &amp; guest badges</figcaption>
-      </figure>
-      <figure>
-        <img src="framehouse/fh-tote.jpg" alt="Frame House tote bag front, printed with a colored grid pattern encoding each movie's frame style" />
-        <figcaption>Tote bag — front (the data)</figcaption>
-      </figure>
-      <figure>
-        <img src="framehouse/fh-tote-legend.jpg" alt="Frame House tote bag back, printed with a legend of film aspect ratios by movie" />
-        <figcaption>Tote bag — back (legend)</figcaption>
-      </figure>
-      <figure>
-        <img src="framehouse/fh-tshirt.jpg" alt="Frame House t-shirt front" />
-        <figcaption>Apparel — front</figcaption>
-      </figure>
-      <figure>
-        <img src="framehouse/fh-tshirtback.png" alt="Frame House t-shirt back, printed with a legend" />
-        <figcaption>Apparel — back (legend)</figcaption>
-      </figure>
-      <figure class="fh-apps-figure--wide">
-        <img src="framehouse/fh-concessions.jpg" alt="Frame House popcorn cups, drink cups, and nacho trays" />
-        <figcaption>Concessions</figcaption>
-      </figure>
+    <div class="fh-deliv">
+      <section class="fh-deliv-row">
+        <p class="fh-deliv-label"><span>01</span>Out of home</p>
+        <div class="fh-deliv-imgs">
+          <figure style="flex:1.502;"><img src="framehouse/fh-posters.jpg" alt="Frame House movie posters on a street wall" width="1000" height="666" loading="lazy" /><figcaption>Street posters</figcaption></figure>
+          <figure style="flex:1.524;"><img src="framehouse/fh-busstop-cropped.jpg" alt="Frame House bus stop ad" width="1000" height="656" loading="lazy" /><figcaption>Transit shelter</figcaption></figure>
+        </div>
+      </section>
+      <section class="fh-deliv-row">
+        <p class="fh-deliv-label"><span>02</span>Ticketing</p>
+        <div class="fh-deliv-imgs">
+          <figure style="flex:1.502;"><img src="framehouse/fh-tickets.jpg" alt="Frame House event tickets" width="1000" height="666" loading="lazy" /><figcaption>Front</figcaption></figure>
+          <figure style="flex:1.121;"><img src="framehouse/fh-movieticketback.png" alt="Frame House event ticket back, printed with a legend explaining the ticket's data" width="953" height="850" loading="lazy" /><figcaption>Back — data legend</figcaption></figure>
+        </div>
+      </section>
+      <section class="fh-deliv-row">
+        <p class="fh-deliv-label"><span>03</span>On site</p>
+        <div class="fh-deliv-imgs">
+          <figure style="flex:1.333;"><img src="framehouse/fh-badges.jpg" alt="Frame House guest, manager, and employee badges" width="1000" height="750" loading="lazy" /><figcaption>Staff &amp; guest badges</figcaption></figure>
+          <figure style="flex:2.085;"><img src="framehouse/fh-concessions-cropped.jpg" alt="Frame House popcorn cups, drink cups, and nacho trays" width="684" height="328" loading="lazy" /><figcaption>Concessions</figcaption></figure>
+        </div>
+      </section>
+      <section class="fh-deliv-row">
+        <p class="fh-deliv-label"><span>04</span>Merchandise</p>
+        <div class="fh-deliv-imgs">
+          <figure style="flex:0.918;"><img src="framehouse/fh-tote.jpg" alt="Frame House tote bag front, printed with a colored grid pattern encoding each movie's frame style" width="918" height="1000" loading="lazy" /><figcaption>Tote — front, the data</figcaption></figure>
+          <figure style="flex:1.082;"><img src="framehouse/fh-tote-legend.jpg" alt="Frame House tote bag back, printed with a legend of film aspect ratios by movie" width="1674" height="1547" loading="lazy" /><figcaption>Tote — back, the legend</figcaption></figure>
+        </div>
+      </section>
+      <section class="fh-deliv-row">
+        <p class="fh-deliv-label"><span>05</span>Apparel</p>
+        <div class="fh-deliv-imgs">
+          <figure style="flex:1.462;"><img src="framehouse/fh-tshirt.jpg" alt="Frame House t-shirt front" width="1000" height="684" loading="lazy" /><figcaption>Tee — front</figcaption></figure>
+          <figure style="flex:1.223;"><img src="framehouse/fh-tshirtback.png" alt="Frame House t-shirt back, printed with a legend" width="960" height="785" loading="lazy" /><figcaption>Tee — back, the legend</figcaption></figure>
+        </div>
+      </section>
     </div>
   </div>
 
-  <div class="cs-divider"></div>
 
   <!-- ── MOBILE APP ────────────────────────────────────────────── -->
-  <div class="cs-section">
+  <div class="cs-section" id="fh-4" data-chapter="4" style="padding-top:6rem;">
 
-    <h2 class="cs-section-heading">The identity, carried into the pocket.</h2>
-    <p class="cs-body">Booking a seat, browsing what's playing, and exploring the catalog all needed to feel like the same Frame House — same shapes, same palette, same sense that every screen is shaped by people and time.</p>
-    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:1.5rem; margin-top:2rem;">
-      <div class="fh-figma-wrap">
-        <iframe class="fh-figma-iframe" style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/proto/WLWpmHHb1WIir2LAbY8yuW/Brand--Copy-?node-id=2065-2800&p=f&viewport=242%2C237%2C1&scaling=contain&content-scaling=fixed&page-id=2065%3A2799&embed-host=share&hide-ui=1" allowfullscreen></iframe>
-      </div>
-      <div class="fh-figma-wrap">
-        <iframe class="fh-figma-iframe" style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/proto/WLWpmHHb1WIir2LAbY8yuW/Brand--Copy-?node-id=2065-3636&viewport=40%2C106%2C0.43&scaling=contain&content-scaling=fixed&page-id=2065%3A3635&embed-host=share&hide-ui=1" allowfullscreen></iframe>
-      </div>
+    <div class="cs-numbered-heading" style="margin-bottom:1.1rem;"><span class="num">04</span><span class="txt">UI/UX Design</span></div>
+    <p class="cs-body" style="max-width:70ch; text-align:left;">Booking a seat, browsing what's playing, and exploring the catalog all needed to feel like the same Frame House.</p>
+    <h2 class="cs-section-heading" style="margin-top:4.5rem;">Mobile</h2>
+    <div class="fh-figma-wrap crop" style="--top:105px; --vis:435px;">
+      <iframe class="fh-figma-iframe mobile" style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/proto/WLWpmHHb1WIir2LAbY8yuW/Brand--Copy-?node-id=2065-2800&p=f&viewport=242%2C237%2C1&scaling=contain&content-scaling=fixed&page-id=2065%3A2799&embed-host=share&hide-ui=1" allowfullscreen></iframe>
+    </div>
+
+    <h2 class="cs-section-heading" style="margin-top:8rem;">Desktop</h2>
+    <div class="fh-figma-wrap crop" style="--top:115px; --vis:410px;">
+      <iframe class="fh-figma-iframe desktop" style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/proto/WLWpmHHb1WIir2LAbY8yuW/Brand--Copy-?node-id=2065-3636&viewport=40%2C106%2C0.43&scaling=contain&content-scaling=fixed&page-id=2065%3A3635&embed-host=share&hide-ui=1" allowfullscreen></iframe>
     </div>
   </div>
 
-  <div class="cs-divider"></div>
-
-  <!-- ── PULL QUOTE ────────────────────────────────────────────── -->
-  <div class="cs-quote">
-    <span class="cs-quote-mark">"</span>
-    <p class="cs-quote-text">Strong design needs both visual expression and consistency — and the collaboration along the way is what actually strengthens the final outcome.</p>
-    <p class="cs-quote-attr">Reflections on the project</p>
-  </div>
 
   <!-- ── REFLECTIONS ───────────────────────────────────────────── -->
   <div class="cs-section">
 
     <h2 class="cs-section-heading">What this project taught me.</h2>
-    <p class="cs-body">We explored how color, shape, and symbols can communicate information and meaning on their own, before a single word of copy gets added.</p>
-    <p class="cs-body">We realized that strong design requires both visual expression <strong>and</strong> consistency — a striking mark means little if it falls apart the moment it's applied to a ticket, a tote bag, or a bus stop ad.</p>
-    <p class="cs-body">And we learned that collaboration played a real role in aligning ideas and strengthening the final outcome — the best version of this identity wasn't the first one any of us sketched alone.</p>
+    <p class="cs-body">I learned how to <span class="fh-highlight">turn data and history into a logo</span> — distilling decades of film history, from letterboxing to Fantasmagorie to Technicolor's CMYK tints, into three simple shapes that still carry that meaning.</p>
+    <p class="cs-body">A brand has to <span class="fh-highlight">live across every deliverable</span>, not just the logo lockup. Posters, tickets, badges, merch, and an app all need to feel unmistakably Frame House — easy to brand, and easy to tell apart from anything else on the street.</p>
+    <p class="cs-body">The way to get there is <span class="fh-highlight">a consistent color palette that's unique and rooted in something real</span>. Grounding Frame House's colors in the history of film gave the whole system a foundation, so every touchpoint feels like it belongs to the same theater.</p>
   </div>
 
   <!-- ── FOOTER ────────────────────────────────────────────────── -->
